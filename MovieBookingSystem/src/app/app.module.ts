@@ -7,6 +7,7 @@ import { AdminComponent } from './admin/admin.component';
 import { UserComponent } from './user/user.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './home/header/header.component';
+import { MovieListComponent } from './home/movie-list/movie-list.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { HeaderComponent } from './home/header/header.component';
     AdminComponent,
     UserComponent,
     HomeComponent,
-    HeaderComponent
+    HeaderComponent,
+    MovieListComponent
   ],
   imports: [
     BrowserModule,
