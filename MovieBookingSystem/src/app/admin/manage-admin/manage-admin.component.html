@@ -1,0 +1,21 @@
+<div class="d-flex justify-content-center align-items-center">
+    <table>
+        <thead>
+          <tr>
+            <th> First Name </th>
+            <th> Last Name</th>
+            <th> Gmail</th>
+            <th> Revoke Admin Access</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let admin of admins, let i = index"> 
+              <th> {{admin.firstname}} </th>
+              <td> {{admin.lastName}} </td>
+              <td> {{admin.gmail}} </td>
+              <td> remove </td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+    

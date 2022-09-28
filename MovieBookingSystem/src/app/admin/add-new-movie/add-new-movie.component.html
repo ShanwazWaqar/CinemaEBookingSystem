@@ -1,0 +1,89 @@
+<div class="addnewMovieSectionContainer">
+    <div class="col-10">
+        <div class="addnewMovieForm">
+            <div class="d-flex justify-content-center addNewMovieText"> ADD NEW MOVIE </div>
+            <div>
+                <form [formGroup]="addMovie" (ngSubmit)="addNewMovie()">
+                    <div>
+                        <label>
+                            <span class="addNewMovieformLabel">Title:</span>
+                            <input formControlName="title" placeholder="Enter Movie Title">
+                        </label>
+                    </div><hr>
+                    <div>
+                        <label>
+                            <span class="addNewMovieformLabel">Synopsis:</span>
+                            <textarea formControlName="Synopsis" rows="4" cols="50" placeholder="Enter Movie Description"></textarea>
+                        </label>
+                    </div> <hr>
+                    <div>
+                        <label>
+                            <span class="addNewMovieformLabel">Cast:</span>
+                            <input formControlName="cast" placeholder="Enter Movie Cast">
+                        </label>
+                    </div> <hr>
+                    <div>
+                        <label>
+                            <span class="addNewMovieformLabel">Trailer Link:</span>
+                            <input formControlName="trailerLink" placeholder="Enter Movie Trailer Link">
+                        </label>
+                    </div> <hr>
+                    <div>
+                        <label>
+                            <span class="addNewMovieformLabel">Thumbnail:</span>
+                            <input type="file" accept="image/*" formControlName="thumbnail" alt="thumbnail">
+                        </label>
+                    </div> <hr>
+                    <div>
+                        <label>
+                            <span class="addNewMovieformLabel">Genre:</span>
+                            <select (change)="updateGenre($event)" formControlName="genre">
+                                <option *ngFor="let genre of genres" [ngValue]="genre">
+                                    {{ genre }}
+                                </option>
+                            </select>
+                        </label>
+                    </div> <hr>
+                    <div>
+                        <label>
+                            <span class="addNewMovieformLabel">Rating:</span>
+                            <select (change)="updateRating($event)" formControlName="rating">
+                                <option *ngFor="let rating of ratings" [ngValue]="rating">
+                                    {{ rating }}
+                                </option>
+                            </select>
+                        </label>
+                    </div> <hr>
+                    <div>
+                        <label>
+                            <span class="addNewMovieformLabel">Director:</span>
+                            <input formControlName="director" placeholder="Enter Movie Director Name">
+                        </label>
+                    </div> <hr>
+                    <div>
+                        <label>
+                            <span class="addNewMovieformLabel">Producer:</span>
+                            <input formControlName="producer" placeholder="Enter Movie Producer Name">
+                        </label>
+                    </div> <hr>
+                    <div>
+                        <label>
+                            <span class="addNewMovieformLabel">Start Date:</span>
+                            <input formControlName="startDate" type="date" >
+                        </label>
+                    </div> <hr>
+                    <div>
+                        <label>
+                            <span class="addNewMovieformLabel">End Date:</span>
+                            <input formControlName="endDate" type="date" >
+                        </label>
+                    </div> <hr>
+                    <div class="d-flex justify-content-center">
+                        <button class="addMovieFormSubmitBtn" type="submit">Submit</button>
+                    </div>
+                    <br>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+.addPromoContainer {
+    display: flex;
+    justify-content: end;
+    column-gap: 20px;
+}
+
+.addPromoButton {
+    width: 180px;
+    height: 40px;
+    background-color: blue;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    margin: 30px;
+    margin-right: 0;
+    cursor: pointer;
+}
+.sendPromoButton{
+    width: 180px;
+    height: 40px;
+    background-color: blue;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    margin: 30px;
+    cursor: pointer;
+}
+.existingPromoContainer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    row-gap: 20px;
+}
+
+.promoCodeDetailsContainer  {
+    width: 260px;
+    height: 100px;
+    background-color: beige;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.promoTitle {
+    font-weight: bold;
+}
+.promoVaule {
+    font-family: cursive;
+    font-style: italic;
+}

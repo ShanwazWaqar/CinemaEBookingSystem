@@ -1,1 +1,17 @@
-<p>admin works!</p>
+<div>
+    <form [formGroup]="loginForm" (ngSubmit)="submitLogin(loginForm)">
+        <div>
+          <label>
+            Email:
+            <input formControlName="email" placeholder="Enter your Email">
+          </label>
+        </div>
+        <div>
+          <label>
+            Password:
+            <input formControlName="password" placeholder="Enter your Password">
+          </label>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+</div>

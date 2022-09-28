@@ -1,0 +1,25 @@
+.addnewMovieSectionContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+.addnewMovieForm {
+    border: 2px solid black;
+}
+.addNewMovieText {
+    font-weight: bolder;
+    font-style: italic;
+}
+.addMovieFormSubmitBtn {
+    width: 100px;
+    height: 50px;
+    background-color: rgb(138, 43, 226);
+    color: whitesmoke;
+    border-radius: 25px;
+    border: 0;
+}
+.addNewMovieformLabel {
+    padding-left: 30px;
+    padding-top: 20px;
+    font-weight: 600;
+}

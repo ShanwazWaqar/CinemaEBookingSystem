@@ -1,0 +1,19 @@
+<div class="d-flex justify-content-center align-items-center">
+    <table>
+        <thead>
+          <tr>
+            <th> First Name </th> 
+            <th> Gmail</th>
+            <th> Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users"> 
+              <th> {{user.firstname}} </th>
+              <td> {{user.gmail}} </td>
+              <td>  {{user.status}}</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+    

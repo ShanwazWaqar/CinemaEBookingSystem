@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="addPromoContainer">
+        <div class="addPromoButton" (click)="showAddPromoForm()">ADD PROMOTION</div>
+        <div class="sendPromoButton" (click)="showAddPromoForm()">SEND PROMOTION</div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="existingPromoContainer">
+            <div class="col-3" *ngFor="let promo of promosArray">
+                <div class="promoCodeDetailsContainer">
+                    <div>
+                        <span class="promoTitle">Name : </span> <span class="promoVaule"> {{promo.name}} </span> <br>
+                        <span class="promoTitle">PromoCode : </span> <span class="promoVaule"> {{promo.promoCode}} </span> <br>
+                        <span class="promoTitle">Discount(%) : </span> <span class="promoVaule"> {{promo.discount}} </span>
+                    </div>    
+                </div>  
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="showModal">
+    <app-promo-popup></app-promo-popup>
+</div>
