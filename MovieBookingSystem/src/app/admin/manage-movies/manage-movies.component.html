@@ -1,39 +1,44 @@
 <div class="row">
     <div class="manageMoviesHeader">
-        <div class="manageMoviesButton" [ngStyle]="{'background-color': currentMoviesSelected ? '#8A2BE2' : 'black', 
+        <div class="manageMoviesButton" [ngStyle]="{'background-color': currentMoviesSelected ? '#1fb5bf' : 'black', 
                                 'color' : currentMoviesSelected ? 'black' : 'white'}" (click)="showCurrentMovies()">
             CURRENT PLAYING</div>
-        <div class="manageMoviesButton" [ngStyle]="{'background-color': addmoviesSelected ? '#8A2BE2' : 'black', 
+        <div class="manageMoviesButton" [ngStyle]="{'background-color': addmoviesSelected ? '#1fb5bf' : 'black', 
         'color' : addmoviesSelected ? 'black' : 'white'}" (click)="addMovies()">
             ADD</div>
-        <div class="manageMoviesButton" [ngStyle]="{'background-color': archiveMoviesSelected ? '#8A2BE2' : 'black', 
+        <div class="manageMoviesButton" [ngStyle]="{'background-color': archiveMoviesSelected ? '#1fb5bf' : 'black', 
         'color' : archiveMoviesSelected ? 'black' : 'white'}" (click)="archiveMovies()">
             ARCHIVE</div>
-        <div class="manageMoviesButton" [ngStyle]="{'background-color': scheduleMoviesSelected ? '#8A2BE2' : 'black', 
+        <div class="manageMoviesButton" [ngStyle]="{'background-color': scheduleMoviesSelected ? '#1fb5bf' : 'black', 
         'color' : scheduleMoviesSelected ? 'black' : 'white'}" (click)="scheduleMovies()">
             SCHEDULE</div>      
     </div>
 </div>
 
 <div *ngIf="currentMoviesSelected">
-    <div class="currentMoviesSectionContainer">
-        <div class="row">
-            <div *ngFor="let movie of movies">
-                <div class="col-3">
-                    <div>   
-                        <div class="editMovieCard">
-                            <div><img class="editMovieCardImage" src={{movie.image}} /> </div>
-                        </div>
-                        <div class="editMovieCardFooter">
-                            <div class="d-flex justify-content-center manageMovieEditTitle">TITLE : {{movie.title}}</div>
-                            <div class="d-flex justify-content-center">
-                                <div class="d-flex justify-content-center manageMovieEditButton" (click)="openEditMoviePopup()">EDIT</div>
-                            </div>  
-                        </div>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="currentlyPlayingMoviesContainer">
+                <div class="col-3" *ngFor="let movie of movies,let i = index">
+                    <div class="currentMovieContainer">
+                        <mat-card appMaterialElevation>
+                            <img class="currentMovieImage" mat-card-image src={{movie.image}} alt="poster">
+                            <mat-card-content> 
+                                <div class="d-flex">
+                                    <p> Title : &nbsp; </p>        
+                                    <mat-card-title> {{movie.title}} </mat-card-title>
+                                </div>
+                                <mat-card-actions>   
+                                    <div class="d-flex justify-content-center">
+                                        <div class="currentmovesEditBtn" (click)="openEditMoviePopup(i)">Edit</div>
+                                    </div>
+                                </mat-card-actions>
+                            </mat-card-content>
+                        </mat-card>
                     </div>
                 </div>
             </div>
-        </div>       
+        </div>
     </div>
 </div>
 

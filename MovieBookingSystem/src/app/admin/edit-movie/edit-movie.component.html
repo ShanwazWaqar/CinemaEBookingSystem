@@ -1,8 +1,7 @@
 <div class="addnewMovieSectionContainer">
     <div class="col-10">
         <div class="addnewMovieForm">
-            <br>
-            <div class="d-flex justify-content-center addNewMovieText"> ADD NEW MOVIE </div> <br>
+            <div class="d-flex justify-content-center addNewMovieText"> EDIT {{title}} MOVIE </div> <br> 
             <div>
                 <form [formGroup]="addMovie" (ngSubmit)="addNewMovie()">
                     <div>
@@ -79,8 +78,11 @@
                             <input formControlName="endDate" type="date" >
                         </label>
                     </div> <hr>
-                    <div class="d-flex justify-content-center">
-                        <button class="addMovieFormSubmitBtn" type="submit">ADD</button>
+                    <div class="col-8 justify-content-center">
+                        <div class="footerBtns">
+                            <button class="addMovieFormSubmitBtn" (click)="cancelEditMovie()" type="submit">Cancel</button>
+                            <button class="addMovieFormSubmitBtn" (click)="updateEditMovie()" type="submit">Update</button>
+                        </div>
                     </div>
                     <br>
                 </form>

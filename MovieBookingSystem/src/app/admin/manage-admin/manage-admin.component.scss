@@ -28,7 +28,7 @@
   }
   
   thead th {
-    background-color: #087f5b;
+    background-color: #1fb5bf;
     color: #fff;
     width: 25%;
   }
@@ -41,3 +41,7 @@
     background-color: #e9ecef;
   }
   
+  .removeAdminClass:hover {
+    color: red;
+    cursor: pointer;
+  }

@@ -13,7 +13,7 @@
               <th> {{admin.firstname}} </th>
               <td> {{admin.lastName}} </td>
               <td> {{admin.gmail}} </td>
-              <td> remove </td>
+              <td class="removeAdminClass" (click)="removeAdmin(i)"> remove </td>
           </tr>
         </tbody>
       </table>

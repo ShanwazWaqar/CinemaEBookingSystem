@@ -1,17 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, Optional } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA  } from '@angular/material/dialog';
+
 
 @Component({
-  selector: 'app-add-new-movie',
-  templateUrl: './add-new-movie.component.html',
-  styleUrls: ['./add-new-movie.component.scss']
+  selector: 'app-edit-movie',
+  templateUrl: './edit-movie.component.html',
+  styleUrls: ['./edit-movie.component.scss']
 })
-export class AddNewMovieComponent implements OnInit {
+export class EditMovieComponent implements OnInit {
+  title?:"";
   addMovie: FormGroup;
   genres = ["Action","Horror","Thriller","Comedy","Drama","Adventure","Documentary","Fiction","Mystery","Animation"];
   ratings = ["G: General Audiences","PG: Parental Guidance Suggested","PG-13: Parents Strongly Cautioned","R: Restricted","NC-17: Clearly Adult"];
-  constructor(private fb: FormBuilder) {
-   }
+  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: any,private Ref:MatDialogRef<EditMovieComponent>) {
+    this.title = data.title;
+   };
 
   ngOnInit(): void {
     this.genres = ["Action","Horror","Thriller","Comedy","Drama","Adventure","Documentary","Fiction","Mystery","Animation"];
@@ -36,6 +40,12 @@ export class AddNewMovieComponent implements OnInit {
     this.ratings = ["G: General Audiences","PG: Parental Guidance Suggested","PG-13: Parents Strongly Cautioned","R: Restricted","NC-17: Clearly Adult"];
   }
 
+  ngAfterContentInit() {
+    this.addMovie.patchValue({
+      title : this.data.title
+    });
+  }
+
   addNewMovie() {
 
   }
@@ -46,6 +56,13 @@ export class AddNewMovieComponent implements OnInit {
 
   updateRating(evt:any) {
 
+  }
+
+  cancelEditMovie() {
+    this.Ref.close();
+  }
+  updateEditMovie(){
+    this.Ref.close(this.addMovie.value);
   }
 
 }

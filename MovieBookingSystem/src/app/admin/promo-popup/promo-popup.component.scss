@@ -4,3 +4,21 @@
     height: 400px;
     background-color: darkcyan;
 }
+.addPromoBtn {
+    padding: 10px;
+    background-color: #1fb5bf;
+    color: black;
+    border-radius: 25px;
+    cursor: pointer;
+}
+.cancelPromoBtn {
+    padding: 10px 20px 10px 20px;
+    background-color: #1fb5bf;
+    color: black;
+    border-radius: 25px;
+    cursor: pointer;
+}
+.promoBtns {
+    display: flex;
+    justify-content: space-around;
+}

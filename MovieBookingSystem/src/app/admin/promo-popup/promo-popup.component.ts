@@ -1,5 +1,7 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import {NgbModal, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Output, EventEmitter } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA  } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-promo-popup',
@@ -8,36 +10,33 @@ import {NgbModal, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./promo-popup.component.scss']
 })
 export class PromoPopupComponent implements OnInit {
-  @ViewChild('promoPopupModal') myModal: any;
-  modalOptions:NgbModalOptions;
-  private modalConfig: NgbModalOptions = {
-    backdrop: 'static',
-    keyboard: true,
-    
-  };
-
-  constructor(private modalService: NgbModal) { 
-    this.modalOptions = {
-      backdrop:'static',
-      backdropClass:'customBackdrop',
-      centered:true,
-      size:'sm',
-      keyboard:true,
-      scrollable:false,
-      windowClass: 'promoPopup'
-    }
+  promoForm :FormGroup;
+  @Output() closePromoPopup = new EventEmitter();
+  constructor(private fb: FormBuilder,private Ref:MatDialogRef<PromoPopupComponent>) { 
   }
+   closeValue:any;
 
   ngOnInit(): void {
-    this.openModal();
+    this.promoForm = this.fb.group({
+      name : ['',[Validators.required ]],
+      promoCode : ['', [Validators.required]],
+      discount: ['',[Validators.required ]],
+      validity: ['',[ ]],
+
+    });
   }
 
   openModal(){
-    this.modalService.open(this.myModal);
+    
   }
 
   closeModal(){
-    this.modalService.dismissAll();
+    this.Ref.close();
+  }
+
+  addPromo() {
+    this.closeValue = this.promoForm.value;
+    this.Ref.close(this.closeValue);
   }
 
 }

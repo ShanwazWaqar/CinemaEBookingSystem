@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminComponent } from './admin/admin.component';
@@ -17,6 +16,16 @@ import { ManageAdminComponent } from './admin/manage-admin/manage-admin.componen
 import { PromoPopupComponent } from './admin/promo-popup/promo-popup.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddNewMovieComponent } from './admin/add-new-movie/add-new-movie.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { EditMovieComponent } from './admin/edit-movie/edit-movie.component';
+
+import {CarouselModule} from 'primeng/carousel';
+import { PopupTraierComponent } from './home/popup-traier/popup-traier.component';
+import { SafePipe } from './home/safe.pipe';
 
 @NgModule({
   declarations: [
@@ -32,13 +41,22 @@ import { AddNewMovieComponent } from './admin/add-new-movie/add-new-movie.compon
     ManagePromosComponent,
     ManageAdminComponent,
     PromoPopupComponent,
-    AddNewMovieComponent
+    AddNewMovieComponent,
+    EditMovieComponent,
+    PopupTraierComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     NgbModule,
+    BrowserAnimationsModule,
+    ModalModule,
+    MatDialogModule,
+    MatCardModule,
+    MatProgressBarModule,
+    CarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -34,4 +34,8 @@ export class ManageAdminComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  removeAdmin(i:any) {
+    this.admins.splice(i,1);
+  }
+
 }

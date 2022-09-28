@@ -1,17 +1,21 @@
-<ng-template #promoPopupModal let-modal>
-    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
-    <div class="modal-body">
-        <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
-        <form>
-            <div class="mb-3">
-                <label for="dateOfBirth">Date of birth</label>
-                <div class="input-group">
-                    <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker
-                        #dp="ngbDatepicker">
-                    <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
-                </div>
+<div class="row">
+    <div class="d-flex justify-content-center">
+        <div>
+            <div class="d-flex justify-content-center">  <h4> Promo Details</h4>  </div> <br>
+            <div>
+                <form [formGroup]="promoForm" (ngSubmit)="addPromo()">
+                    Promo Name : 
+                    <input formControlName="name" type="text" title="name" placeholder="Promo Name" /> <br> <br>
+                    Promo Code : 
+                    <input formControlName="promoCode" type="text" title="promoCode" placeholder="Promo Code" /> <br> <br>
+                    Discount : 
+                    <input formControlName="discount" type="text" title="discount" placeholder="discount value" /> <br> <br>
+                    <div class="promoBtns">
+                        <div type="submit"  class="cancelPromoBtn" (click)="closeModal()">Cancel</div> 
+                        <div type="submit"  class="addPromoBtn" (click)="addPromo()">Add Promotion</div>
+                    </div>
+                </form>
             </div>
-        </form>
-        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Add Promo</button>
+        </div>
     </div>
-</ng-template>
+</div>

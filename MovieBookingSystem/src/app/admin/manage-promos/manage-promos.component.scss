@@ -1,18 +1,18 @@
 .addPromoContainer {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     column-gap: 20px;
 }
 
 .addPromoButton {
     width: 180px;
     height: 40px;
-    background-color: blue;
+    background-color: #1fb5bf;
     border-radius: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: black;
     font-weight: bold;
     margin: 30px;
     margin-right: 0;
@@ -21,26 +21,25 @@
 .sendPromoButton{
     width: 180px;
     height: 40px;
-    background-color: blue;
+    background-color: #1fb5bf;
     border-radius: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: black;
     font-weight: bold;
     margin: 30px;
     cursor: pointer;
 }
 .existingPromoContainer {
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
     flex-wrap: wrap;
-    row-gap: 20px;
+    row-gap: 30px;
 }
 
 .promoCodeDetailsContainer  {
     width: 260px;
-    height: 100px;
     background-color: beige;
     border-radius: 25px;
     display: flex;
@@ -54,4 +53,14 @@
 .promoVaule {
     font-family: cursive;
     font-style: italic;
+}
+.removePromo {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #1fb5bf;
+    color: black;
+    font-weight: bold;
+    padding: 5px 10px 5px 10px;
+    border-radius: 25px;
+    cursor: pointer;
 }

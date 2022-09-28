@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, Inject, OnInit, Optional } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA  } from '@angular/material/dialog';
+import { PromoPopupComponent } from '../promo-popup/promo-popup.component';
 
 @Component({
   selector: 'app-manage-promos',
@@ -71,17 +73,50 @@ export class ManagePromosComponent implements OnInit {
       discount: "6",
       validity: "",
       sendToUser: ""
+    },
+    {
+      name: "Promo Name 1",
+      promoCode : "PROMO6",
+      discount: "6",
+      validity: "",
+      sendToUser: ""
     }
   ];
 
-  constructor() { }
+  constructor(private dialogRef: MatDialog) {
+    
+   }
 
   ngOnInit(): void {
   }
 
   showAddPromoForm(){
-    console.log("show popup")
-    this.showModal = true;
+    this.openDialog();
+  }
+
+  openDialog() {
+    const popup = this.dialogRef.open(PromoPopupComponent, {disableClose: true,enterAnimationDuration: '700ms',exitAnimationDuration:'1000ms'});
+    popup.afterClosed().subscribe(item =>{
+      if(item){
+        const obj = {
+          name: item.name,
+          promoCode : item.promoCode,
+          discount: item.discount,
+          validity: item.validity,
+          sendToUser: ""
+        };
+        this.promosArray.push(obj);
+      }
+    });
+  }
+
+  @HostListener('window:keyup.esc') onKeyUp() {
+    this.dialogRef.closeAll();
+  }
+
+  deletePromo(i:any){
+    this.promosArray.splice(i,1);
+    console.log("delete promo",i)
   }
 
 }

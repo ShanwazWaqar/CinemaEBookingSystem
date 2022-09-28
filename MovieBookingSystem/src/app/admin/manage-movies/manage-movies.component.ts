@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, HostListener, OnInit } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialog, MAT_DIALOG_DATA  } from '@angular/material/dialog';
+import { EditMovieComponent } from '../edit-movie/edit-movie.component'
 @Component({
   selector: 'app-manage-movies',
   templateUrl: './manage-movies.component.html',
@@ -14,34 +16,34 @@ export class ManageMoviesComponent implements OnInit {
   movies = [
     {
       id: 1,
-      title: "title1",
+      title: "Baby Driver",
       image: '../../../assets/images/movie1.jpg',
     },
     {
       id: 2,
-      title: "title1",
+      title: "Bohemain",
       image: '../../../assets/images/movie2.jpg',
     },
     {
       id: 3,
-      title: "title1",
+      title: "Black Adam",
       image: '../../../assets/images/movie3.webp',
     },
-    // {
-    //   id: 4,
-    //   title: "title1",
-    //   image: '../../../assets/images/movie4.jpg',
-    // },
-    // {
-    //   id: 5,
-    //   title: "title1",
-    //   image: '../../../assets/images/movie5.jpg',
-    // },
-    // {
-    //   id: 6,
-    //   title: "title1",
-    //   image: '../../../assets/images/movie6.jpg',
-    // },
+    {
+      id: 4,
+      title: "West Side Story",
+      image: '../../../assets/images/movie4.jpg',
+    },
+    {
+      id: 5,
+      title: "The Godfather",
+      image: '../../../assets/images/movie5.jpg',
+    },
+    {
+      id: 6,
+      title: "Hangover II",
+      image: '../../../assets/images/movie6.jpg',
+    },
     // {
     //   id: 7,
     //   title: "title1",
@@ -63,11 +65,11 @@ export class ManageMoviesComponent implements OnInit {
     //   image: '../../../assets/images/movie10.jpg',
     // },
   ];
-  constructor() { }
+  constructor(private dialogRef: MatDialog) { }
 
   ngOnInit(): void {
-    // this.currentMoviesSelected = true;
-    this.addmoviesSelected = true;
+    this.currentMoviesSelected = true;
+    // this.addmoviesSelected = true;
   }
 
   addMovies() {
@@ -99,7 +101,23 @@ export class ManageMoviesComponent implements OnInit {
     this.scheduleMoviesSelected = true;
   }
 
-  openEditMoviePopup() {
-    // code for edit movie popup
+  openEditMoviePopup(ind:any) {
+    const popup = this.dialogRef.open(EditMovieComponent, {
+      disableClose: true,
+      enterAnimationDuration: '700ms',
+      exitAnimationDuration:'1000ms',
+      maxHeight: '80vh',
+      width: '900px',
+      data: this.movies[ind],
+    });
+    popup.afterClosed().subscribe(item =>{
+      if(item){
+        this.movies[ind].title = item.title
+      }
+    });
+  }
+
+  @HostListener('window:keyup.esc') onKeyUp() {
+    this.dialogRef.closeAll();
   }
 }
