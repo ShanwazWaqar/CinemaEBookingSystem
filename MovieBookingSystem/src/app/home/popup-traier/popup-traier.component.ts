@@ -12,7 +12,14 @@ export class PopupTraierComponent implements OnInit {
     console.log(data," yooutube link in popup")
   }
 
-  ngOnInit(): void {
-  }
+  apiLoaded = false;
 
-}
+  ngOnInit(): void {
+    if (!this.apiLoaded) {
+      const tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      document.body.appendChild(tag);
+      this.apiLoaded = true;
+    }
+  }
+  }

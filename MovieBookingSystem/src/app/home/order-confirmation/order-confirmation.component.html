@@ -1,0 +1,76 @@
+<nav>
+    <div class="logo">
+        Bookmyshow
+    </div>
+</nav>
+
+<div class="movieCard">
+    <img src="../../../assets/images/movie4.jpg" style="width:200px;height:250px;">
+
+    <table align="Right">
+        <tr>
+            <th colspan="2">Booking Summary</th>
+        </tr>
+        <tr>
+            <th>Tickets</th>
+            <td>
+                <div class="editBtn" (click)="goToSeatSelectionPage()">Edit</div>
+            </td>
+        </tr>
+        <tr>
+            <th>Adult Ticket(2)</th>
+            <td>$20</td>
+        </tr>
+        <tr>
+            <th>Child Ticket</th>
+            <td>$10</td>
+        </tr>
+        <tr>
+            <th>Senior Ticket</th>
+            <td>$15</td>
+        </tr>
+        <tr>
+            <td>Seats <span class="seats">A1,A2,A3,A4</span></td>
+        </tr>
+        <tr>
+            <td>Fees</td>
+        </tr>
+        <tr>
+            <th>Convenience fee</th>
+            <td>$5</td>
+        </tr>
+        <tr style="border-bottom:1px solid black">
+            <th>Taxes</th>
+            <td>$5</td>
+        </tr>
+        <tr style="border-bottom:1px solid black">
+            <th>Total</th>
+            <td>$55</td>
+        </tr>
+    </table>
+    <table align="bottom">
+        <tr>
+            <th>Time</th>
+            <td>4:00 PM</td>
+        </tr>
+        <tr>
+            <th>Date</th>
+            <td>September 29</td>
+        </tr>
+        <tr>
+            <th>Theatre</th>
+            <td>AMC</td>
+        </tr>
+        <tr>
+            <th>Screen</th>
+            <td>3</td>
+        </tr>
+    </table>
+    <br>
+    <br>
+    <br>
+    <div class="bottomBtns">
+        <div class="continueBtn" (click)="gotoSelectAges()">Back</div>
+        <div class="continueBtn" (click)="checkout()">Continue</div>
+    </div>   
+</div>

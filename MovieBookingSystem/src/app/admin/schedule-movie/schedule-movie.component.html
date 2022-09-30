@@ -1,0 +1,39 @@
+<div class="scheduleMovieContainer">
+    <diV>
+        <span class="scheduleTitle">
+            Scheduling :
+        </span> 
+        <span class="scheduleMovieName">
+            {{movieName}}
+        </span>
+        <br> <br>
+        <mat-form-field>
+            <input matInput [ngxMatDatetimePicker]="picker" placeholder="Select Date & Time"
+                [disabled]="false">
+            <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #picker [showSeconds]="false"
+               [stepHour]="stepHour" [stepMinute]="stepMinute"
+               [touchUi]="touchUi" [enableMeridian]="enableMeridian" 
+               [disableMinute]="disableMinute" [hideTime]="hideTime">
+               <ng-template>
+                <span>Select</span>
+              </ng-template>
+            </ngx-mat-datetime-picker>
+         </mat-form-field>
+         <br>
+         <div>
+            <div> Select Screen </div><br>
+            <div class="screensConatiner">
+                <div *ngFor="let screen of screens;let i=index">
+                    <div [ngClass]="'screenisSelected == true' ? 'screenDivSelected':'screenDivNotSelected'" (click)="selectScreen(i)"> {{screen.screenName}}</div>
+                </div>
+            </div>
+         </div>
+         <br><br>
+         <diV class="scheduleBtnContaainer">
+            <div class="scheduleBtn" (click)="cancelScheduleMovie()"> cancel </div>
+            <div class="scheduleBtn" (click)="ScheduleMovie()"> Schedule </div>
+         </diV>
+    </diV>
+</div>
+

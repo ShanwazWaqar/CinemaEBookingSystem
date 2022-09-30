@@ -1,0 +1,21 @@
+<div class="userHeader">
+    <nav >
+        <div class="logo">
+           Bookmyshow
+        </div>
+        <div class="search-icon">
+           <span class="fas fa-search"></span>
+        </div>
+        <form action="#">
+           <input type="search" class="search-data" placeholder="Search" required>
+           <button type="submit" class="fas fa-search"></button>
+        </form>
+        <div class="dropdown">
+            <button class="dropbtn">Hello User <span class="dropdownArrow">&#11163;</span></button>
+            <div class="dropdown-content">
+              <a (click)="editProfile()">Edit Profile</a>
+              <a (click)="logout()">Signout</a>
+            </div>
+        </div>
+     </nav>
+</div>

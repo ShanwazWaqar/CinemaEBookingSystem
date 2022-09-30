@@ -26,6 +26,7 @@ mat-card {
 .card-img-top {
     width: 350px;
     height: 250px;
+    cursor: pointer;
 }
 
 .item {
@@ -40,6 +41,11 @@ mat-card {
     justify-content: center;
     align-items: center;
 }
+.centeringElementsSpaceAround {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
 .trailerBtn {
     background-color: #1fb5bf;
     width: 150px;
@@ -47,4 +53,13 @@ mat-card {
     font-weight: 700;
     border-radius: 25px;
     cursor: pointer;
+}
+// .container-fluid {
+//     background-color: #414040;
+// }
+button.p-link {
+    background-color: #1fb5bf!important;  
+}
+.custom-carousel {
+    background-color: #414040;
 }

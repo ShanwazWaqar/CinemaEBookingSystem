@@ -16,6 +16,7 @@ export class AdminHomeComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.displayMoviesComp = true;
   }
 
   displayManageMovies() {

@@ -18,6 +18,18 @@
     cursor: pointer;
     font-weight: 500;
 }
+.manageMoviesButton2 {
+    color: white;
+    width: 200px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 500;
+}
 .currentMoviesSectionContainer {
     display: flex;
     justify-content: center;
@@ -58,7 +70,7 @@
     display: flex;
     flex-wrap: wrap;
     row-gap: 20px;
-    margin-top: 50px;
+    margin-top: 25px;
 }
 .currentMovieImage {
     height: 200px;
@@ -68,14 +80,14 @@
     justify-content: center ;
     align-items: center;
     background-color: #1fb5bf;
-    color: black;
+    color: #171c24;
     width: 70px;
     height: 35px;
     border-radius: 25px;
     font-weight: 900;
 }
 mat-card {
-    max-width: 300px !important;
+    max-width: 275px !important;
 } 
 .titleHeaderMovieCard {
     color: black;
@@ -88,4 +100,7 @@ mat-card {
 
 ::ng-deep .mat-progress-bar-buffer {
     background: #E4E8EB;
+}
+.col-3 {
+    padding-left: 50px;
 }

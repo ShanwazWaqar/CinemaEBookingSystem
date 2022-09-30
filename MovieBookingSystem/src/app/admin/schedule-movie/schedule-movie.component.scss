@@ -1,0 +1,58 @@
+.scheduleBtn {
+    width: 100px;
+    height: 35px;
+    background-color: #1fb5bf;
+    color: black;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.scheduleMovieContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.scheduleMovieName {
+    color: #1fb5bf;
+    font-weight: bold;
+    font-style: italic;
+}
+.scheduleTitle {
+    color: black;
+    font-weight: bold;
+    font-style: oblique;
+}
+.scheduleBtnContaainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.screensConatiner {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 5px;
+}
+.screenDivNotSelected {
+    width: 50px;
+    height: 30px;
+    background-color: black;
+    color: white;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.screenDivSelected {
+    width: 50px;
+    height: 30px;
+    background-color: #1fb5bf;
+    color: black;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}

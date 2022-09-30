@@ -1,0 +1,83 @@
+<nav>
+    <div class="logo">
+       Bookmyshow
+    </div>
+ </nav>
+
+<div *ngIf="intialPage">
+    <div class="log-form">
+        <div class="d-flex justify-content-center"><h2>Checkout</h2></div>
+        <form>
+          <input type="text" title="firstName" placeholder="first Name *" />
+          <input type="text" title="lastName" placeholder="Last Name *" />
+          <input type="email" title="email" placeholder="Email *" />
+          <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="phone Number" placeholder="Phone Number *" />
+          <input type="number" title="Age" placeholder="Age *" />
+          <div class="secondPageBtns">
+            <button class="btn" (click)="cancelCheckout()"> Cancel </button>
+            <button type="submit" class="btn" (click)="secondPageOfRegistration()">Next</button>
+          </div>
+        </form>
+      </div>
+</div>
+
+<div *ngIf="fourthPage">
+  <div class="log-form">
+    <div class="d-flex justify-content-center"><h2>Book my show</h2></div>
+    <form>
+      <br><br>
+      <div class="">
+        <button class="secondPageBtn" (click)="thirdPageOfRegistration()"> ADD Card Details </button> <br>
+        <div class="orText">( or )</div> <br>
+        <button class="secondPageBtn" (click)="fourthPageOfRegistration()">Skip & Continue</button>
+        <br><br>
+    </div>
+    </form>
+    <div class="secondPageBtns">
+      <button class="btn" (click)="initalPage()"> Back </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="thirdPage">
+    <div class="log-form">
+        <div class="d-flex justify-content-center"><h2>Payment Details</h2></div>
+        <form>
+          <input type="text" title="cardNumber" placeholder="Card Number *" />
+          <div class="d-flex justify-content-center">
+            <input type="number" title="exipryMonth" placeholder="Expiry Month *" />
+            <input type="number" title="ExpiryYear" placeholder="Expiry Year *" />
+            <input type="number" title="CVV" placeholder="CVV *" />
+          </div> 
+          <input type="text" title="Name" placeholder="Name on Card *" />
+        </form>
+        <div class="secondPageBtns">
+            <button class="btn" (click)="secondPageOfRegistration()"> Back </button>
+            <button class="btn" (click)="cancelCheckout()"> Cancel </button>
+            <button class="btn" (click)="placeOrder()"> Place Order </button>
+          </div>
+      </div>
+</div>
+
+<div *ngIf="secondPage">
+  <div class="log-form">
+      <div class="d-flex justify-content-center"><h2>Billing Adddress</h2></div>
+      <form>
+        <input type="text" title="address line 1" placeholder="Address Line 1*" />
+        <input type="text" title="address line 2" placeholder="Address Line 2" />
+        <div class="d-flex justify-content-center">
+            <input type="text" title="city" placeholder=" Enter City*" />
+            <input type="text" title="State" placeholder=" Enter State*" />
+        </div>
+        <div class="d-flex justify-content-center">
+            <input type="text" title="Country" placeholder=" Enter Country*" />
+        <input type="text" title="zipcode" placeholder=" Enter Zipcode*" />
+        </div>  
+      </form>
+      <div class="secondPageBtns">
+          <button class="btn" (click)="initalPage()"> Back </button>
+          <button class="btn" (click)="cancelCheckout()"> Cancel </button>
+          <button class="btn" (click)="thirdPageOfRegistration()"> Coninue </button>
+        </div>
+    </div>
+</div>

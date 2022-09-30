@@ -1,0 +1,30 @@
+<app-user-header></app-user-header>
+
+<div id="sc-edprofile" class="editProfileForm">
+    <h1>Edit Profile Form</h1>
+    <div class="sc-container">
+      <input type="text" placeholder=" update Email Address" />
+      <input type="text" placeholder="update First Name" />
+      <input type="text" placeholder="update Last Name" />
+      <input type="text" placeholder="Upadte Phone Number" />
+      <input type="date" placeholder="Update Date Of Birth" />
+      <input type="text" placeholder="update Address Line 1" />
+      <input type="text" placeholder="update Address Line 2" />
+      <input type="text" placeholder="Update City" />
+      <input type="text" placeholder="Update state" />
+      <input type="text" placeholder="Update Country" />
+      <input type="text" placeholder="update pincode" />
+      <input  *ngIf="!cardDetails" (click)="showCardDetails()" type="submit" value="Update Card Details" />
+      <div *ngIf="cardDetails">
+          <div class="cardText">CARD DETAILS</div>
+          <br>
+          <input type="text" title="cardNumber" placeholder="Card Number" />
+          <input type="text" title="exipryMonth" placeholder="Expiry Month" />
+          <input type="text" title="ExpiryYear" placeholder="Expiry Year" />
+          <input type="text" title="CVV" placeholder="CVV" />
+          <input type="text" title="Name" placeholder="Name on Card" />
+      </div>
+      <br><br>
+      <input (click)="updateProfile()" type="submit" value="UpdateProfile" />
+    </div>
+  </div>

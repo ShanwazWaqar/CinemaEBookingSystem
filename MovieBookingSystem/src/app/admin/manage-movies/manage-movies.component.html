@@ -5,14 +5,14 @@
             CURRENT PLAYING</div>
         <div class="manageMoviesButton" [ngStyle]="{'background-color': addmoviesSelected ? '#1fb5bf' : 'black', 
         'color' : addmoviesSelected ? 'black' : 'white'}" (click)="addMovies()">
-            ADD</div>
-        <div class="manageMoviesButton" [ngStyle]="{'background-color': archiveMoviesSelected ? '#1fb5bf' : 'black', 
+            ADD MOVIE</div>
+        <div class="manageMoviesButton2" [ngStyle]="{'background-color': archiveMoviesSelected ? '#1fb5bf' : 'black', 
         'color' : archiveMoviesSelected ? 'black' : 'white'}" (click)="archiveMovies()">
-            ARCHIVE</div>
+            SCHEDULE / ARCHIVE</div>
         <div class="manageMoviesButton" [ngStyle]="{'background-color': scheduleMoviesSelected ? '#1fb5bf' : 'black', 
         'color' : scheduleMoviesSelected ? 'black' : 'white'}" (click)="scheduleMovies()">
-            SCHEDULE</div>      
-    </div>
+            UNARCHIVE</div>      
+        </div>
 </div>
 
 <div *ngIf="currentMoviesSelected">
@@ -44,4 +44,12 @@
 
 <div *ngIf="addmoviesSelected">
     <app-add-new-movie></app-add-new-movie>
+</div>
+
+<div *ngIf="archiveMoviesSelected">
+    <app-archive-movie></app-archive-movie>
+</div>
+
+<div *ngIf="scheduleMoviesSelected">
+    <app-unarchive-movies></app-unarchive-movies>
 </div>

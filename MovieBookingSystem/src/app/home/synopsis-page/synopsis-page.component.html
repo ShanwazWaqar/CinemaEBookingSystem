@@ -1,0 +1,33 @@
+<nav>
+    <div class="logo">
+       Bookmyshow
+    </div>
+ </nav>
+<div class="synopsisContainer">  
+    <div class="moviecard">
+        <div class="movie-poster play-trailer" [ngStyle]="{'background' : 'url(../../../assets/images/movie5.jpg)'}"></div>
+        <div id="movie-content">
+        <div class="movie-ratings"><span class="star">★</span><span class="score">4.7</span><span class="score-out-of">/ 10 (IMDB)</span></div>
+        <div class="movie-title"><a href="http://www.imdb.com/title/tt3397884" target="_blank">The GodFather</a><span class="movie-year">1972</span></div>
+        <div class="movie-details"><span class="movie-rating">R</span><span class="movie-duration">2hr 55min</span><span class="movie-genre">Mafia, Crime, Drama</span></div>
+        <div class="movie-castcrew"><span class="title">Director</span><span class="name">Francis Ford Coppola</span></div>
+        <div class="movie-castcrew"><span class="title">Writer</span><span class="name">Mario Puzo</span></div>
+        <div class="movie-castcrew"><span class="title">Cast</span><span class="name">Marlon Brando, Al Pacino, James Caan, Robert Duvall</span></div>
+        <div class="movie-synopsis">
+            The aging patriarch of an organized crime dynasty in postwar New York City transfers control of his clandestine empire to his reluctant youngest son.
+        </div>
+        <div class="synopsisBtns">
+            <div class="trailerBtn centeringElements" (click)="openTrailerPopup()"> watch trailer </div>
+            <div class="trailerBtn centeringElements" (click)="bookTickets()"> Book Tickets </div>
+        </div>
+        </div>
+        <!-- <div class="movie-trailer"><a class="back-btn">back</a>
+        <div id="youvideo">
+            <iframe src="https://www.youtube.com/embed/7XLQ1bkSLDo?enablejsapi=1" frameborder="0" allowfullscreen="allowfullscreen" allowScriptAccess="always"></iframe>
+        </div>
+        </div> -->
+    </div>
+</div>  
+
+<!-- <img src="../../../assets/images/movie5.jpg
+" /> -->
