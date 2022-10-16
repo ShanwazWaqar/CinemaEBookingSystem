@@ -305,7 +305,7 @@ li {
     font-family: "Arial Narrow", Arial, sans-serif;
     display: block;
     position: absolute;
-    background: #81c784;
+    background: #1fb5bf;
     color: white;
     top: 50%;
     transform: translate(0, -50%);
@@ -333,9 +333,9 @@ li {
     padding: 5px;
     position: relative;
   }
-  .seat:nth-child(3) {
-    margin-right: 14.28571%;
-  }
+  // .seat:nth-child(3) {
+  //   // margin-right: 14.28571%;
+  // }
   .seat input[type="checkbox"] {
     position: absolute;
     opacity: 0;

@@ -52,6 +52,8 @@ import { SelectAgesComponent } from './home/select-ages/select-ages.component';
 import { OrderConfirmationComponent } from './home/order-confirmation/order-confirmation.component';
 import { CheckoutComponent } from './home/checkout/checkout.component';
 import { ConfirmaionComponent } from './home/confirmaion/confirmaion.component';
+import { HttpClientModule } from '@angular/common/http';
+import { bmsApiService } from './services/bmsapi.service'
 
 @NgModule({
   declarations: [
@@ -110,10 +112,11 @@ import { ConfirmaionComponent } from './home/confirmaion/confirmaion.component';
     MatRadioModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule
 
   ],
-  providers: [],
+  providers: [bmsApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
