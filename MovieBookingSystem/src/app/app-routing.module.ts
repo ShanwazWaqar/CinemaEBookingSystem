@@ -15,11 +15,13 @@ import { SelectAgesComponent } from './home/select-ages/select-ages.component';
 import { OrderConfirmationComponent } from './home/order-confirmation/order-confirmation.component';
 import { CheckoutComponent } from './home/checkout/checkout.component';
 import { ConfirmaionComponent } from './home/confirmaion/confirmaion.component';
+import { NewAdminComponent } from './admin/new-admin/new-admin.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'admin', component: AdminComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'admin2', component: NewAdminComponent },
   { path: 'adminHomePage', component: AdminHomeComponent },
   { path: 'SignUp', component: SignUpCompComponent },
   { path: 'Login', component: LoginComponent },

@@ -1,0 +1,43 @@
+<nav>
+    <div class="logo">
+       Bookmyshow
+    </div>
+    <div class="nav-items">
+      <li [ngClass]="displayManageUsersbtn? 'regularText' : 'highlightBtn'" (click)="displayManageUsers()"><a>Manage Users</a></li>
+      <li (click)="displayManageMovies()">
+         <a>Manage Movies</a>
+      </li>
+      <li (click)="displayManagePromotions()">
+         <a>Manage Promos</a>
+      </li>
+      <li (click)="displayAdmins()">
+         <a>Manage Admin</a>
+      </li>
+      <li>
+         <a (click)="logout()">Signout</a>
+      </li>
+   </div>   
+ </nav>
+
+ <div class="col-12">
+   <div class="row" *ngIf="displayMoviesComp">
+      <div class="d-flex justify-conent-center ">
+         <div class="col-12">
+            <app-manage-movies></app-manage-movies> 
+         </div>
+      </div> 
+   </div>
+   <div *ngIf="displayUSersComp">
+       <app-manage-users></app-manage-users>
+   </div>
+   <div *ngIf="displayPromosComp">
+      <div class="d-flex justify-conent-center">
+         <div class="col-10"> 
+            <app-manage-promos></app-manage-promos>
+         </div>
+      </div>
+   </div>
+   <div *ngIf="displayAdminsComp">
+       <app-manage-admin></app-manage-admin>
+   </div>
+</div>   

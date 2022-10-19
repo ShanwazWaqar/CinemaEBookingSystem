@@ -53,7 +53,8 @@ import { OrderConfirmationComponent } from './home/order-confirmation/order-conf
 import { CheckoutComponent } from './home/checkout/checkout.component';
 import { ConfirmaionComponent } from './home/confirmaion/confirmaion.component';
 import { HttpClientModule } from '@angular/common/http';
-import { bmsApiService } from './services/bmsapi.service'
+import { bmsApiService } from './services/bmsapi.service';
+import { NewAdminComponent } from './admin/new-admin/new-admin.component'
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import { bmsApiService } from './services/bmsapi.service'
     SelectAgesComponent,
     OrderConfirmationComponent,
     CheckoutComponent,
-    ConfirmaionComponent
+    ConfirmaionComponent,
+    NewAdminComponent
   ],
   imports: [
     BrowserModule,

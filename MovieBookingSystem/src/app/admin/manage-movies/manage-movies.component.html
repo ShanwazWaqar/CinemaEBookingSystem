@@ -1,18 +1,18 @@
 <div class="row">
     <div class="manageMoviesHeader">
-        <div class="manageMoviesButton" [ngStyle]="{'background-color': currentMoviesSelected ? '#1fb5bf' : 'black', 
-                                'color' : currentMoviesSelected ? 'black' : 'white'}" (click)="showCurrentMovies()">
-            CURRENT PLAYING</div>
-        <div class="manageMoviesButton" [ngStyle]="{'background-color': addmoviesSelected ? '#1fb5bf' : 'black', 
-        'color' : addmoviesSelected ? 'black' : 'white'}" (click)="addMovies()">
-            ADD MOVIE</div>
-        <div class="manageMoviesButton2" [ngStyle]="{'background-color': archiveMoviesSelected ? '#1fb5bf' : 'black', 
-        'color' : archiveMoviesSelected ? 'black' : 'white'}" (click)="archiveMovies()">
-            SCHEDULE / ARCHIVE</div>
-        <div class="manageMoviesButton" [ngStyle]="{'background-color': scheduleMoviesSelected ? '#1fb5bf' : 'black', 
-        'color' : scheduleMoviesSelected ? 'black' : 'white'}" (click)="scheduleMovies()">
-            UNARCHIVE</div>      
+        <div class="manageMoviesButton" [ngStyle]="{ 'color' : currentMoviesSelected ? '#1fb5bf' : 'white'}" (click)="showCurrentMovies()">
+            CURRENT PLAYING
         </div>
+        <div class="manageMoviesButton" [ngStyle]="{ 'color' : addmoviesSelected ? '#1fb5bf' : 'white'}" (click)="addMovies()">
+            ADD MOVIE
+        </div>
+        <div class="manageMoviesButton2" [ngStyle]="{ 'color' : archiveMoviesSelected ? '#1fb5bf' : 'white'}" (click)="archiveMovies()">
+            SCHEDULE / ARCHIVE
+        </div>
+        <div class="manageMoviesButton" [ngStyle]="{ 'color' : scheduleMoviesSelected ? '#1fb5bf' : 'white'}" (click)="scheduleMovies()">
+            UNARCHIVE
+        </div>      
+    </div>
 </div>
 
 <div *ngIf="currentMoviesSelected">

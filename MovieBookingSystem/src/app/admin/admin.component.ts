@@ -19,13 +19,19 @@ export class AdminComponent implements OnInit {
   }
 
   submitLogin(form:any) {
+    this.router.navigateByUrl('/adminHomePage');
     //login check code goes here
-    if(form.value.email == "admin" && form.value.password == "password"){
-      this.router.navigateByUrl('/adminHomePage');
-    }else {
-      //login failed code
-    }
+    // if(form.value.email == "admin" && form.value.password == "password"){
+      
+    // }else {
+    //   //login failed code
+    // }
     
+  }
+
+  admin2Route() {
+    console.log("click")
+    this.router.navigateByUrl('/admin2');
   }
 
 }
