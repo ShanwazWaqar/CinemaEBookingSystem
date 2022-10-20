@@ -1,4 +1,50 @@
-<div class="addnewMovieSectionContainer">
+
+<div id="sc-edprofile" class="editProfileForm">
+    <h1>Add New Movie</h1>
+    <form [formGroup]="addMovie" (ngSubmit)="addNewMovie()">
+    <div class="sc-container">
+      <span class="addNewMovieformLabel">Title</span>
+      <input type="text" formControlName="title" placeholder="Enter Movie Title" />
+      <span class="addNewMovieformLabel">Synopsis</span>
+      <textarea formControlName="Synopsis" placeholder="Enter Movie Description"></textarea>
+      <span class="addNewMovieformLabel">Cast</span>
+      <input type="text" formControlName="cast" placeholder="Enter Movie Cast Names" />
+      <span class="addNewMovieformLabel">Trailer</span>
+      <input type="text" formControlName="trailerLink" placeholder="Enter Movie Trailer Link" />
+      <span class="addNewMovieformLabel">Thumbnail</span>
+      <input type="file" accept="image/*" formControlName="thumbnail"  placeholder="Upload Thumbnail" />
+      <span class="addNewMovieformLabel">Genre</span>
+      <input type="text" placeholder="Enter Genres (seperated by comma)" />
+      <span class="addNewMovieformLabel">Directors Name</span>
+      <input type="text" formControlName="director"  placeholder="Enter Directors Name" />
+      <span class="addNewMovieformLabel">Producers Name</span>
+      <input type="text" formControlName="producer" placeholder="Enter Producers Name" />
+      <span class="addNewMovieformLabel">Start Date</span>
+      <input type="date" formControlName="startDate" placeholder="Enter Start Date" />
+      <span class="addNewMovieformLabel">End Date</span>
+      <input type="date" formControlName="endDate" placeholder="Enter End Date" />
+        <span class="addNewMovieformLabel" >Genre:</span>
+        <select (change)="updateGenre($event)" formControlName="genre">
+            <option *ngFor="let genre of genres" [ngValue]="genre">
+                {{ genre }}
+            </option>
+        </select>
+
+        <span class="addNewMovieformLabel">Rating:</span>
+        <select (change)="updateRating($event)" formControlName="rating">
+            <option *ngFor="let rating of ratings" [ngValue]="rating">
+                {{ rating }}
+            </option>
+        </select>
+
+      <input (click)="addNewMovie()" type="submit" value="Add New Movie" />
+    </div>
+    </form>
+  </div>
+
+  <!-- New template for add new Movie -->
+
+  <!-- <div class="addnewMovieSectionContainer">
     <div class="col-10">
         <div class="addnewMovieForm">
             <br>
@@ -87,4 +133,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

@@ -95,7 +95,13 @@ export class ManagePromosComponent implements OnInit {
   }
 
   openDialog() {
-    const popup = this.dialogRef.open(PromoPopupComponent, {disableClose: true,enterAnimationDuration: '700ms',exitAnimationDuration:'1000ms'});
+    const popup = this.dialogRef.open(PromoPopupComponent, {
+      disableClose: true,
+      enterAnimationDuration: '700ms',
+      exitAnimationDuration:'1000ms',
+      maxHeight: '80vh',
+      width: '900px',
+    });
     popup.afterClosed().subscribe(item =>{
       if(item){
         const obj = {

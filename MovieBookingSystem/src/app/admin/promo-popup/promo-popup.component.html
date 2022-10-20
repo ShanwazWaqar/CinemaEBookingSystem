@@ -1,4 +1,4 @@
-<div class="row">
+<!-- <div class="row">
     <div class="d-flex justify-content-center">
         <div>
             <div class="d-flex justify-content-center">  <h4> Promo Details</h4>  </div> <br>
@@ -18,4 +18,28 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+
+<div class="addnewMovieSectionContainer">
+    <div id="sc-edprofile" class="editProfileForm">
+      <h1>Add New Promotion Details</h1>
+      <!-- <form [formGroup]="addMovie" (ngSubmit)="addNewMovie()"> -->
+        <div class="sc-container">
+          <span class="addNewMovieformLabel">Promo Name * </span>
+          <input type="text" formControlName="title" placeholder="Enter Promotion name" />
+          <span class="addNewMovieformLabel">Promo Code *  </span>
+          <textarea formControlName="Synopsis" placeholder="Enter Promo code"></textarea>
+          <span class="addNewMovieformLabel">Discount * </span>
+          <input type="text" formControlName="cast" placeholder="Enter Discount value" />
+          <span class="addNewMovieformLabel">Promo Start Date * </span>
+          <input type="date" formControlName="startDate" placeholder="Enter Promo Start Date" />
+          <span class="addNewMovieformLabel">Promo Expiry Date * </span>
+          <input type="date" formControlName="endDate" placeholder="Enter Promo End Date" />  
+          <div class="displayBtns">
+            <input class="promoBtns" type="submit" value="Add Promo" />
+            <input class="promoBtns" (click)="closeModal()" type="submit" value="Cancel" />
+          </div>
+        </div>
+      <!-- </form> -->
+    </div>
+  </div>

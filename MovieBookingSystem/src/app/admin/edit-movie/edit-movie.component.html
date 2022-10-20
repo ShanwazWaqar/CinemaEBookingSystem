@@ -1,92 +1,44 @@
 <div class="addnewMovieSectionContainer">
-    <div class="col-10">
-        <div class="addnewMovieForm">
-            <div class="d-flex justify-content-center addNewMovieText"> EDIT {{title}} MOVIE </div> <br> 
-            <div>
-                <form [formGroup]="addMovie" (ngSubmit)="addNewMovie()">
-                    <div>
-                        <label>
-                            <span class="addNewMovieformLabel">Title:</span>
-                            <input formControlName="title" placeholder="Enter Movie Title">
-                        </label>
-                    </div><hr>
-                    <div>
-                        <label>
-                            <span class="addNewMovieformLabel">Synopsis:</span>
-                            <textarea formControlName="Synopsis" rows="4" cols="50" placeholder="Enter Movie Description"></textarea>
-                        </label>
-                    </div> <hr>
-                    <div>
-                        <label>
-                            <span class="addNewMovieformLabel">Cast:</span>
-                            <input formControlName="cast" placeholder="Enter Movie Cast">
-                        </label>
-                    </div> <hr>
-                    <div>
-                        <label>
-                            <span class="addNewMovieformLabel">Trailer Link:</span>
-                            <input formControlName="trailerLink" placeholder="Enter Movie Trailer Link">
-                        </label>
-                    </div> <hr>
-                    <div>
-                        <label>
-                            <span class="addNewMovieformLabel">Thumbnail:</span>
-                            <input type="file" accept="image/*" formControlName="thumbnail" alt="thumbnail">
-                        </label>
-                    </div> <hr>
-                    <div>
-                        <label>
-                            <span class="addNewMovieformLabel">Genre:</span>
-                            <select (change)="updateGenre($event)" formControlName="genre">
-                                <option *ngFor="let genre of genres" [ngValue]="genre">
-                                    {{ genre }}
-                                </option>
-                            </select>
-                        </label>
-                    </div> <hr>
-                    <div>
-                        <label>
-                            <span class="addNewMovieformLabel">Rating:</span>
-                            <select (change)="updateRating($event)" formControlName="rating">
-                                <option *ngFor="let rating of ratings" [ngValue]="rating">
-                                    {{ rating }}
-                                </option>
-                            </select>
-                        </label>
-                    </div> <hr>
-                    <div>
-                        <label>
-                            <span class="addNewMovieformLabel">Director:</span>
-                            <input formControlName="director" placeholder="Enter Movie Director Name">
-                        </label>
-                    </div> <hr>
-                    <div>
-                        <label>
-                            <span class="addNewMovieformLabel">Producer:</span>
-                            <input formControlName="producer" placeholder="Enter Movie Producer Name">
-                        </label>
-                    </div> <hr>
-                    <div>
-                        <label>
-                            <span class="addNewMovieformLabel">Start Date:</span>
-                            <input formControlName="startDate" type="date" >
-                        </label>
-                    </div> <hr>
-                    <div>
-                        <label>
-                            <span class="addNewMovieformLabel">End Date:</span>
-                            <input formControlName="endDate" type="date" >
-                        </label>
-                    </div> <hr>
-                    <div class="col-8 justify-content-center">
-                        <div class="footerBtns">
-                            <button class="addMovieFormSubmitBtn" (click)="cancelEditMovie()" type="submit">Cancel</button>
-                            <button class="addMovieFormSubmitBtn" (click)="updateEditMovie()" type="submit">Update</button>
-                        </div>
-                    </div>
-                    <br>
-                </form>
-            </div>
-        </div>
-    </div>
+  <div id="sc-edprofile" class="editProfileForm">
+    <h1>Add New Movie</h1>
+    <form [formGroup]="addMovie" (ngSubmit)="addNewMovie()">
+      <div class="sc-container">
+        <span class="addNewMovieformLabel">Title</span>
+        <input type="text" formControlName="title" placeholder="Enter Movie Title" />
+        <span class="addNewMovieformLabel">Synopsis</span>
+        <textarea formControlName="Synopsis" placeholder="Enter Movie Description"></textarea>
+        <span class="addNewMovieformLabel">Cast</span>
+        <input type="text" formControlName="cast" placeholder="Enter Movie Cast Names" />
+        <span class="addNewMovieformLabel">Trailer</span>
+        <input type="text" formControlName="trailerLink" placeholder="Enter Movie Trailer Link" />
+        <span class="addNewMovieformLabel">Thumbnail</span>
+        <input type="file" accept="image/*" formControlName="thumbnail" placeholder="Upload Thumbnail" />
+        <span class="addNewMovieformLabel">Genre</span>
+        <input type="text" placeholder="Enter Genres (seperated by comma)" />
+        <span class="addNewMovieformLabel">Directors Name</span>
+        <input type="text" formControlName="director" placeholder="Enter Directors Name" />
+        <span class="addNewMovieformLabel">Producers Name</span>
+        <input type="text" formControlName="producer" placeholder="Enter Producers Name" />
+        <span class="addNewMovieformLabel">Start Date</span>
+        <input type="date" formControlName="startDate" placeholder="Enter Start Date" />
+        <span class="addNewMovieformLabel">End Date</span>
+        <input type="date" formControlName="endDate" placeholder="Enter End Date" />
+        <span class="addNewMovieformLabel">Genre:</span>
+        <select (change)="updateGenre($event)" formControlName="genre">
+          <option *ngFor="let genre of genres" [ngValue]="genre">
+            {{ genre }}
+          </option>
+        </select>
+
+        <span class="addNewMovieformLabel">Rating:</span>
+        <select (change)="updateRating($event)" formControlName="rating">
+          <option *ngFor="let rating of ratings" [ngValue]="rating">
+            {{ rating }}
+          </option>
+        </select>
+
+        <input (click)="addNewMovie()" type="submit" value="Edit Movie" />
+      </div>
+    </form>
+  </div>
 </div>

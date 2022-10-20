@@ -37,7 +37,7 @@ export class AddNewMovieComponent implements OnInit {
   }
 
   addNewMovie() {
-
+    console.log(this.addMovie.value);
   }
 
   updateGenre(evt:any) {
