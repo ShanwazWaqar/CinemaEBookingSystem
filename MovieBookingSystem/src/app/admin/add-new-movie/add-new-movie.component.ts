@@ -22,12 +22,13 @@ export class AddNewMovieComponent implements OnInit {
       cast: ['',[Validators.required]],
       trailerLink : ['', [Validators.required]],
       thumbnail : ['',[Validators.required]],
-      genre: ['Choose your Genre',[Validators.required]],
+      genre: ['',[Validators.required]],
       rating: ['', [Validators.required]],
       director: ['', [Validators.required]],
-      producer: ['',[Validators.required]],
+      writer: ['',[Validators.required]],
       startDate: ['',[Validators.required]],
       endDate: ['',[Validators.required]],
+      year: ['',[Validators.required]]
     });
   };
 

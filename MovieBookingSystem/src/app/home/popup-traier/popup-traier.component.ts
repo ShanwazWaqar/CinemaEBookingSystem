@@ -22,4 +22,9 @@ export class PopupTraierComponent implements OnInit {
       this.apiLoaded = true;
     }
   }
+
+  closePopup() {
+    this.Ref.close();
+  }
+
   }

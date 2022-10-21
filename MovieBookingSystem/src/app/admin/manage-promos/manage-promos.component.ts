@@ -15,70 +15,80 @@ export class ManagePromosComponent implements OnInit {
       name: "Promo Name 1",
       promoCode : "GET15OFF",
       discount: "15",
-      validity: "",
+      startDate: "2022-10-14",
+      EndDate : "2022-10-28",
       sendToUser: ""
     },
     {
       name: "Promo Name 1",
       promoCode : "GET15OFF",
       discount: "15",
-      validity: "",
+      startDate: "2022-10-14",
+      EndDate : "2022-10-28",
       sendToUser: ""
     },
     {
       name: "Promo Name 1",
       promoCode : "SALE",
       discount: "5",
-      validity: "",
+      startDate: "2022-10-14",
+      EndDate : "2022-10-28",
       sendToUser: ""
     },
     {
       name: "Promo Name 1",
       promoCode : "PROMO1",
       discount: "1",
-      validity: "",
+      startDate: "2022-10-14",
+      EndDate : "2022-10-28",
       sendToUser: ""
     },
     {
       name: "v",
       promoCode : "PROMO2",
       discount: "2",
-      validity: "",
+      startDate: "2022-10-14",
+      EndDate : "2022-10-28",
       sendToUser: ""
     },
     {
       name: "Promo Name 1",
       promoCode : "PROMO3",
       discount: "3",
-      validity: "",
+      startDate: "2022-10-14",
+      EndDate : "2022-10-28",
       sendToUser: ""
     },
     {
       name: "Promo Name 1",
       promoCode : "PROMO4",
       discount: "4",
-      validity: "",
+      startDate: "2022-10-14",
+      EndDate : "2022-10-28",
       sendToUser: ""
     },
     {
       name: "Promo Name 1",
       promoCode : "PROMO5",
       discount: "5",
-      validity: "",
+      startDate: "2022-10-14",
+      EndDate : "2022-10-28",
       sendToUser: ""
     },
     {
       name: "Promo Name 1",
       promoCode : "PROMO6",
       discount: "6",
-      validity: "",
+      startDate: "2022-10-14",
+      EndDate : "2022-10-28",
       sendToUser: ""
     },
     {
       name: "Promo Name 1",
       promoCode : "PROMO6",
       discount: "6",
-      validity: "",
+      startDate: "2022-10-14",
+      EndDate : "2022-10-28",
       sendToUser: ""
     }
   ];
@@ -108,7 +118,8 @@ export class ManagePromosComponent implements OnInit {
           name: item.name,
           promoCode : item.promoCode,
           discount: item.discount,
-          validity: item.validity,
+          startDate: item.startDate,
+          EndDate : item.endDate,
           sendToUser: ""
         };
         this.promosArray.push(obj);

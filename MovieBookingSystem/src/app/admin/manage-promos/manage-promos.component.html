@@ -10,10 +10,12 @@
         <div class="existingPromoContainer">
             <div class="col-3" *ngFor="let promo of promosArray,let i = index">
                 <div class="promoCodeDetailsContainer">
-                    <div>
+                    <div class="promoContainer">
                         <span class="promoTitle">Name : </span> <span class="promoVaule"> {{promo.name}} </span> <br>
                         <span class="promoTitle">PromoCode : </span> <span class="promoVaule"> {{promo.promoCode}} </span> <br>
                         <span class="promoTitle">Discount(%) : </span> <span class="promoVaule"> {{promo.discount}} </span> <br>
+                        <span class="promoTitle">startDate : </span> <span class="promoVaule"> {{promo.startDate}} </span> <br>
+                        <span class="promoTitle">endDate : </span> <span class="promoVaule"> {{promo.EndDate}} </span> <br>
                         <span class="d-flex justify-content-center"> <div class="removePromo" aria-label="remove Promo" (click)="deletePromo(i)">delete</div></span>
                     </div>    
                 </div>  

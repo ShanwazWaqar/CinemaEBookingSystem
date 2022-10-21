@@ -17,14 +17,17 @@
       <input type="text" placeholder="Enter Genres (seperated by comma)" />
       <span class="addNewMovieformLabel">Directors Name</span>
       <input type="text" formControlName="director"  placeholder="Enter Directors Name" />
-      <span class="addNewMovieformLabel">Producers Name</span>
-      <input type="text" formControlName="producer" placeholder="Enter Producers Name" />
+      <span class="addNewMovieformLabel">Writes Name</span>
+      <input type="text" formControlName="writer" placeholder="Enter Producers Name" />
+      <span class="addNewMovieformLabel">Year</span>
+      <input type="text" formControlName="year" placeholder="Enter Movie Release Year" />
       <span class="addNewMovieformLabel">Start Date</span>
       <input type="date" formControlName="startDate" placeholder="Enter Start Date" />
       <span class="addNewMovieformLabel">End Date</span>
       <input type="date" formControlName="endDate" placeholder="Enter End Date" />
         <span class="addNewMovieformLabel" >Genre:</span>
         <select (change)="updateGenre($event)" formControlName="genre">
+            <option value="" disabled selected>Select your option</option>
             <option *ngFor="let genre of genres" [ngValue]="genre">
                 {{ genre }}
             </option>
@@ -32,6 +35,7 @@
 
         <span class="addNewMovieformLabel">Rating:</span>
         <select (change)="updateRating($event)" formControlName="rating">
+            <option value="" disabled selected>Select your option</option>
             <option *ngFor="let rating of ratings" [ngValue]="rating">
                 {{ rating }}
             </option>

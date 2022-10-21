@@ -12,9 +12,8 @@
         <div class="movieTitle">The God Father</div> 
         <div>
             <div class="theatreTitle">Select Date : &nbsp;&nbsp;&nbsp;
-                <mat-form-field>
-                    <input matInput [ngxMatDatetimePicker]="picker" placeholder=""
-                        [disabled]="false">
+                <!-- <mat-form-field>
+                    <input matInput [ngxMatDatetimePicker]="picker" placeholder="" [disabled]="false">
                     <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
                     <ngx-mat-datetime-picker #picker [showSeconds]="false"
                        [stepHour]="0" [stepMinute]="0"
@@ -24,7 +23,14 @@
                         <span>Select</span>
                       </ng-template>
                     </ngx-mat-datetime-picker>
-                 </mat-form-field>
+                 </mat-form-field> -->
+                 <mat-form-field>
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="picker">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
             </div>
         </div> <br>
         <div>

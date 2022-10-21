@@ -54,7 +54,8 @@ import { CheckoutComponent } from './home/checkout/checkout.component';
 import { ConfirmaionComponent } from './home/confirmaion/confirmaion.component';
 import { HttpClientModule } from '@angular/common/http';
 import { bmsApiService } from './services/bmsapi.service';
-import { NewAdminComponent } from './admin/new-admin/new-admin.component'
+import { NewAdminComponent } from './admin/new-admin/new-admin.component';
+import {MatNativeDateModule} from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -115,7 +116,8 @@ import { NewAdminComponent } from './admin/new-admin/new-admin.component'
     MatSelectModule,
     MatCheckboxModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    MatNativeDateModule
 
   ],
   providers: [bmsApiService],

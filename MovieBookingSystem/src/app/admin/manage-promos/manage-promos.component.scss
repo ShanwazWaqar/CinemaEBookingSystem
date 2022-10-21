@@ -34,17 +34,20 @@
 .existingPromoContainer {
     display: flex;
     // justify-content: space-between;
+    // justify-content: center;
     flex-wrap: wrap;
     row-gap: 30px;
 }
 
 .promoCodeDetailsContainer  {
-    width: 260px;
-    background-color: beige;
+    width: 280px;
+    // background-color: beige;
+    background-color: whitesmoke;
     border-radius: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 1px solid black;
 }
 
 .promoTitle {
@@ -57,10 +60,18 @@
 .removePromo {
     margin-top: 10px;
     margin-bottom: 10px;
-    background-color: #1fb5bf;
-    color: black;
+    background-color: black;
+    color: white;
     font-weight: bold;
     padding: 5px 10px 5px 10px;
     border-radius: 25px;
     cursor: pointer;
+}
+.col-3 {
+    display: flex;
+    justify-content: center;
+}
+.promoContainer {
+    padding-top: 10px;
+
 }
