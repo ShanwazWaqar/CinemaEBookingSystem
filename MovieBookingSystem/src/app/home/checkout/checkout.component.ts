@@ -11,6 +11,8 @@ export class CheckoutComponent implements OnInit {
   secondPage:boolean = false;
   thirdPage:boolean = false;
   fourthPage:boolean = false;
+  showCardForm:boolean = false;
+  showExistingCards:boolean = false;
   constructor(private router: Router) { }
 
   ngOnInit(): void {
@@ -35,6 +37,13 @@ export class CheckoutComponent implements OnInit {
     this.secondPage = false;
     this.thirdPage = true;
     this.fourthPage = false;
+  }
+
+  thirdPageOfRegistration2() {
+    this.showCardForm = true;
+  }
+  ShowExistingCards() {
+    this.showExistingCards = true;
   }
 
   fourthPageOfRegistration() {

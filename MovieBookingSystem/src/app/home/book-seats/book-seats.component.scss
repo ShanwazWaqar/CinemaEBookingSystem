@@ -333,9 +333,9 @@ li {
     padding: 5px;
     position: relative;
   }
-  // .seat:nth-child(3) {
-  //   // margin-right: 14.28571%;
-  // }
+  .seat:nth-child(2),.seat:nth-child(5) {
+    margin-right: 7%;
+  }
   .seat input[type="checkbox"] {
     position: absolute;
     opacity: 0;

@@ -1,31 +1,38 @@
 
+.centeringForm {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
 .log-form {
+
     width: 40%;
-    min-width: 320px;
-    max-width: 475px;
+    // min-width: 320px;
+    // max-width: 475px;
     background: #fff;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%,-50%);
-  -moz-transform: translate(-50%,-50%);
-  -o-transform: translate(-50%,-50%); 
-  -ms-transform: translate(-50%,-50%);
-  transform: translate(-50%,-50%);
-    
+    // position: absolute;
+    // top: 50%;
+    // left: 50%;
+  //   -webkit-transform: translate(-50%,-50%);
+  // -moz-transform: translate(-50%,-50%);
+  // -o-transform: translate(-50%,-50%); 
+  // -ms-transform: translate(-50%,-50%);
+  // transform: translate(-50%,-50%);
+    // display: flex;
+    // justify-content: center;
     box-shadow: 0px 2px 5px rgba(0,0,0,.25);
     
-    @media(max-width: 40em){
-      width: 95%;
-      position: relative;
-      margin: 2.5% auto 0 auto;
-      left: 0%;
-    -webkit-transform: translate(0%,0%);
-  -moz-transform: translate(0%,0%);
-  -o-transform: translate(0%,0%);
-  -ms-transform: translate(0%,0%);
-  transform: translate(0%,0%);
-    }
+  //   @media(max-width: 40em){
+  //     width: 95%;
+  //     position: relative;
+  //     margin: 2.5% auto 0 auto;
+  //     left: 0%;
+  //   -webkit-transform: translate(0%,0%);
+  // -moz-transform: translate(0%,0%);
+  // -o-transform: translate(0%,0%);
+  // -ms-transform: translate(0%,0%);
+  // transform: translate(0%,0%);
+  //   }
     
     form {
       display: block;
@@ -62,6 +69,10 @@
       &:focus {
         outline: none;
       }
+    }
+
+    input[type=radio] {
+      display: inline-flex!important;
     }
     
     .btn {
@@ -374,7 +385,6 @@
     }
     display: flex;
     justify-content: center;
-    border-radius: 10%;
   }
 
   .orText {
@@ -386,4 +396,17 @@
    h2 {
     font-family: 'Helvetica', sans-serif, 'Ariel';
     color: white!important;
+   }
+   .checkoutIndividualTitle {
+    color: #1fb5bf;
+    font-weight: bolder;
+    padding-bottom: 10px;
+   }
+   .checkoutIndividualTitle2 {
+    color: black;
+    font-weight: bolder;
+    padding-bottom: 10px;
+   }
+   .radioBtnCss {
+    display: inline-block!important;
    }
