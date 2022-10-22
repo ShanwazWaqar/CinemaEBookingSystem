@@ -4,6 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable()
 export class bmsApiService {
+    baseUrl = "http://localhost:8081/";
 
     constructor(private httpClient: HttpClient) { }
 
@@ -26,12 +27,17 @@ export class bmsApiService {
 
     //post example (creates a new entry)
     post(opost:any): Observable<any> {
-        return this.httpClient.post("https://jsonplaceholder.typicode.com/posts",opost)
+        return this.httpClient.post("https://jsonplaceholder.typicode.com/posts",opost);
     }
 
      //put example (updates the existing entry)
      bmsput(opost:any): Observable<any> {
-        return this.httpClient.post("https://jsonplaceholder.typicode.com/posts/"+opost.id,opost)
+        return this.httpClient.post("https://jsonplaceholder.typicode.com/posts/"+opost.id,opost);
     }
+
+    putdata(data:any): Observable<any> {
+        return this.httpClient.put(this.baseUrl+"user",data);
+    }
+
 
 }
