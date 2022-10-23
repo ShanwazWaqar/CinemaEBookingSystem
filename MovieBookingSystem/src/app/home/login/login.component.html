@@ -10,9 +10,19 @@
 
 <div class="log-form">
     <div class="d-flex justify-content-center"><h2>Login</h2></div>
-    <form>
-      <input type="text" title="username" placeholder="username" />
-      <input type="password" title="username" placeholder="password" />
+    <form [formGroup]="loginForm">
+      <div class="inputFieldConatiner">
+         <input formControlName="email" type="text" title="username" placeholder="Email" (input)="validityCheck()" />
+         <div *ngIf="emailError" class="">
+            <span class="errorText">Please Enter your Email.</span>
+         </div>
+      </div>
+      <div class="inputFieldConatiner">
+         <input formControlName="password" type="password" title="username" placeholder="password" (input)="validityCheck()" />
+         <div *ngIf="passwordFieldError" class="">
+            <span class="errorText">Please Enter your Password.</span>
+         </div>
+      </div>
       <a class="forgot" href="#">Forgot Password?</a>
       <button type="submit" class="btn" (click)="login()">Login</button>
     </form>

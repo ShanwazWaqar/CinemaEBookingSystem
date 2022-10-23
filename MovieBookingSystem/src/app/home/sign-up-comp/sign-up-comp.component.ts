@@ -50,14 +50,13 @@ export class SignUpCompComponent implements OnInit {
   register() {
     // register 
     var data =  {
-      userID : "12345",
-      email : "shanwaz@gmail.com",
-      phone : "9876543210",
-      password : "password",
-      address : "address",
-      gender : "Male"
+      "id": 17,
+      "name": "Naveenn12345",
+      "dept" : "CS",
+      "gender" : "Male"
     };
-    this._bmsAs.putdata(data).subscribe(res=>{
+    let data2 = JSON.stringify(data);
+    this._bmsAs.putdata(data2).subscribe(res=>{
       console.log(res," put method result");
     });
 

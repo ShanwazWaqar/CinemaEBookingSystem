@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Injectable()
 export class bmsApiService {
@@ -36,7 +36,10 @@ export class bmsApiService {
     }
 
     putdata(data:any): Observable<any> {
-        return this.httpClient.put(this.baseUrl+"user",data);
+        console.log(this.baseUrl+"user",data);
+        const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
+        console.log(headers," headers");
+        return this.httpClient.post("http://localhost:9191/api/user",JSON.parse(data),{'headers':headers});
     }
 
 
