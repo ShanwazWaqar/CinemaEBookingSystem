@@ -20,12 +20,18 @@ export class ForgotPasswordComponent implements OnInit {
   showOtp:boolean = false;
   showPasswordError:boolean = false;
   showChangePassword:boolean = false;
+  otpValue:any = "";
+  otpError:boolean = false;
+  initialPwdError:boolean = false;
+  passwordError:boolean = false;
   constructor(private fb: FormBuilder,private router: Router,private _bmsAs:bmsApiService, private dialogRef: MatDialog) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       email : ['',[Validators.required, Validators.pattern("^[A-Za-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
-      otp: ['',[Validators.required]]
+      otp: ['',[Validators.required]],
+      password : ['', [Validators.required]],
+      password2 : ['',[Validators.required]]
     });
   }
 
@@ -36,17 +42,25 @@ export class ForgotPasswordComponent implements OnInit {
   }
   
   verifyOtp() {
-    this.resetBtn = false;
-    this.isValidOTP = true;
-    this.showOtp = false;
-    this.showChangePassword = true
+    
     //http call to check for same otp
     // this.isValidOTP=true;
-    
+    if(this.otpValue.length == 6){
+      this.resetBtn = false;
+      this.isValidOTP = true;
+      this.showOtp = false;
+      this.showChangePassword = true;
+      this.otpError = false;
+    } else {
+      this.otpError = true;
+    }
   }
 
   onOtpChange(evt:any) {
-    console.log(evt," evet ")
+    this.otpValue = evt;
+    if(this.otpValue.length == 6) {
+      this.otpError = false;
+    }
   }
 
   checkPassword(str1:any,str2:any){
@@ -77,6 +91,31 @@ export class ForgotPasswordComponent implements OnInit {
 
   @HostListener('window:keyup.esc') onKeyUp() {
     this.dialogRef.closeAll();
+  }
+
+  passwordCheck() {
+    let pwd1 = this.loginForm.value.password;
+    let pwd2 = this.loginForm.value.password2;
+    if(pwd2 != '') {
+      if(pwd1 == pwd2) {
+        this.initialPwdError = false;
+        this.passwordError = false;
+      }else {
+        this.initialPwdError = true;
+      }
+    } 
+  }
+  passwordCheck2() {
+    let pwd1 = this.loginForm.value.password;
+    let pwd2 = this.loginForm.value.password2;
+    if(pwd1 != '') { 
+      if(pwd1 == pwd2) {
+        this.passwordError = false;
+        this.initialPwdError = false;
+      }else {
+        this.passwordError = true;
+      }
+    }
   }
 
 }

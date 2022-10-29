@@ -20,4 +20,9 @@ export class UserHeaderComponent implements OnInit {
   logout() {
     this.router.navigateByUrl('/Login');
   }
+
+  changePassword() {
+    this.router.navigateByUrl('/changePassword');
+  }
+
 }

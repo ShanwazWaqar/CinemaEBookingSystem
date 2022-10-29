@@ -60,6 +60,8 @@ import { ForgotPasswordComponent } from './home/forgot-password/forgot-password.
 import { SignUp2Component } from './home/sign-up2/sign-up2.component';
 import { NgOtpInputModule } from  'ng-otp-input';
 import { ResetPassSuccessComponent } from './home/reset-pass-success/reset-pass-success.component';
+import { ChangePasswordComponent } from './home/change-password/change-password.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -98,7 +100,8 @@ import { ResetPassSuccessComponent } from './home/reset-pass-success/reset-pass-
     NewAdminComponent,
     ForgotPasswordComponent,
     SignUp2Component,
-    ResetPassSuccessComponent
+    ResetPassSuccessComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -125,7 +128,8 @@ import { ResetPassSuccessComponent } from './home/reset-pass-success/reset-pass-
     MatIconModule,
     HttpClientModule,
     MatNativeDateModule,
-    NgOtpInputModule
+    NgOtpInputModule,
+    FormsModule
   ],
   providers: [bmsApiService],
   bootstrap: [AppComponent]
