@@ -7,10 +7,12 @@
     </div>
  </nav>
 
+ <form>
+
 <div *ngIf="intialPage">
     <div class="log-form">
         <div class="d-flex justify-content-center"><h2>Sign Up</h2></div>
-        <form>
+        <div class="formContainer">
           <input type="text" title="firstName" placeholder="first Name *" />
           <input type="text" title="lastName" placeholder="Last Name *" />
           <input type="email" title="email" placeholder="Email *" />
@@ -20,14 +22,14 @@
           <div class="justify-content-center">
             <button type="submit" class="btn" (click)="secondPageOfRegistration()">Next</button>
           </div>
-        </form>
+        </div>
       </div>
 </div>
 
 <div *ngIf="secondPage">
   <div class="log-form">
     <div class="d-flex justify-content-center"><h2>Book my show</h2></div>
-    <form>
+    <div class="formContainer">
       <br><br>
       <div class="">
         <button class="secondPageBtn" (click)="thirdPageOfRegistration()"> ADD Card Details </button> <br>
@@ -35,7 +37,7 @@
         <button class="secondPageBtn" (click)="fourthPageOfRegistration()">Skip & Continue</button>
         <br><br>
     </div>
-    </form>
+  </div>
     <div class="secondPageBtns">
       <button class="btn" (click)="initalPage()"> Back </button>
     </div>
@@ -45,7 +47,7 @@
 <div *ngIf="thirdPage">
     <div class="log-form">
         <div class="d-flex justify-content-center"><h2>Enter Card Details</h2></div>
-        <form>
+        <div class="formContainer">
           <input type="text" title="cardNumber" placeholder="Card Number *" />
           <div class="d-flex justify-content-center">
             <input type="number" title="exipryMonth" placeholder="Expiry Month *" />
@@ -53,7 +55,7 @@
             <input type="number" title="CVV" placeholder="CVV *" />
           </div> 
           <input type="text" title="Name" placeholder="Name on Card *" />
-        </form>
+        </div>
         <div class="secondPageBtns">
             <button class="btn" (click)="secondPageOfRegistration()"> Back </button>
             <button class="btn" (click)="fourthPageOfRegistration()"> Coninue </button>
@@ -64,17 +66,18 @@
 <div *ngIf="fourthPage">
   <div class="log-form">
       <div class="d-flex justify-content-center"><h2>Enter Address Details</h2></div>
-      <form>
+      <div class="formContainer">
         <input type="text" title="address line 1" placeholder="Address Line 1*" />
         <input type="text" title="address line 2" placeholder="Address Line 2" />
         <input type="text" title="city" placeholder=" Enter City*" />
         <input type="text" title="State" placeholder=" Enter State*" />
         <input type="text" title="Country" placeholder=" Enter Country*" />
         <input type="text" title="zipcode" placeholder=" Enter Zipcode*" />
-      </form>
+      </div>
       <div class="secondPageBtns">
           <button class="btn" (click)="secondPageOfRegistration()"> Back </button>
           <button class="btn" (click)="register()"> Coninue </button>
         </div>
     </div>
 </div>
+</form>

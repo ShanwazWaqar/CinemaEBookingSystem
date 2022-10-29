@@ -16,6 +16,8 @@ import { OrderConfirmationComponent } from './home/order-confirmation/order-conf
 import { CheckoutComponent } from './home/checkout/checkout.component';
 import { ConfirmaionComponent } from './home/confirmaion/confirmaion.component';
 import { NewAdminComponent } from './admin/new-admin/new-admin.component';
+import { ForgotPasswordComponent } from './home/forgot-password/forgot-password.component';
+import { SignUp2Component } from './home/sign-up2/sign-up2.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -23,7 +25,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'admin2', component: NewAdminComponent },
   { path: 'adminHomePage', component: AdminHomeComponent },
-  { path: 'SignUp', component: SignUpCompComponent },
+  { path: 'SignUp', component: SignUp2Component },
+  { path: 'SignUp2', component: SignUpCompComponent },
   { path: 'Login', component: LoginComponent },
   { path: 'userHomePage', component: UserHomeScreenComponent },
   { path: 'editUserProfile', component: EditUserProfileComponent },
@@ -34,6 +37,7 @@ const routes: Routes = [
   { path: 'orderConfirmation', component: OrderConfirmationComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'confirmation', component: ConfirmaionComponent },
+  { path: 'forgotPassword', component: ForgotPasswordComponent },
   { path: '**', component: HomeComponent },
 ];
 

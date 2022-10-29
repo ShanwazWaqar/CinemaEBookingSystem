@@ -42,5 +42,10 @@ export class bmsApiService {
         return this.httpClient.post("http://localhost:9191/api/user",JSON.parse(data),{'headers':headers});
     }
 
+    validateUser(cred:any): Observable<any> {
+        const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
+        return this.httpClient.put("http://localhost:9191/api/user",JSON.parse(cred),{'headers':headers});
+    }
+
 
 }

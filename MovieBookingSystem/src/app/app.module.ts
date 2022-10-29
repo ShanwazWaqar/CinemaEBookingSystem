@@ -56,6 +56,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { bmsApiService } from './services/bmsapi.service';
 import { NewAdminComponent } from './admin/new-admin/new-admin.component';
 import {MatNativeDateModule} from '@angular/material/core';
+import { ForgotPasswordComponent } from './home/forgot-password/forgot-password.component';
+import { SignUp2Component } from './home/sign-up2/sign-up2.component';
+import { NgOtpInputModule } from  'ng-otp-input';
+import { ResetPassSuccessComponent } from './home/reset-pass-success/reset-pass-success.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +95,10 @@ import {MatNativeDateModule} from '@angular/material/core';
     OrderConfirmationComponent,
     CheckoutComponent,
     ConfirmaionComponent,
-    NewAdminComponent
+    NewAdminComponent,
+    ForgotPasswordComponent,
+    SignUp2Component,
+    ResetPassSuccessComponent
   ],
   imports: [
     BrowserModule,
@@ -117,8 +124,8 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatCheckboxModule,
     MatIconModule,
     HttpClientModule,
-    MatNativeDateModule
-
+    MatNativeDateModule,
+    NgOtpInputModule
   ],
   providers: [bmsApiService],
   bootstrap: [AppComponent]

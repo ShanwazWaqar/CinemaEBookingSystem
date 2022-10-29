@@ -85,18 +85,22 @@ transform: translate(0%,0%);
     }
     float: right;
   }
+  .remMeText  {
+    font-size: 0.9em;
+  }
   
   .forgot {
     color: lighten(#1fb5bf, 10%);
-    line-height: .5em;
-    position: relative;
+    // line-height: .5em;
+    // position: relative;
     // top: 2.5em;
     text-decoration: none;
     font-size: .75em;
-    margin:0;
-    padding: 0;
+    // margin:0;
+    // padding: 0;
+    cursor: pointer;
     // float: right;
-    
+    margin-top: 1px;
     &:hover {
       color:darken(#1fb5bf, 5%);
     }
@@ -347,4 +351,41 @@ nav .logo.space{
 }
 .inputFieldConatiner {
   margin-bottom: 2em;
+}
+.checkbox {
+  display: flex;
+  color: black!important;
+}
+
+.btn3 {
+  // display: inline-block;
+  background: #1fb5bf;
+  border: 1px solid darken(#1fb5bf, 5%);
+  padding: .5em 2em;
+  color: white;
+  box-shadow: inset 0px 1px 0px fadeout(white, 80%); 
+  &:hover {
+    background: lighten(#1fb5bf, 5%);
+  }
+  &:active {
+    background: #1fb5bf; 
+    box-shadow: inset 0px 1px 1px fadeout(black, 90%); 
+  }
+  &:focus {
+    outline: none;
+  }
+  width: 100%;
+  border-radius: 5px;
+}
+
+.rememberMeCheckbox {
+  margin-top: 5px;
+}
+.remMeConatiner {
+  display: flex;
+  margin-bottom: 20px;
+  margin-top: -10px;
+}
+input:checked ~ .checkmark {
+  background-color: #1fb5bf;
 }

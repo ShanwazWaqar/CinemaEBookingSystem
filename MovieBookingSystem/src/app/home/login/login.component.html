@@ -11,19 +11,30 @@
 <div class="log-form">
     <div class="d-flex justify-content-center"><h2>Login</h2></div>
     <form [formGroup]="loginForm">
+      <span *ngIf="" class="errorText">Please Enter valid Credentails.</span>
       <div class="inputFieldConatiner">
          <input formControlName="email" type="text" title="username" placeholder="Email" (input)="validityCheck()" />
-         <div *ngIf="emailError" class="">
-            <span class="errorText">Please Enter your Email.</span>
+         <div *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)" class="">
+            <span *ngIf="loginForm.controls['email'].errors?.required" class="errorText">Please Enter your Email.</span>
+            <span *ngIf="loginForm.controls['email'].errors?.pattern" class="errorText">Please provide a valid email address.</span>
          </div>
       </div>
       <div class="inputFieldConatiner">
          <input formControlName="password" type="password" title="username" placeholder="password" (input)="validityCheck()" />
-         <div *ngIf="passwordFieldError" class="">
+         <div *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)" class="">
             <span class="errorText">Please Enter your Password.</span>
          </div>
       </div>
-      <a class="forgot" href="#">Forgot Password?</a>
-      <button type="submit" class="btn" (click)="login()">Login</button>
+      <diV class="remMeConatiner">
+         <div class="col-8 d-flex justify-content-start">
+            <label class="checkbox">
+               <input type="checkbox" class="rememberMeCheckbox" value="remember-me" id="rememberMe" name="rememberMe">&nbsp;&nbsp; <span class="remMeText"> RememberMe</span>
+             </label>
+         </div>
+         <div class="col-4 d-flex justify-content-end">
+            <a class="forgot" (click)="forgotPasscoode()">Forgot Password?</a>
+         </div>
+      </diV>
+      <button type="submit" class="btn3" (click)="login()">Login</button>
     </form>
   </div><!--end log form -->

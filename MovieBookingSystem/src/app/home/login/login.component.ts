@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { bmsApiService } from '../../services/bmsapi.service';
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-login',
@@ -9,28 +11,56 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  emailError:boolean = false;
-  passwordFieldError:boolean = false;
-  constructor(private fb: FormBuilder,private router: Router) { }
+  emailError: boolean = false;
+  passwordFieldError: boolean = false;
+  encryptSecretKey: string = "randomKey";
+  constructor(private fb: FormBuilder, private router: Router, private _bmsAs: bmsApiService) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      email : ['',[Validators.required, Validators.email]],
-      password : ['', [Validators.required]]
+      email: ['', [Validators.required, Validators.pattern("^[A-Za-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
+      password: ['', [Validators.required]]
     });
+    if (localStorage.getItem("UserName") != null) {
+      this.loginForm.patchValue({
+        email: localStorage.getItem("UserName"),
+        password: localStorage.getItem("Password")
+      });
+    }
+  }
+
+  encryptData(data: any) {
+
+    try {
+      return CryptoJS.AES.encrypt(JSON.stringify(data), this.encryptSecretKey).toString();
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  decryptData(data: any) {
+
+    try {
+      const bytes = CryptoJS.AES.decrypt(data, this.encryptSecretKey);
+      if (bytes.toString()) {
+        return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+      }
+      return data;
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   validityCheck() {
-    
-    if(this.loginForm.value.email == "" || this.loginForm.value.password == "") {
-      if(this.loginForm.value.email == "") {
+    if (this.loginForm.value.email == "" || this.loginForm.value.password == "") {
+      if (this.loginForm.value.email == "") {
         this.emailError = true;
       } else {
         this.emailError = false;
-      } 
-      if (this.loginForm.value.password == "" ){
-        this.passwordFieldError = true; 
-      }else {
+      }
+      if (this.loginForm.value.password == "") {
+        this.passwordFieldError = true;
+      } else {
         this.passwordFieldError = false;
       }
       return false;
@@ -38,16 +68,44 @@ export class LoginComponent implements OnInit {
     return true;
   }
 
+  forgotPasscoode() {
+    console.log("forgot passcode");
+    this.router.navigateByUrl('/forgotPassword');
+  }
+
   login() {
-    //Api to check valid User 
-    if(this.validityCheck()) {
+    // let pass = "password"
+    // let encode = this.encryptData(pass);
+    // console.log("encoded val --> ",encode);
+    // console.log("decoded val --> ",this.decryptData(encode));
+
+
+
+    this.loginForm.markAllAsTouched();
+    if (this.loginForm.valid) {
+      //remember Me 
+      const checkbox = document.getElementById('rememberMe',) as HTMLInputElement | null;
+
+      if (checkbox?.checked) {
+        let uname = this.loginForm.value.email;
+        let password = this.loginForm.value.password;
+        localStorage.setItem("UserName", uname);
+        localStorage.setItem("Password", password);
+      } 
+      //http call
+      const cred = {
+        "email": this.loginForm.value.email,
+        "password": this.encryptData(this.loginForm.value.password)
+      }
+      this._bmsAs.validateUser(cred).subscribe(res => {
+        if (res) {
+          // add code to display valid credentials
+        }
+      });
       // this.router.navigateByUrl('/userHomePage');
-      console.log("valid form");
     } else {
       console.log("invalid form");
     }
-    console.log(this.loginForm.errors ," error login form");
-    
   }
 
 }
