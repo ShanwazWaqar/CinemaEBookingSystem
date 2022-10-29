@@ -62,6 +62,7 @@ import { NgOtpInputModule } from  'ng-otp-input';
 import { ResetPassSuccessComponent } from './home/reset-pass-success/reset-pass-success.component';
 import { ChangePasswordComponent } from './home/change-password/change-password.component';
 import { FormsModule } from '@angular/forms';
+import { SuccessChangePasswordComponent } from './home/success-change-password/success-change-password.component';
 
 @NgModule({
   declarations: [
@@ -101,7 +102,8 @@ import { FormsModule } from '@angular/forms';
     ForgotPasswordComponent,
     SignUp2Component,
     ResetPassSuccessComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    SuccessChangePasswordComponent
   ],
   imports: [
     BrowserModule,

@@ -13,15 +13,12 @@ export class ChangePasswordComponent implements OnInit {
   signUpForm: FormGroup;
   initialPwdError:boolean = false;
   passwordError:boolean = false;
-  
 
   constructor(private fb: FormBuilder,private router: Router,private _bmsAs:bmsApiService) { }
 
   ngOnInit(): void {
     this.signUpForm = this.fb.group({
-      fullName : ['',[Validators.required]],
-      email : ['',[Validators.required, Validators.pattern("^[A-Za-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
-      phone : ['',[Validators.required,]],
+      existingPassword : ['', [Validators.required]],
       password : ['', [Validators.required]],
       password2 : ['',[Validators.required]]
     });
@@ -50,6 +47,11 @@ export class ChangePasswordComponent implements OnInit {
         this.passwordError = true;
       }
     }
+  }
+
+  changePassword() {
+    this.signUpForm.markAllAsTouched();
+    console.log("change password clicked!!!")
   }
 
 }
