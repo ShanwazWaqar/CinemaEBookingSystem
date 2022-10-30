@@ -135,14 +135,14 @@
                         <span *ngIf="cardForm.controls['year'].errors?.pattern" class="errorText">Exact 4 numbers required(example:1998)</span>
                     </div>
                 </div>
-                <div class="inputContainer">
+                <!-- <div class="inputContainer">
                     <span class="inputTitle">CVV <span class="required">*</span></span>
                     <input type="number" formControlName="cvv" title="CVV" placeholder="CVV" />
                     <div *ngIf="cardForm.controls['cvv'].invalid && (cardForm.controls['cvv'].dirty || cardForm.controls['cvv'].touched)" class="">
                         <span *ngIf="cardForm.controls['cvv'].errors?.required" class="errorText">CVV is required</span>
                         <span *ngIf="cardForm.controls['cvv'].errors?.pattern" class="errorText">3 or 4 numbers required(example:634 | 3728)</span>
                     </div>
-                </div>
+                </div> -->
                 <div class="inputContainer">
                     <span class="inputTitle">Name on Card <span class="required">*</span></span>
                     <input type="text" formControlName="name" title="Name" placeholder="Name on Card" />
