@@ -100,18 +100,20 @@ export class LoginComponent implements OnInit {
         "password": this.encryptData(this.loginForm.value.password)
       }
       cred = JSON.stringify(cred);
-      // this._bmsAs.validateUser(cred).subscribe(res => {
-      //   if (res) {
-      //     // add code to display valid credentials
-      //   }
-      // });
-      localStorage.setItem("loggedIn","true");
-      let edata = this.tds.encryptData(this.loginForm.value.email);
-      localStorage.setItem("user", edata!);
-      console.log(localStorage.getItem("user"));
-      let ddata = this.tds.decryptData(localStorage.getItem("user"));
-      console.log(ddata," decrypt data");
-      this.router.navigateByUrl('/userHomePage');
+      this._bmsAs.validateUser(cred).subscribe(res => {
+        console.log(res," res from login");
+        if (res) {
+          // add code to display valid credentials
+          localStorage.setItem("loggedIn","true");
+          let edata = this.tds.encryptData(this.loginForm.value.email);
+          localStorage.setItem("user", edata!);
+          let ddata = this.tds.decryptData(localStorage.getItem("user"));
+          this.router.navigateByUrl('/userHomePage');
+        } else {
+          //for invalid cred
+        }
+      });
+      
     } else {
       console.log("invalid form");
     }

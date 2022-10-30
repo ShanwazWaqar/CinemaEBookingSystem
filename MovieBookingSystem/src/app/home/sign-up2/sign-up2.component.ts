@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { bmsApiService } from '../../services/bmsapi.service';
+import { MatDialog, MAT_DIALOG_DATA  } from '@angular/material/dialog';
+import { RegistrationSuccessComponent } from '../registration-success/registration-success.component';
 
 @Component({
   selector: 'app-sign-up2',
@@ -18,7 +20,7 @@ export class SignUp2Component implements OnInit {
   passwordError:boolean = false;
   promotionOptedIn:boolean = false;
   initialPwdError:boolean = false;
-  constructor(private fb: FormBuilder,private router: Router,private _bmsAs:bmsApiService) { }
+  constructor(private fb: FormBuilder,private router: Router,private _bmsAs:bmsApiService, private dialogRef: MatDialog) { }
 
   ngOnInit(): void {
     this.signUpForm = this.fb.group({
@@ -74,11 +76,15 @@ export class SignUp2Component implements OnInit {
     if(this.signUpForm.valid){
       if((this.showAddressDetails && this.addressForm.valid) || (this.showAddressDetails == false) ) {
         if((this.cardDetails && this.cardForm.valid) || (this.cardDetails == false)) {
-          console.log(user," Personal Details values");
           //API for registration 
           user = JSON.stringify(user);
           this._bmsAs.registerUser(user).subscribe((res) => {
-            console.log(res,"res");
+            console.log(res," res");
+            if(res == "verification code sent successfully" ) {
+              this.openDialog();
+            } else {
+              // Server down popup
+            }
           });
         }
       }
@@ -90,6 +96,19 @@ export class SignUp2Component implements OnInit {
     //   console.log(this.cardForm.value," Card details values");    
     // }
     // this.router.navigateByUrl('/userHomePage');
+  }
+
+  openDialog() {
+    const popup = this.dialogRef.open(RegistrationSuccessComponent, {
+      disableClose: true,
+      enterAnimationDuration: '700ms',
+      exitAnimationDuration:'1200ms',
+      height: '250px',
+      width: '400px',
+    });
+    popup.afterClosed().subscribe(item =>{
+      this.router.navigateByUrl('/Login');
+    });
   }
 
   showCardDetails() {

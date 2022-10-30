@@ -65,6 +65,7 @@ import { FormsModule } from '@angular/forms';
 import { SuccessChangePasswordComponent } from './home/success-change-password/success-change-password.component';
 import { tempDataService } from './services/tempData.service';
 import { VerfiyUserComponent } from './home/verfiy-user/verfiy-user.component';
+import { RegistrationSuccessComponent } from './home/registration-success/registration-success.component';
 
 @NgModule({
   declarations: [
@@ -106,7 +107,8 @@ import { VerfiyUserComponent } from './home/verfiy-user/verfiy-user.component';
     ResetPassSuccessComponent,
     ChangePasswordComponent,
     SuccessChangePasswordComponent,
-    VerfiyUserComponent
+    VerfiyUserComponent,
+    RegistrationSuccessComponent
   ],
   imports: [
     BrowserModule,

@@ -45,7 +45,7 @@ export class bmsApiService {
     //login cred api call goes here
     validateUser(cred:any): Observable<any> {
         const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
-        return this.httpClient.put("http://localhost:1785/api/",JSON.parse(cred),{'headers':headers});
+        return this.httpClient.put("http://localhost:1785/api/LoginUser",JSON.parse(cred),{'headers':headers});
     }
 
     //register user api name has to be changed.
