@@ -1,7 +1,12 @@
 package com.example.controller;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
-
+import java.sql.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +27,7 @@ import com.example.demo.model.userRegistration;
 import com.example.demo.repo.UserRepo;
 import com.example.service.userservice;
 import com.example.service.imple.userimple;
+import com.mysql.cj.xdevapi.Statement;
 
 
 @RestController
@@ -38,6 +45,7 @@ public class UserController {
 		public ResponseEntity<userRegistration> registerUser(@RequestBody userRegistration userRegistration) {
 		 //logger.info("Received controller");
 		 System.out.println("Controller called for user Registration "+userRegistration.toString());
+		 System.out.println("Controller called for user Registration "+userRegistration.getName());
 		 return ResponseEntity.ok(repo.save(userRegistration));
 			
 			
@@ -75,6 +83,56 @@ public class UserController {
 	  HttpStatus.OK);
 	  
 	  }
+	  @PostMapping("/editprofile")
+	    public String editProfile(@RequestBody userRegistration userRegistration) throws SQLException{
+	        String Name = userRegistration.getName();
+	        //String lastName = user.getLastName();
+	        int userID = 0;
+	        int id = userRegistration.getId();
+	        //String Name = user.getName();
+	        String RName="Not Worked";
+	        String gender = userRegistration.getGender();
+	        String dept = userRegistration.getDept();
+	        try {
+	            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/geek", "root", "");
+	            PreparedStatement preparedStatement = conn.prepareStatement("UPDATE geeksdemo SET id = ?,name = ?, gender = ?, dept = ? WHERE id = ?");
+	            preparedStatement.setLong(1, id);
+	            preparedStatement.setString(2, Name);
+	            preparedStatement.setString(3, gender);
+	            preparedStatement.setString(4, dept);
+	            preparedStatement.setLong(5, id);
+	            preparedStatement.executeUpdate();
+	            preparedStatement.close();
+	            //RName="Working";
+	            System.out.println(Name);
+	            java.sql.Statement stmt = conn.createStatement();
+	            ResultSet resultSet = stmt.executeQuery("SELECT Name FROM geeksdemo WHERE Name = " + "'" + "Naveen" + "'");
+				//userID = resultSet.getInt("userID");
+	            while (resultSet.next()) {
+				RName=resultSet.getString("Name"); 
+	            }
+	        }catch(SQLException exception){
+	        	exception.printStackTrace();
+	        }
+	      
+	        
+	        return RName;
+	    }
+	  @PostMapping("/updatepassword")
+	    public String changePassword(@RequestBody userRegistration userRegistration) {
+	        String Name = userRegistration.getName();
+	        String dept = userRegistration.getDept();
+	        //String encryptedPassword = new BCryptPasswordEncoder().encode(newPassword);
+	        try {
+	            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/geek", "root", "");
+	            java.sql.Statement stmt = conn.createStatement();
+	            String query = "UPDATE geeksdemo SET dept = '" + dept + "'" + " WHERE Name = '" +Name + "'";
+	            stmt.executeUpdate(query);
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	        return "Successfully updated password";
+	    }
 	  }
 	  
 	/*
