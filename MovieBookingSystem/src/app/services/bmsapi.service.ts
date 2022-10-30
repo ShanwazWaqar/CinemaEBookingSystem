@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Injectable()
 export class bmsApiService {
-    baseUrl = "http://localhost:8081/";
+    baseUrl = "http://localhost:1785/api/";
 
     constructor(private httpClient: HttpClient) { }
 
@@ -45,13 +45,13 @@ export class bmsApiService {
     //login cred api call goes here
     validateUser(cred:any): Observable<any> {
         const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
-        return this.httpClient.put("http://localhost:9191/api/user",JSON.parse(cred),{'headers':headers});
+        return this.httpClient.put("http://localhost:1785/api/",JSON.parse(cred),{'headers':headers});
     }
 
     //register user api name has to be changed.
     registerUser(user:any): Observable<any> {
         const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
-        return this.httpClient.put("http://localhost:9191/api/user",JSON.parse(user),{'headers':headers});
+        return this.httpClient.post("http://localhost:1785/api/SignUp",JSON.parse(user),{'headers':headers});
     }
 
 

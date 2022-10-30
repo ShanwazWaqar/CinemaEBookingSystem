@@ -48,7 +48,7 @@ export class SignUp2Component implements OnInit {
   signUp() {
     var user:any;
     user = {
-      fullName : this.signUpForm.value.fullName,
+      fullname : this.signUpForm.value.fullName,
       email : this.signUpForm.value.email,
       phone : this.signUpForm.value.phone,
       password : this.signUpForm.value.password,
@@ -77,7 +77,9 @@ export class SignUp2Component implements OnInit {
           console.log(user," Personal Details values");
           //API for registration 
           user = JSON.stringify(user);
-          this._bmsAs.registerUser(user);
+          this._bmsAs.registerUser(user).subscribe((res) => {
+            console.log(res,"res");
+          });
         }
       }
     }
