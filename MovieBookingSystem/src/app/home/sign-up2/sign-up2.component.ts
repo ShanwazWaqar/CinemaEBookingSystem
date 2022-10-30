@@ -46,7 +46,8 @@ export class SignUp2Component implements OnInit {
   }
 
   signUp() {
-    var user = {
+    var user:any;
+    user = {
       fullName : this.signUpForm.value.fullName,
       email : this.signUpForm.value.email,
       phone : this.signUpForm.value.phone,
@@ -60,7 +61,6 @@ export class SignUp2Component implements OnInit {
       cardNo : this.cardForm.value.cardNo,
       month : this.cardForm.value.month,
       year : this.cardForm.value.year,
-      cvv : this.cardForm.value.cvv,
       name: this.cardForm.value.name,
       promotion: this.promotionOptedIn
     }
@@ -75,6 +75,9 @@ export class SignUp2Component implements OnInit {
       if((this.showAddressDetails && this.addressForm.valid) || (this.showAddressDetails == false) ) {
         if((this.cardDetails && this.cardForm.valid) || (this.cardDetails == false)) {
           console.log(user," Personal Details values");
+          //API for registration 
+          user = JSON.stringify(user);
+          this._bmsAs.registerUser(user);
         }
       }
     }
