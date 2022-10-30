@@ -57,7 +57,7 @@ export class SignUp2Component implements OnInit {
       city : this.addressForm.value.city,
       state : this.addressForm.value.state,
       country : this.addressForm.value.country,
-      pincode : this.addressForm.value.pincode,
+      zipcode : this.addressForm.value.pincode,
       cardNo : this.cardForm.value.cardNo,
       month : this.cardForm.value.month,
       year : this.cardForm.value.year,
