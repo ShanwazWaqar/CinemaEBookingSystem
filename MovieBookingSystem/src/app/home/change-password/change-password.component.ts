@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { bmsApiService } from 'src/app/services/bmsapi.service';
+import { bmsApiService } from '../../services/bmsapi.service'; 
+import { MatDialog, MAT_DIALOG_DATA  } from '@angular/material/dialog';
+import { SuccessChangePasswordComponent } from '../success-change-password/success-change-password.component';
 
 @Component({
   selector: 'app-change-password',
@@ -14,9 +16,12 @@ export class ChangePasswordComponent implements OnInit {
   initialPwdError:boolean = false;
   passwordError:boolean = false;
 
-  constructor(private fb: FormBuilder,private router: Router,private _bmsAs:bmsApiService) { }
+  constructor(private fb: FormBuilder,private router: Router,private _bmsAs:bmsApiService, private dialogRef: MatDialog) { }
 
   ngOnInit(): void {
+    if(localStorage.getItem("loggedIn") == "false") {
+      this.router.navigateByUrl('/home');
+    }
     this.signUpForm = this.fb.group({
       existingPassword : ['', [Validators.required]],
       password : ['', [Validators.required]],
@@ -51,7 +56,29 @@ export class ChangePasswordComponent implements OnInit {
 
   changePassword() {
     this.signUpForm.markAllAsTouched();
-    console.log("change password clicked!!!")
+    if(this.signUpForm.valid && !this.initialPwdError && !this.passwordError){
+      //api call and upon success
+      this.openDialog();
+    } else {
+      console.log("invalid form")
+    }
+  }
+
+  openDialog() {
+    const popup = this.dialogRef.open(SuccessChangePasswordComponent, {
+      disableClose: true,
+      enterAnimationDuration: '700ms',
+      exitAnimationDuration:'1200ms',
+      height: '250px',
+      width: '400px',
+    });
+    popup.afterClosed().subscribe(item =>{
+      // this.router.navigateByUrl('/Login');
+    });
+  }
+
+  @HostListener('window:keyup.esc') onKeyUp() {
+    this.dialogRef.closeAll();
   }
 
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { tempDataService } from '../../services/tempData.service';
 
 @Component({
   selector: 'app-user-home-screen',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserHomeScreenComponent implements OnInit {
 
-  constructor() { }
+  constructor(private tds: tempDataService, private router: Router) { }
 
   ngOnInit(): void {
+    if(this.tds.checkUser()) {
+
+    }else {
+      this.router.navigateByUrl("/home");
+    }
   }
 
 

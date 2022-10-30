@@ -1,0 +1,36 @@
+<nav>
+    <div class="logo">
+       Bookmyshow
+    </div>
+    <div class="search-icon">
+       <span class="fas fa-search"></span>
+    </div>
+ </nav>
+
+
+ <div class="log-form">
+    <div class="d-flex justify-content-center"><h2 class="d-flex justify-content-center">Verify</h2></div>
+    <form [formGroup]="loginForm">
+      <div class="inputFieldConatiner">
+         <span class="inputLabel">Enter Your Email</span>
+         <input formControlName="email" type="text" title="username" placeholder="Please Enter Your Email"  class="disabledClass"/>
+         <div *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)" class="">
+            <span *ngIf="loginForm.controls['email'].errors?.required" class="errorText">Please Enter your Email.</span>
+            <span *ngIf="loginForm.controls['email'].errors?.pattern" class="errorText">Please provide a valid email address.</span>
+         </div>
+         <div >
+            <br><span class="inputLabel">Enter OTP</span><br>
+            <ng-otp-input  (onInputChange)="onOtpChange($event)"  [config]="{length:6}"></ng-otp-input> <br>
+            <span class="errorText" *ngIf="otpError">Please Enter 6 charcharacters</span>
+            <span class="errorText" *ngIf="isValidOTP">Invalid OTP</span>
+            <div *ngIf="!resendOTPcheck" class="resendOTP">
+                <span (click)="resendOTP()" class="cursorCalss">resend OTP</span>
+            </div>
+            <div *ngIf="resendOTPcheck" class="otprequest">
+                OTP sent successfully
+            </div>
+            <button type="submit" class="btn verifyOtpbtn" (click)="verifyOtp()">Verfiy OTP</button>
+         </div> 
+      </div> 
+    </form>
+  </div>

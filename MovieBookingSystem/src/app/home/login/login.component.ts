@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { bmsApiService } from '../../services/bmsapi.service';
+import { tempDataService } from '../../services/tempData.service';
 import * as CryptoJS from 'crypto-js';
 
 @Component({
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   emailError: boolean = false;
   passwordFieldError: boolean = false;
   encryptSecretKey: string = "randomKey";
-  constructor(private fb: FormBuilder, private router: Router, private _bmsAs: bmsApiService) { }
+  constructor(private fb: FormBuilder, private router: Router, private _bmsAs: bmsApiService, private tds: tempDataService) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -93,16 +94,24 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("Password", password);
       } 
       //http call
-      const cred = {
+      let cred:any = "";
+      cred = {
         "email": this.loginForm.value.email,
         "password": this.encryptData(this.loginForm.value.password)
       }
-      this._bmsAs.validateUser(cred).subscribe(res => {
-        if (res) {
-          // add code to display valid credentials
-        }
-      });
-      // this.router.navigateByUrl('/userHomePage');
+      cred = JSON.stringify(cred);
+      // this._bmsAs.validateUser(cred).subscribe(res => {
+      //   if (res) {
+      //     // add code to display valid credentials
+      //   }
+      // });
+      localStorage.setItem("loggedIn","true");
+      let edata = this.tds.encryptData(this.loginForm.value.email);
+      localStorage.setItem("user", edata!);
+      console.log(localStorage.getItem("user"));
+      let ddata = this.tds.decryptData(localStorage.getItem("user"));
+      console.log(ddata," decrypt data");
+      this.router.navigateByUrl('/userHomePage');
     } else {
       console.log("invalid form");
     }

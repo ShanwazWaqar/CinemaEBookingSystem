@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,6 +7,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-header.component.scss']
 })
 export class UserHeaderComponent implements OnInit {
+
+  @Input() email = '';
+  isVerifiedUser:boolean = true;
 
   constructor(private router: Router) { }
 
@@ -18,11 +21,16 @@ export class UserHeaderComponent implements OnInit {
   }
 
   logout() {
+    localStorage.setItem("loggedIn","false");
     this.router.navigateByUrl('/Login');
   }
 
   changePassword() {
     this.router.navigateByUrl('/changePassword');
+  }
+
+  verifyUser() {
+    this.router.navigateByUrl('/verifyUser');
   }
 
 }

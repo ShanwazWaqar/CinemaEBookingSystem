@@ -19,6 +19,7 @@ import { NewAdminComponent } from './admin/new-admin/new-admin.component';
 import { ForgotPasswordComponent } from './home/forgot-password/forgot-password.component';
 import { SignUp2Component } from './home/sign-up2/sign-up2.component';
 import { ChangePasswordComponent } from './home/change-password/change-password.component';
+import { VerfiyUserComponent } from './home/verfiy-user/verfiy-user.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'SignUp', component: SignUp2Component },
   { path: 'SignUp2', component: SignUpCompComponent },
   { path: 'Login', component: LoginComponent },
+  { path: 'verifyUser', component: VerfiyUserComponent },
   { path: 'userHomePage', component: UserHomeScreenComponent },
   { path: 'editUserProfile', component: EditUserProfileComponent },
   { path: 'synopsis', component: SynopsisPageComponent },

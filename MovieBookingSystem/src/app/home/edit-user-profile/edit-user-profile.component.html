@@ -1,6 +1,6 @@
 <app-user-header></app-user-header>
 
-<div id="sc-edprofile" class="editProfileForm">
+<!-- <div id="sc-edprofile" class="editProfileForm">
     <h1>Edit Profile Form</h1>
     <div class="sc-container">
       <input type="text" placeholder=" update Email Address" />
@@ -27,4 +27,162 @@
       <br><br>
       <input (click)="updateProfile()" type="submit" value="UpdateProfile" />
     </div>
-  </div>
+  </div> -->
+
+<div id="sc-edprofile" class="editProfileForm">
+  <h1>Edit Profile </h1>
+  <div class="sc-container">
+    <form [formGroup]="updateForm">
+      <div class="inputContainer">
+        <span class="inputTitle">Email Address <span class="required">*</span></span>
+        <input type="text" formControlName="email" placeholder="Enter Email Address" class="disabledClass"/>
+        <div
+          *ngIf="updateForm.controls['email'].invalid && (updateForm.controls['email'].dirty || updateForm.controls['email'].touched)"
+          class="">
+          <span *ngIf="updateForm.controls['email'].errors?.required" class="errorText">Please Enter your Email.</span>
+          <span *ngIf="updateForm.controls['email'].errors?.pattern" class="errorText">Please provide a valid email
+            address.</span>
+        </div>
+      </div>
+      <div class="inputContainer">
+        <span class="inputTitle">Full Name <span class="required">*</span></span>
+        <input type="text" formControlName="fullName" placeholder="Enter Full Name" />
+        <div
+          *ngIf="updateForm.controls['fullName'].invalid && (updateForm.controls['fullName'].dirty || updateForm.controls['fullName'].touched)"
+          class="">
+          <span *ngIf="updateForm.controls['fullName'].errors?.required" class="errorText">Please Enter your
+            Name.</span>
+        </div>
+      </div>
+      <div class="inputContainer">
+        <span class="inputTitle">Phone Number <span class="required">*</span></span>
+        <input type="text" formControlName="phone" placeholder="Enter Phone Number" />
+        <div
+          *ngIf="updateForm.controls['phone'].invalid && (updateForm.controls['phone'].dirty || updateForm.controls['phone'].touched)"
+          class="">
+          <span *ngIf="updateForm.controls['phone'].errors?.required" class="errorText">Invalid Phone Number</span>
+        </div>
+      </div>
+
+      <div class="d-flex">
+        <div class="col-11 cardText">ADDRESS</div>
+
+      </div><br>
+      <div class="inputContainer">
+        <span class="inputTitle">Address Line 1 <span class="required">*</span></span>
+        <input type="text" formControlName="address1" placeholder="Enter Address Line 1" />
+        <div
+          *ngIf="updateForm.controls['address1'].invalid && (updateForm.controls['address1'].dirty || updateForm.controls['address1'].touched)"
+          class="">
+          <span *ngIf="updateForm.controls['address1'].errors?.required" class="errorText">Address is required</span>
+        </div>
+      </div>
+      <div class="inputContainer">
+        <span class="inputTitle">Address Line 2 </span>
+        <input type="text" formControlName="address2" placeholder="Enter Address Line 2" />
+      </div>
+      <div class="inputContainer">
+        <span class="inputTitle">City <span class="required">*</span></span>
+        <input type="text" formControlName="city" placeholder="Enter City" />
+        <div
+          *ngIf="updateForm.controls['city'].invalid && (updateForm.controls['city'].dirty || updateForm.controls['city'].touched)"
+          class="">
+          <span *ngIf="updateForm.controls['city'].errors?.required" class="errorText">City is required</span>
+        </div>
+      </div>
+      <div class="inputContainer">
+        <span class="inputTitle">State <span class="required">*</span></span>
+        <input type="text" formControlName="state" placeholder="Enter state" />
+        <div
+          *ngIf="updateForm.controls['state'].invalid && (updateForm.controls['state'].dirty || updateForm.controls['state'].touched)"
+          class="">
+          <span *ngIf="updateForm.controls['state'].errors?.required" class="errorText">State is required</span>
+        </div>
+      </div>
+      <div class="inputContainer">
+        <span class="inputTitle">Country <span class="required">*</span></span>
+        <input type="text" formControlName="country" placeholder="Enter Country" />
+        <div
+          *ngIf="updateForm.controls['country'].invalid && (updateForm.controls['country'].dirty || updateForm.controls['country'].touched)"
+          class="">
+          <span *ngIf="updateForm.controls['country'].errors?.required" class="errorText">Country is required</span>
+        </div>
+      </div>
+      <div class="inputContainer">
+        <span class="inputTitle">pincode <span class="required">*</span></span>
+        <input type="number" formControlName="pincode" placeholder="Enter pincode" />
+        <div
+          *ngIf="updateForm.controls['pincode'].invalid && (updateForm.controls['pincode'].dirty || updateForm.controls['pincode'].touched)"
+          class="">
+          <span *ngIf="updateForm.controls['pincode'].errors?.required" class="errorText">Address is required</span>
+          <span *ngIf="updateForm.controls['pincode'].errors?.pattern" class="errorText">Pincode should be of 5
+            characters.</span>
+        </div>
+      </div>
+
+      <form [formGroup]="cardForm">
+        <input *ngIf="!cardDetails" (click)="showCardDetails()" type="submit" value="Add Card Details (Optional)" />
+        <div *ngIf="cardDetails">
+          <div class="d-flex">
+            <div class="col-11 cardText">ADD NEW CARD DETAILS</div>
+            <div class="col-1 skipBtn"><span class="skipText" (click)="showCardDetails()">SKIP</span></div>
+          </div><br>
+          <div class="inputContainer">
+            <span class="inputTitle">Card Number <span class="required">*</span></span>
+            <input type="number" formControlName="cardNo" title="cardNumber" placeholder="Card Number" />
+            <div
+              *ngIf="cardForm.controls['cardNo'].invalid && (cardForm.controls['cardNo'].dirty || cardForm.controls['cardNo'].touched)"
+              class="">
+              <span *ngIf="cardForm.controls['cardNo'].errors?.required" class="errorText">Card Number is
+                required</span>
+            </div>
+          </div>
+          <div class="inputContainer">
+            <span class="inputTitle">Expiry Month <span class="required">*</span></span>
+            <input type="number" formControlName="month" title="exipryMonth" placeholder="Expiry Month" maxlength="2" />
+            <div
+              *ngIf="cardForm.controls['month'].invalid && (cardForm.controls['month'].dirty || cardForm.controls['month'].touched)"
+              class="">
+              <span *ngIf="cardForm.controls['month'].errors?.required" class="errorText">Month is required</span>
+              <span *ngIf="cardForm.controls['month'].errors?.pattern" class="errorText">Exact 2 numbers
+                required(example:08)</span>
+            </div>
+          </div>
+          <div class="inputContainer">
+            <span class="inputTitle">Expiry Year <span class="required">*</span></span>
+            <input type="number" formControlName="year" title="ExpiryYear" placeholder="Expiry Year" />
+            <div
+              *ngIf="cardForm.controls['year'].invalid && (cardForm.controls['year'].dirty || cardForm.controls['year'].touched)"
+              class="">
+              <span *ngIf="cardForm.controls['year'].errors?.required" class="errorText">Year is required</span>
+              <span *ngIf="cardForm.controls['year'].errors?.pattern" class="errorText">Exact 4 numbers
+                required(example:1998)</span>
+            </div>
+          </div>
+          <div class="inputContainer">
+            <span class="inputTitle">CVV <span class="required">*</span></span>
+            <input type="number" formControlName="cvv" title="CVV" placeholder="CVV" />
+            <div
+              *ngIf="cardForm.controls['cvv'].invalid && (cardForm.controls['cvv'].dirty || cardForm.controls['cvv'].touched)"
+              class="">
+              <span *ngIf="cardForm.controls['cvv'].errors?.required" class="errorText">CVV is required</span>
+              <span *ngIf="cardForm.controls['cvv'].errors?.pattern" class="errorText">3 or 4 numbers
+                required(example:634 | 3728)</span>
+            </div>
+          </div>
+          <div class="inputContainer">
+            <span class="inputTitle">Name on Card <span class="required">*</span></span>
+            <input type="text" formControlName="name" title="Name" placeholder="Name on Card" />
+            <div
+              *ngIf="cardForm.controls['name'].invalid && (cardForm.controls['name'].dirty || cardForm.controls['name'].touched)"
+              class="">
+              <span *ngIf="cardForm.controls['name'].errors?.required" class="errorText">Name is required</span>
+            </div>
+          </div>
+        </div>
+        <br><br>
+        <span class="inputTitle">Click to Select/De-Select for Promotions :</span>
+        <input class="optionalBtn2" (click)="signUpPromotions()" type="submit" [value]="promotionValue" />
+        <br><br>
+        <input (click)="updateProfile()" type="submit" value="Update Profile" />
+      </form>

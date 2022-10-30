@@ -63,6 +63,8 @@ import { ResetPassSuccessComponent } from './home/reset-pass-success/reset-pass-
 import { ChangePasswordComponent } from './home/change-password/change-password.component';
 import { FormsModule } from '@angular/forms';
 import { SuccessChangePasswordComponent } from './home/success-change-password/success-change-password.component';
+import { tempDataService } from './services/tempData.service';
+import { VerfiyUserComponent } from './home/verfiy-user/verfiy-user.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +105,8 @@ import { SuccessChangePasswordComponent } from './home/success-change-password/s
     SignUp2Component,
     ResetPassSuccessComponent,
     ChangePasswordComponent,
-    SuccessChangePasswordComponent
+    SuccessChangePasswordComponent,
+    VerfiyUserComponent
   ],
   imports: [
     BrowserModule,
@@ -133,7 +136,7 @@ import { SuccessChangePasswordComponent } from './home/success-change-password/s
     NgOtpInputModule,
     FormsModule
   ],
-  providers: [bmsApiService],
+  providers: [bmsApiService, tempDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
