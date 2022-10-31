@@ -38,11 +38,11 @@ export class AdminComponent implements OnInit {
       let user:any;
       user = {
         email: this.loginForm.value.email,
-        passowrd: this.loginForm.value.passowrd
+        password: this.tds.encryptData(this.loginForm.value.password)
       }
       user = JSON.stringify(user);
       console.log(user," user");
-      this.bms.adminReg(user).subscribe((res) => {
+      this.bms.adminLogin(user).subscribe((res) => {
         if(res) {
           this.router.navigateByUrl('/admin2');
         } else {

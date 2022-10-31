@@ -97,12 +97,12 @@ export class bmsApiService {
 
     adminReg(user:any): Observable<any> {
         const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
-        return this.httpClient.post("http://localhost:1785/api/fpasssucess",JSON.parse(user),{'headers':headers});
+        return this.httpClient.post("http://localhost:1785/adm/newadmin",JSON.parse(user),{'headers':headers});
     }
 
     adminLogin(user:any): Observable<any> {
         const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
-        return this.httpClient.post("http://localhost:1785/api/fpasssucess",JSON.parse(user),{'headers':headers});
+        return this.httpClient.post("http://localhost:1785/adm/adminlogin",JSON.parse(user),{'headers':headers});
     }
 
 
