@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { bmsApiService } from '../../services/bmsapi.service'; 
 import { MatDialog, MAT_DIALOG_DATA  } from '@angular/material/dialog';
 import { ResetPassSuccessComponent } from '../reset-pass-success/reset-pass-success.component';
+import { tempDataService } from '../../services/tempData.service';
 // import { NgOtpInputComponent } from '';
 
 @Component({
@@ -24,7 +25,8 @@ export class ForgotPasswordComponent implements OnInit {
   otpError:boolean = false;
   initialPwdError:boolean = false;
   passwordError:boolean = false;
-  constructor(private fb: FormBuilder,private router: Router,private _bmsAs:bmsApiService, private dialogRef: MatDialog) { }
+  currentEmail:any="";
+  constructor(private fb: FormBuilder,private router: Router,private _bmsAs:bmsApiService, private dialogRef: MatDialog, private tds:tempDataService) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -40,8 +42,9 @@ export class ForgotPasswordComponent implements OnInit {
       cred = {
         email: this.loginForm.value.email
       }
+      this.currentEmail = this.loginForm.value.email;
       cred = JSON.stringify(cred);
-      this._bmsAs.changePassword(cred).subscribe((res) => {
+      this._bmsAs.forgotPasswordEmail(cred).subscribe((res) => {
         if (res) {
           this.resetBtn = false;
           this.showOtp = true;
@@ -57,12 +60,27 @@ export class ForgotPasswordComponent implements OnInit {
     
     //http call to check for same otp
     // this.isValidOTP=true;
-    if(this.otpValue.length == 6){
-      this.resetBtn = false;
-      this.isValidOTP = true;
-      this.showOtp = false;
-      this.showChangePassword = true;
-      this.otpError = false;
+    if(this.otpValue.length == 5){
+      
+      let cred:any = "";
+      console.log(this.currentEmail," emil ")
+      cred = {
+        email: this.currentEmail,
+        passvercode: this.otpValue
+      }
+      cred = JSON.stringify(cred);
+      console.log(cred);
+      this._bmsAs.forgotPasswordOTP(cred).subscribe((res) => {
+        if (res) {
+          this.resetBtn = false;
+          this.isValidOTP = true;
+          this.showOtp = false;
+          this.showChangePassword = true;
+          this.otpError = false;
+        } else {
+          
+        }
+      });
     } else {
       this.otpError = true;
     }
@@ -70,7 +88,7 @@ export class ForgotPasswordComponent implements OnInit {
 
   onOtpChange(evt:any) {
     this.otpValue = evt;
-    if(this.otpValue.length == 6) {
+    if(this.otpValue.length == 5) {
       this.otpError = false;
     }
   }
@@ -86,6 +104,33 @@ export class ForgotPasswordComponent implements OnInit {
   changePassword() {
     this.showPasswordError = true;
     this.openDialog();
+    this.loginForm.patchValue({
+      email: this.currentEmail,
+      otp: "12345",
+    });
+    console.log("login form", this.loginForm.value);
+    if(this.loginForm.valid) {
+      let cred:any = "";
+      cred = {
+        email: this.currentEmail,
+        password: this.tds.encryptData(this.loginForm.value.password)
+      }
+      console.log(" cred passing to change password");
+      cred = JSON.stringify(cred);
+      console.log(cred);
+      this._bmsAs.updateforgotPassword(cred).subscribe((res) => {
+        if (res) {
+          this.resetBtn = false;
+          this.isValidOTP = true;
+          this.showOtp = false;
+          this.showChangePassword = true;
+          this.otpError = false;
+          this.openDialog();
+        } else {
+          //for invalid cred
+        }
+      });
+    }
   }
 
   openDialog() {

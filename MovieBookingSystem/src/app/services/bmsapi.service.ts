@@ -80,5 +80,20 @@ export class bmsApiService {
         return this.httpClient.post("http://localhost:1785/api/editprofile",JSON.parse(user),{'headers':headers});
     }
 
+    forgotPasswordEmail(user:any): Observable<any> {
+        const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
+        return this.httpClient.post("http://localhost:1785/api/verifyforgotpassword",JSON.parse(user),{'headers':headers});
+    }
+
+    forgotPasswordOTP(user:any): Observable<any> {
+        const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
+        return this.httpClient.post("http://localhost:1785/api/forgotpasswordstat",JSON.parse(user),{'headers':headers});
+    }
+
+    updateforgotPassword(user:any): Observable<any> {
+        const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
+        return this.httpClient.post("http://localhost:1785/api/fpasssucess",JSON.parse(user),{'headers':headers});
+    }
+
 
 }
