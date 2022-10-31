@@ -52,8 +52,8 @@ export class SignUp2Component implements OnInit {
   signUp() {
     var user:any;
     user = {
-      firtName : this.signUpForm.value.firtName,
-      lastName : this.signUpForm.value.lastName,
+      firtname : this.signUpForm.value.firtName,
+      lastname : this.signUpForm.value.lastName,
       email : this.signUpForm.value.email,
       phone : this.signUpForm.value.phone,
       password : this.tds.encryptData(this.signUpForm.value.password),
