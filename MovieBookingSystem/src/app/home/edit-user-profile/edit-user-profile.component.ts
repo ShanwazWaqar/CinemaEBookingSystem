@@ -121,7 +121,6 @@ export class EditUserProfileComponent implements OnInit {
       nameoncard: this.cardForm.value.name,
       promotion: this.promotionOptedIn
     }
-    let a = true;
     if(this.updateForm.valid){
       if((this.showAddressDetails && this.addressForm.valid) || (this.showAddressDetails == false) ) {
         if((this.cardDetails && this.cardForm.valid) || (this.cardDetails == false)) {
@@ -138,9 +137,6 @@ export class EditUserProfileComponent implements OnInit {
           });
         }
       }
-    }
-    if(a){
-      console.log("invalid")
     }
   }
 
