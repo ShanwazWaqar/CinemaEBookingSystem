@@ -5,6 +5,8 @@ import { bmsApiService } from '../../services/bmsapi.service';
 import { tempDataService } from '../../services/tempData.service';
 import * as CryptoJS from 'crypto-js';
 
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -27,7 +29,12 @@ export class LoginComponent implements OnInit {
         email: localStorage.getItem("UserName"),
         password: localStorage.getItem("Password")
       });
-    }
+    };
+    //encryption and decryption
+   let a =this.tds.encode("Shanwaz");
+   let b = this.tds.decode(a);
+    console.log(a," a");
+    console.log(b," b")
   }
 
   validityCheck() {

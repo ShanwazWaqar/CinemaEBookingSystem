@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import * as CryptoJS from 'crypto-js';
+import { ConversionUtils } from 'turbocommons-ts';
 
 @Injectable()
 export class tempDataService {
@@ -54,4 +55,14 @@ export class tempDataService {
       return false;
     }
   }
+
+  
+  encode(str:any) {
+    return ConversionUtils.stringToBase64(str);
+  }
+
+  decode(str:any) {
+    return ConversionUtils.base64ToString(str);
+  }
+
 }
