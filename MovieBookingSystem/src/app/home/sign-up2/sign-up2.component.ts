@@ -5,6 +5,7 @@ import { bmsApiService } from '../../services/bmsapi.service';
 import { MatDialog, MAT_DIALOG_DATA  } from '@angular/material/dialog';
 import { RegistrationSuccessComponent } from '../registration-success/registration-success.component';
 import { tempDataService } from '../../services/tempData.service';
+import { defaultModifiers } from '@popperjs/core/lib/popper-lite';
 
 @Component({
   selector: 'app-sign-up2',
@@ -21,6 +22,7 @@ export class SignUp2Component implements OnInit {
   passwordError:boolean = false;
   promotionOptedIn:boolean = false;
   initialPwdError:boolean = false;
+  emailExists:boolean = false;
   constructor(private fb: FormBuilder,private router: Router,private _bmsAs:bmsApiService, private dialogRef: MatDialog, private tds: tempDataService) { }
 
   ngOnInit(): void {
@@ -42,7 +44,7 @@ export class SignUp2Component implements OnInit {
     });
     this.cardForm = this.fb.group({
       cardNo : ['',[Validators.required]],
-      month : ['',[Validators.required,Validators.pattern('^[0-9]{0,1}[0-9]{1}$')]],
+      month : ['',[Validators.required,Validators.pattern('^[0-9]{0,1}$')]],
       year : ['',[Validators.required,Validators.pattern('^[0-9]{4}$')]],
       name : ['',[Validators.required]],
     });
@@ -85,7 +87,7 @@ export class SignUp2Component implements OnInit {
             if(res) {
               this.openDialog();
             } else {
-              // Server down popup
+              this.emailExists = true;
             }
           });
         }

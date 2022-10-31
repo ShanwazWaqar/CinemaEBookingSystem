@@ -9,9 +9,11 @@ import { Router } from '@angular/router';
 })
 export class AdminComponent implements OnInit {
   loginForm: FormGroup;
+  adminerror:boolean = false;
   constructor(private fb: FormBuilder,private router: Router) { }
 
   ngOnInit(): void {
+    
     this.loginForm = this.fb.group({
       email : ['',[Validators.required, Validators.email]],
       password : ['', [Validators.required]]

@@ -331,10 +331,16 @@ nav .logo.space{
   font-size: 30px;
   font-weight: 700;
 }
-.content .space{
-  margin: 10px 0;
-}
+
 li {
   cursor: pointer;
+}
+.errorTEXT {
+  display: flex;
+  justify-content: center;
+  color: red;
+  font-size: medium;
+  margin-top: -40px;
+  margin-bottom: 20px;
 }
 

@@ -26,6 +26,7 @@ export class ForgotPasswordComponent implements OnInit {
   initialPwdError:boolean = false;
   passwordError:boolean = false;
   currentEmail:any="";
+  invalidEmail:boolean= false;
   constructor(private fb: FormBuilder,private router: Router,private _bmsAs:bmsApiService, private dialogRef: MatDialog, private tds:tempDataService) { }
 
   ngOnInit(): void {
@@ -35,6 +36,10 @@ export class ForgotPasswordComponent implements OnInit {
       password : ['', [Validators.required]],
       password2 : ['',[Validators.required]]
     });
+  }
+
+  emailreset() {
+    this.invalidEmail = false;
   }
 
   sendResetLink(){
@@ -50,8 +55,7 @@ export class ForgotPasswordComponent implements OnInit {
           this.showOtp = true;
           this.loginForm.controls['email'].disable();
         } else {
-          //invalid email
-          
+          this.invalidEmail = true;
         }
       });
   }
@@ -78,7 +82,7 @@ export class ForgotPasswordComponent implements OnInit {
           this.showChangePassword = true;
           this.otpError = false;
         } else {
-          
+          this.isValidOTP = true;
         }
       });
     } else {

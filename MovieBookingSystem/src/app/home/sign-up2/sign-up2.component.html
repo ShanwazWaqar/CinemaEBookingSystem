@@ -160,7 +160,11 @@
             <br><br>
             <span class="inputTitle">Click to Select/De-Select for Promotions :</span>
             <input class="optionalBtn2" (click)="signUpPromotions()" type="submit" [value]="promotionValue" />
-            <br><br>
+            <br>
+            <div *ngIf="emailExists" class="errorTEXT">
+                EMAIL ALREADY EXITS IN THE BMS DATABASE
+            </div>
+            <br>
             <input (click)="signUp()" type="submit" value="Sign Up" />
         </form>
         </div>

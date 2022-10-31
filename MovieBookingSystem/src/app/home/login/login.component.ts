@@ -18,9 +18,6 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder, private router: Router, private _bmsAs: bmsApiService, private tds: tempDataService) { }
 
   ngOnInit(): void {
-    console.log(this.tds.encryptData("qwerty"));
-    console.log(this.tds.encryptData("qwerty"));
-    console.log(this.tds.encryptData("qwerty"));
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.pattern("^[A-Za-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
       password: ['', [Validators.required]]

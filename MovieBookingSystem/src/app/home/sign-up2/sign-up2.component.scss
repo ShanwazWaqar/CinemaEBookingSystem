@@ -619,3 +619,9 @@ div#sc-edprofile input[type="submit"]:hover {
 .inputContainer {
   margin-bottom: 4%;
 }
+.errorTEXT {
+  display: flex;
+  justify-content: center;
+  font-size: medium;
+  color: red;
+}
