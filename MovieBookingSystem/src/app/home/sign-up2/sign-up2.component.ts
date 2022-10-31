@@ -42,9 +42,8 @@ export class SignUp2Component implements OnInit {
     });
     this.cardForm = this.fb.group({
       cardNo : ['',[Validators.required]],
-      month : ['',[Validators.required,Validators.pattern('^[0-9]{2}$')]],
+      month : ['',[Validators.required,Validators.pattern('^[0-9]{0,1}[0-9]{1}$')]],
       year : ['',[Validators.required,Validators.pattern('^[0-9]{4}$')]],
-      cvv : ['',[Validators.required,Validators.pattern('^[0-9]{3}[0-9]{0,1}$')]],
       name : ['',[Validators.required]],
     });
   }

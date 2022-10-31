@@ -62,8 +62,7 @@
         </form>
             <!-- hide address details -->
         <form [formGroup]="addressForm">
-            <input *ngIf="!showAddressDetails" class="optionalBtn" (click)="showAddAddress()" type="submit"
-                value="Add Address (Optional)" /><br>
+            <input *ngIf="!showAddressDetails" class="optionalBtn" (click)="showAddAddress()" type="submit" value="Add Address (Optional)" /><br>
             <div *ngIf="showAddressDetails">
                 <div class="d-flex">
                     <div class="col-11 cardText">ADDRESS</div>

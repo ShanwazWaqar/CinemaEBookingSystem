@@ -18,6 +18,8 @@ export class EditUserProfileComponent implements OnInit {
   promotionOptedIn: boolean = false;
   addressForm:FormGroup
   cardForm: FormGroup;
+  showAddressDetails:boolean=false;
+  addressStatus:any = "ADD ADDRESS"
   constructor(private activatedroute:ActivatedRoute, private router: Router, private fb: FormBuilder, private _bmsAs: bmsApiService, private tds: tempDataService) {
       
    }
@@ -27,13 +29,15 @@ export class EditUserProfileComponent implements OnInit {
     }
     this.email = (localStorage.getItem("user"));
     this.updateForm = this.fb.group({
-      fullName : ['',[Validators.required]],
-      email : [{ value: this.email, disabled: true},[Validators.required, Validators.pattern("^[A-Za-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
+      firstName : ['',[Validators.required]],
+      lastName : ['',[Validators.required]],
+      email : [{ value: this.email, disabled: true},[]],
       phone : ['',[Validators.required,]],
-      password : ['', [Validators.required]],
-      password2 : ['',[Validators.required]],
+    });
+
+    this.addressForm = this.fb.group({
       address1 : ['',[Validators.required]],
-      address2 : ['',[Validators.required]],
+      address2 : ['',[]],
       city : ['',[Validators.required]],
       state : ['',[Validators.required]],
       country : ['',[Validators.required]],
@@ -44,7 +48,6 @@ export class EditUserProfileComponent implements OnInit {
       cardNo : ['',[Validators.required]],
       month : ['',[Validators.required,Validators.pattern('^[0-9]{2}$')]],
       year : ['',[Validators.required,Validators.pattern('^[0-9]{4}$')]],
-      cvv : ['',[Validators.required,Validators.pattern('^[0-9]{3}[0-9]{0,1}$')]],
       name : ['',[Validators.required]],
     });
     
@@ -65,17 +68,67 @@ export class EditUserProfileComponent implements OnInit {
           country: res.country,
           pincode: res.zipcode
         });
-      });
+        if(res.address1 == null) {
+            this.addressStatus = "ADD ADDRESS"
+        }
+        
+      });    
+  }
 
-
-    
+  showAddAddress() {
+    this.showAddressDetails = !this.showAddressDetails;
+    this.addressForm.reset();
   }
 
   updateProfile() {
-    if(this.updateForm.valid){
-
+    this.updateForm.markAllAsTouched();
+    if(this.showAddressDetails){
+      this.addressForm.markAllAsTouched();
     }
-    this.router.navigateByUrl('/userHomePage');
+    if(this.cardDetails){
+      this.cardForm.markAllAsTouched();
+    }
+    var user:any;
+    user = {
+      firtname : this.updateForm.value.firtName,
+      lastname : this.updateForm.value.lastName,
+      email : this.updateForm.value.email,
+      phone : this.updateForm.value.phone,
+      address1 : this.addressForm.value.address1,
+      address2 : this.addressForm.value.address2,
+      city : this.addressForm.value.city,
+      state : this.addressForm.value.state,
+      country : this.addressForm.value.country,
+      zipcode : this.addressForm.value.pincode,
+      cardNo : this.cardForm.value.cardNo,
+      month : this.cardForm.value.month,
+      year : this.cardForm.value.year,
+      name: this.cardForm.value.name,
+      promotion: this.promotionOptedIn
+    }
+    let a = true;
+    if(this.updateForm.valid){
+      if((this.showAddressDetails && this.addressForm.valid) || (this.showAddressDetails == false) ) {
+        if((this.cardDetails && this.cardForm.valid) || (this.cardDetails == false)) {
+          console.log(user," User");
+          //API for registration 
+          // user = JSON.stringify(user);
+          // this._bmsAs.registerUser(user).subscribe((res) => {
+          //   console.log(JSON.stringify(res)," res");
+          //   if(res) {
+          //     this.openDialog();
+          //   } else {
+          //     // Server down popup
+          //   }
+          // });
+          console.log("valid");
+          a=false;
+        }
+      }
+    }
+    if(a){
+      console.log("invalid")
+    }
   }
 
   showCardDetails() {
