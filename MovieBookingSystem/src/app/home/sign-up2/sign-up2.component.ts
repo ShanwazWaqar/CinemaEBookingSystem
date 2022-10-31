@@ -62,10 +62,10 @@ export class SignUp2Component implements OnInit {
       state : this.addressForm.value.state,
       country : this.addressForm.value.country,
       zipcode : this.addressForm.value.pincode,
-      cardNo : this.cardForm.value.cardNo,
-      month : this.cardForm.value.month,
-      year : this.cardForm.value.year,
-      name: this.cardForm.value.name,
+      cardnumber : this.cardForm.value.cardNo,
+      cardexpirymonth : this.cardForm.value.month,
+      cardexpiryyear : this.cardForm.value.year,
+      nameoncard: this.cardForm.value.name,
       promotion: this.promotionOptedIn
     }
     this.signUpForm.markAllAsTouched();
