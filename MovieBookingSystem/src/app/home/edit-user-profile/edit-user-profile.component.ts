@@ -76,10 +76,10 @@ export class EditUserProfileComponent implements OnInit {
         });
         console.log(this.addressForm.value," address form value")
         this.cardForm.patchValue({
-          cardNo : res.cardnumber,
-          month : res.cardexpirymonth,
-          year :res.cardexpiryyear,
-          name : res.nameoncard,
+          cardNo : this.tds.decryptData(res.cardnumber),
+          month : this.tds.decryptData(res.cardexpirymonth),
+          year : this.tds.decryptData(res.cardexpiryyear),
+          name : this.tds.decryptData(res.nameoncard),
         });
         if(res.address1 == "") {
             this.addressStatus = "ADD ADDRESS";

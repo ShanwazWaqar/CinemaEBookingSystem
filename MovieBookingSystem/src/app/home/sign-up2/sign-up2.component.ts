@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { bmsApiService } from '../../services/bmsapi.service';
 import { MatDialog, MAT_DIALOG_DATA  } from '@angular/material/dialog';
 import { RegistrationSuccessComponent } from '../registration-success/registration-success.component';
@@ -29,8 +29,8 @@ export class SignUp2Component implements OnInit {
       firtName : ['',[Validators.required]],
       lastName : ['',[Validators.required]],
       email : ['',[Validators.required, Validators.pattern("^[A-Za-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
-      phone : ['',[Validators.required,]],
-      password : ['', [Validators.required]],
+      phone : ['',[Validators.required,Validators.pattern("[0-9 ]{10}")]],
+      password : ['', [Validators.required,passwordCheck]],
       password2 : ['',[Validators.required]]
     });
     this.addressForm = this.fb.group({
@@ -42,8 +42,8 @@ export class SignUp2Component implements OnInit {
       pincode : ['',[Validators.required, Validators.pattern("^[a-zA-Z0-9]{5}$")]],
     });
     this.cardForm = this.fb.group({
-      cardNo : ['',[Validators.required]],
-      month : ['',[Validators.required,Validators.pattern('^[0-9]{2}$')]],
+      cardNo : ['',[Validators.required,Validators.pattern("[0-9]{12}")]],
+      month : ['',[Validators.required,cardMonthCheck]],
       year : ['',[Validators.required,Validators.pattern('^[0-9]{4}$')]],
       name : ['',[Validators.required]],
     });
@@ -63,10 +63,10 @@ export class SignUp2Component implements OnInit {
       state : this.addressForm.value.state,
       country : this.addressForm.value.country,
       zipcode : this.addressForm.value.pincode,
-      cardnumber : this.cardForm.value.cardNo,
-      cardexpirymonth : this.cardForm.value.month,
-      cardexpiryyear : this.cardForm.value.year,
-      nameoncard: this.cardForm.value.name,
+      cardnumber : this.tds.encryptData(this.cardForm.value.cardNo),
+      cardexpirymonth : this.tds.encryptData(this.cardForm.value.month),
+      cardexpiryyear : this.tds.encryptData(this.cardForm.value.year),
+      nameoncard: this.tds.encryptData(this.cardForm.value.name),
       promotion: this.promotionOptedIn
     }
     this.signUpForm.markAllAsTouched();
@@ -157,3 +157,30 @@ export class SignUp2Component implements OnInit {
     }
   }
 }
+
+function cardMonthCheck(control: AbstractControl): {[key:string]:any} | null { 
+  const month:string = control.value;
+  console.log(month," month val in card month checck")
+  if(month == null) {
+    return null;
+  } else {
+    if(month.length == 2) {
+      return null;
+    } else {
+      return { 'monthError' : true }
+    }
+  }
+
+ }
+
+ function passwordCheck(control: AbstractControl): {[key:string]:any}|null {
+        let hasNumber = /\d/.test(control.value);
+        let hasUpper = /[A-Z]/.test(control.value);
+        let hasLower = /[a-z]/.test(control.value);
+        let minlength = /^.{6,}$/.test(control.value);
+        const valid = hasNumber && hasUpper && hasLower && minlength;
+        if (!valid) {
+            return { 'passwordCheck': true };
+        }
+        return null;
+ }

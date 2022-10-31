@@ -37,9 +37,10 @@
             </div>
             <div class="inputContainer">
                 <span class="inputTitle">Phone Number <span class="required">*</span></span>
-                <input type="text" formControlName="phone" placeholder="Enter Phone Number" />
+                <input type="number" formControlName="phone" placeholder="Enter Phone Number" />
                 <div *ngIf="signUpForm.controls['phone'].invalid && (signUpForm.controls['phone'].dirty || signUpForm.controls['phone'].touched)" class="">
                     <span *ngIf="signUpForm.controls['phone'].errors?.required" class="errorText">Invalid Phone Number</span>
+                    <span *ngIf="signUpForm.controls['phone'].errors?.pattern" class="errorText">Phone Number Should be of 10 digits(ex:9876543210)</span>
                 </div>
             </div>
             <div class="inputContainer">
@@ -48,6 +49,7 @@
                 <span *ngIf="initialPwdError &&  !signUpForm.controls['password'].errors?.required" class="errorText">Password Mismatch.</span>
                 <div *ngIf="signUpForm.controls['password'].invalid && (signUpForm.controls['password'].dirty || signUpForm.controls['password'].touched)" class="">
                     <span *ngIf="signUpForm.controls['password'].errors?.required" class="errorText">Password is required.</span>
+                    <span *ngIf="signUpForm.controls['password'].errors?.passwordCheck && !signUpForm.controls['password'].errors?.required" class="errorText">Password should have a digit,LowerCase,Uppercase & atleast 6 charecters.</span>
                 </div>
             </div>
             <div class="inputContainer">
@@ -123,14 +125,15 @@
                     <input type="number" formControlName="cardNo" title="cardNumber" placeholder="Card Number" />
                     <div *ngIf="cardForm.controls['cardNo'].invalid && (cardForm.controls['cardNo'].dirty || cardForm.controls['cardNo'].touched)" class="">
                         <span *ngIf="cardForm.controls['cardNo'].errors?.required" class="errorText">Card Number is required</span>
+                        <span *ngIf="cardForm.controls['cardNo'].errors?.pattern" class="errorText">Card Number should be of 12 digits(ex: 123412341234)</span>
                     </div>
                 </div>
                 <div class="inputContainer">
                     <span class="inputTitle">Expiry Month <span class="required">*</span></span>
-                    <input type="number" formControlName="month" title="exipryMonth" placeholder="Expiry Month" maxlength="2" />
+                    <input type="text" formControlName="month" title="exipryMonth" placeholder="Expiry Month" maxlength="2" />
                     <div *ngIf="cardForm.controls['month'].invalid && (cardForm.controls['month'].dirty || cardForm.controls['month'].touched)" class="">
                         <span *ngIf="cardForm.controls['month'].errors?.required" class="errorText">Month is required</span>
-                        <span *ngIf="cardForm.controls['month'].errors?.pattern" class="errorText">Exact 2 numbers required(example:08)</span>
+                        <span *ngIf="cardForm.controls['month'].errors?.monthError && !cardForm.controls['month'].errors?.required" class="errorText">Exact 2 numbers required(example:08)</span>
                     </div>
                 </div>
                 <div class="inputContainer">
