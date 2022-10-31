@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { bmsApiService } from '../../services/bmsapi.service';
 import { MatDialog, MAT_DIALOG_DATA  } from '@angular/material/dialog';
 import { RegistrationSuccessComponent } from '../registration-success/registration-success.component';
+import { tempDataService } from '../../services/tempData.service';
 
 @Component({
   selector: 'app-sign-up2',
@@ -20,7 +21,7 @@ export class SignUp2Component implements OnInit {
   passwordError:boolean = false;
   promotionOptedIn:boolean = false;
   initialPwdError:boolean = false;
-  constructor(private fb: FormBuilder,private router: Router,private _bmsAs:bmsApiService, private dialogRef: MatDialog) { }
+  constructor(private fb: FormBuilder,private router: Router,private _bmsAs:bmsApiService, private dialogRef: MatDialog, private tds: tempDataService) { }
 
   ngOnInit(): void {
     this.signUpForm = this.fb.group({
@@ -53,7 +54,7 @@ export class SignUp2Component implements OnInit {
       fullname : this.signUpForm.value.fullName,
       email : this.signUpForm.value.email,
       phone : this.signUpForm.value.phone,
-      password : this.signUpForm.value.password,
+      password : this.tds.encryptData(this.signUpForm.value.password),
       address1 : this.addressForm.value.address1,
       address2 : this.addressForm.value.address2,
       city : this.addressForm.value.city,
@@ -79,8 +80,8 @@ export class SignUp2Component implements OnInit {
           //API for registration 
           user = JSON.stringify(user);
           this._bmsAs.registerUser(user).subscribe((res) => {
-            console.log(res," res");
-            if(res == "verification code sent successfully" ) {
+            console.log(JSON.stringify(res)," res");
+            if(res) {
               this.openDialog();
             } else {
               // Server down popup

@@ -45,13 +45,34 @@ export class bmsApiService {
     //login cred api call goes here
     validateUser(cred:any): Observable<any> {
         const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
-        return this.httpClient.put("http://localhost:1785/api/LoginUser",JSON.parse(cred),{'headers':headers});
+        return this.httpClient.post("http://localhost:1785/api/LoginUser",JSON.parse(cred),{'headers':headers});
     }
 
     //register user api name has to be changed.
     registerUser(user:any): Observable<any> {
         const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
         return this.httpClient.post("http://localhost:1785/api/SignUp",JSON.parse(user),{'headers':headers});
+    }
+
+     //verify OTP
+     verifyOTP(user:any): Observable<any> {
+        const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
+        return this.httpClient.post("http://localhost:1785/api/verifyuser",JSON.parse(user),{'headers':headers});
+    }
+
+    verfiedUser(user:any): Observable<any> {
+        const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
+        return this.httpClient.post("http://localhost:1785/api/sendstatus",JSON.parse(user),{'headers':headers});
+    }
+
+    changePassword(user:any): Observable<any> {
+        const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
+        return this.httpClient.post("http://localhost:1785/api/updatepassword",JSON.parse(user),{'headers':headers});
+    }
+
+    getUserData(user:any): Observable<any> {
+        const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
+        return this.httpClient.post("http://localhost:1785/api/getuserdetails",JSON.parse(user),{'headers':headers});
     }
 
 

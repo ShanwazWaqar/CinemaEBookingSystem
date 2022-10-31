@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { bmsApiService } from '../../services/bmsapi.service'; 
 import { MatDialog, MAT_DIALOG_DATA  } from '@angular/material/dialog';
 import { SuccessChangePasswordComponent } from '../success-change-password/success-change-password.component';
+import { tempDataService } from '../../services/tempData.service';
 
 @Component({
   selector: 'app-change-password',
@@ -15,13 +16,15 @@ export class ChangePasswordComponent implements OnInit {
   signUpForm: FormGroup;
   initialPwdError:boolean = false;
   passwordError:boolean = false;
-
-  constructor(private fb: FormBuilder,private router: Router,private _bmsAs:bmsApiService, private dialogRef: MatDialog) { }
+  email:any = "";
+  invalidPassword:boolean=false;
+  constructor(private fb: FormBuilder,private router: Router,private _bmsAs:bmsApiService, private dialogRef: MatDialog,private tds:tempDataService) { }
 
   ngOnInit(): void {
     if(localStorage.getItem("loggedIn") == "false") {
       this.router.navigateByUrl('/home');
     }
+    this.email = (localStorage.getItem("user")); 
     this.signUpForm = this.fb.group({
       existingPassword : ['', [Validators.required]],
       password : ['', [Validators.required]],
@@ -58,8 +61,24 @@ export class ChangePasswordComponent implements OnInit {
     this.signUpForm.markAllAsTouched();
     if(this.signUpForm.valid && !this.initialPwdError && !this.passwordError){
       //api call and upon success
-      this.openDialog();
+      let cred:any = "";
+      cred = {
+        email: this.email,
+        password : this.tds.encryptData(this.signUpForm.value.existingPassword),
+        updatedpass :this.tds.encryptData(this.signUpForm.value.password)
+      }
+      cred = JSON.stringify(cred);
+      this._bmsAs.changePassword(cred).subscribe((res) => {
+        if (res) {
+          this.openDialog();
+          this.router.navigateByUrl('/userHomePage');
+        } else {
+          //for invalid cred
+          this.invalidPassword = true;
+        }
+      });
     } else {
+      
       console.log("invalid form")
     }
   }

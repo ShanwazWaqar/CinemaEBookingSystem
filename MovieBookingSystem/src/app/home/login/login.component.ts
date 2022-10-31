@@ -18,6 +18,9 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder, private router: Router, private _bmsAs: bmsApiService, private tds: tempDataService) { }
 
   ngOnInit(): void {
+    console.log(this.tds.encryptData("qwerty"));
+    console.log(this.tds.encryptData("qwerty"));
+    console.log(this.tds.encryptData("qwerty"));
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.pattern("^[A-Za-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
       password: ['', [Validators.required]]
@@ -27,28 +30,6 @@ export class LoginComponent implements OnInit {
         email: localStorage.getItem("UserName"),
         password: localStorage.getItem("Password")
       });
-    }
-  }
-
-  encryptData(data: any) {
-
-    try {
-      return CryptoJS.AES.encrypt(JSON.stringify(data), this.encryptSecretKey).toString();
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
-  decryptData(data: any) {
-
-    try {
-      const bytes = CryptoJS.AES.decrypt(data, this.encryptSecretKey);
-      if (bytes.toString()) {
-        return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-      }
-      return data;
-    } catch (e) {
-      console.log(e);
     }
   }
 
@@ -75,13 +56,6 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    // let pass = "password"
-    // let encode = this.encryptData(pass);
-    // console.log("encoded val --> ",encode);
-    // console.log("decoded val --> ",this.decryptData(encode));
-
-
-
     this.loginForm.markAllAsTouched();
     if (this.loginForm.valid) {
       //remember Me 
@@ -97,15 +71,14 @@ export class LoginComponent implements OnInit {
       let cred:any = "";
       cred = {
         "email": this.loginForm.value.email,
-        "password": this.encryptData(this.loginForm.value.password)
+        "password": this.tds.encryptData(this.loginForm.value.password)
       }
       cred = JSON.stringify(cred);
       this._bmsAs.validateUser(cred).subscribe(res => {
-        console.log(res," res from login");
         if (res) {
           // add code to display valid credentials
           localStorage.setItem("loggedIn","true");
-          let edata = this.tds.encryptData(this.loginForm.value.email);
+          let edata = this.loginForm.value.email;
           localStorage.setItem("user", edata!);
           let ddata = this.tds.decryptData(localStorage.getItem("user"));
           this.router.navigateByUrl('/userHomePage');

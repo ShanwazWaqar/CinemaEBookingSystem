@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { bmsApiService } from '../../services/bmsapi.service';
 
 @Component({
   selector: 'app-user-header',
@@ -8,12 +9,25 @@ import { Router } from '@angular/router';
 })
 export class UserHeaderComponent implements OnInit {
 
-  @Input() email = '';
+  email:any = '';
   isVerifiedUser:boolean = true;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private bms: bmsApiService) { }
 
   ngOnInit(): void {
+    this.email = (localStorage.getItem("user")); 
+    let cred:any = "";
+      cred = {
+        email: this.email,
+      }
+      cred = JSON.stringify(cred);
+      this.bms.verfiedUser(cred).subscribe((res) => {
+        if (res) {
+          this.isVerifiedUser = false;
+        } else {
+          this.isVerifiedUser = true;
+        }
+      });
   }
 
   editProfile() {

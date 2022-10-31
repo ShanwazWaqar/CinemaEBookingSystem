@@ -23,7 +23,7 @@ export class VerfiyUserComponent implements OnInit {
     if(localStorage.getItem("loggedIn") == "false") {
       this.router.navigateByUrl('/home');
     }
-    this.email = this.tds.decryptData(localStorage.getItem("user"));
+    this.email = (localStorage.getItem("user"));
     this.loginForm = this.fb.group({
       email : [{ value: this.email, disabled: true},[Validators.required, Validators.pattern("^[A-Za-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
       otp: ['',[Validators.required]],
@@ -33,12 +33,23 @@ export class VerfiyUserComponent implements OnInit {
   }
 
   verifyOtp() {
-    
-    //http call to check for same otp
-    // this.isValidOTP=true;
-    if(this.otpValue.length == 6){
-      
+    if(this.otpValue.length == 5){
       this.otpError = false;
+      this.otpError = false;
+      let cred:any = "";
+      cred = {
+        email: this.email,
+        verificationcode: this.otpValue
+      }
+      console.log(cred," cred")
+      cred = JSON.stringify(cred);
+      this._bmsAs.verifyOTP(cred).subscribe((res) => {
+        if (res) {
+          this.router.navigateByUrl('/userHomePage');
+        } else {
+          //for invalid cred
+        }
+      });
     } else {
       this.otpError = true;
     }
@@ -46,7 +57,7 @@ export class VerfiyUserComponent implements OnInit {
 
   onOtpChange(evt:any) {
     this.otpValue = evt;
-    if(this.otpValue.length == 6) {
+    if(this.otpValue.length == 5) {
       this.otpError = false;
     }
   }

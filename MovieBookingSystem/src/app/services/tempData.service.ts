@@ -5,32 +5,53 @@ import * as CryptoJS from 'crypto-js';
 
 @Injectable()
 export class tempDataService {
-    encryptSecretKey: string = "randomKey";
+  encryptSecretKey: string = "randomKey";
 
-    encryptData(data: any) {
-        try {
-          return CryptoJS.AES.encrypt(JSON.stringify(data), this.encryptSecretKey).toString();
-        } catch (e) {
-          console.log(e);
-        }
-    }
-    decryptData(data: any) {
-        try {
-          const bytes = CryptoJS.AES.decrypt(data, this.encryptSecretKey);
-          if (bytes.toString()) {
-            return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-          }
-          return data;
-        } catch (e) {
-          console.log(e);
-        }
-    }
+  encryptData(data: any) {
+    // try {
+    //   return CryptoJS.AES.encrypt(JSON.stringify(data), this.encryptSecretKey).toString();
+    // } catch (e) {
+    //   console.log(e);
+    // }
+    var key = CryptoJS.enc.Utf8.parse(this.encryptSecretKey);
+    var iv = CryptoJS.enc.Utf8.parse(this.encryptSecretKey);
+    var encrypted = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(data.toString()), key,
+      {
+        keySize: 128 / 8,
+        iv: iv,
+        mode: CryptoJS.mode.CBC,
+        padding: CryptoJS.pad.Pkcs7
+      });
 
-    checkUser() {
-        if(localStorage.getItem("loggedIn")) {
-            return true
-        }else {
-            return false;
-        }
+    return encrypted.toString();
+  }
+  decryptData(data: any) {
+    // try {
+    //   const bytes = CryptoJS.AES.decrypt(data, this.encryptSecretKey);
+    //   if (bytes.toString()) {
+    //     return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+    //   }
+    //   return data;
+    // } catch (e) {
+    //   console.log(e);
+    // }
+    var key = CryptoJS.enc.Utf8.parse(this.encryptSecretKey);
+    var iv = CryptoJS.enc.Utf8.parse(this.encryptSecretKey);
+    var decrypted = CryptoJS.AES.decrypt(data, key, {
+      keySize: 128 / 8,
+      iv: iv,
+      mode: CryptoJS.mode.CBC,
+      padding: CryptoJS.pad.Pkcs7
+    });
+
+    return decrypted.toString(CryptoJS.enc.Utf8);
+  }
+
+  checkUser() {
+    if (localStorage.getItem("loggedIn")) {
+      return true
+    } else {
+      return false;
     }
+  }
 }
