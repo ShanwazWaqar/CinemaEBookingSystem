@@ -74,19 +74,19 @@ export class EditUserProfileComponent implements OnInit {
           country: res.country,
           pincode: res.zipcode,
         });
-        console.log(this.addressForm.value," address form value")
+        
         this.cardForm.patchValue({
-          cardNo : this.tds.decryptData(res.cardnumber),
-          month : this.tds.decryptData(res.cardexpirymonth),
-          year : this.tds.decryptData(res.cardexpiryyear),
-          name : this.tds.decryptData(res.nameoncard),
+          cardNo : res.cardnumber,
+          month : res.cardexpirymonth,
+          year : res.cardexpiryyear,
+          name : res.nameoncard,
         });
         if(res.address1 == "") {
             this.addressStatus = "ADD ADDRESS";
         }else {
           this.addressStatus = "UPDATE ADDRESS";
         }
-        if(res.cardnumber == null) {
+        if(res.cardnumber == null || res.cardnumber == "") {
           this.CardStatusValue = "ADD CARD";
         } else {
           this.CardStatusValue = "UPDATE CARD";
@@ -140,10 +140,10 @@ export class EditUserProfileComponent implements OnInit {
       state : this.addressForm.value.state,
       country : this.addressForm.value.country,
       zipcode : this.addressForm.value.pincode,
-      cardnumber : this.cardForm.value.cardNo,
-      cardexpirymonth : this.cardForm.value.month,
-      cardexpiryyear : this.cardForm.value.year,
-      nameoncard: this.cardForm.value.name,
+      cardnumber : (this.cardForm.value.cardNo),
+      cardexpirymonth : (this.cardForm.value.month),
+      cardexpiryyear : (this.cardForm.value.year),
+      nameoncard: (this.cardForm.value.name),
       promotion: this.promotionOptedIn
     }
     if(this.updateForm.valid){

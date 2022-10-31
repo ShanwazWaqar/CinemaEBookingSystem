@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { bmsApiService } from '../../services/bmsapi.service'; 
 import { MatDialog, MAT_DIALOG_DATA  } from '@angular/material/dialog';
@@ -27,7 +27,7 @@ export class ChangePasswordComponent implements OnInit {
     this.email = (localStorage.getItem("user")); 
     this.signUpForm = this.fb.group({
       existingPassword : ['', [Validators.required]],
-      password : ['', [Validators.required]],
+      password : ['', [Validators.required,passwordCheck]],
       password2 : ['',[Validators.required]]
     });
   }
@@ -100,4 +100,16 @@ export class ChangePasswordComponent implements OnInit {
     this.dialogRef.closeAll();
   }
 
+}
+
+function passwordCheck(control: AbstractControl): {[key:string]:any}|null {
+  let hasNumber = /\d/.test(control.value);
+  let hasUpper = /[A-Z]/.test(control.value);
+  let hasLower = /[a-z]/.test(control.value);
+  let minlength = /^.{6,}$/.test(control.value);
+  const valid = hasNumber && hasUpper && hasLower && minlength;
+  if (!valid) {
+      return { 'passwordCheck': true };
+  }
+  return null;
 }
