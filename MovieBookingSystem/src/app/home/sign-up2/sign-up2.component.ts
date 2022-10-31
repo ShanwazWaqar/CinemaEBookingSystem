@@ -25,7 +25,8 @@ export class SignUp2Component implements OnInit {
 
   ngOnInit(): void {
     this.signUpForm = this.fb.group({
-      fullName : ['',[Validators.required]],
+      firtName : ['',[Validators.required]],
+      lastName : ['',[Validators.required]],
       email : ['',[Validators.required, Validators.pattern("^[A-Za-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
       phone : ['',[Validators.required,]],
       password : ['', [Validators.required]],
@@ -51,7 +52,8 @@ export class SignUp2Component implements OnInit {
   signUp() {
     var user:any;
     user = {
-      fullname : this.signUpForm.value.fullName,
+      firtName : this.signUpForm.value.firtName,
+      lastName : this.signUpForm.value.lastName,
       email : this.signUpForm.value.email,
       phone : this.signUpForm.value.phone,
       password : this.tds.encryptData(this.signUpForm.value.password),

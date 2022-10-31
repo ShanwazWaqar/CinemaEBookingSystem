@@ -12,10 +12,17 @@
         <div class="sc-container">
         <form [formGroup]="signUpForm">
             <div class="inputContainer">
-                <span class="inputTitle">Full Name <span class="required">*</span></span>
-                <input type="text" formControlName="fullName" placeholder="Enter Full Name" />
-                <div *ngIf="signUpForm.controls['fullName'].invalid && (signUpForm.controls['fullName'].dirty || signUpForm.controls['fullName'].touched)" class="">
-                    <span *ngIf="signUpForm.controls['fullName'].errors?.required" class="errorText">Please Enter your Name.</span>
+                <span class="inputTitle">First Name <span class="required">*</span></span>
+                <input type="text" formControlName="firtName" placeholder="Enter First Name" />
+                <div *ngIf="signUpForm.controls['firtName'].invalid && (signUpForm.controls['firtName'].dirty || signUpForm.controls['firtName'].touched)" class="">
+                    <span *ngIf="signUpForm.controls['firtName'].errors?.required" class="errorText">Please Enter your Name.</span>
+                </div>
+            </div>
+            <div class="inputContainer">
+                <span class="inputTitle">Last Name <span class="required">*</span></span>
+                <input type="text" formControlName="lastName" placeholder="Enter Full Name" />
+                <div *ngIf="signUpForm.controls['lastName'].invalid && (signUpForm.controls['lastName'].dirty || signUpForm.controls['lastName'].touched)" class="">
+                    <span *ngIf="signUpForm.controls['lastName'].errors?.required" class="errorText">Please Enter your Name.</span>
                 </div>
             </div>
             <!-- <span class="inputTitle">Last Name</span>
