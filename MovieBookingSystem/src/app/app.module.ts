@@ -68,6 +68,7 @@ import { VerfiyUserComponent } from './home/verfiy-user/verfiy-user.component';
 import { RegistrationSuccessComponent } from './home/registration-success/registration-success.component';
 import { ChangePasswordSucessComponent } from './home/change-password-sucess/change-password-sucess.component';
 import { EditprofileSuccessComponent } from './home/editprofile-success/editprofile-success.component';
+import { AdminRegComponent } from './admin/admin-reg/admin-reg.component';
 
 @NgModule({
   declarations: [
@@ -112,7 +113,8 @@ import { EditprofileSuccessComponent } from './home/editprofile-success/editprof
     VerfiyUserComponent,
     RegistrationSuccessComponent,
     ChangePasswordSucessComponent,
-    EditprofileSuccessComponent
+    EditprofileSuccessComponent,
+    AdminRegComponent
   ],
   imports: [
     BrowserModule,

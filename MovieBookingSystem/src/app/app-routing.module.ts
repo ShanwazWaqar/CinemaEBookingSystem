@@ -20,6 +20,7 @@ import { ForgotPasswordComponent } from './home/forgot-password/forgot-password.
 import { SignUp2Component } from './home/sign-up2/sign-up2.component';
 import { ChangePasswordComponent } from './home/change-password/change-password.component';
 import { VerfiyUserComponent } from './home/verfiy-user/verfiy-user.component';
+import { AdminRegComponent } from './admin/admin-reg/admin-reg.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -42,6 +43,7 @@ const routes: Routes = [
   { path: 'checkout', component: CheckoutComponent },
   { path: 'confirmation', component: ConfirmaionComponent },
   { path: 'forgotPassword', component: ForgotPasswordComponent },
+  { path: 'adminRegistration', component: AdminRegComponent },
   { path: '**', component: HomeComponent },
 ];
 
