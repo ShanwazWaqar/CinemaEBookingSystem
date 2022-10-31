@@ -104,10 +104,10 @@
        </div>
     </form>
       <form [formGroup]="cardForm">
-        <input *ngIf="!cardDetails" (click)="showCardDetails()" type="submit" value="Add Card Details (Optional)" />
+        <input *ngIf="!cardDetails" (click)="showCardDetails()" type="submit" [value]="CardStatusValue" />
         <div *ngIf="cardDetails">
           <div class="d-flex">
-            <div class="col-11 cardText">ADD NEW CARD DETAILS</div>
+            <div class="col-11 cardText">CARD DETAILS</div>
             <div class="col-1 skipBtn"><span class="skipText" (click)="showCardDetails()">SKIP</span></div>
           </div><br>
           <div class="inputContainer">

@@ -21,7 +21,8 @@ export class EditUserProfileComponent implements OnInit {
   addressForm:FormGroup
   cardForm: FormGroup;
   showAddressDetails:boolean=false;
-  addressStatus:any = "ADD ADDRESS"
+  addressStatus:any = "ADD ADDRESS";
+  CardStatusValue = "ADD CARD"
   constructor(private activatedroute:ActivatedRoute, private router: Router, private fb: FormBuilder, private _bmsAs: bmsApiService, private tds: tempDataService,private dialogRef: MatDialog) {
       
    }
@@ -61,19 +62,43 @@ export class EditUserProfileComponent implements OnInit {
       this._bmsAs.getUserData(cred).subscribe((res) => {
         console.log(res," res");
         this.updateForm.patchValue({
-          fullName: res.fullname,
+          firstName: res.firstname,
+          lastName: res.lastname,
           phone: res.phone,
+        });
+        this.addressForm.patchValue({
           address1: res.address1,
           address2: res.address2,
           city: res.city,
           state: res.state,
           country: res.country,
-          pincode: res.zipcode
+          pincode: res.zipcode,
         });
-        if(res.address1 == null) {
-            this.addressStatus = "ADD ADDRESS"
+        console.log(this.addressForm.value," address form value")
+        this.cardForm.patchValue({
+          cardNo : res.cardnumber,
+          month : res.cardexpirymonth,
+          year :res.cardexpiryyear,
+          name : res.nameoncard,
+        });
+        if(res.address1 == "") {
+            this.addressStatus = "ADD ADDRESS";
+        }else {
+          this.addressStatus = "UPDATE ADDRESS";
         }
-        
+        if(res.cardnumber == null) {
+          this.CardStatusValue = "ADD CARD";
+        } else {
+          this.CardStatusValue = "UPDATE CARD";
+        }
+        if(res.promotion) {
+          this.promotionValue = "Thank you for Signing Up For Promotions";
+          this.promotionOptedIn = true;
+        } else {
+          this.promotionValue = "Sign Up For Promotions";
+          this.promotionOptedIn = false;
+        }
+
       });    
   }
 
@@ -92,7 +117,7 @@ export class EditUserProfileComponent implements OnInit {
 
   showAddAddress() {
     this.showAddressDetails = !this.showAddressDetails;
-    this.addressForm.reset();
+    // this.addressForm.reset();
   }
 
   updateProfile() {
@@ -105,9 +130,9 @@ export class EditUserProfileComponent implements OnInit {
     }
     var user:any;
     user = {
-      firtname : this.updateForm.value.firtName,
+      email: this.email,
+      firstname : this.updateForm.value.firstName,
       lastname : this.updateForm.value.lastName,
-      email : this.updateForm.value.email,
       phone : this.updateForm.value.phone,
       address1 : this.addressForm.value.address1,
       address2 : this.addressForm.value.address2,
@@ -127,6 +152,7 @@ export class EditUserProfileComponent implements OnInit {
           console.log(user," User");
           //API for registration 
           user = JSON.stringify(user);
+          console.log(user," user");
           this._bmsAs.editProfile(user).subscribe((res) => {
             console.log(JSON.stringify(res)," res");
             if(res) {
@@ -142,7 +168,7 @@ export class EditUserProfileComponent implements OnInit {
 
   showCardDetails() {
     this.cardDetails = !this.cardDetails;
-    this.cardForm.reset();
+    // this.cardForm.reset();
   }
 
   signUpPromotions() {
