@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   emailError: boolean = false;
   passwordFieldError: boolean = false;
   encryptSecretKey: string = "randomKey";
+  invlidcred:boolean = false;
   constructor(private fb: FormBuilder, private router: Router, private _bmsAs: bmsApiService, private tds: tempDataService) { }
 
   ngOnInit(): void {
@@ -81,6 +82,7 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl('/userHomePage');
         } else {
           //for invalid cred
+          this.invlidcred = true;
         }
       });
       
