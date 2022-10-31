@@ -44,6 +44,7 @@ export class AdminComponent implements OnInit {
       console.log(user," user");
       this.bms.adminLogin(user).subscribe((res) => {
         if(res) {
+          localStorage.setItem("adminLoggedIn","true");
           this.router.navigateByUrl('/admin2');
         } else {
           // Server down popup
