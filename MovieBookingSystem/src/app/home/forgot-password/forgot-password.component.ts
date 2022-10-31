@@ -36,9 +36,21 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   sendResetLink(){
-    this.resetBtn = false;
-    this.showOtp = true;
-    this.loginForm.controls['email'].disable();
+    let cred:any = "";
+      cred = {
+        email: this.loginForm.value.email
+      }
+      cred = JSON.stringify(cred);
+      this._bmsAs.changePassword(cred).subscribe((res) => {
+        if (res) {
+          this.resetBtn = false;
+          this.showOtp = true;
+          this.loginForm.controls['email'].disable();
+        } else {
+          //invalid email
+          
+        }
+      });
   }
   
   verifyOtp() {

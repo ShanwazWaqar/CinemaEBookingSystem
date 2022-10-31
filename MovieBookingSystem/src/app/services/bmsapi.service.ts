@@ -75,5 +75,10 @@ export class bmsApiService {
         return this.httpClient.post("http://localhost:1785/api/getuserdetails",JSON.parse(user),{'headers':headers});
     }
 
+    editProfile(user:any): Observable<any> {
+        const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
+        return this.httpClient.post("http://localhost:1785/api/getuserdetails",JSON.parse(user),{'headers':headers});
+    }
+
 
 }

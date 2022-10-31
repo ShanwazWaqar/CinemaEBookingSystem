@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { bmsApiService } from '../../services/bmsapi.service';
 import { tempDataService } from '../../services/tempData.service';
+import { EditprofileSuccessComponent } from '../editprofile-success/editprofile-success.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-edit-user-profile',
@@ -20,7 +22,7 @@ export class EditUserProfileComponent implements OnInit {
   cardForm: FormGroup;
   showAddressDetails:boolean=false;
   addressStatus:any = "ADD ADDRESS"
-  constructor(private activatedroute:ActivatedRoute, private router: Router, private fb: FormBuilder, private _bmsAs: bmsApiService, private tds: tempDataService) {
+  constructor(private activatedroute:ActivatedRoute, private router: Router, private fb: FormBuilder, private _bmsAs: bmsApiService, private tds: tempDataService,private dialogRef: MatDialog) {
       
    }
   ngOnInit(): void {
@@ -75,6 +77,19 @@ export class EditUserProfileComponent implements OnInit {
       });    
   }
 
+  openDialog() {
+    const popup = this.dialogRef.open(EditprofileSuccessComponent, {
+      disableClose: true,
+      enterAnimationDuration: '700ms',
+      exitAnimationDuration:'1200ms',
+      height: '250px',
+      width: '400px',
+    });
+    popup.afterClosed().subscribe(item =>{
+      this.router.navigateByUrl('/userHomePage');
+    });
+  }
+
   showAddAddress() {
     this.showAddressDetails = !this.showAddressDetails;
     this.addressForm.reset();
@@ -112,17 +127,15 @@ export class EditUserProfileComponent implements OnInit {
         if((this.cardDetails && this.cardForm.valid) || (this.cardDetails == false)) {
           console.log(user," User");
           //API for registration 
-          // user = JSON.stringify(user);
-          // this._bmsAs.registerUser(user).subscribe((res) => {
-          //   console.log(JSON.stringify(res)," res");
-          //   if(res) {
-          //     this.openDialog();
-          //   } else {
-          //     // Server down popup
-          //   }
-          // });
-          console.log("valid");
-          a=false;
+          user = JSON.stringify(user);
+          this._bmsAs.editProfile(user).subscribe((res) => {
+            console.log(JSON.stringify(res)," res");
+            if(res) {
+              this.openDialog();
+            } else {
+              // Server down popup
+            }
+          });
         }
       }
     }
