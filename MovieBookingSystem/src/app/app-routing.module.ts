@@ -24,10 +24,10 @@ import { AdminRegComponent } from './admin/admin-reg/admin-reg.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'admin', component: AdminComponent },
   { path: 'home', component: HomeComponent },
   { path: 'admin2', component: NewAdminComponent },
   { path: 'adminHomePage', component: AdminHomeComponent },
+  { path: 'admin', component: AdminComponent },
   { path: 'changePassword', component: ChangePasswordComponent },
   { path: 'SignUp', component: SignUp2Component },
   { path: 'SignUp2', component: SignUpCompComponent },

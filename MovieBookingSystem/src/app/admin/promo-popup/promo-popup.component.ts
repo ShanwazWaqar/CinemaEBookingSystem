@@ -36,7 +36,6 @@ export class PromoPopupComponent implements OnInit {
 
   addPromo() {
     this.closeValue = this.promoForm.value;
-    console.log(this.closeValue," close Value from add promo popup");
     this.Ref.close(this.closeValue);
   }
 

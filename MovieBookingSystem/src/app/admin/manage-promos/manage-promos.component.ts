@@ -1,6 +1,7 @@
 import { Component, HostListener, Inject, OnInit, Optional } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA  } from '@angular/material/dialog';
 import { PromoPopupComponent } from '../promo-popup/promo-popup.component';
+import { bmsApiService } from '../../services/bmsapi.service';
 
 @Component({
   selector: 'app-manage-promos',
@@ -93,7 +94,7 @@ export class ManagePromosComponent implements OnInit {
     }
   ];
 
-  constructor(private dialogRef: MatDialog) {
+  constructor(private dialogRef: MatDialog,private bms: bmsApiService) {
     
    }
 
@@ -113,16 +114,29 @@ export class ManagePromosComponent implements OnInit {
       width: '900px',
     });
     popup.afterClosed().subscribe(item =>{
+      let email = "";
+      console.log(localStorage.getItem("adMail")," get admin mail");
+      if(!localStorage.getItem("adMail")) {
+        email = "Shanwaz.9030@gmail.com"
+      } else {
+        email = ""+localStorage.getItem("adMail");
+      }
       if(item){
-        const obj = {
+        let obj :any = "";
+        obj = {
           name: item.name,
           promoCode : item.promoCode,
           discount: item.discount,
           startDate: item.startDate,
           EndDate : item.endDate,
-          sendToUser: ""
+          email: email
         };
-        this.promosArray.push(obj);
+        console.log(obj," obj that we are trying to push")
+        obj = JSON.stringify(obj);
+        // add promotion api call
+        this.bms.addPromotion(obj).subscribe({
+          
+        });
       }
     });
   }

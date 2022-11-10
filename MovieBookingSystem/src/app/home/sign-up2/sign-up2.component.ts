@@ -69,6 +69,28 @@ export class SignUp2Component implements OnInit {
       nameoncard: (this.cardForm.value.name),
       promotion: this.promotionOptedIn
     }
+    let user2  =  {
+      firtname : this.signUpForm.value.firtName,
+      lastname : this.signUpForm.value.lastName,
+      email : this.signUpForm.value.email,
+      phone : this.signUpForm.value.phone,
+      password : this.tds.encryptData(this.signUpForm.value.password),
+      address1 : this.addressForm.value.address1,
+      address2 : this.addressForm.value.address2,
+      city : this.addressForm.value.city,
+      state : this.addressForm.value.state,
+      country : this.addressForm.value.country,
+      zipcode : this.addressForm.value.pincode,
+      promotion: this.promotionOptedIn,
+      paymentcard : [
+        {
+          cardnumber : (this.cardForm.value.cardNo),
+          cardexpirymonth : (this.cardForm.value.month),
+          cardexpiryyear : (this.cardForm.value.year),
+          nameoncard: (this.cardForm.value.name),
+        }
+      ]
+    }
     this.signUpForm.markAllAsTouched();
     if(this.showAddressDetails){
       this.addressForm.markAllAsTouched();
@@ -82,7 +104,6 @@ export class SignUp2Component implements OnInit {
           //API for registration 
           user = JSON.stringify(user);
           this._bmsAs.registerUser(user).subscribe((res) => {
-            console.log(JSON.stringify(res)," res");
             if(res) {
               this.openDialog();
             } else {

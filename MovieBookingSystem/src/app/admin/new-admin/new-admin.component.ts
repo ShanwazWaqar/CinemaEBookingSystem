@@ -18,7 +18,7 @@ export class NewAdminComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    if(localStorage.getItem("adminLoggedIn")) {
+    if(!localStorage.getItem("adminLoggedIn")) {
       this.router.navigate(['admin']);
     }
     this.displayUSersComp = true;
