@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import {CarouselModule} from 'primeng/carousel';
 import { MatDialog, MAT_DIALOG_DATA  } from '@angular/material/dialog';
 import { PopupTraierComponent } from '../popup-traier/popup-traier.component';
@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 })
 export class MovieListComponent implements OnInit {
   responsiveOptions:any;
+  searching:boolean = false;
+  @Input() searchText = ''; 
   currentMovies = [
     {
       id: 1,
@@ -92,6 +94,14 @@ export class MovieListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(){
+    if(this.searchText){
+      this.searching = true;
+    } else { 
+      this.searching = false;
+    }
   }
 
   openTrailerPopup(link:any) {

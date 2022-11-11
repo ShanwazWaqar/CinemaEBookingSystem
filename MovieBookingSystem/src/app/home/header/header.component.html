@@ -9,8 +9,15 @@
    <div class="search-icon">
       <span class="fas fa-search"></span>
    </div>
-   <form action="#">
+   <!-- <form action="#">
       <input type="search" class="search-data" placeholder="Search" required>
       <button type="submit" class="fas fa-search"></button>
-   </form>
+   </form> -->
+   <div class="sample eight">
+      <input type="text" name="search" placeholder="search" [(ngModel)]="searchText" (ngModelChange)="search($event)">
+      <button type="submit" class="btn btn-search">
+         <i class="material-icons" (click)="clearSearch()">X</i>
+      </button>
+      <button type="reset" class="btn btn-reset fa fa-times"></button>
+    </div>
 </nav>

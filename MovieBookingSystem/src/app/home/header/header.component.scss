@@ -240,3 +240,144 @@ li {
   display: flex;
   justify-content: center;
 }
+
+input {
+  border: 1px solid #ccc;
+  font-size: 12px;
+  height: 30px;
+  padding: 4px 8px;
+  position: absolute;
+  width: 50%;
+  &:focus {
+    outline: none;
+  }
+}
+button {
+  text-align: center;
+  &:focus {
+    outline: none;
+  }
+  &.btn-search,
+  &.btn-reset {
+    background: hotpink;
+    border: none;
+    height: 30px;
+    font-size: 12px;
+    padding: 4px;
+    position: absolute;
+    width: 30px;
+  }
+}
+
+.sample {
+  float: left;
+  height: 50px;
+  margin: 0 8%;
+  position: relative;
+  width: 34%;
+  &.eight {
+    input {
+      border-right: none;
+      transition: all .3s ease-in;
+      width: 120px;
+      &:focus {
+        width: 220px;
+        ~ button {
+          &.btn-search {
+            background: hotpink;
+            border-radius: 0 50% 50% 0;
+            color: #fff;
+            left: 220px;
+          }
+          &.btn-reset {
+            animation: bounceRight .6s;
+            animation-delay: .2s;
+            animation-timing-function: cubic-bezier(.3,.2,1,.8);
+            border-radius: 50%;
+            color: #fff;
+            left: 254px;
+          }
+        }
+      }
+    }
+    button {
+      &.btn-search {
+        background: #ccc;
+        left: 120px;
+        transition: all .3s ease-in;
+      }
+      &.btn-reset {
+        background: #000;
+        height: 20px;
+        left: 120px;
+        top: 5px;
+        transition: all .3s ease-in;
+        width: 20px;
+        z-index: -1;
+      }
+    }
+  }
+}
+@keyframes bounceRight {
+  0% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+@keyframes jumpTowardSearch {
+  0% {
+    background: #ccc;
+    opacity: 1;
+    transform: rotateZ(0deg) scale(1);
+  }
+  20% {
+    background: #ccc;
+    opacity: 0;
+    transform: rotateZ(-60deg) scale(50);
+  }
+  55% {
+    background: hotpink;
+    opacity: 0;
+    transform: rotateZ(-30deg) scale(100);
+  }
+  90% {
+    background: hotpink;
+    opacity: 0;
+    transform: rotateZ(-30deg) scale(50);
+  }
+  100% {
+    background: hotpink;
+    opacity: 1;
+    transform: rotateZ(0deg) scale(1);
+  }
+}
+@keyframes jumpTowardReset {
+  0% {
+    opacity: 0;
+    transform: rotateZ(0deg) scale(1);
+  }
+  20% {
+    opacity: 0;
+    transform: rotateZ(-60deg) scale(50);
+  }
+  55% {
+    opacity: 0;
+    transform: rotateZ(-30deg) scale(100);
+  }
+  90% {
+    opacity: 0;
+    transform: rotateZ(-30deg) scale(50);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateZ(0deg) scale(1);
+  }
+}
+.btn .btn-reset {
+  background-color: whitesmoke;
+}

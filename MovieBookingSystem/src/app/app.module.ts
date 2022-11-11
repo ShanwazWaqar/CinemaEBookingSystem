@@ -69,6 +69,8 @@ import { RegistrationSuccessComponent } from './home/registration-success/regist
 import { ChangePasswordSucessComponent } from './home/change-password-sucess/change-password-sucess.component';
 import { EditprofileSuccessComponent } from './home/editprofile-success/editprofile-success.component';
 import { AdminRegComponent } from './admin/admin-reg/admin-reg.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SearchPipe } from './services/search.pipe';
 
 @NgModule({
   declarations: [
@@ -114,7 +116,8 @@ import { AdminRegComponent } from './admin/admin-reg/admin-reg.component';
     RegistrationSuccessComponent,
     ChangePasswordSucessComponent,
     EditprofileSuccessComponent,
-    AdminRegComponent
+    AdminRegComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
@@ -142,7 +145,8 @@ import { AdminRegComponent } from './admin/admin-reg/admin-reg.component';
     HttpClientModule,
     MatNativeDateModule,
     NgOtpInputModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ],
   providers: [bmsApiService, tempDataService],
   bootstrap: [AppComponent]

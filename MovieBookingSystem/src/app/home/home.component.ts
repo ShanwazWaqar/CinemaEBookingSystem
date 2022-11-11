@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {bmsApiService} from '../services/bmsapi.service';
 
 @Component({
@@ -7,7 +7,7 @@ import {bmsApiService} from '../services/bmsapi.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  searchText = "";
   constructor(private _bmsAs:bmsApiService) { }
 
   ngOnInit(): void {
@@ -48,5 +48,11 @@ export class HomeComponent implements OnInit {
     //   console.log(res," put method result");
     // });
   }
+
+
+search(evt:any) {
+  this.searchText = evt;
+}
+
 
 }

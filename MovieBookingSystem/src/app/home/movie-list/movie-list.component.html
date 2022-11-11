@@ -1,63 +1,95 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-flex justify-content-center">
+<div *ngIf="!searching">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-flex justify-content-center">
         <div class="col-10">
-            <div><br><br>
-                <div class="moviePageTitle">CURRENTLY RUNNING MOVIES</div>
-                <br>
-                <div class="content-section implementation carousel-demo">
-                      <p-carousel [value]="currentMovies" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1"
-                      [circular]="true" [autoplayInterval]="0" [responsiveOptions]="responsiveOptions">
-                          <ng-template let-movie pTemplate="item">
-                            <div class="item card row">
-                              <div>
-                                <div class="centeringElements">
-                                  <img (click)="showSynopsisPage()" src="{{movie.image}}" class="card-img-top" alt="...">
-                                </div>
-                                <div class="card-body">
-                                  <div class="centeringElements">  <h5 class="card-title">{{movie.title}} &nbsp;|</h5>  <h5 class="card-title">&nbsp;{{movie.duration}}</h5></div> 
-                                  <div class="centeringElementsSpaceAround" >
-                                    <div class="trailerBtn centeringElements" (click)="openTrailerPopup(movie.trailer)"> watch trailer </div>
-                                    <div class="trailerBtn centeringElements" (click)="bookTicketsPage()"> Book Now </div>
-                                  </div>
-                                </div>
-                              </div> 
-                            </div>
-                          </ng-template>
-                      </p-carousel>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-  <div class="d-flex justify-content-center">
-      <div class="col-10">
           <div><br><br>
-              <div class="moviePageTitle"> UPCOMING MOVIES </div>
-              <br>
-              <div class="content-section implementation carousel-demo">
-                    <p-carousel [value]="currentMovies" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1"
-                    [circular]="true" [autoplayInterval]="0" [responsiveOptions]="responsiveOptions">
-                        <ng-template let-movie pTemplate="item">
-                          <div class="item card row">
-                            <div>
-                              <div class="centeringElements">
-                                <img src="{{movie.image}}" class="card-img-top" alt="...">
-                              </div>
-                              <!-- <div class="card-body">
-                                <div class="centeringElements">  <h5 class="card-title">{{movie.title}} &nbsp;|</h5>  <h5 class="card-title">&nbsp;{{movie.duration}}</h5></div> 
-                                <div class="centeringElements" >
-                                  <div class="trailerBtn centeringElements" (click)="openTrailerPopup(movie.trailer)"> watch trailer </div>
-                                </div>
-                              </div> -->
-                            </div> 
-                          </div>
-                        </ng-template>
-                    </p-carousel>
-              </div>
+            <div class="moviePageTitle">CURRENTLY RUNNING MOVIES</div>
+            <br>
+            <div class="content-section implementation carousel-demo">
+              <p-carousel [value]="currentMovies" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1"
+                [circular]="true" [autoplayInterval]="0" [responsiveOptions]="responsiveOptions">
+                <ng-template let-movie pTemplate="item">
+                  <div class="item card row">
+                    <div>
+                      <div class="centeringElements">
+                        <img (click)="showSynopsisPage()" src="{{movie.image}}" class="card-img-top" alt="...">
+                      </div>
+                      <div class="card-body">
+                        <div class="centeringElements">
+                          <h5 class="card-title">{{movie.title}} &nbsp;|</h5>
+                          <h5 class="card-title">&nbsp;{{movie.duration}}</h5>
+                        </div>
+                        <div class="centeringElementsSpaceAround">
+                          <div class="trailerBtn centeringElements" (click)="openTrailerPopup(movie.trailer)"> watch
+                            trailer </div>
+                          <div class="trailerBtn centeringElements" (click)="bookTicketsPage()"> Book Now </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </p-carousel>
+            </div>
           </div>
+        </div>
       </div>
+    </div>
+    <div class="row">
+      <div class="d-flex justify-content-center">
+        <div class="col-10">
+          <div><br><br>
+            <div class="moviePageTitle"> UPCOMING MOVIES </div>
+            <br>
+            <div class="content-section implementation carousel-demo">
+              <p-carousel [value]="currentMovies" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1"
+                [circular]="true" [autoplayInterval]="0" [responsiveOptions]="responsiveOptions">
+                <ng-template let-movie pTemplate="item">
+                  <div class="item card row">
+                    <div>
+                      <div class="centeringElements">
+                        <img src="{{movie.image}}" class="card-img-top" alt="...">
+                      </div>
+                      <!-- <div class="card-body">
+                                  <div class="centeringElements">  <h5 class="card-title">{{movie.title}} &nbsp;|</h5>  <h5 class="card-title">&nbsp;{{movie.duration}}</h5></div> 
+                                  <div class="centeringElements" >
+                                    <div class="trailerBtn centeringElements" (click)="openTrailerPopup(movie.trailer)"> watch trailer </div>
+                                  </div>
+                                </div> -->
+                    </div>
+                  </div>
+                </ng-template>
+              </p-carousel>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+
+<div *ngIf="searching">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="d-flex justify-content-center">
+        <div class="col-10">
+          <div><br><br>
+            <div class="moviePageTitle">SEARCH RESULTS FOR : {{searchText}}</div>
+            <br>
+            <ng-container *ngIf="(currentMovies | search: searchText) as filteredMovies">
+              <div class="content-section implementation carousel-demo">
+                <div *ngFor="let movie of filteredMovies">
+                  {{movie.title}} <br>
+                </div>
+                <div *ngIf="filteredMovies.length == 0">
+                  No Movies found 
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
