@@ -19,7 +19,7 @@
 }
 mat-card {
     max-width: 300px !important;
-} 
+}
 .card .ui-carousel {
     border: 0px;
 }
@@ -58,8 +58,30 @@ mat-card {
 //     background-color: #414040;
 // }
 button.p-link {
-    background-color: #1fb5bf!important;  
+    background-color: #1fb5bf!important;
 }
 .custom-carousel {
     background-color: #414040;
+}
+.cardtitle {
+    display: flex;
+    justify-content: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.noresultsContainer {
+    width: 70vw;
+    height: 30vh;
+    background-color: #f5f5f5;
+    color: #1fb5bf;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card-body1 {
+    margin-bottom: 20px;
+}
+.boldText {
+    font-size: x-large;
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,9 +10,13 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   searchText:string = "";
   @Output() searchVal = new EventEmitter<string>();
-  constructor(private router: Router) { }
+  inputForm: FormGroup;
+  constructor(private router: Router,private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.inputForm = this.fb.group({
+      inputVal : [''],
+    });
   }
 
   signUpReRoute() {
@@ -27,7 +32,6 @@ export class HeaderComponent implements OnInit {
   }
 
   clearSearch() {
-    console.log("clear called")
     this.searchText = "";
     this.searchVal.emit(this.searchText);
   }

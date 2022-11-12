@@ -19,70 +19,99 @@ export class MovieListComponent implements OnInit {
       title: "Baby Driver",
       image: '../../../assets/images/movie1.jpg',
       duration: '1h 35m',
-      trailer: "D9YZw_X5UzQ"
+      rating: 'R',
+      trailer: "D9YZw_X5UzQ",
+      category: "Action,Comedy,Drama,,Western"
     },
     {
       id: 2,
       title: "Bohemain",
       image: '../../../assets/images/movie2.jpg',
       duration: '1h 35m',
-      trailer: "mP0VHJYFOAU"
+      trailer: "mP0VHJYFOAU",
+      rating: 'PG-13',
+      category: "Action,Comedy,Drama,Fantasy,Horror,Mystery,Romance,Thriller"
     },
     {
       id: 3,
       title: "Black Adam",
       image: '../../../assets/images/movie3.webp',
       duration: '1h 35m',
-      trailer: "X0tOpBuYasI"
+      trailer: "X0tOpBuYasI",
+      rating: 'NC-17',
+      category: "Action,Horror,Mystery,Romance,Thriller,Western"
     },
     {
       id: 4,
       title: "West Side Story",
       image: '../../../assets/images/movie4.jpg',
       duration: '1h 35m',
-      trailer: "A5GJLwWiYSg"
+      trailer: "A5GJLwWiYSg",
+      rating: 'R',
+      category: "Action,Comedy,Drama,Fantasy,Horror,Mystery,Romance,Thriller,Western"
     },
     {
       id: 5,
       title: "The Godfather",
       image: '../../../assets/images/movie5.jpg',
       duration: '1h 35m',
-      trailer: "UaVTIH8mujA"
+      trailer: "UaVTIH8mujA",
+      rating: 'PG',
+      category: "Action,Comedy,Drama,Fantasy,Horror,Mystery,Romance,Thriller,Western"
     },
     {
       id: 6,
       title: "Hangover II",
       image: '../../../assets/images/movie6.jpg',
       duration: '1h 35m',
-      trailer: "ohF5ZO_zOYU"
+      trailer: "ohF5ZO_zOYU",
+      rating: 'NC-17',
+      category: "Action,Romance,Thriller,Western"
     },
     {
       id: 7,
       title: "Alita",
       image: '../../../assets/images/movie7.jpg',
       duration: '1h 35m',
-      trailer: "w7pYhpJaJW8"
+      trailer: "w7pYhpJaJW8",
+      rating: 'PG',
+      category: "Action,Comedy,Drama,Fantasy,Horror,Mystery,Romance,Thriller,Western"
     },
     {
       id: 8,
       title: "Suicide Squad",
       image: '../../../assets/images/movie8.jpg',
       duration: '1h 35m',
-      trailer: "CmRih_VtVAs"
+      trailer: "CmRih_VtVAs",
+      rating: 'G',
+      category: "Action,Comedy,Dram,Thriller,Western"
     },
     {
       id: 9,
       title: "Joy",
       image: '../../../assets/images/movie9.webp',
       duration: '1h 35m',
-      trailer: "uR-2TiQVY-k"
+      trailer: "uR-2TiQVY-k",
+      rating: 'PG-13',
+      category: "Fantasy,Horror,Mystery,Romance,Thriller,Western"
     },
     {
       id: 10,
       title: "Drive",
       image: '../../../assets/images/movie10.jpg',
       duration: '1h 35m',
-      trailer: "KBiOF3y1W0Y"
+      trailer: "KBiOF3y1W0Y",
+      rating: 'PG',
+      category: "Action,Comedy,Drama,Fantasy,Horror,Mystery,Romance,Thriller,Western"
+    },
+    {
+      id: 11,
+      title: "Black Panther: Wakanda Forever",
+      image: '../../../assets/images/movie11.jpg',
+      duration: '2h 41m',
+      trailer: "/_Z3QKkl1WyM",
+      rating: 'NC-17',
+      category: "Action,Comedy,Drama,Fantasy,Horror,Mystery,Romance,Thriller,Western"
     },
   ];
   constructor( private dialogRef: MatDialog,private router: Router) { 
