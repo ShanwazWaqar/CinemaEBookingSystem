@@ -13,11 +13,15 @@
       <input type="search" class="search-data" placeholder="Search" required>
       <button type="submit" class="fas fa-search"></button>
    </form> -->
-   <div class="sample eight">
+   <form [formGroup]="inputForm" class="form-wrapper cf">
+      <input type="text" formControlName="inputVal" placeholder="Search by Movie Name, Category" (ngModelChange)="search($event)" required>
+      <button type="submit" (click)="clearSearch()">Search</button>
+   </form>
+   <!-- <div class="sample eight">
       <input type="text" name="search" placeholder="search" [(ngModel)]="searchText" (ngModelChange)="search($event)">
       <button type="submit" class="btn btn-search">
          <i class="material-icons" (click)="clearSearch()">X</i>
       </button>
       <button type="reset" class="btn btn-reset fa fa-times"></button>
-    </div>
+    </div> -->
 </nav>

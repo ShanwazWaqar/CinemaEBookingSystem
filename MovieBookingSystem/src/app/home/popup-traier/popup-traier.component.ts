@@ -11,7 +11,10 @@ export class PopupTraierComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,private Ref:MatDialogRef<PopupTraierComponent>) { 
     console.log(data," yooutube link in popup")
   }
-
+  playerConfig = {
+    
+    autoplay: 1
+  };
   apiLoaded = false;
 
   ngOnInit(): void {

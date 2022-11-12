@@ -16,8 +16,9 @@
                         <img (click)="showSynopsisPage()" src="{{movie.image}}" class="card-img-top" alt="...">
                       </div>
                       <div class="card-body">
+                        <h5 class="d-flex justify-content-center">{{movie.title}}</h5>
                         <div class="centeringElements">
-                          <h5 class="card-title">{{movie.title}} &nbsp;|</h5>
+                          <h5 class="card-title">{{movie.rating}} &nbsp;|</h5>
                           <h5 class="card-title">&nbsp;{{movie.duration}}</h5>
                         </div>
                         <div class="centeringElementsSpaceAround">
@@ -50,12 +51,6 @@
                       <div class="centeringElements">
                         <img src="{{movie.image}}" class="card-img-top" alt="...">
                       </div>
-                      <!-- <div class="card-body">
-                                  <div class="centeringElements">  <h5 class="card-title">{{movie.title}} &nbsp;|</h5>  <h5 class="card-title">&nbsp;{{movie.duration}}</h5></div> 
-                                  <div class="centeringElements" >
-                                    <div class="trailerBtn centeringElements" (click)="openTrailerPopup(movie.trailer)"> watch trailer </div>
-                                  </div>
-                                </div> -->
                     </div>
                   </div>
                 </ng-template>
@@ -79,11 +74,32 @@
             <br>
             <ng-container *ngIf="(currentMovies | search: searchText) as filteredMovies">
               <div class="content-section implementation carousel-demo">
-                <div *ngFor="let movie of filteredMovies">
-                  {{movie.title}} <br>
+                <div class="row">
+                  <div class="col-3" *ngFor="let movie of filteredMovies"> 
+                    <div class="item card row">
+                      <div>
+                        <div class="centeringElements">
+                          <img (click)="showSynopsisPage()" src="{{movie.image}}" class="card-img-top" alt="...">
+                        </div>
+                        <div class="card-body1">
+                          <h5 class="cardtitle">{{movie.title}}</h5>
+                          <div class="centeringElements">
+                            <h5 class="card-title">{{movie.rating}} &nbsp;|</h5>
+                            <h5 class="card-title">&nbsp;{{movie.duration}}</h5>
+                          </div>
+                          <div class="centeringElementsSpaceAround">
+                            <div class="trailerBtn centeringElements" (click)="openTrailerPopup(movie.trailer)"> watchtrailer </div>&nbsp;&nbsp;
+                            <div class="trailerBtn centeringElements" (click)="bookTicketsPage()"> Book Now </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div *ngIf="filteredMovies.length == 0">
-                  No Movies found 
+                <div class="d-flex justify-content-center" *ngIf="filteredMovies.length == 0">
+                  <div class="noresultsContainer">
+                      Sorry!! No results match with <span class="boldText"> " {{searchText}} " </span>
+                  </div>
                 </div>
               </div>
             </ng-container>

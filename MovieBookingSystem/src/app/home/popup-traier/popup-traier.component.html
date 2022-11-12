@@ -2,5 +2,5 @@
 
 <div>
     <span class="closeBtn" (click)="closePopup()" > close </span><br>
-    <youtube-player videoId={{data.url}}> </youtube-player>
+    <youtube-player [playerVars]="playerConfig" videoId={{data.url}}> </youtube-player>
 </div>

@@ -1,32 +1,28 @@
 
 <div id="sc-edprofile" class="editProfileForm">
     <h1>Add New Movie</h1>
-    <form [formGroup]="addMovie" (ngSubmit)="addNewMovie()">
     <div class="sc-container">
-      <span class="addNewMovieformLabel">Title</span>
-      <input type="text" formControlName="title" placeholder="Enter Movie Title" />
-      <span class="addNewMovieformLabel">Synopsis</span>
-      <textarea formControlName="Synopsis" placeholder="Enter Movie Description"></textarea>
+    <form [formGroup]="addMovieForm">
+        <span class="addNewMovieformLabel">Title</span>
+        <input type="text" formControlName="title" placeholder="Enter Movie Title" />
       <span class="addNewMovieformLabel">Cast</span>
       <input type="text" formControlName="cast" placeholder="Enter Movie Cast Names" />
+      <span class="addNewMovieformLabel">Director</span>
+      <input type="text" formControlName="director"  placeholder="Enter the Director's Name" />
+      <span class="addNewMovieformLabel">Producer</span>
+      <input type="text" formControlName="producer" placeholder="Enter Producers Name" />
+      <span class="addNewMovieformLabel">Synopsis</span>
+      <textarea formControlName="synopsis" placeholder="Enter Movie Description"></textarea>
       <span class="addNewMovieformLabel">Trailer</span>
-      <input type="text" formControlName="trailerLink" placeholder="Enter Movie Trailer Link" />
+      <input type="text" formControlName="trailer" placeholder="Enter Movie Trailer Link" />
       <span class="addNewMovieformLabel">Thumbnail</span>
       <input type="file" accept="image/*" formControlName="thumbnail"  placeholder="Upload Thumbnail" />
-      <span class="addNewMovieformLabel">Genre</span>
-      <input type="text" placeholder="Enter Genres (seperated by comma)" />
-      <span class="addNewMovieformLabel">Directors Name</span>
-      <input type="text" formControlName="director"  placeholder="Enter Directors Name" />
-      <span class="addNewMovieformLabel">Writes Name</span>
-      <input type="text" formControlName="writer" placeholder="Enter Producers Name" />
-      <span class="addNewMovieformLabel">Year</span>
-      <input type="text" formControlName="year" placeholder="Enter Movie Release Year" />
       <span class="addNewMovieformLabel">Start Date</span>
-      <input type="date" formControlName="startDate" placeholder="Enter Start Date" />
-      <span class="addNewMovieformLabel">End Date</span>
-      <input type="date" formControlName="endDate" placeholder="Enter End Date" />
-        <span class="addNewMovieformLabel" >Genre:</span>
-        <select (change)="updateGenre($event)" formControlName="genre">
+      <input type="date" formControlName="startdate" placeholder="Enter Start Date" />
+      <span class="addNewMovieformLabel">End</span>
+      <input type="date" formControlName="enddate" placeholder="Enter End Date" />
+        <span class="addNewMovieformLabel" >Category:</span>
+        <select (change)="updateGenre($event)" formControlName="category">
             <option value="" disabled selected>Select your option</option>
             <option *ngFor="let genre of genres" [ngValue]="genre">
                 {{ genre }}
@@ -42,9 +38,9 @@
         </select>
 
       <input (click)="addNewMovie()" type="submit" value="Add New Movie" />
-    </div>
+    <!--</div>
     </form>
-  </div>
+  </div>-->
 
   <!-- New template for add new Movie -->
 
