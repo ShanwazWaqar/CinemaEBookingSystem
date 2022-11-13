@@ -128,7 +128,7 @@ export class ManagePromosComponent implements OnInit {
           pcode : item.promoCode,
           percentage: item.discount,
           start: item.startDate,
-          End : item.endDate,
+          end : item.endDate,
           email: email
         };
         console.log(obj," obj that we are trying to push")
