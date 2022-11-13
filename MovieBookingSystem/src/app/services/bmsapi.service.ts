@@ -107,13 +107,20 @@ export class bmsApiService {
     // add promotion api call
     addPromotion(promotion:any): Observable<any> {
         const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
-        return this.httpClient.post("http://localhost:1785/adm/",JSON.parse(promotion),{'headers':headers});
+        return this.httpClient.post("http://localhost:1785/admin/addPromotion",JSON.parse(promotion),{'headers':headers});
     }
 
     addMovie(data:any): Observable<any> {
         const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
         return this.httpClient.post("http://localhost:1785/admin/addmovie",JSON.parse(data),{'headers':headers});
     }
+
+    scheduleMovie(data:any): Observable<any> {
+        const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
+        return this.httpClient.post("http://localhost:1785/admin/schedulemovie",JSON.parse(data),{'headers':headers});
+    }
+
+    
 
 
 

@@ -124,18 +124,20 @@ export class ManagePromosComponent implements OnInit {
       if(item){
         let obj :any = "";
         obj = {
-          name: item.name,
-          promoCode : item.promoCode,
-          discount: item.discount,
-          startDate: item.startDate,
-          EndDate : item.endDate,
+          old_pcode: item.promoCode,
+          pcode : item.promoCode,
+          percentage: item.discount,
+          start: item.startDate,
+          End : item.endDate,
           email: email
         };
         console.log(obj," obj that we are trying to push")
         obj = JSON.stringify(obj);
         // add promotion api call
-        this.bms.addPromotion(obj).subscribe({
-          
+        this.bms.addPromotion(obj).subscribe(res => {
+          if(res) {
+            //add promotion success popup
+          }
         });
       }
     });
