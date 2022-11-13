@@ -61,7 +61,6 @@ export class ScheduleMovieComponent implements OnInit {
     {
       if(i==ind){
         this.screens[i].isSelected = true;
-        console.log("selected",i)
       }else {
         this.screens[i].isSelected = false;
       }

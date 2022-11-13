@@ -25,7 +25,7 @@
             <div> Select Screen </div><br>
             <div class="screensConatiner">
                 <div *ngFor="let screen of screens;let i=index">
-                    <div [ngClass]="'screenisSelected == true' ? 'screenDivSelected':'screenDivNotSelected'" (click)="selectScreen(i)"> {{screen.screenName}}</div>
+                    <div [ngClass]="{'screenDivSelected' : screen.isSelected == true , 'screenDivNotSelected' : screen.isSelected == false }" (click)="selectScreen(i)">{{screen.screenName}}</div>
                 </div>
             </div>
          </div>

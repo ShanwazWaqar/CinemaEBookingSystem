@@ -1,7 +1,6 @@
 <div class="row">
     <div class="addPromoContainer">
         <div class="addPromoButton" (click)="showAddPromoForm()">ADD PROMOTION</div>
-        <div class="sendPromoButton" (click)="showAddPromoForm()">SEND PROMOTION</div>
     </div>
 </div>
 
@@ -11,12 +10,17 @@
             <div class="col-3" *ngFor="let promo of promosArray,let i = index">
                 <div class="promoCodeDetailsContainer">
                     <div class="promoContainer">
-                        <span class="promoTitle">Name : </span> <span class="promoVaule"> {{promo.name}} </span> <br>
-                        <span class="promoTitle">PromoCode : </span> <span class="promoVaule"> {{promo.promoCode}} </span> <br>
-                        <span class="promoTitle">Discount(%) : </span> <span class="promoVaule"> {{promo.discount}} </span> <br>
-                        <span class="promoTitle">startDate : </span> <span class="promoVaule"> {{promo.startDate}} </span> <br>
-                        <span class="promoTitle">endDate : </span> <span class="promoVaule"> {{promo.EndDate}} </span> <br>
-                        <span class="d-flex justify-content-center"> <div class="removePromo" aria-label="remove Promo" (click)="deletePromo(i)">delete</div></span>
+                        <div class="">
+                            <div class="centeringElements"><span class="promoTitle">Name : </span> <span class="promoVaule"> {{promo.name}} </span> </div>
+                            <div class="centeringElements"><span class="promoTitle">PromoCode : </span> <span class="promoVaule"> {{promo.promoCode}} </span> </div>
+                            <div class="centeringElements"><span class="promoTitle">Discount(%) : </span> <span class="promoVaule"> {{promo.discount}} </span> </div>
+                            <div class="centeringElements"><span class="promoTitle">startDate : </span> <span class="promoVaule"> {{promo.startDate}} </span> </div>
+                            <div class="centeringElements"><span class="promoTitle">endDate : </span> <span class="promoVaule"> {{promo.EndDate}} </span> </div>
+                        </div>
+                        <div class="promobtns">
+                            <span class="d-flex justify-content-center"> <div class="removePromo" aria-label="remove Promo" (click)="deletePromo(i)">send promo</div></span>
+                            <span class="d-flex justify-content-center"> <div class="removePromo" aria-label="remove Promo" (click)="deletePromo(i)">delete promo</div></span>
+                        </div>
                     </div>    
                 </div>  
             </div>

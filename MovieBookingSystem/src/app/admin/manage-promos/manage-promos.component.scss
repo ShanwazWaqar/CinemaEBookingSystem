@@ -1,7 +1,6 @@
 .addPromoContainer {
     display: flex;
     justify-content: flex-end;
-    column-gap: 20px;
 }
 
 .addPromoButton {
@@ -15,7 +14,7 @@
     color: black;
     font-weight: bold;
     margin: 30px;
-    margin-right: 0;
+    margin-right: 85px;
     cursor: pointer;
 }
 .sendPromoButton{
@@ -41,7 +40,7 @@
 }
 
 .promoCodeDetailsContainer  {
-    width: 280px;
+    width: 350px;
     // background-color: beige;
     background-color: whitesmoke;
     border-radius: 25px;
@@ -66,7 +65,7 @@
     background-color: black;
     color: white;
     font-weight: bold;
-    padding: 5px 10px 5px 10px;
+    padding: 5px 20px 5px 20px;
     border-radius: 25px;
     cursor: pointer;
 }
@@ -77,4 +76,14 @@
 .promoContainer {
     padding-top: 10px;
 
+}
+
+.promobtns {
+    display: flex;
+    justify-content: center;
+    column-gap: 20px;
+}
+.centeringElements {
+    display: flex;
+    justify-content: center;
 }
