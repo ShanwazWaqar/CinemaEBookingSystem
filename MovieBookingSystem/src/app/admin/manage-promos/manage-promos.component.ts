@@ -99,6 +99,11 @@ export class ManagePromosComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.bms.getAllPromos().subscribe(res=>{
+      if(res) {
+        console.log(res, "get all promos ")
+      }
+    });
   }
 
   showAddPromoForm(){
@@ -149,7 +154,8 @@ export class ManagePromosComponent implements OnInit {
 
   deletePromo(i:any){
     this.promosArray.splice(i,1);
-    console.log("delete promo",i)
+    console.log("delete promo",i);
+
   }
 
 }

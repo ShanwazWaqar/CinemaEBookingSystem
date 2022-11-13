@@ -120,6 +120,11 @@ export class bmsApiService {
         return this.httpClient.post("http://localhost:1785/admin/schedulemovie",JSON.parse(data),{'headers':headers});
     }
 
+    getAllPromos(): Observable<any> {
+        const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
+        // return this.httpClient.get("https://jsonplaceholder.typicode.com/posts/1/comments");
+        return this.httpClient.get("http://localhost:1785/admin/getallpromos",{'headers':headers});
+    }
     
 
 
