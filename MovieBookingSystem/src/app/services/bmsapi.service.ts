@@ -110,6 +110,21 @@ export class bmsApiService {
         return this.httpClient.post("http://localhost:1785/admin/addpromotion",JSON.parse(promotion),{'headers':headers});
     }
 
+    sendPromotion(promotion:any): Observable<any> {
+        const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
+        return this.httpClient.post("http://localhost:1785/admin/sendpromotion",JSON.parse(promotion),{'headers':headers});
+    }
+
+    deletePromotion(promotion:any): Observable<any> {
+        const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
+        return this.httpClient.post("http://localhost:1785/admin/deletepromotion",JSON.parse(promotion),{'headers':headers});
+    }
+
+    updatePromotion(promotion:any): Observable<any> {
+        const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
+        return this.httpClient.post("http://localhost:1785/admin/updatepromotion",JSON.parse(promotion),{'headers':headers});
+    }
+
     addMovie(data:any): Observable<any> {
         const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
         return this.httpClient.post("http://localhost:1785/admin/addmovie",JSON.parse(data),{'headers':headers});

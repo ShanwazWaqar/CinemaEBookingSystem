@@ -2,6 +2,8 @@ import { Component, HostListener, Inject, OnInit, Optional } from '@angular/core
 import { MatDialog, MAT_DIALOG_DATA  } from '@angular/material/dialog';
 import { PromoPopupComponent } from '../promo-popup/promo-popup.component';
 import { bmsApiService } from '../../services/bmsapi.service';
+import { EditPromoPopupComponent } from '../edit-promo-popup/edit-promo-popup.component';
+import { MsgPopupComponent } from '../../admin/msg-popup/msg-popup.component';
 
 @Component({
   selector: 'app-manage-promos',
@@ -11,88 +13,7 @@ import { bmsApiService } from '../../services/bmsapi.service';
 export class ManagePromosComponent implements OnInit {
   showModal:boolean=false;
   //delete array
-  promosArray = [
-    {
-      name: "Promo Name 1",
-      promoCode : "GET15OFF",
-      discount: "15",
-      startDate: "2022-10-14",
-      EndDate : "2022-10-28",
-      sendToUser: ""
-    },
-    {
-      name: "Promo Name 1",
-      promoCode : "GET15OFF",
-      discount: "15",
-      startDate: "2022-10-14",
-      EndDate : "2022-10-28",
-      sendToUser: ""
-    },
-    {
-      name: "Promo Name 1",
-      promoCode : "SALE",
-      discount: "5",
-      startDate: "2022-10-14",
-      EndDate : "2022-10-28",
-      sendToUser: ""
-    },
-    {
-      name: "Promo Name 1",
-      promoCode : "PROMO1",
-      discount: "1",
-      startDate: "2022-10-14",
-      EndDate : "2022-10-28",
-      sendToUser: ""
-    },
-    {
-      name: "v",
-      promoCode : "PROMO2",
-      discount: "2",
-      startDate: "2022-10-14",
-      EndDate : "2022-10-28",
-      sendToUser: ""
-    },
-    {
-      name: "Promo Name 1",
-      promoCode : "PROMO3",
-      discount: "3",
-      startDate: "2022-10-14",
-      EndDate : "2022-10-28",
-      sendToUser: ""
-    },
-    {
-      name: "Promo Name 1",
-      promoCode : "PROMO4",
-      discount: "4",
-      startDate: "2022-10-14",
-      EndDate : "2022-10-28",
-      sendToUser: ""
-    },
-    {
-      name: "Promo Name 1",
-      promoCode : "PROMO5",
-      discount: "5",
-      startDate: "2022-10-14",
-      EndDate : "2022-10-28",
-      sendToUser: ""
-    },
-    {
-      name: "Promo Name 1",
-      promoCode : "PROMO6",
-      discount: "6",
-      startDate: "2022-10-14",
-      EndDate : "2022-10-28",
-      sendToUser: ""
-    },
-    {
-      name: "Promo Name 1",
-      promoCode : "PROMO6",
-      discount: "6",
-      startDate: "2022-10-14",
-      EndDate : "2022-10-28",
-      sendToUser: ""
-    }
-  ];
+  promosArray:any;
 
   constructor(private dialogRef: MatDialog,private bms: bmsApiService) {
     
@@ -101,13 +22,28 @@ export class ManagePromosComponent implements OnInit {
   ngOnInit(): void {
     this.bms.getAllPromos().subscribe(res=>{
       if(res) {
-        console.log(res, "get all promos ")
+        console.log(res, "get all promos ");
+        this.promosArray = res;
       }
     });
   }
 
   showAddPromoForm(){
     this.openDialog();
+  }
+
+  sucessPopup(msg:any) {
+    const popup2 = this.dialogRef.open(MsgPopupComponent, {
+      disableClose: true,
+      enterAnimationDuration: '700ms',
+      exitAnimationDuration:'1000ms',
+      maxHeight: '80vh',
+      width: '400px',
+      data: msg
+    });
+    popup2.afterClosed().subscribe(item =>{
+      this.ngOnInit();
+    });
   }
 
   openDialog() {
@@ -136,12 +72,12 @@ export class ManagePromosComponent implements OnInit {
           end : item.endDate,
           email: email
         };
-        console.log(obj," obj that we are trying to push")
         obj = JSON.stringify(obj);
         // add promotion api call
         this.bms.addPromotion(obj).subscribe(res => {
           if(res) {
             //add promotion success popup
+            this.sucessPopup("Promotion Created Successfully!!!");
           }
         });
       }
@@ -152,10 +88,43 @@ export class ManagePromosComponent implements OnInit {
     this.dialogRef.closeAll();
   }
 
-  deletePromo(i:any){
-    this.promosArray.splice(i,1);
-    console.log("delete promo",i);
+  deletePromo(data:any){
+    let obj :any = "";
+        obj = {
+          pcode : data.pcode
+        };
+        obj = JSON.stringify(obj);
+    this.bms.deletePromotion(obj).subscribe(res=>{
+      if(res) {
+        this.sucessPopup("Promotion Deleted Successfully!!!");
+      }
+    });
+  }
 
+  sendPromo(data:any) {
+    let obj :any = "";
+        obj = {
+          pcode : data.pcode
+        };
+        obj = JSON.stringify(obj);
+        console.log(obj," obj ",data)
+    this.bms.sendPromotion(obj).subscribe(res=>{
+      if(res) {
+        this.sucessPopup("Promotion Sent Successfully!!!");
+      }
+    })
+  }
+
+  editPromo(promodata:any) {
+    //edit promo
+    const popup = this.dialogRef.open(EditPromoPopupComponent, {
+      disableClose: true,
+      enterAnimationDuration: '700ms',
+      exitAnimationDuration:'1000ms',
+      maxHeight: '80vh',
+      width: '900px',
+      data: promodata 
+    });
   }
 
 }

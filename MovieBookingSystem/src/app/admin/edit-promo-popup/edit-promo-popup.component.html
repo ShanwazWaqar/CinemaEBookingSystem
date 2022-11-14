@@ -1,0 +1,23 @@
+<div class="addnewMovieSectionContainer">
+    <div id="sc-edprofile" class="editProfileForm">
+      <h1>Edit New Promotion Details</h1>
+      <form [formGroup]="promoForm" >
+        <div class="sc-container">
+          <!-- <span class="addNewMovieformLabel promoTitle">Promo Name * </span>
+          <input type="text" formControlName="name" placeholder="Enter Promotion name" /> -->
+          <span class="addNewMovieformLabel promoTitle">Promo Code *  </span>
+          <input type="text" formControlName="promoCode" placeholder="Enter Promo code" />
+          <span class="addNewMovieformLabel promoTitle">Discount(%) * </span>
+          <input type="text" formControlName="discount" placeholder="Enter Discount value" />
+          <span class="addNewMovieformLabel promoTitle">Promo Start Date * </span>
+          <input type="date" formControlName="startDate" placeholder="Enter Promo Start Date" />
+          <span class="addNewMovieformLabel promoTitle">Promo Expiry Date * </span>
+          <input type="date" formControlName="endDate" placeholder="Enter Promo End Date" />  
+          <div class="displayBtns">
+            <input class="promoBtns" (click)="updatePromo()" type="submit" value="Edit Promo" />
+            <input class="promoBtns" (click)="closeModal()" type="submit" value="Cancel" />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

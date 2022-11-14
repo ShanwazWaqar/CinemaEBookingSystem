@@ -12,14 +12,15 @@
                     <div class="promoContainer">
                         <div class="">
                             <!-- <div class="centeringElements"><span class="promoTitle">Name : </span> <span class="promoVaule"> {{promo.name}} </span> </div> -->
-                            <div class="centeringElements"><span class="promoTitle">PromoCode : </span> <span class="promoVaule"> {{promo.promoCode}} </span> </div>
-                            <div class="centeringElements"><span class="promoTitle">Discount(%) : </span> <span class="promoVaule"> {{promo.discount}} </span> </div>
-                            <div class="centeringElements"><span class="promoTitle">startDate : </span> <span class="promoVaule"> {{promo.startDate}} </span> </div>
-                            <div class="centeringElements"><span class="promoTitle">endDate : </span> <span class="promoVaule"> {{promo.EndDate}} </span> </div>
+                            <div class="centeringElements"><span class="promoTitle">PromoCode &nbsp;:&nbsp; </span> <span class="promoVaule"> {{promo.pcode}} </span> </div>
+                            <div class="centeringElements"><span class="promoTitle">Discount(%) &nbsp;:&nbsp; </span> <span class="promoVaule"> {{promo.percentage}} </span> </div>
+                            <div class="centeringElements"><span class="promoTitle">startDate &nbsp;:&nbsp; </span> <span class="promoVaule"> {{promo.start}} </span> </div>
+                            <div class="centeringElements"><span class="promoTitle">endDate &nbsp;:&nbsp; </span> <span class="promoVaule"> {{promo.end}} </span> </div>
                         </div>
                         <div class="promobtns">
-                            <span class="d-flex justify-content-center"> <div class="removePromo" aria-label="remove Promo" (click)="deletePromo(i)">send promo</div></span>
-                            <span class="d-flex justify-content-center"> <div class="removePromo" aria-label="remove Promo" (click)="deletePromo(i)">delete promo</div></span>
+                            <span *ngIf="promo.send_promo == 0" class="d-flex justify-content-center"> <div class="removePromo" aria-label="remove Promo" (click)="editPromo(promo)">edit </div></span>
+                            <span *ngIf="promo.send_promo == 0" class="d-flex justify-content-center"> <div class="removePromo" aria-label="remove Promo" (click)="sendPromo(promo)">send </div></span>
+                            <span class="d-flex justify-content-center"> <div class="removePromo" aria-label="remove Promo" (click)="deletePromo(promo)">delete </div></span>
                         </div>
                     </div>    
                 </div>  

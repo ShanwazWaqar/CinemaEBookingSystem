@@ -71,6 +71,8 @@ import { EditprofileSuccessComponent } from './home/editprofile-success/editprof
 import { AdminRegComponent } from './admin/admin-reg/admin-reg.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SearchPipe } from './services/search.pipe';
+import { EditPromoPopupComponent } from './admin/edit-promo-popup/edit-promo-popup.component';
+import { MsgPopupComponent } from './admin/msg-popup/msg-popup.component';
 
 @NgModule({
   declarations: [
@@ -117,7 +119,9 @@ import { SearchPipe } from './services/search.pipe';
     ChangePasswordSucessComponent,
     EditprofileSuccessComponent,
     AdminRegComponent,
-    SearchPipe
+    SearchPipe,
+    EditPromoPopupComponent,
+    MsgPopupComponent
   ],
   imports: [
     BrowserModule,
