@@ -77,10 +77,23 @@ div#sc-edprofile .sc-container {
   padding: 6% 4%;
 }
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 div#sc-edprofile input[type="email"],
 div#sc-edprofile input[type="text"],
 div#sc-edprofile input[type="date"],
 div#sc-edprofile input[type="file"],
+div#sc-edprofile input[type="number"],
 div#sc-edprofile textarea,
 div#sc-edprofile input[type="password"], div#sc-edprofile select, div#sc-edprofile textarea {
   width:100%;
@@ -91,6 +104,7 @@ div#sc-edprofile input[type="password"], div#sc-edprofile select, div#sc-edprofi
   font-family: 'Open Sans', sans-serif;
   font-size: 95%;
   color: #555;
+  margin: 0 !important;
 }
 
 // div#sc-edprofile select {
@@ -175,6 +189,7 @@ div#sc-edprofile input[type="email"],
 div#sc-edprofile input[type="text"],
 div#sc-edprofile input[type="date"],
 div#sc-edprofile input[type="file"],
+div#sc-edprofile input[type="number"],
 div#sc-edprofile textarea,
 div#sc-edprofile input[type="password"], div#sc-edprofile select, div#sc-edprofile textarea {
   width: 100%;
@@ -269,6 +284,7 @@ div#sc-edprofile input[type="email"],
 div#sc-edprofile input[type="text"],
 div#sc-edprofile input[type="date"],
 div#sc-edprofile input[type="file"],
+div#sc-edprofile input[type="number"],
 div#sc-edprofile textarea,
 div#sc-edprofile input[type="password"], div#sc-edprofile select, div#sc-edprofile textarea {
   width: 100%;
@@ -324,4 +340,12 @@ div#sc-edprofile input[type="submit"]:hover {
   margin-bottom: 10px;
   margin-top: 5px;
   margin-left: 2px;
+}
+.errorText {
+  color: red;
+  font-size: small;
+  margin-left: 10px;
+}
+.eleConatiner {
+  margin-bottom: 30px;
 }
