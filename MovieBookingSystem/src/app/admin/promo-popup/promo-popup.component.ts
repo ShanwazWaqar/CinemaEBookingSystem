@@ -69,21 +69,3 @@ export class PromoPopupComponent implements OnInit {
   }
 
 }
-
-
-
-// export class CustomeDateValidators {
-//   static fromToDate(fromDateField: string, toDateField: string, errorName: string = 'fromToDate'): ValidatorFn {
-//       return (formGroup: AbstractControl): { [key: string]: boolean } | null => {
-//         const fromDate = this.promoForm.value.startDate;
-//         const toDate = this.promoForm.value.endDate;
-//        // Ausing the fromDate and toDate are numbers. In not convert them first after null check
-//         if ((fromDate !== null && toDate !== null) && fromDate > toDate) {
-//           console.log("error");
-//             return {'endDateError': true};
-//         }
-//         console.log("no error")
-//         return null;
-//       };
-//   }
-// }
