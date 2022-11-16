@@ -22,7 +22,6 @@ export class PromoPopupComponent implements OnInit {
 
   ngOnInit(): void {
     this.promoForm = this.fb.group({
-      name: ['', [Validators.required]],
       promoCode: ['', [Validators.required, Validators.max(100), Validators.min(1)]],
       discount: ['', [Validators.required]],
       startDate: ['', [Validators.required]],
@@ -35,8 +34,21 @@ export class PromoPopupComponent implements OnInit {
   startDatecheck(formGroup: FormGroup) {
     const fromDate = formGroup.get('startDate')?.value;
     const toDate  = formGroup.get('endDate')?.value;
+    const discount = formGroup.get('discount')?.value;
+    let rangeerror = false;
+    
+    if(discount<=0 || discount>99) {
+      rangeerror = true;
+    }
+    formGroup.markAllAsTouched();
     if ((fromDate !== null && toDate !== null) && fromDate > toDate) {
-      return {'endDateError': true};
+      if(rangeerror) {
+        return {'endDateError': true,'numberError':true};
+      } else {
+        return {'endDateError': true};
+      }
+    } else if(rangeerror) {
+      return {'numberError': true};
     }
     return null;
   }

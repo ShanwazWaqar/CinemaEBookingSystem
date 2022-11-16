@@ -5,6 +5,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA  } from '@angular/material/dia
 import { AfterViewChecked, ChangeDetectorRef } from '@angular/core';
 import { bmsApiService } from '../../services/bmsapi.service';
 import { MsgPopupComponent } from '../../admin/msg-popup/msg-popup.component';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-edit-promo-popup',
@@ -23,11 +24,12 @@ export class EditPromoPopupComponent implements OnInit {
 
   ngOnInit(): void {
     this.promoForm = this.fb.group({
-      name : ['',[Validators.required ]],
-      promoCode : ['', [Validators.required]],
-      discount: ['',[Validators.required ]],
-      startDate: ['',[ ]],
-      endDate: ['',[]]
+      promoCode: ['', [Validators.required, Validators.max(100), Validators.min(1)]],
+      discount: ['', [Validators.required]],
+      startDate: ['', [Validators.required]],
+      endDate: ['', [Validators.required]]
+    }, {
+      validators: this.startDatecheck.bind(this)
     });
     this.promoForm.patchValue({
       promoCode: this.promoData.pcode,
@@ -36,6 +38,28 @@ export class EditPromoPopupComponent implements OnInit {
       endDate: this.promoData.end
     });
     this.oldPCode = this.promoData.pcode;
+  }
+
+  startDatecheck(formGroup: FormGroup) {
+    const fromDate = formGroup.get('startDate')?.value;
+    const toDate  = formGroup.get('endDate')?.value;
+    const discount = formGroup.get('discount')?.value;
+    let rangeerror = false;
+    
+    if(discount<=0 || discount>99) {
+      rangeerror = true;
+    }
+    formGroup.markAllAsTouched();
+    if ((fromDate !== null && toDate !== null) && fromDate > toDate) {
+      if(rangeerror) {
+        return {'endDateError': true,'numberError':true};
+      } else {
+        return {'endDateError': true};
+      }
+    } else if(rangeerror) {
+      return {'numberError': true};
+    }
+    return null;
   }
 
   openModal(){

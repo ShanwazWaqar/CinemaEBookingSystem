@@ -81,6 +81,7 @@ div#sc-edprofile input[type="email"],
 div#sc-edprofile input[type="text"],
 div#sc-edprofile input[type="date"],
 div#sc-edprofile input[type="file"],
+div#sc-edprofile input[type="number"],
 div#sc-edprofile textarea,
 div#sc-edprofile input[type="password"], div#sc-edprofile select, div#sc-edprofile textarea {
   width:100%;
@@ -175,6 +176,7 @@ div#sc-edprofile input[type="email"],
 div#sc-edprofile input[type="text"],
 div#sc-edprofile input[type="date"],
 div#sc-edprofile input[type="file"],
+div#sc-edprofile input[type="number"],
 div#sc-edprofile textarea,
 div#sc-edprofile input[type="password"], div#sc-edprofile select, div#sc-edprofile textarea {
   width: 100%;
@@ -269,6 +271,7 @@ div#sc-edprofile input[type="email"],
 div#sc-edprofile input[type="text"],
 div#sc-edprofile input[type="date"],
 div#sc-edprofile input[type="file"],
+div#sc-edprofile input[type="number"],
 div#sc-edprofile textarea,
 div#sc-edprofile input[type="password"], div#sc-edprofile select, div#sc-edprofile textarea {
   width: 100%;
@@ -324,4 +327,25 @@ div#sc-edprofile input[type="submit"]:hover {
   margin-bottom: 10px;
   margin-top: 5px;
   margin-left: 2px;
+}
+.errorText {
+  color: red;
+  font-size: small;
+  margin-left: 10px;
+}
+.promoTitle {
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  margin-left: 2px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

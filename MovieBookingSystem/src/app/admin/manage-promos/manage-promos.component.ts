@@ -22,7 +22,6 @@ export class ManagePromosComponent implements OnInit {
   ngOnInit(): void {
     this.bms.getAllPromos().subscribe(res=>{
       if(res) {
-        console.log(res, "get all promos ");
         this.promosArray = res;
       }
     });
@@ -124,6 +123,9 @@ export class ManagePromosComponent implements OnInit {
       maxHeight: '80vh',
       width: '900px',
       data: promodata 
+    });
+    popup.afterClosed().subscribe(item =>{
+      this.ngOnInit();
     });
   }
 

@@ -1,23 +1,58 @@
 <div class="addnewMovieSectionContainer">
-    <div id="sc-edprofile" class="editProfileForm">
-      <h1>Edit New Promotion Details</h1>
-      <form [formGroup]="promoForm" >
-        <div class="sc-container">
-          <!-- <span class="addNewMovieformLabel promoTitle">Promo Name * </span>
-          <input type="text" formControlName="name" placeholder="Enter Promotion name" /> -->
-          <span class="addNewMovieformLabel promoTitle">Promo Code *  </span>
+  <div id="sc-edprofile" class="editProfileForm">
+    <h1> Edit Promotion Details</h1>
+    <form [formGroup]="promoForm">
+      <div class="sc-container">
+        <div class="eleConatiner">
+          <span class="addNewMovieformLabel promoTitle">Promo Code * </span>
           <input type="text" formControlName="promoCode" placeholder="Enter Promo code" />
-          <span class="addNewMovieformLabel promoTitle">Discount(%) * </span>
-          <input type="text" formControlName="discount" placeholder="Enter Discount value" />
-          <span class="addNewMovieformLabel promoTitle">Promo Start Date * </span>
-          <input type="date" formControlName="startDate" placeholder="Enter Promo Start Date" />
-          <span class="addNewMovieformLabel promoTitle">Promo Expiry Date * </span>
-          <input type="date" formControlName="endDate" placeholder="Enter Promo End Date" />  
-          <div class="displayBtns">
-            <input class="promoBtns" (click)="updatePromo()" type="submit" value="Edit Promo" />
-            <input class="promoBtns" (click)="closeModal()" type="submit" value="Cancel" />
+          <div
+            *ngIf="promoForm.controls['promoCode'].invalid && (promoForm.controls['promoCode'].dirty || promoForm.controls['promoCode'].touched)">
+            <span *ngIf="promoForm.controls['promoCode'].errors?.required" class="errorText">Please Enter
+              PromoCode.</span>
           </div>
         </div>
-      </form>
-    </div>
+        <div class="eleConatiner">
+          <span class="addNewMovieformLabel promoTitle">Discount(%) * </span>
+          <input type="number" min="0" max="100" formControlName="discount" placeholder="Enter Discount value" />
+          <div
+            *ngIf="promoForm.controls['discount'].invalid && (promoForm.controls['discount'].dirty || promoForm.controls['discount'].touched)">
+            <span *ngIf="promoForm.controls['discount'].errors?.required" class="errorText">Please Enter
+              Discount.</span>
+          </div>
+          <span class="errorText" *ngIf="promoForm.errors?.numberError && !promoForm.controls['discount'].errors?.required">
+            Discount should be between 1 and 99. 
+          </span>
+        </div>
+        <div class="eleConatiner">
+          <span class="addNewMovieformLabel promoTitle">Promo Start Date * </span>
+          <input type="date" formControlName="startDate" placeholder="Enter Promo Start Date" />
+          <div
+            *ngIf="promoForm.controls['startDate'].invalid && (promoForm.controls['startDate'].dirty || promoForm.controls['startDate'].touched)">
+            <span *ngIf="promoForm.controls['startDate'].errors?.required" class="errorText">Please Enter
+              Start date.</span>
+          </div>
+        </div>
+        <div class="eleConatiner">
+          <span class="addNewMovieformLabel promoTitle">Promo Expiry Date * </span>
+          <input type="date" formControlName="endDate" min="{{promoForm.controls['startDate] | date:'yyyy-MM-dd'}}" placeholder="Enter Promo End Date" />
+          <div
+            *ngIf="promoForm.controls['endDate'].invalid && (promoForm.controls['endDate'].dirty || promoForm.controls['endDate'].touched)">
+            <span *ngIf="promoForm.controls['endDate'].errors?.required" class="errorText">
+              Please Enter End Date.
+            </span>
+          </div>
+          <div *ngIf="promoForm.controls['endDate'].valid && (promoForm.controls['endDate'].dirty || promoForm.controls['endDate'].touched)">
+            <span class="errorText" *ngIf="promoForm.errors?.endDateError && !promoForm.controls['endDate'].errors?.required">
+              Start Date is greater than End Date
+            </span>
+          </div>
+        </div>
+        <div class="displayBtns">
+          <input class="promoBtns" (click)="updatePromo()" type="submit" value="Update Promo" />
+          <input class="promoBtns" (click)="closeModal()" type="submit" value="Cancel" />
+        </div>
+      </div>
+    </form>
   </div>
+</div>

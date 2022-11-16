@@ -20,6 +20,9 @@
             <span *ngIf="promoForm.controls['discount'].errors?.required" class="errorText">Please Enter
               Discount.</span>
           </div>
+          <span class="errorText" *ngIf="promoForm.errors?.numberError && !promoForm.controls['discount'].errors?.required">
+            Discount should be between 1 and 99. 
+          </span>
         </div>
         <div class="eleConatiner">
           <span class="addNewMovieformLabel promoTitle">Promo Start Date * </span>
