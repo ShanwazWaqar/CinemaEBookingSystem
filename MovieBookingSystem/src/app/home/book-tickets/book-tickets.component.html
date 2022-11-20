@@ -9,7 +9,8 @@
 
 <div class="movieCard">
     <div>
-        <div class="movieTitle">The God Father</div> 
+        <div class="movieTitle">The God Father</div>  <!-- local Storage --> 
+       
         <div>
             <div class="theatreTitle">Select Date : &nbsp;&nbsp;&nbsp;
                 <!-- <mat-form-field>
@@ -26,18 +27,20 @@
                  </mat-form-field> -->
                  <mat-form-field>
                     <mat-label>Choose a date</mat-label>
-                    <input matInput [matDatepicker]="picker">
+                    <input (dateChange)="showtimes($event)" matInput [matDatepicker]="picker">
+                    <!-- <input matInput [matDatepicker]="picker"> -->
                     <mat-hint>MM/DD/YYYY</mat-hint>
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
+                    
+                    <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+                    <mat-datepicker  #picker></mat-datepicker>
                   </mat-form-field>
             </div>
         </div> <br>
         <div>
-            <div class="theatreTitle"> AMB Cinemas : </div> <br>
+            <div class="theatreTitle">SCREEN 1 : </div> <br>
             <div>
                 <div class="movieTimingsContainer">
-                    <div class="movieTime" (click)="bookSeats()">10:00 AM</div>
+                    <div class="movieTime" (click)="bookSeats()">10:25</div>
                     <div class="movieTime" (click)="bookSeats()">11:55 AM</div>
                     <div class="movieTime" (click)="bookSeats()">2:00 PM</div>
                     <div class="movieTime" (click)="bookSeats()">04:00 PM</div>
@@ -45,18 +48,15 @@
             </div>
         </div> <br>
         <div>
-            <div class="theatreTitle"> INOX Movies : </div> <br>
+            <div class="theatreTitle"> SCREEN 2 : </div> <br>
             <div>  
                 <div class="movieTimingsContainer">
-                    <div class="movieTime" (click)="bookSeats()">10:00 AM</div>
-                    <div class="movieTime" (click)="bookSeats()">11:55 AM</div>
-                    <div class="movieTime" (click)="bookSeats()">2:00 PM</div>
-                    <div class="movieTime" (click)="bookSeats()">04:00 PM</div>
+                    <div *ngFor="let item of showtimesArray,let i = index" class="movieTime" (click)="bookSeats()">{{item}}</div>
                 </div>
             </div>
         </div> <br>
         <div>
-            <div class="theatreTitle"> IMAX Large Screen : </div> <br>
+            <div class="theatreTitle"> SCREEN 3 : </div> <br>
             <div>
                 <div class="movieTimingsContainer">
                     <div class="movieTime" (click)="bookSeats()">10:00 AM</div>

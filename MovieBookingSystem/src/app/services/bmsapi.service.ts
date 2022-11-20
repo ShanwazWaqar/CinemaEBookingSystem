@@ -140,8 +140,14 @@ export class bmsApiService {
         // return this.httpClient.get("https://jsonplaceholder.typicode.com/posts/1/comments");
         return this.httpClient.get("http://localhost:1785/admin/getallpromos",{'headers':headers});
     }
+    getmovieinfo(): Observable<any> {
+        const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
+        // return this.httpClient.get("https://jsonplaceholder.typicode.com/posts/1/comments");
+        return this.httpClient.post("http://localhost:1785/admin/getmovieinfo",{'headers':headers});
+    }
     
-
-
-
+    getscheduleinfo(data:any): Observable<any> {
+        const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
+        return this.httpClient.post("http://localhost:1785/homepage/getscheduleinfo",JSON.parse(data),{'headers':headers});
+    }
 }

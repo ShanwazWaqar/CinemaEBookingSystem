@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA  } from '@angular/material/dialog';
+import { bmsApiService } from 'src/app/services/bmsapi.service';
 
 @Component({
   selector: 'app-popup-traier',
@@ -8,7 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA  } from '@angular/material/dialog';
 })
 export class PopupTraierComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private Ref:MatDialogRef<PopupTraierComponent>) { 
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private Ref:MatDialogRef<PopupTraierComponent>,private bms: bmsApiService) { 
     console.log(data," yooutube link in popup")
   }
   playerConfig = {
