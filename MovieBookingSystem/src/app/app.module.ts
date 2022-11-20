@@ -73,6 +73,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SearchPipe } from './services/search.pipe';
 import { EditPromoPopupComponent } from './admin/edit-promo-popup/edit-promo-popup.component';
 import { MsgPopupComponent } from './admin/msg-popup/msg-popup.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { ErrorPopupComponent } from './admin/error-popup/error-popup.component';
 
 @NgModule({
   declarations: [
@@ -121,7 +123,8 @@ import { MsgPopupComponent } from './admin/msg-popup/msg-popup.component';
     AdminRegComponent,
     SearchPipe,
     EditPromoPopupComponent,
-    MsgPopupComponent
+    MsgPopupComponent,
+    ErrorPopupComponent
   ],
   imports: [
     BrowserModule,
@@ -150,7 +153,7 @@ import { MsgPopupComponent } from './admin/msg-popup/msg-popup.component';
     MatNativeDateModule,
     NgOtpInputModule,
     FormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,MatMenuModule
   ],
   providers: [bmsApiService, tempDataService],
   bootstrap: [AppComponent]

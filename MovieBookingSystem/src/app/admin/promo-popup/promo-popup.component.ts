@@ -63,13 +63,10 @@ export class PromoPopupComponent implements OnInit {
 
   addPromo() {
     this.promoForm.markAllAsTouched();
-    console.log("errors ", this.promoForm);
     if (this.promoForm.valid) {
       this.closeValue = this.promoForm.value;
       this.Ref.close(this.closeValue);
-      console.log("promoform valid");
     } else {
-      console.log("form not valid")
     }
   }
 

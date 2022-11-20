@@ -151,9 +151,13 @@ export class bmsApiService {
         return this.httpClient.post("http://localhost:1785/homepage/getscheduleinfo",JSON.parse(data),{'headers':headers});
     }
 
-    getCurrentMoviesList(): Observable<any> {
+    getMoviesList(): Observable<any> {
         const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
-        return this.httpClient.get("http://localhost:1785/homepage/currentlyrunning",{'headers':headers});
+        return this.httpClient.get("http://localhost:1785/homepage/getallmovie",{'headers':headers});
+    }
+    schedulemovie(): Observable<any> {
+        const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
+        return this.httpClient.get("http://localhost:1785/homepage/schedulemovie",{'headers':headers});
     }
 
 }

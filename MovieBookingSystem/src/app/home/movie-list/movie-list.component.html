@@ -13,14 +13,22 @@
                   <div class="item card row">
                     <div>
                       <div class="centeringElements">
-                        <img (click)="showSynopsisPage()" src="{{movie.image}}" class="card-img-top" alt="...">
+                        <img (click)="showSynopsisPage()" [src]="movie.thumbnail" class="card-img-top" alt="...">
                       </div>
                       <div class="card-body">
-                        <h5 class="d-flex justify-content-center">{{movie.title}}</h5>
+                        <!-- <h5 class="d-flex justify-content-center">{{movie.title}}</h5>
                         <div class="centeringElements">
-                          <h5 class="card-title">{{movie.rating}} &nbsp;|</h5>
+                          <h5 class="card-title">{{movie.rating2}} &nbsp;|</h5>
                           <h5 class="card-title">&nbsp;{{movie.duration}}</h5>
-                        </div>
+                        </div> -->
+                        <div>
+                          
+                          <div class="centeringElements">
+                            <h5 class="card-title">{{movie.rating2}}&nbsp;| &nbsp;</h5>
+                            <h5 class="card-title">{{movie.title}}  </h5>
+                            
+                          </div>
+                          </div>
                         <div class="centeringElementsSpaceAround">
                           <div class="trailerBtn centeringElements" (click)="openTrailerPopup(movie.trailer)"> watch
                             trailer </div>
@@ -49,7 +57,7 @@
                   <div class="item card row">
                     <div>
                       <div class="centeringElements">
-                        <img src="{{movie.image}}" class="card-img-top" alt="...">
+                        <img [src]="movie.thumbnail" class="card-img-top" alt="...">
                       </div>
                     </div>
                   </div>
