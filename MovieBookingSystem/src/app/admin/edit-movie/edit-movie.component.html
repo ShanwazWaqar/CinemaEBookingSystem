@@ -5,7 +5,7 @@
       <div class="sc-container">
         <div class="fieldContainer">
           <span class="addNewMovieformLabel">Title</span>
-          <input type="text" formControlName="title" placeholder="Enter Movie Title" />
+          <input type="text" formControlName="title" placeholder="Enter Movie Title" class="disabledClass" />
           <div
             *ngIf="addMovieForm.controls['title'].invalid && (addMovieForm.controls['title'].dirty || addMovieForm.controls['title'].touched)">
             <span *ngIf="addMovieForm.controls['title'].errors?.required" class="errorText">Please Enter

@@ -33,8 +33,8 @@ export class EditMovieComponent implements OnInit {
       // producer: ['',[Validators.required]],
       // startDate: ['',[Validators.required]],
       // endDate: ['',[Validators.required]],
-
-      title: ['', [Validators.required]],
+      // title: ['', [Validators.required]],
+      title: [{ value: this.title, disabled: true},[]],
       cast: ['', [Validators.required]],
       director: ['', [Validators.required]],
       producer: ['', [Validators.required]],
