@@ -2,31 +2,102 @@
     <h1>Add New Movie</h1>
     <div class="sc-container">
         <form [formGroup]="addMovieForm">
-            <span class="addNewMovieformLabel">Title</span>
-            <input type="text" formControlName="title" placeholder="Enter Movie Title" />
-            <span class="addNewMovieformLabel">Cast</span>
-            <input type="text" formControlName="cast" placeholder="Enter Movie Cast Names" />
-            <span class="addNewMovieformLabel">Director</span>
-            <input type="text" formControlName="director" placeholder="Enter the Director's Name" />
-            <span class="addNewMovieformLabel">Producer</span>
-            <input type="text" formControlName="producer" placeholder="Enter Producers Name" />
-            <span class="addNewMovieformLabel">Synopsis</span>
-            <textarea formControlName="synopsis" placeholder="Enter Movie Description"></textarea>
-            <span class="addNewMovieformLabel">Trailer</span>
-            <input type="text" formControlName="trailer" placeholder="Enter Movie Trailer Link" />
-            <span class="addNewMovieformLabel">Thumbnail</span>
-            <input type="file" accept="image/*" formControlName="thumbnail" placeholder="Upload Thumbnail" />
-            <span class="addNewMovieformLabel">Start Date</span>
-            <input type="date" formControlName="startdate" placeholder="Enter Start Date" />
-            <span class="addNewMovieformLabel">End</span>
-            <input type="date" formControlName="enddate" placeholder="Enter End Date" />
-            <span class="addNewMovieformLabel">Category:</span>
-            <select (change)="updateGenre($event)" formControlName="category">
-                <option value="" disabled selected>Select your option</option>
-                <option *ngFor="let genre of genres" [ngValue]="genre">
-                    {{ genre }}
-                </option>
-            </select>
+            <div class="fieldContainer">
+                <span class="addNewMovieformLabel">Title</span>
+                <input type="text" formControlName="title" placeholder="Enter Movie Title" />
+                <div
+                    *ngIf="addMovieForm.controls['title'].invalid && (addMovieForm.controls['title'].dirty || addMovieForm.controls['title'].touched)">
+                    <span *ngIf="addMovieForm.controls['title'].errors?.required" class="errorText">Please Enter
+                        Movie Title.</span>
+                </div>
+            </div>
+            <div class="fieldContainer">
+                <span class="addNewMovieformLabel">Cast</span>
+                <input type="text" formControlName="cast" placeholder="Enter Movie Cast Names" />
+                <div
+                    *ngIf="addMovieForm.controls['cast'].invalid && (addMovieForm.controls['cast'].dirty || addMovieForm.controls['cast'].touched)">
+                    <span *ngIf="addMovieForm.controls['cast'].errors?.required" class="errorText">Please Enter
+                        Movie Cast.</span>
+                </div>
+            </div>
+
+            <div class="fieldContainer">
+                <span class="addNewMovieformLabel">Director</span>
+                <input type="text" formControlName="director" placeholder="Enter the Director's Name" />
+                <div
+                    *ngIf="addMovieForm.controls['director'].invalid && (addMovieForm.controls['director'].dirty || addMovieForm.controls['director'].touched)">
+                    <span *ngIf="addMovieForm.controls['director'].errors?.required" class="errorText">Please Enter
+                        Movie's Director Name.</span>
+                </div>
+            </div>
+
+            <div class="fieldContainer">
+                <span class="addNewMovieformLabel">Producer</span>
+                <input type="text" formControlName="producer" placeholder="Enter Producers Name" />
+                <div
+                    *ngIf="addMovieForm.controls['producer'].invalid && (addMovieForm.controls['producer'].dirty || addMovieForm.controls['producer'].touched)">
+                    <span *ngIf="addMovieForm.controls['producer'].errors?.required" class="errorText">Please Enter
+                        Movie's producer Name.</span>
+                </div>
+            </div>
+
+            <div class="fieldContainer">
+                <span class="addNewMovieformLabel">Synopsis</span>
+                <textarea formControlName="synopsis" placeholder="Enter Movie Description"></textarea>
+                <div
+                    *ngIf="addMovieForm.controls['synopsis'].invalid && (addMovieForm.controls['synopsis'].dirty || addMovieForm.controls['synopsis'].touched)">
+                    <span *ngIf="addMovieForm.controls['synopsis'].errors?.required" class="errorText">Please Enter
+                        Movie's Synopsis.</span>
+                </div>
+            </div>
+
+            <div class="fieldContainer">
+                <span class="addNewMovieformLabel">Trailer</span>
+                <input type="text" formControlName="trailer" placeholder="Enter Movie Trailer Link" />
+                <div
+                    *ngIf="addMovieForm.controls['trailer'].invalid && (addMovieForm.controls['trailer'].dirty || addMovieForm.controls['trailer'].touched)">
+                    <span *ngIf="addMovieForm.controls['trailer'].errors?.required" class="errorText">Please Enter
+                        Movie's Trailer Link.</span>
+                </div>
+            </div>
+
+            <div class="fieldContainer">
+                <span class="addNewMovieformLabel">Thumbnail</span>
+                <input type="file" accept="image/*" (change)="convertImage($event)" placeholder="Upload Thumbnail" />
+                <div
+                    *ngIf="addMovieForm.controls['thumbnail'].invalid && (addMovieForm.controls['thumbnail'].dirty || addMovieForm.controls['thumbnail'].touched)">
+                    <span *ngIf="addMovieForm.controls['thumbnail'].errors?.required" class="errorText">Please Add
+                        Thumbnail/Poster for the Movie.</span>
+                </div>
+            </div>
+
+            <div class="fieldContainer">
+                <span class="addNewMovieformLabel">Start Date</span>
+                <input type="date" formControlName="startdate" placeholder="Enter Start Date" />
+                <div
+                    *ngIf="addMovieForm.controls['startdate'].invalid && (addMovieForm.controls['startdate'].dirty || addMovieForm.controls['startdate'].touched)">
+                    <span *ngIf="addMovieForm.controls['startdate'].errors?.required" class="errorText">Please Enter
+                        Movie Start Date.</span>
+                </div>
+            </div>
+
+            <div class="fieldContainer">
+                <span class="addNewMovieformLabel">End</span>
+                <input type="date" formControlName="enddate" placeholder="Enter End Date" />
+                <div
+                    *ngIf="addMovieForm.controls['enddate'].invalid && (addMovieForm.controls['enddate'].dirty || addMovieForm.controls['enddate'].touched)">
+                    <span *ngIf="addMovieForm.controls['enddate'].errors?.required" class="errorText">Please Enter
+                        Movie End Date.</span>
+                </div>
+            </div>
+
+            <!-- <span class="addNewMovieformLabel" >Category:</span>
+        <select (change)="updateGenre($event)" formControlName="category">
+            <option value="" disabled selected>Select your option</option>
+            <option *ngFor="let genre of genres" [ngValue]="genre">
+                {{ genre }}
+            </option>
+        </select> -->
 
             <span class="addNewMovieformLabel">Rating:</span>
             <select (change)="updateRating($event)" formControlName="rating">
@@ -35,7 +106,30 @@
                     {{ rating }}
                 </option>
             </select>
+            <div
+                *ngIf="addMovieForm.controls['rating'].invalid && (addMovieForm.controls['rating'].dirty || addMovieForm.controls['rating'].touched)">
+                <span *ngIf="addMovieForm.controls['rating'].errors?.required" class="errorText">Please Select Rating of the Movie.</span>
+            </div>
 
+            <mat-form-field>
+                <mat-label>Genre</mat-label>
+                <mat-select formControlName="category" multiple>
+                    <mat-option value="Action">Action</mat-option>
+                    <mat-option value="Horror">Horror</mat-option>
+                    <mat-option value="Thriller">Thriller</mat-option>
+                    <mat-option value="Comedy">Comedy</mat-option>
+                    <mat-option value="Drama">Drama</mat-option>
+                    <mat-option value="Adventure">Adventure</mat-option>
+                    <mat-option value="Documentary">Documentary</mat-option>
+                    <mat-option value="Fiction">Fiction</mat-option>
+                    <mat-option value="Mystery">Mystery</mat-option>
+                    <mat-option value="Animation">Animation</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div
+                *ngIf="addMovieForm.controls['category'].invalid && (addMovieForm.controls['category'].dirty || addMovieForm.controls['category'].touched)">
+                <span *ngIf="addMovieForm.controls['category'].errors?.required" class="errorText">Please Select Rating of the Movie.</span>
+            </div>
             <input (click)="addNewMovie()" type="submit" value="Add New Movie" />
             <!--</div>
     </form>

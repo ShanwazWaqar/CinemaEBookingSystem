@@ -88,7 +88,7 @@ div#sc-edprofile textarea,
 div#sc-edprofile input[type="password"], div#sc-edprofile select, div#sc-edprofile textarea {
   width:100%;
   background: #fff;
-  margin-bottom: 4%;
+  // margin-bottom: 3%;
   border: 1px solid #ccc;
   padding: 4%;
   font-family: 'Open Sans', sans-serif;
@@ -182,7 +182,7 @@ div#sc-edprofile textarea,
 div#sc-edprofile input[type="password"], div#sc-edprofile select, div#sc-edprofile textarea {
   width: 100%;
   background: #fff;
-  margin-bottom: 4%;
+  // margin-bottom: 3%;
   border: 1px solid #ccc;
   padding: 4%;
   font-family: 'Open Sans', sans-serif;
@@ -276,7 +276,7 @@ div#sc-edprofile textarea,
 div#sc-edprofile input[type="password"], div#sc-edprofile select, div#sc-edprofile textarea {
   width: 100%;
   background: #fff;
-  margin-bottom: 4%;
+  // margin-bottom: 3%;
   border: 1px solid #ccc;
   padding: 4%;
   font-family: 'Open Sans', sans-serif;
@@ -317,4 +317,49 @@ div#sc-edprofile input[type="submit"]:hover {
   justify-content: center;
   font-weight: bolder;
   font-style: italic;
+}
+
+::ng-deep .mat-form-field {
+  width: 100%;
+  .mat-select {
+    width: 100%;
+  background: #fff;
+  margin-bottom: 4%;
+  border: 1px solid #ccc;
+  padding: 2%;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 95%;
+  color: #555;
+  }
+  .mat-form-field-empty.mat-form-field-label.mat-label {
+    display: block;
+    font-weight: 600;
+    color: black;
+  }
+  .mat-select-trigger {
+    height: 50px;
+  }
+  .mat-input-element {
+      color: slategray;
+  }
+  .mat-form-field-label {
+      color: slategray;
+  }
+  .mat-form-field-underline {
+      background-color: slategray;
+  }
+  .mat-form-field-ripple {
+      background-color: slategray;
+  }
+  .mat-form-field-required-marker {
+      color: slategray;
+  }
+}
+.errorText {
+  color: red;
+  font-size: small;
+  margin-left: 10px;
+}
+.fieldContainer {
+  margin-bottom: 3%;
 }
