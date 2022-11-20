@@ -3,6 +3,7 @@ import {CarouselModule} from 'primeng/carousel';
 import { MatDialog, MAT_DIALOG_DATA  } from '@angular/material/dialog';
 import { PopupTraierComponent } from '../popup-traier/popup-traier.component';
 import { Router } from '@angular/router';
+import { bmsApiService } from 'src/app/services/bmsapi.service';
 
 @Component({
   selector: 'app-movie-list',
@@ -11,7 +12,9 @@ import { Router } from '@angular/router';
 })
 export class MovieListComponent implements OnInit {
   responsiveOptions:any;
-  searching:boolean = false;
+  searching:boolean = true;
+  searchComp:boolean = false;
+  currentPlaying:boolean = false;
   @Input() searchText = ''; 
   currentMovies = [
     {
@@ -114,7 +117,7 @@ export class MovieListComponent implements OnInit {
       category: "Action,Comedy,Drama,Fantasy,Horror,Mystery,Romance,Thriller,Western"
     },
   ];
-  constructor( private dialogRef: MatDialog,private router: Router) { 
+  constructor( private dialogRef: MatDialog,private router: Router, private bms:bmsApiService) { 
     this.responsiveOptions = [{
       breakpoint: '1024px',
       numVisible: 1,
@@ -123,13 +126,19 @@ export class MovieListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.bms.getCurrentMoviesList().subscribe(res=>{
+      console.log("currently running movies ",res);
+    });
   }
 
   ngOnChanges(){
+    console.log("changes called" , this.searchText)
     if(this.searchText){
-      this.searching = true;
-    } else { 
       this.searching = false;
+      this.searchComp = true;
+    } else { 
+      this.searching = true;
+      this.searchComp = false;
     }
   }
 
@@ -159,6 +168,13 @@ export class MovieListComponent implements OnInit {
 
   bookTicketsPage() {
     this.router.navigateByUrl('/bookTickets');
+  }
+
+  currentPlayingFilter() {
+    this.searchComp = false;
+    this.searching = false;
+    this.currentPlaying = true;
+    console.log("gvjhkjkl")
   }
 
 }

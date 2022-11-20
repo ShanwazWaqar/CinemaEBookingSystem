@@ -48,7 +48,7 @@ export class bmsApiService {
         return this.httpClient.post("http://localhost:1785/api/LoginUser",JSON.parse(cred),{'headers':headers});
     }
 
-    //register user api name has to be changed.
+    //register user api name has to be changed.edit
     registerUser(user:any): Observable<any> {
         const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
         return this.httpClient.post("http://localhost:1785/api/SignUp",JSON.parse(user),{'headers':headers});
@@ -150,4 +150,10 @@ export class bmsApiService {
         const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
         return this.httpClient.post("http://localhost:1785/homepage/getscheduleinfo",JSON.parse(data),{'headers':headers});
     }
+
+    getCurrentMoviesList(): Observable<any> {
+        const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
+        return this.httpClient.get("http://localhost:1785/homepage/currentlyrunning",{'headers':headers});
+    }
+
 }
