@@ -1,7 +1,7 @@
 <div class="row">
     <div class="manageMoviesHeader">
         <div class="manageMoviesButton" [ngStyle]="{ 'color' : currentMoviesSelected ? '#1fb5bf' : 'white'}" (click)="showCurrentMovies()">
-            CURRENT PLAYING
+            Edit Movies
         </div>
         <div class="manageMoviesButton" [ngStyle]="{ 'color' : addmoviesSelected ? '#1fb5bf' : 'white'}" (click)="addMovies()">
             ADD MOVIE
@@ -22,11 +22,14 @@
                 <div class="col-3" *ngFor="let movie of movies,let i = index">
                     <div class="currentMovieContainer">
                         <mat-card appMaterialElevation>
-                            <img class="currentMovieImage" mat-card-image src={{movie.image}} alt="poster">
+                            <img class="currentMovieImage" mat-card-image [src]="movie.image" alt="poster">
                             <mat-card-content> 
                                 <div class="d-flex">
                                     <p> Title : &nbsp; </p>        
-                                    <mat-card-title> {{movie.title}} </mat-card-title>
+                                    <mat-card-title> {{movie.title}} </mat-card-title><br>
+                                </div>
+                                <div>
+                                    Status: &nbsp; <span class="statusClass">{{movie.status}}</span>
                                 </div>
                                 <mat-card-actions>   
                                     <div class="d-flex justify-content-center">
