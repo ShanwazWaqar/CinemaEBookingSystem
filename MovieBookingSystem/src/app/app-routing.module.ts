@@ -36,7 +36,7 @@ const routes: Routes = [
   { path: 'userHomePage', component: UserHomeScreenComponent },
   { path: 'editUserProfile', component: EditUserProfileComponent },
   { path: 'synopsis', component: SynopsisPageComponent },
-  { path: 'bookTickets', component: BookTicketsComponent },
+  { path: 'bookTickets/:movieName', component: BookTicketsComponent },
   { path: 'bookSeats', component: BookSeatsComponent },
   { path: 'selectAges', component: SelectAgesComponent },
   { path: 'orderConfirmation', component: OrderConfirmationComponent },

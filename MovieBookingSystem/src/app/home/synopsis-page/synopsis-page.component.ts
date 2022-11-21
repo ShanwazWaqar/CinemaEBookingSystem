@@ -26,7 +26,6 @@ link:String
   ngOnInit(): void {
     this.bms.getmovieinfo().subscribe((res)=>{
      if(res){
-          //console.log()
           this.title=res[0]
           this.rating=res[1]
           this.director=res[2]
@@ -37,7 +36,6 @@ link:String
           this.category=res[6]
           this.link=res[7].split("=",);
           this.link=this.link[1]
-          //console.log()
 
         }
       
@@ -65,7 +63,8 @@ link:String
   }
 
   bookTickets() {
-    this.router.navigateByUrl('/bookTickets');
+    // this.router.navigateByUrl('/bookTickets',{ queryParams: { movieName:this.title } });
+    this.router.navigate(['/bookTickets', this.title]);
   }
 
 }

@@ -9,26 +9,13 @@
 
 <div class="movieCard">
     <div>
-        <div class="movieTitle">The God Father</div>  <!-- local Storage --> 
+        <div class="movieTitle"> {{movieTitle}} </div>  
        
         <div>
             <div class="theatreTitle">Select Date : &nbsp;&nbsp;&nbsp;
-                <!-- <mat-form-field>
-                    <input matInput [ngxMatDatetimePicker]="picker" placeholder="" [disabled]="false">
-                    <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
-                    <ngx-mat-datetime-picker #picker [showSeconds]="false"
-                       [stepHour]="0" [stepMinute]="0"
-                       [touchUi]="true" [enableMeridian]="false" 
-                       [disableMinute]="false" [hideTime]="true">
-                       <ng-template>
-                        <span>Select</span>
-                      </ng-template>
-                    </ngx-mat-datetime-picker>
-                 </mat-form-field> -->
                  <mat-form-field>
                     <mat-label>Choose a date</mat-label>
-                    <input (dateChange)="showtimes($event)" matInput [matDatepicker]="picker">
-                    <!-- <input matInput [matDatepicker]="picker"> -->
+                    <input (dateChange)="emptyscreens()" (dateChange)="showtimes($event)" [matDatepickerFilter]="myFilter" matInput [matDatepicker]="picker">
                     <mat-hint>MM/DD/YYYY</mat-hint>
                     
                     <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
@@ -37,32 +24,20 @@
             </div>
         </div> <br>
         <div>
-            <div class="theatreTitle">SCREEN 1 : </div> <br>
-            <div>
-                <div class="movieTimingsContainer">
-                    <div class="movieTime" (click)="bookSeats()">10:25</div>
-                    <div class="movieTime" (click)="bookSeats()">11:55 AM</div>
-                    <div class="movieTime" (click)="bookSeats()">2:00 PM</div>
-                    <div class="movieTime" (click)="bookSeats()">04:00 PM</div>
-                </div>
+            <div *ngFor="let screen of screens;let i=index">
+                <div *ngIf="screen.length">
+                    <div class="theatreTitle">SCREEN {{i+1}} : </div> <br>
+                    <div class="movieTimingsContainer">
+                        <div *ngFor="let item of screen,let i = index" class="movieTime" (click)="bookSeats()">{{item}}</div>
+                    </div>
+                </div>  
             </div>
-        </div> <br>
-        <div>
-            <div class="theatreTitle"> SCREEN 2 : </div> <br>
-            <div>  
-                <div class="movieTimingsContainer">
-                    <div *ngFor="let item of showtimesArray,let i = index" class="movieTime" (click)="bookSeats()">{{item}}</div>
+            <div class="emptyset" *ngIf="checkArrayValue()">
+                <div *ngIf="!dateExists">
+                    PLease select the date to get the available show times.
                 </div>
-            </div>
-        </div> <br>
-        <div>
-            <div class="theatreTitle"> SCREEN 3 : </div> <br>
-            <div>
-                <div class="movieTimingsContainer">
-                    <div class="movieTime" (click)="bookSeats()">10:00 AM</div>
-                    <div class="movieTime" (click)="bookSeats()">11:55 AM</div>
-                    <div class="movieTime" (click)="bookSeats()">2:00 PM</div>
-                    <div class="movieTime" (click)="bookSeats()">04:00 PM</div>
+                <div *ngIf="dateExists">
+                    No Shows available on the selected date.
                 </div>
             </div>
         </div>
