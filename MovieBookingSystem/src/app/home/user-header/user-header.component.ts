@@ -8,7 +8,7 @@ import { bmsApiService } from '../../services/bmsapi.service';
   styleUrls: ['./user-header.component.scss']
 })
 export class UserHeaderComponent implements OnInit {
-
+  user:any="";
   email:any = '';
   isVerifiedUser:boolean = true;
 
@@ -21,6 +21,9 @@ export class UserHeaderComponent implements OnInit {
         email: this.email,
       }
       cred = JSON.stringify(cred);
+      this.bms.getFirstName(cred).subscribe((res)=>{
+        this.user = res.firstname;
+      });
       this.bms.verfiedUser(cred).subscribe((res) => {
         if (res) {
           this.isVerifiedUser = false;

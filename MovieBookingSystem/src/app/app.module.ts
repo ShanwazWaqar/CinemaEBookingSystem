@@ -75,6 +75,7 @@ import { EditPromoPopupComponent } from './admin/edit-promo-popup/edit-promo-pop
 import { MsgPopupComponent } from './admin/msg-popup/msg-popup.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { ErrorPopupComponent } from './admin/error-popup/error-popup.component';
+import { MsgPopupHomeComponent } from './home/msg-popup-home/msg-popup-home.component';
 
 @NgModule({
   declarations: [
@@ -124,7 +125,8 @@ import { ErrorPopupComponent } from './admin/error-popup/error-popup.component';
     SearchPipe,
     EditPromoPopupComponent,
     MsgPopupComponent,
-    ErrorPopupComponent
+    ErrorPopupComponent,
+    MsgPopupHomeComponent
   ],
   imports: [
     BrowserModule,

@@ -159,5 +159,9 @@ export class bmsApiService {
         const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
         return this.httpClient.get("http://localhost:1785/homepage/schedulemovie",{'headers':headers});
     }
+    getFirstName(data:any): Observable<any> {
+        const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
+        return this.httpClient.post("http://localhost:1785/api/getuserdetails",JSON.parse(data),{'headers':headers});
+    }
 
 }

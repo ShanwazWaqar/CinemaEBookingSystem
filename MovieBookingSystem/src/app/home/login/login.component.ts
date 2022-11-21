@@ -85,7 +85,6 @@ export class LoginComponent implements OnInit {
           localStorage.setItem("loggedIn","true");
           let edata = this.loginForm.value.email;
           localStorage.setItem("user", edata!);
-          let ddata = this.tds.decryptData(localStorage.getItem("user"));
           this.router.navigateByUrl('/userHomePage');
         } else {
           //for invalid cred

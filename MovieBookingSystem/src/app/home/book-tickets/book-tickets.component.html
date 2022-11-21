@@ -1,11 +1,16 @@
-<nav>
-    <div class="logo">
-        Bookmyshow
-    </div>
-    <div class="search-icon">
-        <span class="fas fa-search"></span>
-    </div>
-</nav>
+<div *ngIf="email == undefined">
+    <nav>
+        <div class="logo">
+            Bookmyshow
+        </div>
+        <div class="search-icon">
+            <span class="fas fa-search"></span>
+        </div>
+    </nav>
+</div>
+<div *ngIf="email">
+    <app-user-header></app-user-header>
+</div>
 
 <div class="movieCard">
     <div>

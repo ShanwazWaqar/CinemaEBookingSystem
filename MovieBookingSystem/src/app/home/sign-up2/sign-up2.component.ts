@@ -26,7 +26,7 @@ export class SignUp2Component implements OnInit {
 
   ngOnInit(): void {
     this.signUpForm = this.fb.group({
-      firtName : ['',[Validators.required]],
+      firstName : ['',[Validators.required]],
       lastName : ['',[Validators.required]],
       email : ['',[Validators.required, Validators.pattern("^[A-Za-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
       phone : ['',[Validators.required,Validators.pattern("[0-9 ]{10}")]],
@@ -52,7 +52,7 @@ export class SignUp2Component implements OnInit {
   signUp() {
     var user:any;
     user = {
-      firtname : this.signUpForm.value.firtName,
+      firstname : this.signUpForm.value.firstName,
       lastname : this.signUpForm.value.lastName,
       email : this.signUpForm.value.email,
       phone : this.signUpForm.value.phone,
@@ -70,7 +70,7 @@ export class SignUp2Component implements OnInit {
       promotion: this.promotionOptedIn
     }
     let user2  =  {
-      firtname : this.signUpForm.value.firtName,
+      firstname : this.signUpForm.value.firstName,
       lastname : this.signUpForm.value.lastName,
       email : this.signUpForm.value.email,
       phone : this.signUpForm.value.phone,

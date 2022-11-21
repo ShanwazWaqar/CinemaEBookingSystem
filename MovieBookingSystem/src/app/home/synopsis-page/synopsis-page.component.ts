@@ -3,6 +3,7 @@ import { MatDialog, MAT_DIALOG_DATA  } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PopupTraierComponent } from '../popup-traier/popup-traier.component';
 import { bmsApiService } from '../../services/bmsapi.service';
+import { MsgPopupHomeComponent } from '../msg-popup-home/msg-popup-home.component';
 
 @Component({
   selector: 'app-synopsis-page',
@@ -21,14 +22,14 @@ category:String
 link:String
 imageLink:String
 isUpcoming:any;
-
+email:any;
+isVerifiedUser:any;
 
   constructor(private dialogRef: MatDialog,private router: Router,private bms: bmsApiService, private route:ActivatedRoute) {
     this.route.params.subscribe( params => { 
       this.title = params.movieName;
       this.isUpcoming = params.id == 1? true:false;
     });
-    console.log(this.isUpcoming," upccoming")
    }
 
   ngOnInit(): void {
@@ -51,6 +52,7 @@ isUpcoming:any;
           this.link=res.trailer.split("=",)[1];
         } 
    });
+    this.email = (localStorage.getItem("user")); 
   }
 
   openTrailerPopup() {
@@ -75,6 +77,7 @@ isUpcoming:any;
           "background-image": "url("+this.imageLink+")",
           "background-repeat": "no-repeat",
           "background-size": "400px 540px",
+          "z-index": "2",
         };
 }
 
@@ -82,9 +85,39 @@ isUpcoming:any;
     this.dialogRef.closeAll();
   }
 
+  sucessPopup(msg:any) {
+    const popup2 = this.dialogRef.open(MsgPopupHomeComponent, {
+      disableClose: true,
+      enterAnimationDuration: '700ms',
+      exitAnimationDuration:'1000ms',
+      maxHeight: '80vh',
+      width: '400px',
+      data: msg
+    });
+    popup2.afterClosed().subscribe(item =>{
+      
+    });
+  }
+
   bookTickets() {
-    // this.router.navigateByUrl('/bookTickets',{ queryParams: { movieName:this.title } });
-    this.router.navigate(['/bookTickets', this.title]);
+    let cred:any = "";
+      cred = {
+        email: this.email,
+      }
+      cred = JSON.stringify(cred);
+      if(this.email == undefined) {
+        this.sucessPopup("Please Login to Book Tickets.");
+        this.router.navigateByUrl("/home");
+      }else {
+        this.bms.verfiedUser(cred).subscribe((res) => {
+          console.log(res," res");
+          if (res) {
+            this.router.navigate(['/bookTickets', this.title]);
+          } else {
+            this.sucessPopup("Please Verify your Account to Book Tickets.");
+          }
+        });
+      }
   }
 
 }

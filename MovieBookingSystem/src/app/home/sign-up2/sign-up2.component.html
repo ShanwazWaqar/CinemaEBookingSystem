@@ -13,9 +13,9 @@
         <form [formGroup]="signUpForm">
             <div class="inputContainer">
                 <span class="inputTitle">First Name <span class="required">*</span></span>
-                <input type="text" formControlName="firtName" placeholder="Enter First Name" />
-                <div *ngIf="signUpForm.controls['firtName'].invalid && (signUpForm.controls['firtName'].dirty || signUpForm.controls['firtName'].touched)" class="">
-                    <span *ngIf="signUpForm.controls['firtName'].errors?.required" class="errorText">Please Enter your Name.</span>
+                <input type="text" formControlName="firstName" placeholder="Enter First Name" />
+                <div *ngIf="signUpForm.controls['firstName'].invalid && (signUpForm.controls['firstName'].dirty || signUpForm.controls['firstName'].touched)" class="">
+                    <span *ngIf="signUpForm.controls['firstName'].errors?.required" class="errorText">Please Enter your Name.</span>
                 </div>
             </div>
             <div class="inputContainer">
