@@ -13,7 +13,7 @@
                   <div class="item card row">
                     <div>
                       <div class="centeringElements">
-                        <img (click)="showSynopsisPage()" [src]="movie.thumbnail" class="card-img-top" alt="...">
+                        <img (click)="showSynopsisPage(movie)" [src]="movie.thumbnail" class="card-img-top" alt="...">
                       </div>
                       <div class="card-body">
                         <!-- <h5 class="d-flex justify-content-center">{{movie.title}}</h5>
@@ -32,7 +32,7 @@
                         <div class="centeringElementsSpaceAround">
                           <div class="trailerBtn centeringElements" (click)="openTrailerPopup(movie.trailer)"> watch
                             trailer </div>
-                          <div class="trailerBtn centeringElements" (click)="bookTicketsPage()"> Book Now </div>
+                          <div class="trailerBtn centeringElements" (click)="bookTicketsPage(movie)"> Book Now </div>
                         </div>
                       </div>
                     </div>
@@ -51,7 +51,7 @@
             <div class="moviePageTitle"> UPCOMING MOVIES </div>
             <br>
             <div class="content-section implementation carousel-demo">
-              <p-carousel [value]="currentMovies" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1"
+              <p-carousel [value]="upcomingMovies" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1"
                 [circular]="true" [autoplayInterval]="0" [responsiveOptions]="responsiveOptions">
                 <ng-template let-movie pTemplate="item">
                   <div class="item card row">
@@ -87,7 +87,7 @@
                     <div class="item card row">
                       <div>
                         <div class="centeringElements">
-                          <img (click)="showSynopsisPage()" src="{{movie.image}}" class="card-img-top" alt="...">
+                          <img (click)="showSynopsisPage(movie)" src="{{movie.image}}" class="card-img-top" alt="...">
                         </div>
                         <div class="card-body1">
                           <h5 class="cardtitle">{{movie.title}}</h5>
@@ -97,7 +97,7 @@
                           </div>
                           <div class="centeringElementsSpaceAround">
                             <div class="trailerBtn centeringElements" (click)="openTrailerPopup(movie.trailer)"> watchtrailer </div>&nbsp;&nbsp;
-                            <div class="trailerBtn centeringElements" (click)="bookTicketsPage()"> Book Now </div>
+                            <div class="trailerBtn centeringElements" (click)="bookTicketsPage(movie)"> Book Now </div>
                           </div>
                         </div>
                       </div>

@@ -14,10 +14,6 @@ export class BookTicketsComponent implements OnInit {
   screenTemplate:any = [[],[],[],[],[],[]];
   screens:any = [[],[],[],[],[],[]];
   dateExists:boolean = false;
-
-  
-
-
   constructor(private router: Router, private bms: bmsApiService, private route:ActivatedRoute) {
     this.route.params.subscribe( params => { 
       this.movieTitle = params.movieName;

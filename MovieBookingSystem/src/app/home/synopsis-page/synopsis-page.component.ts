@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA  } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PopupTraierComponent } from '../popup-traier/popup-traier.component';
 import { bmsApiService } from '../../services/bmsapi.service';
 
@@ -19,27 +19,35 @@ cast:String
 synopsis:String
 category:String
 link:String
+imageLink:String
 
 
-  constructor(private dialogRef: MatDialog,private router: Router,private bms: bmsApiService) { }
+  constructor(private dialogRef: MatDialog,private router: Router,private bms: bmsApiService, private route:ActivatedRoute) {
+    this.route.params.subscribe( params => { 
+      this.title = params.movieName;
+    });
+   }
 
   ngOnInit(): void {
-    this.bms.getmovieinfo().subscribe((res)=>{
+    let obj:any
+    obj={
+      title: this.title
+    }
+    obj = JSON.stringify(obj);
+    this.bms.getmovieinfo(obj).subscribe((res)=>{
      if(res){
-          this.title=res[0]
-          this.rating=res[1]
-          this.director=res[2]
-          this.duration="2:55:00"
-          this.producer=res[3]
-          this.cast=res[4]
-          this.synopsis=res[5]
-          this.category=res[6]
-          this.link=res[7].split("=",);
-          this.link=this.link[1]
-
-        }
-      
-   })
+          this.title=res.title;
+          this.rating=res.rating.split(":")[0];
+          this.director=res.director
+          this.duration="2:55:00"; // duration needs to be added
+          this.producer=res.producer;
+          this.cast=res.cast;
+          this.synopsis=res.synopsis;
+          this.imageLink = res.thumbnail;
+          this.category=res.category.toString();
+          this.link=res.trailer.split("=",)[1];
+        } 
+   });
   }
 
   openTrailerPopup() {
@@ -57,6 +65,15 @@ link:String
       }
     });
   }
+
+  styleObject(): Object {
+    
+        return {
+          "background-image": "url("+this.imageLink+")",
+          "background-repeat": "no-repeat",
+          "background-size": "400px 540px",
+        };
+}
 
   @HostListener('window:keyup.esc') onKeyUp() {
     this.dialogRef.closeAll();

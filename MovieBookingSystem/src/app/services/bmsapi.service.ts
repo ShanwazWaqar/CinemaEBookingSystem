@@ -97,12 +97,12 @@ export class bmsApiService {
 
     adminReg(user:any): Observable<any> {
         const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
-        return this.httpClient.post("http://localhost:1785/adm/newadmin",JSON.parse(user),{'headers':headers});
+        return this.httpClient.post("http://localhost:1785/admin/newadmin",JSON.parse(user),{'headers':headers});
     }
 
     adminLogin(user:any): Observable<any> {
         const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
-        return this.httpClient.post("http://localhost:1785/adm/adminlogin",JSON.parse(user),{'headers':headers});
+        return this.httpClient.post("http://localhost:1785/admin/adminlogin",JSON.parse(user),{'headers':headers});
     }
     // add promotion api call
     addPromotion(promotion:any): Observable<any> {
@@ -140,10 +140,10 @@ export class bmsApiService {
         // return this.httpClient.get("https://jsonplaceholder.typicode.com/posts/1/comments");
         return this.httpClient.get("http://localhost:1785/admin/getallpromos",{'headers':headers});
     }
-    getmovieinfo(): Observable<any> {
+    getmovieinfo(data:any): Observable<any> {
         const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
         // return this.httpClient.get("https://jsonplaceholder.typicode.com/posts/1/comments");
-        return this.httpClient.post("http://localhost:1785/admin/getmovieinfo",{'headers':headers});
+        return this.httpClient.post("http://localhost:1785/admin/getmoviedetails",JSON.parse(data),{'headers':headers});
     }
     
     getscheduleinfo(data:any): Observable<any> {

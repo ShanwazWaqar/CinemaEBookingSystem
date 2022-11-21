@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { bmsApiService } from '../../services/bmsapi.service';
+import { MsgPopupComponent } from '../msg-popup/msg-popup.component';
 
 @Component({
   selector: 'app-add-new-movie',
@@ -11,7 +13,7 @@ export class AddNewMovieComponent implements OnInit {
   addMovieForm: FormGroup;
   genres = ["Action", "Horror", "Thriller", "Comedy", "Drama", "Adventure", "Documentary", "Fiction", "Mystery", "Animation"];
   ratings = ["G: General Audiences", "PG: Parental Guidance Suggested", "PG-13: Parents Strongly Cautioned", "R: Restricted", "NC-17: Clearly Adult"];
-  constructor(private fb: FormBuilder, private _bmsAs: bmsApiService) { }
+  constructor(private fb: FormBuilder, private _bmsAs: bmsApiService, private dialogRef: MatDialog) { }
 
   ngOnInit(): void {
     this.genres = ["Action", "Horror", "Thriller", "Comedy", "Drama", "Adventure", "Documentary", "Fiction", "Mystery", "Animation"];
@@ -37,6 +39,20 @@ export class AddNewMovieComponent implements OnInit {
     this.ratings = ["G: General Audiences", "PG: Parental Guidance Suggested", "PG-13: Parents Strongly Cautioned", "R: Restricted", "NC-17: Clearly Adult"];
   }
 
+  sucessPopup(msg:any) {
+    const popup2 = this.dialogRef.open(MsgPopupComponent, {
+      disableClose: true,
+      enterAnimationDuration: '700ms',
+      exitAnimationDuration:'1000ms',
+      maxHeight: '80vh',
+      width: '400px',
+      data: msg
+    });
+    popup2.afterClosed().subscribe(item =>{
+      location.reload();
+    });
+  }
+
   addNewMovie() {
     var movie: any;
     this.addMovieForm.markAllAsTouched();
@@ -58,7 +74,9 @@ export class AddNewMovieComponent implements OnInit {
       let data2 = JSON.stringify(movie);
       console.log(data2);
       this._bmsAs.addMovie(data2).subscribe(res => {
-        console.log(JSON.stringify(res), " put method result");
+        if(res) {
+          this.sucessPopup("Movie Added Successfully!!!");
+        }
       });
     }
 

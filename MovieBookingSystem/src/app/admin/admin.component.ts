@@ -34,10 +34,10 @@ export class AdminComponent implements OnInit {
   }
 
   admin2Route() {
-    if(this.loginForm.value.email == "shanwaz" && this.loginForm.value.password == "12345") {
-      localStorage.setItem("adminLoggedIn","true");
-      this.router.navigateByUrl('/admin2');
-    }
+    // if(this.loginForm.value.email == "shanwaz" && this.loginForm.value.password == "12345") {
+    //   localStorage.setItem("adminLoggedIn","true");
+    //   this.router.navigateByUrl('/admin2');
+    // }
     if(this.loginForm.valid){
       let user:any;
       user = {
