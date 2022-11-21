@@ -4,6 +4,7 @@ import { MatDialog, MAT_DIALOG_DATA  } from '@angular/material/dialog';
 import { PopupTraierComponent } from '../popup-traier/popup-traier.component';
 import { Router } from '@angular/router';
 import { bmsApiService } from 'src/app/services/bmsapi.service';
+import { MsgPopupHomeComponent } from '../msg-popup-home/msg-popup-home.component';
 
 @Component({
   selector: 'app-movie-list',
@@ -85,7 +86,27 @@ export class MovieListComponent implements OnInit {
   }
 
   bookTicketsPage(movie:any) {
-    this.router.navigate(['/bookTickets', movie.title]);
+    let email = (localStorage.getItem("user")); 
+    if( email == undefined) {
+      this.sucessPopup("Please Login to Book Tickets.");
+      this.router.navigateByUrl("/home");
+    } else {
+      this.router.navigate(['/bookTickets', movie.title]);
+    }
+  }
+
+  sucessPopup(msg:any) {
+    const popup2 = this.dialogRef.open(MsgPopupHomeComponent, {
+      disableClose: true,
+      enterAnimationDuration: '700ms',
+      exitAnimationDuration:'1000ms',
+      maxHeight: '80vh',
+      width: '400px',
+      data: msg
+    });
+    popup2.afterClosed().subscribe(item =>{
+      
+    });
   }
 
   currentPlayingFilter() {
