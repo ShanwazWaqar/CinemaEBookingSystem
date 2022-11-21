@@ -14,6 +14,7 @@ export class ScheduleMovieComponent implements OnInit {
   pastDate: any;
   selectedScreen: number;
   selected:any = "";
+  todayDate:Date = new Date();
   timings: any = [
     "11:00 AM",
     "02:00 PM",
