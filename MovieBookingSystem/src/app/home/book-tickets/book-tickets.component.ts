@@ -8,17 +8,14 @@ import { bmsApiService } from 'src/app/services/bmsapi.service';
   styleUrls: ['./book-tickets.component.scss']
 })
 export class BookTicketsComponent implements OnInit {
+  todayDate:Date = new Date();
   showtimesArray: any;
   movieTitle:any;
   screenTemplate:any = [[],[],[],[],[],[]];
   screens:any = [[],[],[],[],[],[]];
   dateExists:boolean = false;
 
-  myFilter = (d: Date | null): boolean => {
-    const day = (d || new Date()).getDay();
-    // Prevent Saturday and Sunday from being selected.
-    return day !== 0 && day !== 6;
-  };
+  
 
 
   constructor(private router: Router, private bms: bmsApiService, private route:ActivatedRoute) {
