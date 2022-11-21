@@ -75,8 +75,13 @@ export class MovieListComponent implements OnInit {
     this.dialogRef.closeAll();
   }
 
-  showSynopsisPage(movie:any) {
-    this.router.navigate(['/synopsis', movie.title]);
+  showSynopsisPage(movie:any,upcoming?:any) {
+    let id:any = 1;
+    if(upcoming) {
+      id = 0;
+    } 
+    this.router.navigate(['/synopsis', movie.title, id]);
+    
   }
 
   bookTicketsPage(movie:any) {

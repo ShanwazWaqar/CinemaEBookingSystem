@@ -9,7 +9,7 @@
         <!-- {'background' : 'url('+imageLink+')'} -->
         <div class="movie-poster play-trailer" [ngStyle]="styleObject()"></div>  
         <div id="movie-content">
-        <div class="movie-ratings"><span class="star">★</span><span class="score">7.8</span><span class="score-out-of">/ 10 (IMDB)</span></div>
+        <div *ngIf="isUpcoming" class="movie-ratings"><span class="star">★</span><span class="score">7.8</span><span class="score-out-of">/ 10 (IMDB)</span></div>
         <div class="movie-title"><a href="http://www.imdb.com/title/tt3397884" target="_blank">{{title}}</a><span class="movie-year">1972</span></div>
         <div class="movie-details"><span class="movie-rating">{{rating}}</span><span class="movie-duration">{{duration}}</span><span class="movie-genre">{{category}}</span></div>
         <div class="movie-castcrew"><span class="title">Director</span><span class="name">{{director}}</span></div>
@@ -20,7 +20,7 @@
         </div>
         <div class="synopsisBtns">
             <div class="trailerBtn centeringElements" (click)="openTrailerPopup()"> watch trailer </div>
-            <div class="trailerBtn centeringElements" (click)="bookTickets()"> Book Tickets </div>
+            <div *ngIf="isUpcoming" class="trailerBtn centeringElements" (click)="bookTickets()"> Book Tickets </div>
         </div>
         </div>
         <!-- <div class="movie-trailer"><a class="back-btn">back</a>

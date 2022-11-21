@@ -20,12 +20,15 @@ synopsis:String
 category:String
 link:String
 imageLink:String
+isUpcoming:any;
 
 
   constructor(private dialogRef: MatDialog,private router: Router,private bms: bmsApiService, private route:ActivatedRoute) {
     this.route.params.subscribe( params => { 
       this.title = params.movieName;
+      this.isUpcoming = params.id == 1? true:false;
     });
+    console.log(this.isUpcoming," upccoming")
    }
 
   ngOnInit(): void {

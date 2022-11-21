@@ -22,13 +22,11 @@
                           <h5 class="card-title">&nbsp;{{movie.duration}}</h5>
                         </div> -->
                         <div>
-                          
                           <div class="centeringElements">
                             <h5 class="card-title">{{movie.rating2}}&nbsp;| &nbsp;</h5>
-                            <h5 class="card-title">{{movie.title}}  </h5>
-                            
+                            <h5 class="card-title">{{movie.title}} </h5>
                           </div>
-                          </div>
+                        </div>
                         <div class="centeringElementsSpaceAround">
                           <div class="trailerBtn centeringElements" (click)="openTrailerPopup(movie.trailer)"> watch
                             trailer </div>
@@ -57,7 +55,14 @@
                   <div class="item card row">
                     <div>
                       <div class="centeringElements">
-                        <img [src]="movie.thumbnail" class="card-img-top" alt="...">
+                        <img  (click)="showSynopsisPage(movie,'upcoming')" [src]="movie.thumbnail" class="card-img-top" alt="...">
+                      </div>
+                      <div class="card-body">
+                        <div>
+                          <div class="centeringElements">
+                            <h5 class="card-title">{{movie.title}} </h5>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -83,7 +88,7 @@
             <ng-container *ngIf="(currentMovies | search: searchText) as filteredMovies">
               <div class="content-section implementation carousel-demo">
                 <div class="row">
-                  <div class="col-3" *ngFor="let movie of filteredMovies"> 
+                  <div class="col-3" *ngFor="let movie of filteredMovies">
                     <div class="item card row">
                       <div>
                         <div class="centeringElements">
@@ -96,7 +101,8 @@
                             <h5 class="card-title">&nbsp;{{movie.duration}}</h5>
                           </div>
                           <div class="centeringElementsSpaceAround">
-                            <div class="trailerBtn centeringElements" (click)="openTrailerPopup(movie.trailer)"> watchtrailer </div>&nbsp;&nbsp;
+                            <div class="trailerBtn centeringElements" (click)="openTrailerPopup(movie.trailer)">
+                              watchtrailer </div>&nbsp;&nbsp;
                             <div class="trailerBtn centeringElements" (click)="bookTicketsPage(movie)"> Book Now </div>
                           </div>
                         </div>
@@ -106,7 +112,7 @@
                 </div>
                 <div class="d-flex justify-content-center" *ngIf="filteredMovies.length == 0">
                   <div class="noresultsContainer">
-                      Sorry!! No results match with <span class="boldText"> " {{searchText}} " </span>
+                    Sorry!! No results match with <span class="boldText"> " {{searchText}} " </span>
                   </div>
                 </div>
               </div>

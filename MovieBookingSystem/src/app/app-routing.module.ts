@@ -35,7 +35,7 @@ const routes: Routes = [
   { path: 'verifyUser', component: VerfiyUserComponent },
   { path: 'userHomePage', component: UserHomeScreenComponent },
   { path: 'editUserProfile', component: EditUserProfileComponent },
-  { path: 'synopsis/:movieName', component: SynopsisPageComponent },
+  { path: 'synopsis/:movieName/:id', component: SynopsisPageComponent },
   { path: 'bookTickets/:movieName', component: BookTicketsComponent },
   { path: 'bookSeats', component: BookSeatsComponent },
   { path: 'selectAges', component: SelectAgesComponent },
