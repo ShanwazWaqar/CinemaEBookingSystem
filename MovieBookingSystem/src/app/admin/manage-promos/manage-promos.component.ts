@@ -103,7 +103,10 @@ export class ManagePromosComponent implements OnInit {
   sendPromo(data:any) {
     let obj :any = "";
         obj = {
-          pcode : data.pcode
+          pcode : data.pcode,
+          start : data.start,
+          end : data.end,
+          percentage : data.percentage
         };
         obj = JSON.stringify(obj);
         console.log(obj," obj ",data)

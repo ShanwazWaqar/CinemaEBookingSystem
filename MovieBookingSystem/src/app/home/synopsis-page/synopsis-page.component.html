@@ -1,11 +1,11 @@
-<div *ngIf="email == undefined">
+<div *ngIf="email == undefined || email == 'false'">
     <nav>
         <div class="logo">
            Bookmyshow
         </div>
      </nav>
 </div>
-<div *ngIf="email">
+<div *ngIf="email == 'true'">
     <app-user-header></app-user-header>
 </div>
 

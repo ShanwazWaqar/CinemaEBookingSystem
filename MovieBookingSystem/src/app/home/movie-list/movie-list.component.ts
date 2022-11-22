@@ -112,8 +112,20 @@ export class MovieListComponent implements OnInit {
       this.sucessPopup("Please Login to Book Tickets.");
       this.router.navigateByUrl("/home");
     } else {
-      this.router.navigate(['/bookTickets', movie.title]);
-      this.router.navigate(['/bookTickets', movie.title]);
+      let email2 = (localStorage.getItem("user"));
+    let cred:any = "";
+      cred = {
+        email: email2,
+      }
+      cred = JSON.stringify(cred);
+      this.bms.verfiedUser(cred).subscribe((res) => {
+        console.log(res," res");
+        if (res) {
+          this.router.navigate(['/bookTickets', movie.title]);
+        } else {
+          this.sucessPopup("Please Verify your Account to Book Tickets.");
+        }
+      });  
     }
   }
   sucessPopup(msg: any) {

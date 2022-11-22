@@ -52,7 +52,7 @@ isVerifiedUser:any;
           this.link=res.trailer.split("=",)[1];
         } 
    });
-    this.email = (localStorage.getItem("user")); 
+    this.email = (localStorage.getItem("loggedIn")); 
   }
 
   openTrailerPopup() {
@@ -100,12 +100,13 @@ isVerifiedUser:any;
   }
 
   bookTickets() {
+    let email2 = (localStorage.getItem("user"));
     let cred:any = "";
       cred = {
-        email: this.email,
+        email: email2,
       }
       cred = JSON.stringify(cred);
-      if(this.email == undefined) {
+      if(this.email == undefined || this.email == "false") {
         this.sucessPopup("Please Login to Book Tickets.");
         this.router.navigateByUrl("/home");
       }else {
