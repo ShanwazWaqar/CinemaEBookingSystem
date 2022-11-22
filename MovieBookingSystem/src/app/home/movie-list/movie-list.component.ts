@@ -86,8 +86,8 @@ export class MovieListComponent implements OnInit {
   }
 
   bookTicketsPage(movie:any) {
-    let email = (localStorage.getItem("user")); 
-    if( email == undefined) {
+    let email = (localStorage.getItem("loggedIn")); 
+    if( email == undefined || email == "false" ) {
       this.sucessPopup("Please Login to Book Tickets.");
       this.router.navigateByUrl("/home");
     } else {
