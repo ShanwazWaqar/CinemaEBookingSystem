@@ -90,6 +90,11 @@
             <span *ngIf="addMovieForm.controls['enddate'].errors?.required" class="errorText">Please Enter
               Movie End Date.</span>
           </div>
+          <div *ngIf="addMovieForm.controls['enddate'].valid && (addMovieForm.controls['enddate'].dirty || addMovieForm.controls['enddate'].touched)">
+            <span class="errorText" *ngIf="addMovieForm.errors?.endDateError && !addMovieForm.controls['enddate'].errors?.required">
+              Start Date is greater than End Date
+            </span>
+          </div>
         </div>
         <!-- <span class="addNewMovieformLabel">Genre:</span>
         <select (change)="updateGenre($event)" formControlName="genre">

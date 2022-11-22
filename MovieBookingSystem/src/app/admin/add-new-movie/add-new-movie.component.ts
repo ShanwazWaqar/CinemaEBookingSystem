@@ -31,8 +31,18 @@ export class AddNewMovieComponent implements OnInit {
       enddate: ['', [Validators.required]],
       category: ['', [Validators.required]],
       rating: ['', [Validators.required]]
+    }, {
+      validators: this.startDatecheck.bind(this)
     });
   };
+
+  startDatecheck(formGroup: FormGroup) {
+    const fromDate = formGroup.get('startdate')?.value;
+    const toDate  = formGroup.get('enddate')?.value;
+    if ((fromDate !== null && toDate !== null) && fromDate > toDate) {
+        return {'endDateError': true}; 
+    }
+  }
 
   ngAfterViewInit() {
     this.genres = ["Action", "Horror", "Thriller", "Comedy", "Drama", "Adventure", "Documentary", "Fiction", "Mystery", "Animation"];

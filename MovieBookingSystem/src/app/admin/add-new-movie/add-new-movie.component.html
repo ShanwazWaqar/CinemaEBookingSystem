@@ -82,13 +82,18 @@
             </div>
 
             <div class="fieldContainer">
-                <span class="addNewMovieformLabel">End</span>
+                <span class="addNewMovieformLabel">End Date</span>
                 <input type="date" formControlName="enddate" placeholder="Enter End Date" />
                 <div
                     *ngIf="addMovieForm.controls['enddate'].invalid && (addMovieForm.controls['enddate'].dirty || addMovieForm.controls['enddate'].touched)">
                     <span *ngIf="addMovieForm.controls['enddate'].errors?.required" class="errorText">Please Enter
                         Movie End Date.</span>
                 </div>
+                <div *ngIf="addMovieForm.controls['enddate'].valid && (addMovieForm.controls['enddate'].dirty || addMovieForm.controls['enddate'].touched)">
+                    <span class="errorText" *ngIf="addMovieForm.errors?.endDateError && !addMovieForm.controls['enddate'].errors?.required">
+                      Start Date is greater than End Date
+                    </span>
+                  </div>
             </div>
 
             <!-- <span class="addNewMovieformLabel" >Category:</span>

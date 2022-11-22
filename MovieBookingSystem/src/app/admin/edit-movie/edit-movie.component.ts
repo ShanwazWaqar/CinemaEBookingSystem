@@ -46,10 +46,20 @@ export class EditMovieComponent implements OnInit {
       enddate: ['', [Validators.required]],
       category: ['', [Validators.required]],
       rating: ['', [Validators.required]]
+    }, {
+      validators: this.startDatecheck.bind(this)
     });
     let selectedValues = ['Thriller','Comedy'];
     this.addMovieForm.controls['category'].patchValue(selectedValues);
   };
+
+  startDatecheck(formGroup: FormGroup) {
+    const fromDate = formGroup.get('startdate')?.value;
+    const toDate  = formGroup.get('enddate')?.value;
+    if ((fromDate !== null && toDate !== null) && fromDate > toDate) {
+        return {'endDateError': true}; 
+    }
+  }
 
   ngAfterViewInit() {
     this.genres = ["Action","Horror","Thriller","Comedy","Drama","Adventure","Documentary","Fiction","Mystery","Animation"];
@@ -95,6 +105,7 @@ export class EditMovieComponent implements OnInit {
 
   cancel() {
     //cancel the popup
+    this.Ref.close();
   }
 
 }
