@@ -4,9 +4,27 @@
       <div class="d-flex justify-content-center">
         <div class="col-10">
           <div><br><br>
-            <div class="moviePageTitle">CURRENTLY RUNNING MOVIES</div>
+            <div class="flexClass">
+              <div class="moviePageTitle">CURRENTLY RUNNING MOVIES</div>
+              <div class="filterClass">
+                <label for="category">Filter &nbsp;</label> <br>
+                <select name="category" #currentCat (change)='currentCategory(currentCat.value)'>
+                  <option value="All" selected>All</option>
+                  <option value="Action">Action</option>
+                  <option value="Horror">Horror</option>
+                  <option value="Thriller">Thriller</option>
+                  <option value="Comedy">Comedy</option>
+                  <option value="Drama">Drama</option>
+                  <option value="Adventure">Adventure</option>
+                  <option value="Documentary">Documentary</option>
+                  <option value="Fiction">Fiction</option>
+                  <option value="Mystery">Mystery</option>
+                  <option value="Animation">Animation</option>  
+                </select>
+              </div>
+            </div>
             <br>
-            <div class="content-section implementation carousel-demo">
+            <div *ngIf="currentMovies.length != 0" class="content-section implementation carousel-demo">
               <p-carousel [value]="currentMovies" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1"
                 [circular]="true" [autoplayInterval]="0" [responsiveOptions]="responsiveOptions">
                 <ng-template let-movie pTemplate="item">
@@ -38,6 +56,9 @@
                 </ng-template>
               </p-carousel>
             </div>
+              <div *ngIf="currentMovies == 0" class="noresultsContainer2">
+                No Movies Found with filter category {{currentFilterCategory}}
+              </div>
           </div>
         </div>
       </div>
@@ -46,16 +67,35 @@
       <div class="d-flex justify-content-center">
         <div class="col-10">
           <div><br><br>
-            <div class="moviePageTitle"> UPCOMING MOVIES </div>
+            <div class="flexClass">
+              <div class="moviePageTitle"> UPCOMING MOVIES </div>
+              <div class="filterClass">
+                <label for="category">Filter &nbsp;</label> <br>
+                <select name="category" #upcomingcat (change)='upcomingCategory(upcomingcat.value)'>
+                  <option value="All" selected>All</option>
+                  <option value="Action">Action</option>
+                  <option value="Horror">Horror</option>
+                  <option value="Thriller">Thriller</option>
+                  <option value="Comedy">Comedy</option>
+                  <option value="Drama">Drama</option>
+                  <option value="Adventure">Adventure</option>
+                  <option value="Documentary">Documentary</option>
+                  <option value="Fiction">Fiction</option>
+                  <option value="Mystery">Mystery</option>
+                  <option value="Animation">Animation</option>  
+                </select>
+              </div>
+            </div>
             <br>
-            <div class="content-section implementation carousel-demo">
+            <div *ngIf="upcomingMovies.length != 0" class="content-section implementation carousel-demo">
               <p-carousel [value]="upcomingMovies" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1"
                 [circular]="true" [autoplayInterval]="0" [responsiveOptions]="responsiveOptions">
                 <ng-template let-movie pTemplate="item">
                   <div class="item card row">
                     <div>
                       <div class="centeringElements">
-                        <img  (click)="showSynopsisPage(movie,'upcoming')" [src]="movie.thumbnail" class="card-img-top" alt="...">
+                        <img (click)="showSynopsisPage(movie,'upcoming')" [src]="movie.thumbnail" class="card-img-top"
+                          alt="...">
                       </div>
                       <div class="card-body">
                         <div>
@@ -68,6 +108,9 @@
                   </div>
                 </ng-template>
               </p-carousel>
+            </div>
+            <div *ngIf="upcomingMovies == 0" class="noresultsContainer2">
+              No Movies Found with filter category {{currentFilterCategory}}
             </div>
           </div>
         </div>
@@ -85,25 +128,33 @@
           <div><br><br>
             <div class="moviePageTitle">SEARCH RESULTS FOR : {{searchText}}</div>
             <br>
-            <ng-container *ngIf="(currentMovies | search: searchText) as filteredMovies">
+            <ng-container *ngIf="(totalMovies | search: searchText) as filteredMovies">
               <div class="content-section implementation carousel-demo">
                 <div class="row">
                   <div class="col-3" *ngFor="let movie of filteredMovies">
                     <div class="item card row">
                       <div>
                         <div class="centeringElements">
-                          <img (click)="showSynopsisPage(movie)" src="{{movie.image}}" class="card-img-top" alt="...">
+                          <img (click)="showSynopsisPage(movie)" [src]="movie.thumbnail" class="card-img-top2" alt="...">
                         </div>
                         <div class="card-body1">
-                          <h5 class="cardtitle">{{movie.title}}</h5>
+                          <!-- <h5 class="cardtitle">{{movie.title}}</h5>
                           <div class="centeringElements">
-                            <h5 class="card-title">{{movie.rating}} &nbsp;|</h5>
+                            <h5 class="card-title">{{movie.rating2}} &nbsp;|</h5>
                             <h5 class="card-title">&nbsp;{{movie.duration}}</h5>
+                          </div> -->
+                          <div class="centeringElements">
+                            <h5 class="card-title">{{movie.rating2}}&nbsp;| &nbsp;</h5>
+                            <h5 class="card-title">{{movie.title}} </h5>
                           </div>
-                          <div class="centeringElementsSpaceAround">
+                          <div *ngIf="movie.currentrunning == 1" class="centeringElementsSpaceAround">
                             <div class="trailerBtn centeringElements" (click)="openTrailerPopup(movie.trailer)">
                               watchtrailer </div>&nbsp;&nbsp;
                             <div class="trailerBtn centeringElements" (click)="bookTicketsPage(movie)"> Book Now </div>
+                          </div>
+                          <div *ngIf="movie.currentrunning == 0" class="centeringElementsSpaceAround">
+                            <div class="trailerBtn centeringElements" (click)="openTrailerPopup(movie.trailer)">
+                              watchtrailer </div>
                           </div>
                         </div>
                       </div>
