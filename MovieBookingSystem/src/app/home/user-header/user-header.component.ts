@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { bmsApiService } from '../../services/bmsapi.service';
+import {  Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-user-header',
@@ -10,11 +12,24 @@ import { bmsApiService } from '../../services/bmsapi.service';
 export class UserHeaderComponent implements OnInit {
   user:any="";
   email:any = '';
+  inputForm: FormGroup;
   isVerifiedUser:boolean = true;
+  @Output() searchVal = new EventEmitter<string>();
+  searchText:string = "";
+  homePage:boolean = true;
 
-  constructor(private router: Router, private bms: bmsApiService) { }
+  constructor(private router: Router, private bms: bmsApiService,private fb: FormBuilder) {
+    this.inputForm = this.fb.group({
+      inputVal : [''],
+    });
+   }
 
   ngOnInit(): void {
+    if((this.router.url).includes("userHomePage")) {
+      this.homePage = true;
+    } else {
+      this.homePage = false;
+    }
     this.email = (localStorage.getItem("user")); 
     let cred:any = "";
       cred = {
@@ -50,4 +65,14 @@ export class UserHeaderComponent implements OnInit {
     this.router.navigateByUrl('/verifyUser');
   }
 
+  search(evt:any) {
+    this.searchVal.emit(evt);
+  }
+
+  clearSearch() {
+    this.searchText = "";
+    this.searchVal.emit(this.searchText);
+  }
+
+  
 }

@@ -8,7 +8,7 @@ import { tempDataService } from '../../services/tempData.service';
   styleUrls: ['./user-home-screen.component.scss']
 })
 export class UserHomeScreenComponent implements OnInit {
-
+  searchText = "";
   constructor(private tds: tempDataService, private router: Router) { }
 
   ngOnInit(): void {
@@ -19,5 +19,8 @@ export class UserHomeScreenComponent implements OnInit {
     }
   }
 
+  search(evt:any) {
+    this.searchText = evt;
+  }
 
 }

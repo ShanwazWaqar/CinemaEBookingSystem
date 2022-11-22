@@ -6,10 +6,14 @@
         <div class="search-icon">
            <span class="fas fa-search"></span>
         </div>
-        <form action="#">
+        <!-- <form action="#">
            <input type="search" class="search-data" placeholder="Search" required>
            <button type="submit" class="fas fa-search"></button>
-        </form>
+        </form> -->
+        <form *ngIf="homePage" [formGroup]="inputForm" class="form-wrapper cf">
+         <input type="text" formControlName="inputVal" placeholder="Search by Movie Name, Category" (ngModelChange)="search($event)" required>
+         <button type="submit" (click)="clearSearch()">Search</button>
+      </form>
         <div class="dropdown">
             <button class="dropbtn">Hello {{user}} <span class="dropdownArrow">&#11163;</span></button>
             <div class="dropdown-content">
