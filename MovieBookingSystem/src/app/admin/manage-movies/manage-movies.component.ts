@@ -21,7 +21,6 @@ export class ManageMoviesComponent implements OnInit {
     this.currentMoviesSelected = true;
     // this.addmoviesSelected = true;
     this.bms.getMoviesList().subscribe(res=>{
-      console.log(res," res of movies list");
       this.movies = [];
       for(let i=0;i<res.length;i++) {
         let obj = {
