@@ -19,7 +19,7 @@
                   <option value="Documentary">Documentary</option>
                   <option value="Fiction">Fiction</option>
                   <option value="Mystery">Mystery</option>
-                  <option value="Animation">Animation</option>  
+                  <option value="Animation">Animation</option>
                 </select>
               </div>
             </div>
@@ -56,9 +56,9 @@
                 </ng-template>
               </p-carousel>
             </div>
-              <div *ngIf="currentMovies == 0" class="noresultsContainer2">
-                No Movies Found with filter category {{currentFilterCategory}}
-              </div>
+            <div *ngIf="currentMovies == 0" class="noresultsContainer2">
+              No Movies Found with filter category {{currentFilterCategory}}
+            </div>
           </div>
         </div>
       </div>
@@ -82,7 +82,7 @@
                   <option value="Documentary">Documentary</option>
                   <option value="Fiction">Fiction</option>
                   <option value="Mystery">Mystery</option>
-                  <option value="Animation">Animation</option>  
+                  <option value="Animation">Animation</option>
                 </select>
               </div>
             </div>
@@ -135,7 +135,8 @@
                     <div class="item card row">
                       <div>
                         <div class="centeringElements">
-                          <img (click)="showSynopsisPage(movie)" [src]="movie.thumbnail" class="card-img-top2" alt="...">
+                          <img (click)="showSynopsisPage(movie)" [src]="movie.thumbnail" class="card-img-top2"
+                            alt="...">
                         </div>
                         <div class="card-body1">
                           <!-- <h5 class="cardtitle">{{movie.title}}</h5>
@@ -174,3 +175,6 @@
     </div>
   </div>
 </div>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#1fb5bf" type="square-jelly-box" [fullScreen]="true">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>

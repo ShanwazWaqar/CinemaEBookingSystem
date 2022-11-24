@@ -5,6 +5,7 @@ import { PopupTraierComponent } from '../popup-traier/popup-traier.component';
 import { Router } from '@angular/router';
 import { bmsApiService } from 'src/app/services/bmsapi.service';
 import { MsgPopupHomeComponent } from '../msg-popup-home/msg-popup-home.component';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-movie-list',
@@ -27,7 +28,7 @@ export class MovieListComponent implements OnInit {
   currentFilterCategory = "";
   upcomingFilterCategory = "";
 
-  constructor(private dialogRef: MatDialog, private router: Router, private bms: bmsApiService) {
+  constructor(private dialogRef: MatDialog, private router: Router, private bms: bmsApiService, private spinner: NgxSpinnerService) {
     this.responsiveOptions = [{
       breakpoint: '1024px',
       numVisible: 1,
@@ -47,12 +48,18 @@ export class MovieListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.spinner.show();
     this.bms.getMoviesList().subscribe(res => {
-      this.totalMovies = res;
-      this.filterMovies();
-      this.tempCurrentMovies = this.currentMovies;
-      this.tempUpcomingMovies = this.upcomingMovies;
-      this.searching = false;
+      if(res) {
+        this.totalMovies = res;
+        this.filterMovies();
+        this.tempCurrentMovies = this.currentMovies;
+        this.tempUpcomingMovies = this.upcomingMovies;
+        this.searching = false;
+        this.spinner.hide();
+      } else {
+        this.spinner.hide();
+      }  
     });
   }
 

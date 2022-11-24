@@ -76,6 +76,7 @@ import { MsgPopupComponent } from './admin/msg-popup/msg-popup.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { ErrorPopupComponent } from './admin/error-popup/error-popup.component';
 import { MsgPopupHomeComponent } from './home/msg-popup-home/msg-popup-home.component';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -155,7 +156,9 @@ import { MsgPopupHomeComponent } from './home/msg-popup-home/msg-popup-home.comp
     MatNativeDateModule,
     NgOtpInputModule,
     FormsModule,
-    FontAwesomeModule,MatMenuModule
+    FontAwesomeModule,
+    MatMenuModule,
+    NgxSpinnerModule
   ],
   providers: [bmsApiService, tempDataService],
   bootstrap: [AppComponent]
