@@ -74,5 +74,9 @@ export class UserHeaderComponent implements OnInit {
     this.searchVal.emit(this.searchText);
   }
 
+  manageCards() {
+    this.router.navigateByUrl('/manageCards');
+  }
+
   
 }

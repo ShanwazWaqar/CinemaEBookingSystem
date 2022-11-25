@@ -77,6 +77,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { ErrorPopupComponent } from './admin/error-popup/error-popup.component';
 import { MsgPopupHomeComponent } from './home/msg-popup-home/msg-popup-home.component';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { ManageCardsComponent } from './home/manage-cards/manage-cards.component';
 
 @NgModule({
   declarations: [
@@ -127,7 +128,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     EditPromoPopupComponent,
     MsgPopupComponent,
     ErrorPopupComponent,
-    MsgPopupHomeComponent
+    MsgPopupHomeComponent,
+    ManageCardsComponent
   ],
   imports: [
     BrowserModule,

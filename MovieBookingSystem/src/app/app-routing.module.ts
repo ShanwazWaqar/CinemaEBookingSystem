@@ -21,6 +21,7 @@ import { SignUp2Component } from './home/sign-up2/sign-up2.component';
 import { ChangePasswordComponent } from './home/change-password/change-password.component';
 import { VerfiyUserComponent } from './home/verfiy-user/verfiy-user.component';
 import { AdminRegComponent } from './admin/admin-reg/admin-reg.component';
+import { ManageCardsComponent } from './home/manage-cards/manage-cards.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'SignUp2', component: SignUpCompComponent },
   { path: 'Login', component: LoginComponent },
   { path: 'verifyUser', component: VerfiyUserComponent },
+  { path: 'manageCards', component: ManageCardsComponent },
   { path: 'userHomePage', component: UserHomeScreenComponent },
   { path: 'editUserProfile', component: EditUserProfileComponent },
   { path: 'synopsis/:movieName/:id', component: SynopsisPageComponent },
