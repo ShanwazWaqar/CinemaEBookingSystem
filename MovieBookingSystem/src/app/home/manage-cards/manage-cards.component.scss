@@ -27,7 +27,7 @@ body {
   padding: 60px 0;
   background-color: rgba(178,209,229,0.7);
   margin: 0 auto;
-  width: 600px;
+  width: 900px;
 }
 .body-text {
   padding: 0 20px 30px 20px;
@@ -66,20 +66,26 @@ input {
 input[type="text"]{
   display: block;
   height: 50px;
-  width: 97%;
-  border: none;
+  width: 100%;
+  border-radius: 4px;
+}
+input[type="number"]{
+  display: block;
+  height: 50px;
+  width: 100%;
+  border-radius: 4px;
 }
 input[type="email"]{
   display: block;
   height: 50px;
   width: 97%;
-  border: none;
+  
 }
 input[type="submit"]{
   display: block;
   height: 60px;
   width: 100%;
-  border: none;
+  
   background-color: #3C8DC5;
   color: #fff;
   margin-top: 2px;
@@ -103,40 +109,46 @@ input[type="submit"]:hover{
   float: right;
 }
 
-@media only screen and (max-width: 480px){
-  body {
-    width: 100%;
-    margin: 0 auto;
-  }
-  .form-container {
-    margin: 0 2%;
-  }
-  input {
-    font-size: 1em;
-  }
-  #input-button {
-    width: 100%;
-  }
-  #input-field {
-    width: 96.5%;
-  }
-  h1 {
-    font-size: 1.2em;
-  }
-  input {
-    margin: 2px 0;
-  }
-  input[type="submit"]{
-    height: 50px;
-  }
-  #column-left {
-    width: 96.5%;
-    display: block;
-    float: none;
-  }
-  #column-right {
-    width: 96.5%;
-    display: block;
-    float: none;
-  }
+.inputField {
+  border: 1px solid black;
+}
+// card css
+.card {
+	background-color: #fff;
+	border-radius: 4px;
+	max-width: 600px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+	position: relative;
+	padding: 34px;
+	color: #444;
+	cursor: pointer;
+	&:before {
+		content: '';
+		display: block;
+		position: absolute;
+		background-color: #ccc;
+		left: 20px;
+		right: 20px;
+		bottom: 0;
+		top: 50%;
+		z-index: -1;
+		box-shadow: 0 0 40px lighten(#000, 60%);
+		transition: box-shadow .2s ease-in-out;
+	}
+	&.level-3 {
+		&:hover {
+			&:before {
+				box-shadow: 0 0 80px lighten(#000, 60%);
+			}
+		}
+	}
+}
+.textClass {
+  border: 1px solid black;
+}
+
+.cardtitle {
+  display: flex;
+  justify-content: space-between;
 }

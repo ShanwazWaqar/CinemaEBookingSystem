@@ -1,4 +1,4 @@
-<app-user-header></app-user-header>
+<!-- <app-user-header></app-user-header> -->
 
 <div>
     <form [formGroup]="cardForm">
@@ -10,31 +10,35 @@
                         <div class="addClass" (click)="addCard()">Add Card</div>
                     </div>
                     <div *ngFor="let card of cards.controls; let i = index" formGroupName="{{i}}" class="">
-                        <div>
-                            <!-- card {{i}}
-                            <div (click)="removeCard(i)">Delete Card</div> -->
-                            <div class="">
-
-                                <input id="column-left" type="text" name="first-name" placeholder="First Name" />
-                                <input id="column-right" type="text" name="last-name" placeholder="Surname" />
-                                <input id="input-field" type="text" name="number" placeholder="Card Number" />
-                                <input id="column-left" type="text" name="expiry" placeholder="MM / YY" />
-                                <input id="column-right" type="text" name="cvc" placeholder="CCV" />
-
-                                <div class="card-wrapper"></div>
-
-                                <input id="input-field" type="text" name="streetaddress" required="required"
-                                    autocomplete="on" maxlength="45" placeholder="Streed Address" />
-                                <input id="column-left" type="text" name="city" required="required" autocomplete="on"
-                                    maxlength="20" placeholder="City" />
-                                <input id="column-right" type="text" name="zipcode" required="required"
-                                    autocomplete="on" pattern="[0-9]*" maxlength="5" placeholder="ZIP code" />
-                                <input id="input-field" type="email" name="email" required="required" autocomplete="on"
-                                    maxlength="40" placeholder="Email" />
-                                <input id="input-button" type="submit" value="Submit" />
+                        <div class="d-flex justify-content-center">
+                            <div class="col-10">
+                                <div class="formContainer">
+                                    <div class="card level-3">
+                                        <div>
+                                            card Number <br>
+                                            <input formControlName="cardNumber" class="textClass" type="text" />
+                                        </div><br>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div>Exipry Month</div>
+                                                <input formControlName="expiryMonth" type="number" />
+                                            </div>
+                                            <div class="col-6">
+                                                <div>Expiry Year</div>
+                                                <input formControlName="expiryYear" type="number" />
+                                            </div>
+                                        </div><br>
+                                        <div>
+                                            Name on Card <br>
+                                            <input formControlName="nameOnCard" class="textClass" type="text" />
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-
                         </div>
+                    </div>
+                    <div>
+                        <button (click)="submit()"> submit </button>
                     </div>
                 </div>
             </div>
