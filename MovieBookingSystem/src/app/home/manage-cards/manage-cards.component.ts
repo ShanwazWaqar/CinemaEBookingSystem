@@ -18,10 +18,10 @@ export class ManageCardsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // let user = (localStorage.getItem("loggedIn")); 
-    // if(!(user == "true")) {
-    //   this.router.navigateByUrl('/home');
-    // }
+    let user = (localStorage.getItem("loggedIn")); 
+    if(!(user == "true")) {
+      this.router.navigateByUrl('/home');
+    }
     this.cardForm = this.fb.group({
       cardsArray : this.fb.array([this.createCardForm()])
     });

@@ -1,4 +1,4 @@
-<!-- <app-user-header></app-user-header> -->
+<app-user-header></app-user-header>
 
 <div>
     <form [formGroup]="cardForm">
@@ -13,7 +13,11 @@
                         <div class="d-flex justify-content-center">
                             <div class="col-10">
                                 <div class="formContainer">
+                                    
                                     <div class="card level-3">
+                                        <div class="deleteClass">
+                                            <span (click)="removeCard(i)" class="deleteHover">Delete</span>
+                                        </div>
                                         <div>
                                             card Number <br>
                                             <input formControlName="cardNumber" class="textClass" type="text" />
