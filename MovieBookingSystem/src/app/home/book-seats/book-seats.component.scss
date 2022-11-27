@@ -232,16 +232,16 @@ nav .logo.space{
 .content .space{
   margin: 10px 0;
 }
-li {
-  cursor: pointer;
-}
+// li {
+//   cursor: pointer;
+// }
 .movieCard {
     font-family: 'Helvetica', sans-serif, 'Ariel';
     position: relative;
     background: #ffffff;
     color: #555555;
     margin: 50px auto;
-    width: 700px;
+    width: 1100px;
     // max-width: 900px;
     min-height: 500px;
     padding: 30px 30px 30px 30px;
@@ -250,6 +250,13 @@ li {
     box-shadow: -5px 5px 15px;
     border-radius: 5px;
     margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.cabin {
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .movieTitle {
@@ -268,12 +275,12 @@ li {
   }
   body {
     font-size: 16px;
-    background-color: #269686;
+    background-color: #1fb5bf;
   }
   .theatre {
     margin: 20px auto;
     width: 100%;
-    max-width: 350px;
+    max-width: 850px;
     border-radius: 5px;
     background-color: #fff;
     padding: 20px 10px;
@@ -287,11 +294,14 @@ li {
     height: 25px;
     margin: 0 20px;
     border-radius: 50%;
-    box-shadow: 0px -3px 0px 1px #ccc;
-    color: #ccc;
+    box-shadow: 0px -3px 0px 1px #000;
+    color: #000;
   }
   .screen-side .select-text {
     color: #969696;
+    height: 30px;
+    margin-top: 15px;
+    margin-bottom: 15pxsa;
   }
   .exit {
     position: relative;
@@ -330,15 +340,94 @@ li {
   .seat {
     display: flex;
     flex: 0 0 14.28571%;
+    min-width: 45px;
     padding: 5px;
     position: relative;
   }
-  .seat:nth-child(2),.seat:nth-child(5) {
-    margin-right: 7%;
-  }
+  // .seat:nth-child(2),.seat:nth-child(5) {
+  //   margin-right: 7%;
+  // }
   .seat input[type="checkbox"] {
     position: absolute;
     opacity: 0;
+  }
+
+  .seatSelected {
+    display: block;
+    position: relative;
+    width: 100%;
+    width: 45px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.5rem;
+    padding: 4px 0;
+    border-radius: 2px;
+    // animation-duration: 100ms;
+    // animation-fill-mode: both;
+    // transition-duration: 100ms;
+    background: black;
+    color: white;
+    // -webkit-animation-name: rubberBand;
+    // animation-name: rubberBand;
+    // animation-duration: 100ms;
+    // animation-fill-mode: both;
+  }
+
+  .movieSeat {
+    display: flex;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+
+  .seatBlocked {
+    // background: #ddd;
+    // color: #000;
+    // text-indent: -9999px;
+    // overflow: hidden;
+
+    display: block;
+    position: relative;
+    width: 100%;
+    width: 45px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.5rem;
+    padding: 4px 0;
+    border-radius: 2px;
+    // animation-duration: 100ms;
+    // animation-fill-mode: both;
+    // transition-duration: 100ms;
+    background: #ddd;
+    color: black;
+    // -webkit-animation-name: rubberBand;
+    // animation-name: rubberBand;
+    // animation-duration: 100ms;
+    // animation-fill-mode: both;
+    cursor: not-allowed!important;
+  }
+
+  .seatBlocked :hover {
+    box-shadow: none!important;
+  }
+
+  .seat {
+    display: block;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.5rem;
+    padding: 4px 0;
+    color: #fff;
+    background: #1fb5bf;
+    border-radius: 2px;
+    animation-duration: 300ms;
+    animation-fill-mode: both;
+    transition-duration: 300ms;
   }
   .seat input[type="checkbox"]:checked + label {
     background: black;
@@ -381,12 +470,26 @@ li {
     animation-fill-mode: both;
     transition-duration: 300ms;
   }
+
+  .seatSelected :hover {
+    cursor: pointer;
+    box-shadow: 0px 0 7px 3px #ccc; // for hovering the seat
+  }
+
+  .movieSeat :hover {
+    cursor: pointer;
+    box-shadow: 0px 0 7px 3px #ccc; // for hovering the seat
+  }
+
   .seat label:hover {
     cursor: pointer;
-    // box-shadow: 0px 0 7px 3px #ccc; // for hovering the seat
+    box-shadow: 0px 0 7px 3px #ccc; // for hovering the seat
   }
   .space {
     height: 30px;
+  }
+  .space2 {
+    height: 13px;
   }
   .continueBtn {
     width: 250px;
@@ -399,6 +502,12 @@ li {
     border-radius: 25px;
     font-weight: bolder;
     cursor: pointer;
+} 
+.flexClass {
+  display: flex;
 }
   
+.seatSelectedCount {
+  color: #1fb5bf;
+}
   
