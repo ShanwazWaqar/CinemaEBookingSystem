@@ -128,18 +128,31 @@ export class ManageCardsComponent implements OnInit {
   }
 
   submit() {
-    let obj = this.createObj(this.cardForm.value.cardsArray.length);
-    obj = JSON.stringify(obj);
-    console.log("data sent is",obj);
-    
-    this.bms.update3Cards(obj).subscribe(res=>{
-      if(res) {
-        console.log(res," res for update3Cards");
-      } else {
-        console.log("error for update3Cards method api call");
-      }
-    })
+
+    // let obj = this.createObj(this.cardForm.value.cardsArray.length);
+    // obj = JSON.stringify(obj);
+    for(let i=0;i<this.cardForm.value.cardsArray.length;i++) {
+      let obj :any;
+      obj = {
+        cardnumber : this.cardForm.value.cardsArray[i].cardNumber,
+        nameoncard : this.cardForm.value.cardsArray[i].nameOnCard,
+        expirymonth : this.cardForm.value.cardsArray[i].expiryMonth,
+        expiryyear : this.cardForm.value.cardsArray[i].expiryYear,
+        old_data : this.cardForm.value.cardsArray[i].cardNumber,
+      };
+      obj = JSON.stringify(obj);
+      this.bms.update3Cards(obj).subscribe(res=>{
+        if(res) {
+          console.log(res," res for update3Cards");
+        } else {
+          console.log("error for update3Cards method api call");
+        }
+      })
+    }
   }
+
+
+
 
 }
 
