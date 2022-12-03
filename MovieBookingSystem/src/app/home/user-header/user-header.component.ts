@@ -78,5 +78,9 @@ export class UserHeaderComponent implements OnInit {
     this.router.navigateByUrl('/manageCards');
   }
 
+  gotoHomePage() {
+    this.router.navigateByUrl('/userHomePage');
+  }
+
   
 }
