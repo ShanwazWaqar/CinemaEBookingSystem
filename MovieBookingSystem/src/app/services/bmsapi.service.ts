@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Title } from '@angular/platform-browser';
 
 @Injectable()
 export class bmsApiService {
@@ -63,6 +64,11 @@ export class bmsApiService {
     verfiedUser(user:any): Observable<any> {
         const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
         return this.httpClient.post("http://localhost:1785/api/sendstatus",JSON.parse(user),{'headers':headers});
+    }
+
+    getOrderHistory(email:any): Observable<any> {
+        const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
+        return this.httpClient.post("http://localhost:1785/api/orderhistory",JSON.parse(email),{'headers':headers});
     }
 
     changePassword(user:any): Observable<any> {
@@ -145,6 +151,8 @@ export class bmsApiService {
         // return this.httpClient.get("https://jsonplaceholder.typicode.com/posts/1/comments");
         return this.httpClient.post("http://localhost:1785/admin/getmoviedetails",JSON.parse(data),{'headers':headers});
     }
+
+    
     
     getscheduleinfo(data:any): Observable<any> {
         const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');

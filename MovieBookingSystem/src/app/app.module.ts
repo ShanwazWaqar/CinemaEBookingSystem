@@ -78,6 +78,7 @@ import { ErrorPopupComponent } from './admin/error-popup/error-popup.component';
 import { MsgPopupHomeComponent } from './home/msg-popup-home/msg-popup-home.component';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { ManageCardsComponent } from './home/manage-cards/manage-cards.component';
+import { OrderHistoryComponent } from './home/order-history/order-history.component';
 
 @NgModule({
   declarations: [
@@ -129,7 +130,8 @@ import { ManageCardsComponent } from './home/manage-cards/manage-cards.component
     MsgPopupComponent,
     ErrorPopupComponent,
     MsgPopupHomeComponent,
-    ManageCardsComponent
+    ManageCardsComponent,
+    OrderHistoryComponent
   ],
   imports: [
     BrowserModule,

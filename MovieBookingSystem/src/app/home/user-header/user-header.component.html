@@ -18,6 +18,7 @@
             <button class="dropbtn">Hello {{user}} <span class="dropdownArrow">&#11163;</span></button>
             <div class="dropdown-content">
               <a class="pointer" (click)="editProfile()">Edit Profile</a>
+              <a class="pointer" (click)="orderHistory()">Order History</a>
               <a class="pointer" (click)="manageCards()">Manage Cards</a>
               <a class="pointer" *ngIf="isVerifiedUser" (click)="verifyUser()">Verify User</a>
               <a class="pointer" (click)="changePassword()">Change Password</a>

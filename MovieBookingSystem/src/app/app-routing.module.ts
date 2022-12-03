@@ -22,6 +22,7 @@ import { ChangePasswordComponent } from './home/change-password/change-password.
 import { VerfiyUserComponent } from './home/verfiy-user/verfiy-user.component';
 import { AdminRegComponent } from './admin/admin-reg/admin-reg.component';
 import { ManageCardsComponent } from './home/manage-cards/manage-cards.component';
+import { OrderHistoryComponent } from './home/order-history/order-history.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -46,6 +47,7 @@ const routes: Routes = [
   { path: 'confirmation', component: ConfirmaionComponent },
   { path: 'forgotPassword', component: ForgotPasswordComponent },
   { path: 'adminRegistration', component: AdminRegComponent },
+  { path: 'orderHistory', component: OrderHistoryComponent },
   { path: '**', component: HomeComponent },
 ];
 
