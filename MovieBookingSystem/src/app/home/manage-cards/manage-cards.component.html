@@ -1,47 +1,119 @@
 <app-user-header></app-user-header>
 
-<div>
-    <form [formGroup]="cardForm">
-        <div>
-            <div class="row justify-content-center cardContainer" formArrayName="cardsArray">
-                <div class="col-10">
-                    <div class="toprow">
-                        <div class="cardTitle"> CARD DETAILS </div>
-                        <div class="addClass" (click)="addCard()">Add Card</div>
-                    </div>
-                    <div *ngFor="let card of cards.controls; let i = index" formGroupName="{{i}}" class="">
-                        <div class="d-flex justify-content-center">
-                            <div class="col-10">
-                                <div class="formContainer">
-                                    <div class="card level-3">
-                                        <div>
-                                            card Number <br>
-                                            <input formControlName="cardNumber" class="textClass" type="text" />
-                                        </div><br>
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <div>Exipry Month</div>
-                                                <input formControlName="expiryMonth" type="number" />
+<div class="d-flex justify-content-center">
+    <div class="cardFormWidth">
+        <form [formGroup]="cardForm">
+            <div>
+                <div class="row justify-content-center cardContainer" formArrayName="cardsArray">
+                    <div class="col-10 cardsConatainer">
+                        <div class="toprow">
+                            <div class="cardTitle"> CARD DETAILS </div>
+                            <div class="addClass" (click)="addCard()">Add Card</div>
+                        </div>
+                        <div *ngFor="let card of cards.controls; let i = index" [formGroupName]="i" class="">
+                            <div class="d-flex justify-content-center">
+                                <div class="col-10">
+                                    <div class="formContainer">
+                                        <div class="card level-3">
+                                            <div class="d-flex">
+                                                <div class="cardTitle2">
+                                                    Details of {{i+1}} Card
+                                                </div>
+                                                <div (click)="removeCard(i)" class="deleteIcon">
+                                                    <mat-icon>delete</mat-icon>
+                                                </div>
                                             </div>
-                                            <div class="col-6">
-                                                <div>Expiry Year</div>
-                                                <input formControlName="expiryYear" type="number" />
+                                            <div>
+                                                card Number <br>
+                                                <input formControlName="cardNumber" class="textClass" type="number" />
+                                                <div *ngIf="cards.controls[i].get('cardNumber')?.invalid && (cards.controls[i].get('cardNumber')?.dirty || cards.controls[i].get('cardNumber')?.touched)" class="">
+                                                    <span *ngIf="cards.controls[i].get('cardNumber')?.errors?.required" class="errorText">Card Number is required</span>
+                                                    <span *ngIf="cards.controls[i].get('cardNumber')?.errors?.pattern" class="errorText">Card Number should be of 12 digits(ex: 123412341234)</span>
+                                                </div>
+                                                
+                                            </div><br>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div>Exipry Month</div>
+                                                    <input formControlName="expiryMonth" type="number"/> 
+                                                    <div *ngIf="cards.controls[i].get('expiryMonth')?.invalid && (cards.controls[i].get('expiryMonth')?.dirty || cards.controls[i].get('expiryMonth')?.touched)" class="">
+                                                        <span *ngIf="cards.controls[i].get('expiryMonth')?.errors?.required" class="errorText">Month field is required</span>
+                                                        <span *ngIf="cards.controls[i].get('expiryMonth')?.errors?.monthError && !cards.controls[i].get('expiryMonth')?.errors?.required" class="errorText">Exact 2 numbers required(example:08)</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div>Expiry Year</div>
+                                                    <input formControlName="expiryYear" type="number" />
+                                                    <div *ngIf="cards.controls[i].get('expiryYear')?.invalid && (cards.controls[i].get('expiryYear')?.dirty || cards.controls[i].get('expiryYear')?.touched)" class="">
+                                                        <span *ngIf="cards.controls[i].get('expiryYear')?.errors?.required" class="errorText">Year field is required</span>
+                                                        <span *ngIf="cards.controls[i].get('expiryYear')?.errors?.pattern" class="errorText">Exact 4 numbers required(example:1998)</span>
+                                                    </div>
+                                                </div>
+                                            </div><br>
+                                            <div>
+                                                Name on Card <br>
+                                                <input formControlName="nameOnCard" class="textClass" type="text" />
+                                                <div *ngIf="cards.controls[i].get('nameOnCard')?.invalid && (cards.controls[i].get('nameOnCard')?.dirty || cards.controls[i].get('nameOnCard')?.touched)" class="">
+                                                    <span *ngIf="cards.controls[i].get('nameOnCard')?.errors?.required" class="errorText">Name on Card field is required</span>
+                                                </div>
                                             </div>
-                                        </div><br>
-                                        <div>
-                                            Name on Card <br>
-                                            <input formControlName="nameOnCard" class="textClass" type="text" />
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div>
-                        <button (click)="submit()"> submit </button>
+                        <div class="d-flex justify-content-center submitContainer">
+                            <div class="col-10 updateBtn" (click)="submit()"> submit </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!-- <div class="d-flex justify-content-center">
+    <div class="newcard">
+        <form [formGroup]="cardForm">
+            <div *ngFor="let card of cards.controls; let i = index" [formGroupName]="i">
+                <div class="formBorder">
+                    <div class="d-flex">
+                        <div class="col-11 cardText">CARD DETAILS</div>
+                    </div><br>
+                    <div class="inputContainer">
+                        <span class="inputTitle">Card Number <span class="required">*</span></span>
+                        <input type="number" formControlName="cardNumber" title="cardNumber" placeholder="Card Number" />
+                        <div *ngIf="cards.controls[i].get('cardNumber')?.invalid && (cards.controls[i].get('cardNumber')?.dirty || cards.controls[i].get('cardNumber')?.touched)" class="">
+                            <span *ngIf="cards.controls[i].get('cardNumber')?.errors?.required" class="errorText">Card Number is required</span>
+                            <span *ngIf="cards.controls[i].get('cardNumber')?.errors?.pattern" class="errorText">Card Number should be of 12 digits(ex: 123412341234)</span>
+                        </div>
+                    </div>
+                    <div class="inputContainer">
+                        <span class="inputTitle">Expiry Month <span class="required">*</span></span>
+                        <input type="text" formControlName="expiryMonth" title="expiryMonth" placeholder="Expiry Month" maxlength="2" />
+                        <div *ngIf="cards.controls[i].get('expiryMonth')?.invalid && (cards.controls[i].get('expiryMonth')?.dirty || cards.controls[i].get('expiryMonth')?.touched)" class="">
+                            <span *ngIf="cards.controls[i].get('expiryMonth')?.errors?.required" class="errorText">Month field is required</span>
+                            <span *ngIf="cards.controls[i].get('expiryMonth')?.errors?.monthError && !cards.controls[i].get('expiryMonth')?.errors?.required" class="errorText">Exact 2 numbers required(example:08)</span>
+                        </div>
+                    </div>
+                    <div class="inputContainer">
+                        <span class="inputTitle">Expiry Year <span class="required">*</span></span>
+                        <input type="number" formControlName="expiryYear" title="expiryYear" placeholder="Expiry Year" />
+                        <div *ngIf="cards.controls[i].get('expiryYear')?.invalid && (cards.controls[i].get('expiryYear')?.dirty || cards.controls[i].get('expiryYear')?.touched)" class="">
+                            <span *ngIf="cards.controls[i].get('expiryYear')?.errors?.required" class="errorText">Year field is required</span>
+                            <span *ngIf="cards.controls[i].get('expiryYear')?.errors?.pattern" class="errorText">Exact 4 numbers required(example:1998)</span>
+                        </div>
+                    </div>
+                    <div class="inputContainer">
+                        <span class="inputTitle">Name on Card <span class="required">*</span></span>
+                        <input type="text" formControlName="nameOnCard" title="Name" placeholder="Name on Card" />
+                        <div *ngIf="cards.controls[i].get('nameOnCard')?.invalid && (cards.controls[i].get('nameOnCard')?.dirty || cards.controls[i].get('nameOnCard')?.touched)" class="">
+                            <span *ngIf="cards.controls[i].get('nameOnCard')?.errors?.required" class="errorText">Name on Card field is required</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div> -->

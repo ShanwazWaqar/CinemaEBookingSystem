@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,8 +14,10 @@ export class ManageCardsComponent implements OnInit {
   constructor(private router: Router, private fb: FormBuilder) { }
 
   get cards() {
-    return this.cardForm.get('cardsArray') as FormArray;
+    return (this.cardForm.get('cardsArray') as FormArray);
   }
+
+
 
   ngOnInit(): void {
     // let user = (localStorage.getItem("loggedIn")); 
@@ -32,10 +34,10 @@ export class ManageCardsComponent implements OnInit {
 
   createCardForm(): FormGroup {
     return this.fb.group({
-      cardNumber: [null, Validators.compose([Validators.required])],
-      expiryMonth: [null, Validators.compose([Validators.required])],
-      expiryYear: [null, Validators.compose([Validators.required])],
-      nameOnCard: [null, Validators.compose([Validators.required])]
+      cardNumber : ['',[Validators.required,Validators.pattern("[0-9]{12}")]],
+      expiryMonth : ['',[Validators.required,cardMonthCheck]],
+      expiryYear : ['',[Validators.required,Validators.pattern('^[0-9]{4}$')]],
+      nameOnCard : ['',[Validators.required]],
     });
   }
 
@@ -54,6 +56,7 @@ export class ManageCardsComponent implements OnInit {
 
   removeCard(index:any) {
     const cardList = <FormArray> this.cardForm.controls['cardsArray'];
+    console.log(cardList," cardList");
     cardList.removeAt(index);
   }
 
@@ -63,3 +66,22 @@ export class ManageCardsComponent implements OnInit {
   }
 
 }
+
+function cardMonthCheck(control: AbstractControl): {[key:string]:any} | null { 
+  const month:string = control.value;
+  if(month == null) {
+    console.log(month," 1-> month val in card month check" ,  )
+    return { 'monthError' : false };
+  } else {
+    const regex = new RegExp('/^[0-9]{2}$/');
+    console.log(regex.test(month)," regex test")
+    if(month.length == 2) {
+      console.log(month,"2 -> month val in card month checck", month+"".length)
+      return { 'monthError' : false };
+    } else {
+      console.log(month,"3-> month val in card month checck", month+"".length)
+      return { 'monthError' : true }
+    }
+  }
+
+ }
