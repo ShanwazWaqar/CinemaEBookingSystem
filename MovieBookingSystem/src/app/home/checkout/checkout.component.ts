@@ -130,11 +130,13 @@ export class CheckoutComponent implements OnInit {
           nameoncard: (this.cardForm.value.name),
         }
       ];
+      this.movie.cardNo = this.cardForm.value.cardNo;
     } else {
       //selecting from existing cards
-      obj.cardSelected = this.checkoutForm.value.cardSelected
+      this.movie.cardNo = this.checkoutForm.value.cardSelected;
+      obj.cardSelected = this.checkoutForm.value.cardSelected;
     }
-    console.log(obj," obj")
+    localStorage.setItem("movie",JSON.stringify(this.movie));
     this.router.navigateByUrl('/confirmation');
   }
 

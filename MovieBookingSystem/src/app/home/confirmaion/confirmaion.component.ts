@@ -29,7 +29,27 @@ export class ConfirmaionComponent implements OnInit {
       this.movie.ticketCost = this.movie.ticketCost.toFixed(2);
       this.total = Number(this.movie.ticketCost + 10).toFixed(2);
       // need order id from backend.
-      console.log(this.movie," movie")
+      let obj:any;
+      obj = 
+        {
+          "title": this.movie.movieName,
+          "email":  this.email,
+          "date": this.movie.movieTiming,
+          "time": this.movie.movieTime,
+          "screennumber": this.movie.screen,
+          "numberoftcikets": (this.movie.adultSeats+this.movie.childSeats+this.movie.seniorSeats),
+          "adultseats": this.movie.adultSeats,
+          "childseats": this.movie.childSeats,
+          "seniorseats": this.movie.seniorSeats,
+          "cardnumber": this.movie.cardNo.split(" ")[(this.movie.cardNo.split(" ").length-1)],
+          "totalamount": this.movie.ticketCost,
+          "seatnumbers": this.movie.selectedSeatsList,
+      };
+      obj = JSON.stringify(obj);
+      this.bms.ticketBooked(obj).subscribe(res=> {
+        console.log(res," response");
+      })
+
     })
   }
 
