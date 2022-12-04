@@ -16,7 +16,7 @@ export class BookSeatsComponent implements OnInit {
   listSelected:any = [];
   movie:any;
   email:any;
-
+  seatOccupied:any;
   constructor(private router: Router, private bms: bmsApiService, private route:ActivatedRoute) {
   }
 
@@ -27,7 +27,6 @@ export class BookSeatsComponent implements OnInit {
     this.movie = JSON.parse(this.movie);
     this.seatRows = [];
     this.loadSeats();
-    console.log(this.movie," movie");
     let obj:any;
     obj = {
       time : this.movie.movieTime,
@@ -37,7 +36,17 @@ export class BookSeatsComponent implements OnInit {
     obj = JSON.stringify(obj);
     this.bms.getseats(obj).subscribe(res=> {
       if(res) {
-        console.log(res);
+        this.seatOccupied = res;
+        for(let i=0;i<this.seatOccupied.length;i++) {
+          for(let j=0;j<this.seatRows.length;j++) {
+            for(let k = 0;k<this.seatRows[i].length;k++) {
+              if(this.seatRows[j][k].label == this.seatOccupied[i].seatnumber) {
+                this.seatRows[j][k].selected = 1;
+                break;
+              }
+            }
+          }
+        }
       }
     });
   }
@@ -55,7 +64,7 @@ export class BookSeatsComponent implements OnInit {
         tempArr.push(obj);
       }
       this.seatRows.push(tempArr);
-    }
+    };
   }
 
   addSpace(row: any) {
@@ -92,7 +101,7 @@ export class BookSeatsComponent implements OnInit {
     }
     this.movie.selectedSeatsList = selectedSeatsList;
     localStorage.setItem("movie",JSON.stringify(this.movie));
-    this.router.navigateByUrl('/selectAges');
+    // this.router.navigateByUrl('/selectAges');
   }
 
 }
