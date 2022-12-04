@@ -52,6 +52,10 @@ export class UserHeaderComponent implements OnInit {
     this.router.navigateByUrl('/editUserProfile');
   }
 
+  orderHistory() {
+    this.router.navigateByUrl('/orderHistory');
+  }
+
   logout() {
     localStorage.setItem("loggedIn","false");
     this.router.navigateByUrl('/Login');
