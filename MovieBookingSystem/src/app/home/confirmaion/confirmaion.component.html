@@ -42,7 +42,7 @@
                                     <h2> {{movie.movieName}} </h2>
                                     <p class="card-text"> {{movie.runtime}} | {{movie.rating}} | 
                                         <span *ngIf="movie.adultSeats != 0"> {{movie.adultSeats}} Adult</span>
-                                         <span *ngIf="movie.childSeats !=0">,</span> <span> {{movie.childSeats}} Child </span> 
+                                         <span *ngIf="movie.childSeats !=0">,</span> <span *ngIf="movie.childSeats !=0"> {{movie.childSeats}} Child </span> 
                                          <span *ngIf="movie.seniorSeats !=0">,</span> <span *ngIf= "movie.seniorSeats!=0"> {{movie.seniorSeats}} senior</span></p> 
                                     <br>
                                     <p class="card-text"><b>Seats: {{movie.selectedSeatsList}}</b></p>
@@ -63,7 +63,7 @@
 
                         <div class="row my-4">
                             <div class="col-md-4 offset-md-8 col-lg-3 offset-lg-9">
-                                <span>Total : </span><span class="lead fw-bold mb-0" style="color: #1fb5bf;"><b>${{movie.ticketCost + 10}}</b></span>
+                                <span>Total Paid : </span><span class="lead fw-bold mb-0" style="color: #1fb5bf;"><b>${{total}}</b></span>
                             </div>
                         </div>
 

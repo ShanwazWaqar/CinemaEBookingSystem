@@ -11,13 +11,13 @@ import { bmsApiService } from 'src/app/services/bmsapi.service';
 export class ConfirmaionComponent implements OnInit {
   email:any;
   movie:any;
+  total:any = 0;
   constructor(private dialogRef: MatDialog,private router: Router,private bms: bmsApiService, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.email = (localStorage.getItem("user"));
     this.movie = (localStorage.getItem("movie"));
     this.movie = JSON.parse(this.movie);
-    console.log(this.movie," movie");
     let obj:any
     obj={
       title: this.movie.movieName
@@ -27,7 +27,9 @@ export class ConfirmaionComponent implements OnInit {
       this.movie.rating = res.rating.split(":")[0];
       this.movie.runtime = "1h 20m";
       this.movie.ticketCost = this.movie.ticketCost.toFixed(2);
+      this.total = Number(this.movie.ticketCost + 10).toFixed(2);
       // need order id from backend.
+      console.log(this.movie," movie")
     })
   }
 
