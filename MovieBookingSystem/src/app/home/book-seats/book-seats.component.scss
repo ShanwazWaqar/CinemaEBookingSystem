@@ -511,3 +511,15 @@ nav .logo.space{
   color: #1fb5bf;
 }
   
+.discontinueBtn {
+    width: 250px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #969696;
+    color: black;
+    border-radius: 25px;
+    font-weight: bolder;
+    cursor: not-allowed;
+}

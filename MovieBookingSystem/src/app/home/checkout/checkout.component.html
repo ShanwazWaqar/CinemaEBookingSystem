@@ -1,64 +1,70 @@
-<nav>
-    <div class="logo">
-       Bookmyshow
-    </div>
- </nav>
+<div *ngIf="email == undefined">
+  <nav>
+      <div class="logo">
+          Bookmyshow
+      </div>
+      <div class="search-icon">
+          <span class="fas fa-search"></span>
+      </div>
+  </nav>
+</div>
+<div *ngIf="email">
+  <app-user-header></app-user-header>
+</div>
 
 <div class="centeringForm" *ngIf="intialPage">
     <div class="log-form">
       <div>
         <div class="d-flex justify-content-center"><h2>Checkout</h2></div>
-        <form>
+        <form [formGroup]="checkoutForm">
           <div class="checkoutIndividualTitle">Personal Details : </div>
-          <input type="text" title="firstName" placeholder="first Name *" />
-          <input type="text" title="lastName" placeholder="Last Name *" />
-          <input type="email" title="email" placeholder="Email *" />
-          <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="phone Number" placeholder="Phone Number *" />
+          <input type="text" formControlName="firstName" title="firstName" placeholder="first Name *" />
+          <input type="text" formControlName="lastName" title="lastName" placeholder="Last Name *" />
+          <input type="email" formControlName="email" title="email" placeholder="Email *" />
+          <input type="tel" formControlName="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="phone Number" placeholder="Phone Number *" />
           <!-- <input type="number" title="Age" placeholder="Age *" /> -->
           <div class="checkoutIndividualTitle">Billing Address : </div>
-          <input type="text" title="address line 1" placeholder="Address Line 1*" />
-        <input type="text" title="address line 2" placeholder="Address Line 2" />
+          <input type="text" formControlName="address1" title="address line 1" placeholder="Address Line 1*" />
+        <input type="text" formControlName="address2" title="address line 2" placeholder="Address Line 2" />
         <div class="d-flex justify-content-center">
-            <input type="text" title="city" placeholder=" Enter City*" />
-            <input type="text" title="State" placeholder=" Enter State*" />
+            <input type="text" formControlName="city" title="city" placeholder=" Enter City*" />
+            <input type="text" formControlName="state" title="State" placeholder=" Enter State*" />
         </div>
         <div class="d-flex justify-content-center">
-            <input type="text" title="Country" placeholder=" Enter Country*" />
-        <input type="text" title="zipcode" placeholder=" Enter Zipcode*" />
+            <input type="text" formControlName="country" title="Country" placeholder=" Enter Country*" />
+        <input type="text" formControlName="pincode" title="zipcode" placeholder=" Enter Zipcode*" />
         </div>
         <!-- card buttons -->
         <div class="checkoutIndividualTitle">Payment Details : </div>
-        <button class="secondPageBtn" *ngIf="!showExistingCards" (click)="ShowExistingCards()"> Select from Saved Cards </button> <br>
-        <div *ngIf="showExistingCards">
-          <div class="checkoutIndividualTitle2">Saved Cards : </div>
+        <!-- <button class="secondPageBtn" *ngIf="!showExistingCards" (click)="ShowExistingCards()"> Select from Saved Cards </button> <br> -->
+        <div >
+          <div class="checkoutIndividualTitle2">Saved Cards : (MAX 3 Cards be saved)</div>
           <div class="radioBtnCss">
-            <div>
-              <input type="radio" id="html" name="savedCards" value="HTML">
-              <label for="html">1234-1234-1234-1234</label>
-            </div>
-            <br>
-            <div>
-              <input type="radio" id="css" name="savedCards" value="CSS">
-              <label for="css">5678-5678-5678-5678</label>
-            </div>
-            <br>
-            <div>
-              <input type="radio" id="javascript" name="savedCards" value="JavaScript">
-              <label for="javascript">9876-9876-9876-9876</label>
-            </div>
-            
+            <mat-radio-group
+                aria-labelledby="example-radio-group-label"
+                class="example-radio-group"
+                formControlName="cardSelected"
+                >
+                <mat-radio-button class="example-radio-button" *ngFor="let card of cards" [value]="card">
+                  {{card}}
+                </mat-radio-button>
+                <br>
+              </mat-radio-group>            
           </div>
         </div>
-        <button class="secondPageBtn" *ngIf="!showCardForm" (click)="thirdPageOfRegistration2()"> ADD New Card </button> <br>
-        <div *ngIf="showCardForm">
+      </form>
+      <form [formGroup]="cardForm">
+        <button class="secondPageBtn" *ngIf="!showCardForm && noOfCards<3" (click)="thirdPageOfRegistration2()"> ADD New Card </button> <br>
+        <div *ngIf="showCardForm && noOfCards<3">
+          <div class="d-flex justify-content-centereckoutIndividualTitle2">ADD NEW CARD</div>
           <div class="checkoutIndividualTitle2">Enter Card Details : </div>
-          <input type="text" title="cardNumber" placeholder="Card Number *" />
+          <input type="text" formControlName="cardNo" title="cardNumber" placeholder="Card Number *" />
           <div class="d-flex justify-content-center">
-            <input type="number" title="exipryMonth" placeholder="Expiry Month *" />
-            <input type="number" title="ExpiryYear" placeholder="Expiry Year *" />
-            <input type="number" title="CVV" placeholder="CVV *" />
+            <input type="number" formControlName="month" title="exipryMonth" placeholder="Expiry Month *" />
+            <input type="number" formControlName="year" title="ExpiryYear" placeholder="Expiry Year *" />
+            <input type="number" formControlName="cvv" title="CVV" placeholder="CVV *" />
           </div> 
-          <input type="text" title="Name" placeholder="Name on Card *" />
+          <input type="text" formControlName="name" title="Name" placeholder="Name on Card *" />
         </div> 
         <!-- card details -->
           <div class="secondPageBtns">

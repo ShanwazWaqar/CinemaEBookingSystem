@@ -241,9 +241,9 @@ li {
     background: #ffffff;
     color: #555555;
     margin: 50px auto;
-    width: 700px;
+    width: 1000px;
     // max-width: 900px;
-    height: 650px;
+    height: 750px;
     padding: 30px;
     -moz-box-shadow: -5px 5px 15px;
     -webkit-box-shadow: -5px 5px 15px;
@@ -286,4 +286,23 @@ table, th, td {
 .bottomBtns {
     display: flex;
     justify-content: space-evenly;
+}
+
+
+.applyBtn {
+  background-color: #1fb5bf;
+  color: black;
+  border-radius: 25px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  cursor: pointer;
+}
+
+.correctPromo {
+  color: green;
+}
+.wrongPromo {
+  color: red;
 }

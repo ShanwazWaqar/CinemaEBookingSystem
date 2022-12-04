@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { bmsApiService } from 'src/app/services/bmsapi.service';
 
 @Component({
@@ -15,6 +15,7 @@ export class BookTicketsComponent implements OnInit {
   screens:any = [[],[],[],[],[],[]];
   dateExists:boolean = false;
   email:any;
+  date:any;
   constructor(private router: Router, private bms: bmsApiService, private route:ActivatedRoute) {
     this.route.params.subscribe( params => { 
       this.movieTitle = params.movieName;
@@ -28,7 +29,17 @@ export class BookTicketsComponent implements OnInit {
       this.router.navigateByUrl("/home");
     }
   }
-  bookSeats() {
+  bookSeats(item:any,screen:any) {
+    let movieDate = new Date(this.date);
+    const month = movieDate.toLocaleString('default', { month: 'long' });
+    let movie = {
+      movieName: this.movieTitle,
+      movieTime: item,
+      movieTiming: month+" "+movieDate.getDate(),
+      screen: screen
+    }
+    localStorage.setItem("movie",JSON.stringify(movie));
+    console.log(movie," movie")
     this.router.navigateByUrl('/bookSeats');
   }
 
@@ -38,6 +49,7 @@ export class BookTicketsComponent implements OnInit {
 
 
   showtimes(event: any) {
+    this.date = event.value;
     if(event.value) {
       this.dateExists = true;
     }

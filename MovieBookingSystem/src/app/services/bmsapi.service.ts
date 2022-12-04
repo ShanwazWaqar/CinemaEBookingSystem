@@ -174,9 +174,29 @@ export class bmsApiService {
         return this.httpClient.post("http://localhost:1785/admin/chnageuserstatus",JSON.parse(data),{'headers':headers});
     }
 
-    update3Cards(data:any): Observable<any> {
+    addCards(data:any): Observable<any> {
         const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
         return this.httpClient.post("http://localhost:1785/api/addpayment",JSON.parse(data),{'headers':headers});
+    }
+
+    update3Cards(data:any): Observable<any> {
+        const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
+        return this.httpClient.post("http://localhost:1785/api/updatecard",JSON.parse(data),{'headers':headers});
+    }
+
+    retriveCards(data:any): Observable<any> {
+        const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
+        return this.httpClient.post("http://localhost:1785/api/retriveCards",JSON.parse(data),{'headers':headers});
+    }
+
+    getmoviePic(data:any): Observable<any> {
+        const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
+        return this.httpClient.post("http://localhost:1785/homepage/getmovieimage",JSON.parse(data),{'headers':headers});
+    }
+
+    promoCheck(data:any): Observable<any> {
+        const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
+        return this.httpClient.post("http://localhost:1785/homepage/promopercentage",JSON.parse(data),{'headers':headers});
     }
 
 }

@@ -262,10 +262,12 @@ li {
 .minusIcon {
     width: 50px;
     height: 50px;
+    cursor: pointer;
 }
 .plusIcon {
     width: 50px;
     height: 50px;
+    cursor: pointer;
 }
 .selectionImages {
     justify-content: space-evenly;
@@ -281,4 +283,26 @@ li {
     border-radius: 25px;
     font-weight: bolder;
     cursor: pointer;
+}
+.middleText {
+  width: 180px;
+}
+.flexClass {
+  display: flex;
+  justify-content: center;
+}
+.subclass {
+  font-size: x-small;
+}
+.discontinueBtn {
+  width: 250px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #969696;
+  color: black;
+  border-radius: 25px;
+  font-weight: bolder;
+  cursor: not-allowed;
 }
