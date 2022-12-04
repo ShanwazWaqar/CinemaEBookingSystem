@@ -1,11 +1,19 @@
-<nav>
-    <div class="logo">
-        Bookmyshow
-    </div>
-</nav>
+<div *ngIf="email == undefined">
+    <nav>
+        <div class="logo">
+            Bookmyshow
+        </div>
+        <div class="search-icon">
+            <span class="fas fa-search"></span>
+        </div>
+    </nav>
+</div>
+<div *ngIf="email">
+    <app-user-header></app-user-header>
+</div>
 
 <div class="movieCard">
-    <img src="../../../assets/images/movie4.jpg" style="width:200px;height:250px;">
+    <img [src]="movieImg" style="width:400px;height:360px;">
 
     <table align="Right">
         <tr>
@@ -18,22 +26,43 @@
             </td>
         </tr>
         <tr>
-            <th>Adult Ticket(2)</th>
-            <td>$20</td>
+            <th>Adult Ticket({{tempmovie.adultSeats}})</th>
+            <td>${{tempmovie.adultSeats * adultTicketPrice}}</td>
         </tr>
         <tr>
-            <th>Child Ticket</th>
-            <td>$10</td>
+            <th>Child Ticket({{tempmovie.childSeats}})</th>
+            <td>${{tempmovie.childSeats * childTicketPrice}}</td>
         </tr>
         <tr>
-            <th>Senior Ticket</th>
-            <td>$15</td>
+            <th>Senior Ticket({{tempmovie.seniorSeats}})</th>
+            <td>${{tempmovie.seniorSeats * seniorTicketPrice}}</td>
         </tr>
         <tr>
-            <td>Seats <span class="seats">A1,A2,A3,A4</span></td>
+            <td>Seats <span class="seats">{{tempmovie.selectedSeatsList}}</span></td>
         </tr>
         <tr>
             <td>Fees</td>
+        </tr>
+        <tr>
+            <th>Apply Promocode(if any)</th>   
+        </tr>
+        <tr>
+            <th class="inputContainer">
+                <input class="promoText" [(ngModel)]="promoText" type="text"  />
+            </th>
+            <td>
+                <div (click)="promoBtn()" class="applyBtn">Apply</div>
+            </td>  
+        </tr>
+        <tr *ngIf="correctPromo">
+            <td class="correctPromo">Promocode applied successfully!!</td>   
+        </tr>
+        <tr *ngIf="correctPromo">
+            <th>Discount applied</th>
+            <td>-${{discountValue}}</td>
+        </tr>
+        <tr *ngIf="wrongPromo">
+            <td class="wrongPromo">Promocode is Expired/Invalid</td>   
         </tr>
         <tr>
             <th>Convenience fee</th>
@@ -45,17 +74,21 @@
         </tr>
         <tr style="border-bottom:1px solid black">
             <th>Total</th>
-            <td>$55</td>
+            <td>${{total}}</td>
         </tr>
     </table>
     <table align="bottom">
         <tr>
+            <th>Title</th>
+            <td> {{tempmovie.movieName}} </td>
+        </tr>
+        <tr>
             <th>Time</th>
-            <td>4:00 PM</td>
+            <td> {{tempmovie.movieTime}} </td>
         </tr>
         <tr>
             <th>Date</th>
-            <td>September 29</td>
+            <td> {{tempmovie.movieTiming}} </td>
         </tr>
         <tr>
             <th>Theatre</th>
@@ -63,7 +96,7 @@
         </tr>
         <tr>
             <th>Screen</th>
-            <td>3</td>
+            <td> {{tempmovie.screen}}</td>
         </tr>
     </table>
     <br>

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { bmsApiService } from 'src/app/services/bmsapi.service';
 
 @Component({
   selector: 'app-book-seats',
@@ -13,10 +14,17 @@ export class BookSeatsComponent implements OnInit {
   noOfSelected: number = 0;
   cnt: number = 0;
   listSelected:any = [];
+  movie:any;
+  email:any;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private bms: bmsApiService, private route:ActivatedRoute) {
+  }
+
 
   ngOnInit(): void {
+    this.email = (localStorage.getItem("user"));
+    this.movie = (localStorage.getItem("movie"));
+    this.movie = JSON.parse(this.movie);
     this.seatRows = [];
     this.loadSeats();
   }
@@ -65,8 +73,13 @@ export class BookSeatsComponent implements OnInit {
   }
 
   ageSelection() {
-    console.log(this.listSelected," listSelected");
-    // this.router.navigateByUrl('/selectAges');
+    let selectedSeatsList:any = [];
+    for(let i=0;i<this.listSelected.length;i++) {
+      selectedSeatsList.push(this.listSelected[i].label)
+    }
+    this.movie.selectedSeatsList = selectedSeatsList;
+    localStorage.setItem("movie",JSON.stringify(this.movie));
+    this.router.navigateByUrl('/selectAges');
   }
 
 }
