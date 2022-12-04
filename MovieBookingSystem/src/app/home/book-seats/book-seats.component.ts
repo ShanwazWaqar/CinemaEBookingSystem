@@ -32,7 +32,7 @@ export class BookSeatsComponent implements OnInit {
     obj = {
       time : this.movie.movieTime,
       date: this.movie.movieDate,
-      screen : this.movie.screen
+      screennumber : this.movie.screen
     };
     obj = JSON.stringify(obj);
     this.bms.getseats(obj).subscribe(res=> {

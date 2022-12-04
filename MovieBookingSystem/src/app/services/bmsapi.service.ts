@@ -186,6 +186,10 @@ export class bmsApiService {
         const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
         return this.httpClient.post("http://localhost:1785/api/addpayment",JSON.parse(data),{'headers':headers});
     }
+    addseats(data:any): Observable<any> {
+        const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
+        return this.httpClient.post("http://localhost:1785/admin/addseats",JSON.parse(data),{'headers':headers});
+    }
 
     update3Cards(data:any): Observable<any> {
         const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');

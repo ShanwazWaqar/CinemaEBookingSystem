@@ -95,6 +95,25 @@ export class ScheduleMovieComponent implements OnInit {
         });
       }
     })
+    for (let i = 0; i < 7; i++) {
+      let tempArr = [];
+      for (let j = 0; j < 13; j++) {
+        let obj2:any;
+        let ch = 'A';
+        let seat = String.fromCharCode(ch.charCodeAt(0) + i) + (j + 1)
+        obj2 = {
+          moviename: this.movieName,
+          date: this.datetime,
+          time: this.selected,
+          screennumber: this.selectedScreen,
+          seatnumber:seat
+        }
+        obj2 = JSON.stringify(obj2);
+        this.bms.addseats(obj2).subscribe((res)=>{
+        })
+      }
+      
+    }
     this.Ref.close();
   }
 
