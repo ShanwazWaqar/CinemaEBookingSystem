@@ -36,7 +36,8 @@ export class BookTicketsComponent implements OnInit {
       movieName: this.movieTitle,
       movieTime: item,
       movieTiming: month+" "+movieDate.getDate(),
-      screen: screen
+      screen: screen,
+      movieDate : this.convert(this.date)
     }
     localStorage.setItem("movie",JSON.stringify(movie));
     console.log(movie," movie")

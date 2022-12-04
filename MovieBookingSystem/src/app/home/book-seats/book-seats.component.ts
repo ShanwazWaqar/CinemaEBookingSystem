@@ -27,6 +27,19 @@ export class BookSeatsComponent implements OnInit {
     this.movie = JSON.parse(this.movie);
     this.seatRows = [];
     this.loadSeats();
+    console.log(this.movie," movie");
+    let obj:any;
+    obj = {
+      time : this.movie.movieTime,
+      date: this.movie.movieDate,
+      screen : this.movie.screen
+    };
+    obj = JSON.stringify(obj);
+    this.bms.getseats(obj).subscribe(res=> {
+      if(res) {
+        console.log(res);
+      }
+    });
   }
 
   loadSeats() {
