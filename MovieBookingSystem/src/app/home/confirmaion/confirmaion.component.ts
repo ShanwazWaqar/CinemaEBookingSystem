@@ -27,7 +27,8 @@ export class ConfirmaionComponent implements OnInit {
       this.movie.rating = res.rating.split(":")[0];
       this.movie.runtime = "1h 20m";
       this.movie.ticketCost = this.movie.ticketCost.toFixed(2);
-      this.total = Number(this.movie.ticketCost + 10).toFixed(2);
+      this.total = Number(this.movie.ticketCost)+Number(10);
+      this.total = Number(this.total).toFixed(2);
       // need order id from backend.
       let obj:any;
       obj = 
