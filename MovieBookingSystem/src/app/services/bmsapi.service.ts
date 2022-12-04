@@ -213,7 +213,7 @@ export class bmsApiService {
 
     ticketBooked(data:any): Observable<any> {
         const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
-        return this.httpClient.post("http://localhost:1785/api/orderhistory",JSON.parse(data),{'headers':headers});
+        return this.httpClient.post("http://localhost:1785/api/savebooking",JSON.parse(data),{'headers':headers});
     }
 
     getseats(data:any): Observable<any> {
