@@ -44,8 +44,9 @@ export class ConfirmaionComponent implements OnInit {
           "seniorseats": this.movie.seniorSeats,
           "cardnumber": this.movie.cardNo.split(" ")[(this.movie.cardNo.split(" ").length-1)],
           "totalamount": this.movie.ticketCost,
-          "seatnumbers": this.movie.selectedSeatsList,
+          "seatnumbers": this.movie.selectedSeatsList.toString()
       };
+      console.log(obj);
       obj = JSON.stringify(obj);
       this.bms.ticketBooked(obj).subscribe(res=> {
         console.log(res," response");
