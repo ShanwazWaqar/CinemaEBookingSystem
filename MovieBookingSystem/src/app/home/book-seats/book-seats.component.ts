@@ -101,7 +101,7 @@ export class BookSeatsComponent implements OnInit {
     }
     this.movie.selectedSeatsList = selectedSeatsList;
     localStorage.setItem("movie",JSON.stringify(this.movie));
-    // this.router.navigateByUrl('/selectAges');
+    this.router.navigateByUrl('/selectAges');
   }
 
 }

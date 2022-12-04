@@ -220,5 +220,9 @@ export class bmsApiService {
         const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
         return this.httpClient.post("http://localhost:1785/homepage/selectseats",JSON.parse(data),{'headers':headers});
     }
+    updateseats(data:any): Observable<any> {
+        const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
+        return this.httpClient.post("http://localhost:1785/homepage/updateseat",JSON.parse(data),{'headers':headers});
+    }
 
 }

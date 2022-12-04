@@ -51,8 +51,30 @@ export class ConfirmaionComponent implements OnInit {
       this.bms.ticketBooked(obj).subscribe(res=> {
         console.log(res," response");
       })
+      for(let i=0;i<this.movie.selectedSeatsList.length;i++){
+        let obj2:any;
+        obj2={
+          screennumber:this.movie.screen,
+          time:this.movie.movieTime,
+          date:this.movie.movieDate,
+          seatnumber:this.movie.selectedSeatsList[i],
+          seatoccupancy:1
+        }
+        console.log(obj2)
+        obj2=JSON.stringify(obj2)
+        this.bms.updateseats(obj2).subscribe(res=>{
+            console.log("result")
+        })
+      }
+      
 
     })
+  }
+  convert(value: any) {
+    var date = new Date(value),
+      mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+      day = ("0" + date.getDate()).slice(-2);
+    return [date.getFullYear(), mnth, day].join("-");
   }
 
 }
