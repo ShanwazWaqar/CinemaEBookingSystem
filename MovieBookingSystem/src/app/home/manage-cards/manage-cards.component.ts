@@ -92,7 +92,7 @@ export class ManageCardsComponent implements OnInit {
     if (cardsList.length < 3) {
       cardsList.push(this.createCardForm());
       console.log(cardsList.length, " length");
-      this.sucessPopup("Card Added successfully")
+      this.sucessPopup("Card Added/Modified successfully")
     } else {
       // error popup says card limit exceeded.
 
