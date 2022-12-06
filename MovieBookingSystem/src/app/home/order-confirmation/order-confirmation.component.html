@@ -62,7 +62,10 @@
             <td>-${{discountValue}}</td>
         </tr>
         <tr *ngIf="wrongPromo">
-            <td class="wrongPromo">Promocode is Expired/Invalid</td>   
+            <td class="wrongPromo">Promocode is Invalid</td>   
+        </tr>
+        <tr *ngIf="expiredpromo">
+            <td class="wrongPromo">Promocode is Expired</td>   
         </tr>
         <tr>
             <th>Convenience fee</th>
