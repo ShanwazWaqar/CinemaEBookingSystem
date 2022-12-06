@@ -38,7 +38,7 @@ export class MovieListComponent implements OnInit {
 
   filterMovies() {
     for (let i = 0; i < this.totalMovies.length; i++) {
-      if(this.totalMovies[i].isarchive != 1) {
+      if (this.totalMovies[i].isarchive != 1) {
         this.totalMovies[i].rating2 = (this.totalMovies[i].rating.split(":"))[0];
         if (this.totalMovies[i].currentrunning == 1) {
           this.currentMovies.push(this.totalMovies[i]);
@@ -52,7 +52,7 @@ export class MovieListComponent implements OnInit {
   ngOnInit(): void {
     this.spinner.show();
     this.bms.getMoviesList().subscribe(res => {
-      if(res) {
+      if (res) {
         this.totalMovies = res;
         this.filterMovies();
         this.tempCurrentMovies = this.currentMovies;
@@ -61,7 +61,7 @@ export class MovieListComponent implements OnInit {
         this.spinner.hide();
       } else {
         this.spinner.hide();
-      }  
+      }
     });
   }
 
@@ -116,26 +116,27 @@ export class MovieListComponent implements OnInit {
   }
 
   bookTicketsPage(movie: any) {
-    let email = (localStorage.getItem("loggedIn"));
-    if (email == undefined || email == "false") {
-      this.sucessPopup("Please Login to Book Tickets.");
-      this.router.navigateByUrl("/home");
-    } else {
-      let email2 = (localStorage.getItem("user"));
-    let cred:any = "";
-      cred = {
-        email: email2,
-      }
-      cred = JSON.stringify(cred);
-      this.bms.verfiedUser(cred).subscribe((res) => {
-        console.log(res," res");
-        if (res) {
-          this.router.navigate(['/bookTickets', movie.title]);
-        } else {
-          this.sucessPopup("Please Verify your Account to Book Tickets.");
-        }
-      });  
-    }
+    this.router.navigate(['/bookTickets', movie.title]);
+    // let email = (localStorage.getItem("loggedIn"));
+    // if (email == undefined || email == "false") {
+    //   this.sucessPopup("Please Login to Book Tickets.");
+    //   this.router.navigateByUrl("/home");
+    // } else {
+      
+    // }
+    // let email2 = (localStorage.getItem("user"));
+    //   let cred: any = "";
+    //   cred = {
+    //     email: email2,
+    //   }
+    //   cred = JSON.stringify(cred);
+    //   this.bms.verfiedUser(cred).subscribe((res) => {
+    //     if (res) {
+    //       this.router.navigate(['/bookTickets', movie.title]);
+    //     } else {
+    //       this.sucessPopup("Please Verify your Account to Book Tickets.");
+    //     }
+    //   });
   }
   sucessPopup(msg: any) {
     const popup2 = this.dialogRef.open(MsgPopupHomeComponent, {
@@ -151,43 +152,43 @@ export class MovieListComponent implements OnInit {
     });
   }
 
-currentPlayingFilter() {
-  this.searchComp = false;
-  this.searching = false;
-  this.currentPlaying = true;
-}
+  currentPlayingFilter() {
+    this.searchComp = false;
+    this.searching = false;
+    this.currentPlaying = true;
+  }
 
 
-currentCategory(category:any) {
-  this.currentFilterCategory = category;
-  if(category == "All") {
-    this.currentMovies = this.tempCurrentMovies;
-  } else {
-    this.currentMovies = []
-    for(let i=0;i<this.tempCurrentMovies.length;i++) {
-      for(let j=0;j<this.tempCurrentMovies[i].category.length;j++) {
-        if(this.tempCurrentMovies[i].category[j] == category) {
-          this.currentMovies.push(this.tempCurrentMovies[i]);
+  currentCategory(category: any) {
+    this.currentFilterCategory = category;
+    if (category == "All") {
+      this.currentMovies = this.tempCurrentMovies;
+    } else {
+      this.currentMovies = []
+      for (let i = 0; i < this.tempCurrentMovies.length; i++) {
+        for (let j = 0; j < this.tempCurrentMovies[i].category.length; j++) {
+          if (this.tempCurrentMovies[i].category[j] == category) {
+            this.currentMovies.push(this.tempCurrentMovies[i]);
+          }
         }
       }
-    } 
+    }
   }
-}
 
-upcomingCategory(category:any) {
-  this.upcomingFilterCategory = category;
-  if(category == "All") {
-    this.upcomingMovies = this.tempUpcomingMovies;
-  } else {
-    this.upcomingMovies = []
-    for(let i=0;i<this.tempUpcomingMovies.length;i++) {
-      for(let j=0;j<this.tempUpcomingMovies[i].category.length;j++) {
-        if(this.tempUpcomingMovies[i].category[j] == category) {
-          this.upcomingMovies.push(this.tempUpcomingMovies[i]);
+  upcomingCategory(category: any) {
+    this.upcomingFilterCategory = category;
+    if (category == "All") {
+      this.upcomingMovies = this.tempUpcomingMovies;
+    } else {
+      this.upcomingMovies = []
+      for (let i = 0; i < this.tempUpcomingMovies.length; i++) {
+        for (let j = 0; j < this.tempUpcomingMovies[i].category.length; j++) {
+          if (this.tempUpcomingMovies[i].category[j] == category) {
+            this.upcomingMovies.push(this.tempUpcomingMovies[i]);
+          }
         }
       }
-    } 
+    }
   }
-}
 
 }

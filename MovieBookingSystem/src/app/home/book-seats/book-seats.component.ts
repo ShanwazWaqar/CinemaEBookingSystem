@@ -17,12 +17,18 @@ export class BookSeatsComponent implements OnInit {
   movie:any;
   email:any;
   seatOccupied:any;
+  userHeader:boolean = false;
   constructor(private router: Router, private bms: bmsApiService, private route:ActivatedRoute) {
   }
 
 
   ngOnInit(): void {
     this.email = (localStorage.getItem("user"));
+    if(localStorage.getItem("loggedIn") == "false") {
+      this.userHeader = false;
+    } else {
+      this.userHeader = true;
+    }
     this.movie = (localStorage.getItem("movie"));
     this.movie = JSON.parse(this.movie);
     this.seatRows = [];

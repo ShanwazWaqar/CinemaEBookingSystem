@@ -1,4 +1,4 @@
-<div *ngIf="email == undefined">
+<div *ngIf="!userHeader">
     <nav>
         <div class="logo">
             Bookmyshow
@@ -8,7 +8,7 @@
         </div>
     </nav>
 </div>
-<div *ngIf="email">
+<div *ngIf="userHeader">
     <app-user-header></app-user-header>
 </div>
 

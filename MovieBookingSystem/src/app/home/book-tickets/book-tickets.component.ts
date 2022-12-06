@@ -16,6 +16,7 @@ export class BookTicketsComponent implements OnInit {
   dateExists:boolean = false;
   email:any;
   date:any;
+  userHeader:any = false;
   constructor(private router: Router, private bms: bmsApiService, private route:ActivatedRoute) {
     this.route.params.subscribe( params => { 
       this.movieTitle = params.movieName;
@@ -24,9 +25,10 @@ export class BookTicketsComponent implements OnInit {
 
   ngOnInit(): void {
     this.email = (localStorage.getItem("user"));
-
     if(localStorage.getItem("loggedIn") == "false") {
-      this.router.navigateByUrl("/home");
+      this.userHeader = false;
+    } else {
+      this.userHeader = true;
     }
   }
   bookSeats(item:any,screen:any) {
