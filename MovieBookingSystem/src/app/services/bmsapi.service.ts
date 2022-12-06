@@ -224,5 +224,9 @@ export class bmsApiService {
         const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
         return this.httpClient.post("http://localhost:1785/homepage/updateseat",JSON.parse(data),{'headers':headers});
     }
+    deleteCard(data:any): Observable<any> {
+        const headers= new HttpHeaders().set('content-type', 'application/json;charset=utf-8').set('Access-Control-Allow-Origin', '*');
+        return this.httpClient.post("http://localhost:1785/api/deletecard",JSON.parse(data),{'headers':headers});
+    }
 
 }

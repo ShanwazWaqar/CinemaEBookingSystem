@@ -85,9 +85,20 @@ export class ManageCardsComponent implements OnInit {
     // this.cardDetails.push(this.createCardForm());
   }
 
-  removeCard(index: any) {
+  removeCard(index: any, card:any) {
+    console.log(card.value.cardNumber," card");
     const cardList = <FormArray>this.cardForm.controls['cardsArray'];
     cardList.removeAt(index);
+    let obj:any;
+    obj={
+       cardnumber:card.value.cardNumber
+    }
+    obj=JSON.stringify(obj);
+    this.bms.deleteCard(obj).subscribe(res=>{
+      if(res){
+          console.log("Card Deleted Successfully"); //.Add popup delete card.
+      }
+    })
   }
 
   createObj(length: any) {
