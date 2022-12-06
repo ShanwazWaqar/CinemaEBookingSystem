@@ -17,4 +17,8 @@ public interface UserRepo extends JpaRepository<userRegistration,String> {
 	List<userRegistration> findByemail(String email);
 	@Query("SELECT email FROM user WHERE promotion = :promotion")
     List<userRegistration> findBypromotion(String promotion);
+	//int findidByemail(String email);
+  
+    
+    
 }

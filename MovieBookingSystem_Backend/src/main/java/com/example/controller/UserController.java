@@ -1,10 +1,12 @@
 package com.example.controller;
 
 import java.sql.Connection;
+import org.springframework.dao.DataIntegrityViolationException;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,6 +19,7 @@ import java.sql.Time;
 import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -29,6 +32,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,6 +40,7 @@ import com.example.demo.model.PaymentCard;
 import com.example.demo.model.booking;
 import com.example.demo.model.userRegistration;
 import com.example.demo.repo.UserRepo;
+import com.example.demo.repo.bookingrepo;
 import com.example.demo.repo.PaymentRepo;
 import com.example.excepion.IdNotFoundException;
 import com.example.service.userservice;
@@ -43,6 +48,8 @@ import com.example.service.PaymentService;
 import com.example.service.imple.Emailsenderservice;
 import com.example.service.imple.userimple;
 import com.mysql.cj.jdbc.exceptions.SQLError;
+import com.mysql.cj.x.protobuf.MysqlxDatatypes.Any;
+import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
 
 @RestController
 @CrossOrigin(origins="http://localhost:4200") 
@@ -61,6 +68,8 @@ public class UserController {
 	  private PaymentService paymentService;
 	  @Autowired
 	  Emailsenderservice emailsenderservice;
+	  @Autowired
+	  bookingrepo brepo;
 	  
 	  
 	  @PostMapping("/SignUp")
@@ -291,7 +300,7 @@ public class UserController {
 	        //List<PaymentCard>paydata=userRegistration.getPaymentcard();
 	       try {
 	            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinemabooking", "root", "");
-	            PreparedStatement preparedStatement = conn.prepareStatement("UPDATE users SET firstname = ?, phone = ?, address1 = ?, address2 = ?, city = ?, state = ?, country = ?, zipcode = ?,promotion = ?, lastname=?,cardnumber=?,cardexpirymonth=?,cardexpiryyear,nameoncard=? WHERE email = ?");
+	            PreparedStatement preparedStatement = conn.prepareStatement("UPDATE users SET firstname = ?, phone = ?, address1 = ?, address2 = ?, city = ?, state = ?, country = ?, zipcode = ?,promotion = ?, lastname=?,cardnumber=?,cardexpirymonth=?,cardexpiryyear=?,nameoncard=? WHERE email = ?");
 	            preparedStatement.setString(1, firstname);
 	            preparedStatement.setString(2, phone);
 	            preparedStatement.setString(3, address1);
@@ -323,7 +332,8 @@ public class UserController {
 	            while (resultSet.next()) {
 	            	RName=resultSet.getString("Name"); 
 	            }*/
-	  
+	            preparedStatement.executeUpdate();
+	            preparedStatement.close();
 	        }catch(SQLException exception){
 	        	exception.printStackTrace();
 	        }
@@ -374,5 +384,56 @@ return true;
 			}
 			return null;
 		}
-	 
+	  @PostMapping(value="/addpayment")
+	  public boolean addcard(@RequestBody PaymentCard pc)  {
+		  try {
+			    paymentRepo.save(pc);
+			    return true;
+			} catch (DataIntegrityViolationException e) {
+			    return false;
+			}
+	  
+	  }
+	 @PostMapping("/retriveCards")
+	 public ResponseEntity<?> carddetail(@RequestBody PaymentCard pc) { 
+
+		  return ResponseEntity.status(200).body(paymentRepo.findByemail(pc.getEmail()));
+	}
+	 @PostMapping("/updatecard")
+	 public boolean updatecard(@RequestBody PaymentCard pc)throws SQLException {
+		 System.out.println(pc.getOld_data());
+		 System.out.println(pc.getNameoncard());
+		 Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cinemabooking", "root", "");
+		 PreparedStatement preparedStatement = conn.prepareStatement("UPDATE paymentcard SET cardnumber=?,expirymonth=?,expiryyear=?,nameoncard=?,old_data=? WHERE old_data = ?");
+         preparedStatement.setString(1, pc.getCardnumber());
+         preparedStatement.setInt(2, pc.getExpirymonth());
+         preparedStatement.setInt(3, pc.getExpiryyear());
+         preparedStatement.setString(4, pc.getNameoncard());
+         preparedStatement.setString(5, pc.getCardnumber());
+         preparedStatement.setString(6, pc.getOld_data());
+         preparedStatement.executeUpdate();
+         preparedStatement.close();
+         
+		 
+		 return true;
+	 }
+	 @PostMapping("/orderhistory")
+	  public List<booking> getOrderHistory(@RequestBody userRegistration userRegistration) throws SQLException {
+		  return brepo.findByemail(userRegistration.getEmail());
+		  
+	  }
+	  
+	  /*
+	   * Send email
+	   */
+	  @PostMapping("/savebooking")
+	  public void saveBooking(@RequestBody booking booking)throws MessagingException {
+		  int max=999999999;
+			 int min=10000000;
+			 int rand = (int) Math.floor(Math.random()*(max-min+1)+min);
+			 String orderid=Integer.toString(rand);
+			 emailsenderservice.sendemailwithattachment(booking.getEmail(),"Hola!!! \n Your Booking is confirmed and Here is your order ID "+orderid,"Booking Confirmation");
+			booking.setOrderid(rand);
+		  brepo.save(booking);
+	  }
 }

@@ -38,6 +38,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.AdminRegistration;
 import com.example.demo.model.MovieEntity;
 import com.example.demo.model.promotion;
+import com.example.demo.model.showseats;
 import com.example.demo.model.showtimes;
 import com.example.demo.model.userRegistration;
 import com.example.demo.repo.AdminRepo;
@@ -45,6 +46,7 @@ import com.example.demo.repo.Movierepo;
 import com.example.demo.repo.UserRepo;
 import com.example.demo.repo.promotionrepo;
 import com.example.demo.repo.scheduling;
+import com.example.demo.repo.showseatsrepo;
 import com.example.service.AdminService;
 import com.example.service.imple.Emailsenderservice;
 import com.example.service.imple.userimple;
@@ -75,6 +77,8 @@ public class AdminController {
 	  private Movierepo movierepo;
 	  @Autowired
 	  scheduling schedule;
+	  @Autowired
+	  showseatsrepo ssrepo;
 	  
 	 @PostMapping("/admin")
 	  public ResponseEntity<AdminRegistration> registerUser(@RequestBody AdminRegistration AdminRegistration) {
@@ -129,6 +133,11 @@ public class AdminController {
 				 return false;
 			 }
 		}
+	  @PostMapping("findpromo")
+	  public List<promotion> getpromodata(@RequestBody promotion promo){
+		  String pcode=promo.getPcode();
+		  return prom.findBypcode(pcode);
+	  }
 	  @PostMapping("/deletepromotion")
 	  public boolean deletepromotion(@RequestBody promotion promo) throws SQLException,MessagingException {
 		  String promotion="true";
@@ -203,6 +212,7 @@ public class AdminController {
 	  }
 	  @PostMapping("/schedulemovie")
 	  public boolean schedulemovie(@RequestBody showtimes showtime) throws SQLException {
+		  
 		  List<showtimes> data=schedule.findAll();
 		  DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
 		  String date = df.format(showtime.getDate());
@@ -225,7 +235,6 @@ while(resultSet.next()) {
 		  for(int i=0;i<data.size();i++) {
 			 // int srid=Integer.parseInt(moviename);
 			 String cdate=df.format(data.get(i).getDate());
-			  System.out.println("date"+date+" " +cdate+" " + "time"+time+"  " +data.get(i).getTime()+" "+"movieid"+ movieid+" "+data.get(i).getMovieid()+" "+"srid"+data.get(i).getShowroomid()+" "+showtime.getShowroomid());
 			 if(date.equals(cdate) && time.equals(data.get(i).getTime()) && data.get(i).getShowroomid().equals(showtime.getShowroomid())) {
 				 count++;
 				 System.out.println();
@@ -236,8 +245,23 @@ while(resultSet.next()) {
 			 return false;
 		  }else {
 			  schedule.save(showtime);
+			  
 			  return true;
-		  }
+		  }}
+		  @PostMapping("/addseats")
+		  public boolean addseats(@RequestBody showseats ss) {
+					  ssrepo.save(ss);
+//					  PreparedStatement ps2=conn.prepareStatement("INSERT INTO showseats (id,screennumber, seatnumber, date,time) VALUES (?,?, ?, ?,?);");
+//					  ps2.setInt(1, showtime.getId());
+//					  ps2.setString(2,showtime.getShowroomid());
+//					  ps2.setString(3, (seats[i]+seatnum[j]));
+//					  ps2.setDate(4,showtime.getDate());
+//					  ps2.setString(5, showtime.getTime());
+//					  ps2.executeUpdate();
+//					  ps2.close();  
+				  
+			  
+		  return true;
 		  
 	  }
 	  @PostMapping("/getmovieinfo")

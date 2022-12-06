@@ -2,10 +2,16 @@ package com.example.controller;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,11 +21,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.MovieEntity;
+import com.example.demo.model.booking;
+import com.example.demo.model.promotion;
+import com.example.demo.model.showseats;
 import com.example.demo.model.showtimes;
+import com.example.demo.model.userRegistration;
 import com.example.demo.repo.Movierepo;
+import com.example.demo.repo.UserRepo;
+import com.example.demo.repo.bookingrepo;
+import com.example.demo.repo.showseatsrepo;
+import com.example.service.imple.Emailsenderservice;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -27,6 +42,14 @@ import com.example.demo.repo.Movierepo;
 public class Homepage {
 	@Autowired
 	Movierepo movierepo;
+	@Autowired
+	showseatsrepo seatsrepo;
+	@Autowired
+	UserRepo urepo;
+	@Autowired
+	bookingrepo brepo;
+	 @Autowired
+	  Emailsenderservice emailsenderservice;
 	@GetMapping(path = "/currentlyrunning") 
 	public List<List<String>> getCurrentlyRunning() {
 		List<String> titles = new ArrayList<>();
@@ -105,4 +128,85 @@ public class Homepage {
 	public List<MovieEntity> getallmovie(){
 		return movierepo.findAll();
 	}
+	@PostMapping("/selectseats")
+	public List<showseats> seatselect(@RequestBody showseats seats) {
+		System.out.println("Screennumber : "+seats.getScreennumber());
+		int selected=1;
+		return seatsrepo.findAllByscreennumberAndDateAndTimeAndSeatoccupancy(seats.getScreennumber(),seats.getDate(),seats.getTime(),selected);
+	}
+	@PostMapping("/updateseat")
+	public boolean updateseat(@RequestBody showseats seats)throws SQLException {
+		System.out.println(seats.toString());
+		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cinemabooking", "root", "");
+		PreparedStatement ps=conn.prepareStatement("UPDATE showseats SET seatoccupancy = ? WHERE screennumber=? and seatnumber=? and date=? and time=?");
+		ps.setInt(1,seats.getSeatoccupancy());
+		ps.setInt(2, seats.getScreennumber());
+		ps.setString(3, seats.getSeatnumber());
+		ps.setDate(4, seats.getDate());
+		ps.setString(5, seats.getTime());
+		ps.executeUpdate();
+		ps.close();
+		return true;
+	}
+//	@PostMapping("/confirmbooking")
+//	public boolean bookingseats(@RequestBody booking booking)throws SQLException {
+//		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinemabooking", "root", "");
+//		java.sql.Statement stmt = conn.createStatement();
+//		int userid=0;
+//		ResultSet resultSet = stmt.executeQuery("SELECT id FROM users WHERE email = "+ "'" + booking.getEmail() + "'");
+//		while(resultSet.next()) {
+//		        	  userid = resultSet.getInt("id");
+//		}
+//		booking.setUserid(userid);
+//		int movieid=0;
+//		ResultSet resultSet2 = stmt.executeQuery("SELECT id FROM movies WHERE title = "+ "'" + booking.getTitle() + "'");
+//		while(resultSet2.next()) {
+//		        	  movieid = resultSet2.getInt("id");
+//		}
+//		//System.out.println(urepo.findidByemail(booking.getEmail()));
+//		booking.setMid(movieid);
+//		int cardid=0;
+//		ResultSet resultSet3 = stmt.executeQuery("SELECT cardid FROM paymentcard WHERE cardnumber = "+ "'" + booking.getCardnumber() + "'");
+//		while(resultSet2.next()) {
+//		        	  cardid = resultSet2.getInt("cardidid");
+//		}
+//		booking.setCardid(cardid);
+//		brepo.save(booking);
+//		return true;
+//	}
+	
+	
+@PostMapping("/emailtester")
+public boolean sendmail(@RequestBody userRegistration user)throws MessagingException {
+	try {
+	emailsenderservice.sendemailwithattachment(user.getEmail(),"mail","Promotion Expired");
+	}catch(AddressException ex) {
+		return false;
+	}
+	return true;
+}
+@PostMapping("/getmovieimage")
+public Map<String, Object>  getmovieimage(@RequestBody MovieEntity me)throws SQLException {
+	Map<String, Object> map = new HashMap<>();
+	Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cinemabooking", "root", "");
+	java.sql.Statement stmt = conn.createStatement();
+	String image="";
+	ResultSet resultSet = stmt.executeQuery("SELECT thumbnail FROM movies WHERE title = "+ "'" + me.getTitle() + "'");
+	while(resultSet.next()) {
+	        	  map.put("image",resultSet.getString("thumbnail"));
+	}
+	return map;
+}
+@PostMapping("/promopercentage")
+public Map<String,Object> promopercentage(@RequestBody promotion promo) throws SQLException{
+	Map<String,Object>map=new HashMap<>();
+	Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cinemabooking", "root", "");
+	java.sql.Statement stmt = conn.createStatement();
+	ResultSet resultSet = stmt.executeQuery("SELECT percentage FROM promotion WHERE pcode = "+ "'" + promo.getPcode() + "'");
+	while(resultSet.next()) {
+	        	  map.put("percentage",resultSet.getString("percentage"));
+	}
+	return map;
+}
+	
 }

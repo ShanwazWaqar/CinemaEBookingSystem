@@ -11,7 +11,7 @@ import com.example.demo.model.userRegistration;
 
 @Repository
 public interface PaymentRepo extends JpaRepository<PaymentCard,String> {
-	//List<PaymentCard> findByid(int id);
+	List<PaymentCard> findByemail(String email);
 
 	//void save(PaymentCard card);
 }

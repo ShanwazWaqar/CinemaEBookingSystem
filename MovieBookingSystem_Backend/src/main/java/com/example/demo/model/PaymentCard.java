@@ -23,12 +23,14 @@ import lombok.ToString;
 public class PaymentCard {
 	
 	@Id
+	@GeneratedValue
 	private int cardid;
-	private int cardnumber;
+	private String cardnumber;
 	private int expirymonth;
 	private int expiryyear;
 	private String nameoncard;
-	private int old_data;
+	private String old_data;
+	private String email;
 	
 	/*
 	 * @ManyToOne(cascade= CascadeType.ALL)
@@ -36,10 +38,10 @@ public class PaymentCard {
 	 * @JoinColumn(name = "id") private userRegistration paymentcard;
 	 */
 	
-	public int getOld_data() {
+	public String getOld_data() {
 		return old_data;
 	}
-	public void setOld_data(int old_data) {
+	public void setOld_data(String old_data) {
 		this.old_data = old_data;
 	}
 	public PaymentCard() {
@@ -52,7 +54,7 @@ public class PaymentCard {
 	public void setNameoncard(String nameoncard) {
 		this.nameoncard = nameoncard;
 	}
-	public PaymentCard(int cardid, int cardnumber, int expirymonth, int expiryyear,String nameoncard,int old_data) {
+	public PaymentCard(int cardid, String cardnumber, int expirymonth, int expiryyear,String nameoncard,String old_data,String email) {
 		super();
 		
 		this.cardid = cardid;
@@ -62,7 +64,14 @@ public class PaymentCard {
 		this.expiryyear = expiryyear;
 		this.nameoncard=nameoncard;
 		this.old_data=old_data;
+		this.email=email;
 		
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	@Override
 	public String toString() {
@@ -78,10 +87,10 @@ public class PaymentCard {
 
 	
 	 
-	public int getCardnumber() {
+	public String getCardnumber() {
 		return cardnumber;
 	}
-	public void setCardnumber(int cardnumber) {
+	public void setCardnumber(String cardnumber) {
 		this.cardnumber = cardnumber;
 	}
 	public int getExpirymonth() {
