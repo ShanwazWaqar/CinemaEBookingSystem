@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   passwordFieldError: boolean = false;
   encryptSecretKey: string = "randomKey";
   invlidcred:boolean = false;
+  suspendedCred:boolean = false;
   constructor(private fb: FormBuilder, private router: Router, private _bmsAs: bmsApiService, private tds: tempDataService) { }
 
   ngOnInit(): void {
@@ -85,11 +86,23 @@ export class LoginComponent implements OnInit {
       cred = JSON.stringify(cred);
       this._bmsAs.validateUser(cred).subscribe(res => {
         if (res) {
-          // add code to display valid credentials
+          console.log(res," response of user")
+          if(res.result == "Invalid") {
+            this.invlidcred = true;
+            this.suspendedCred = false;
+          }
+          else if(res.result == "valid") {
+            this.invlidcred = false;
+            this.suspendedCred = false;
+            // add code to display valid credentials
           localStorage.setItem("loggedIn","true");
           let edata = this.loginForm.value.email;
           localStorage.setItem("user", edata!);
           this.router.navigateByUrl('/userHomePage');
+          } else if(res.result == "suspended") {
+            this.invlidcred = false;
+            this.suspendedCred = true;
+          }
         } else {
           //for invalid cred
           this.invlidcred = true;

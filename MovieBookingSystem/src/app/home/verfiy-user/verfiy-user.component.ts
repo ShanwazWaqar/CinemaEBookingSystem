@@ -63,7 +63,17 @@ export class VerfiyUserComponent implements OnInit {
 
   resendOTP() {
     // send otp confirmation
-    this.resendOTPcheck = true;
+    
+    let obj:any;
+    obj={
+      email:localStorage.getItem("user")
+    }
+    obj=JSON.stringify(obj);
+    this._bmsAs.resendotp(obj).subscribe(res=>{
+      if(res){
+        this.resendOTPcheck = true;
+      }
+    })
   }
 
 }
