@@ -104,7 +104,7 @@
        </div>
     </form>
       <form [formGroup]="cardForm">
-        <input *ngIf="!cardDetails" (click)="showCardDetails()" type="submit" [value]="CardStatusValue" />
+        <!-- <input *ngIf="!cardDetails" (click)="showCardDetails()" type="submit" [value]="CardStatusValue" /> -->
         <div *ngIf="cardDetails">
           <div class="d-flex">
             <div class="col-11 cardText">CARD DETAILS</div>
