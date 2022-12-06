@@ -38,6 +38,10 @@ export class LoginComponent implements OnInit {
     console.log(b," b")
   }
 
+  signUpReRoute() {
+    this.router.navigateByUrl('/SignUp');
+  }
+
   validityCheck() {
     if (this.loginForm.value.email == "" || this.loginForm.value.password == "") {
       if (this.loginForm.value.email == "") {

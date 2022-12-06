@@ -139,6 +139,10 @@ export class SignUp2Component implements OnInit {
     // this.router.navigateByUrl('/userHomePage');
   }
 
+  loginReroute() {
+    this.router.navigateByUrl('/Login');
+  }
+
   openDialog() {
     const popup = this.dialogRef.open(RegistrationSuccessComponent, {
       disableClose: true,
