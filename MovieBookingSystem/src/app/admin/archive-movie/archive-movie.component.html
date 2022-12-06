@@ -1,23 +1,24 @@
 <div class="d-flex justify-content-center align-items-center">
-    <table>
-        <thead>
-          <tr>
-            <th> Movie Name </th>
-            <th> Action </th>
-            <th> Schedule Movie</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let movie of movies, let i = index"> 
-              <th> {{movie.title}} </th>
-                <td class="removeAdminClass" (click)="removeArchive(i)" > Archive </td>
-              <td >  
-                <div class="scheduleBtn" (click)="scheduleMovie(i)" >
-                  Schedule
-                </div>
-                </td>
-          </tr>
-        </tbody>
-      </table>
+  <table>
+    <thead>
+      <tr>
+        <th> Movie Name </th>
+        <th> Action </th>
+        <th> Schedule Movie</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let movie of movies, let i = index">
+        <ng-container *ngIf="movie.isarchive == 0">
+          <th> {{movie.title}} </th>
+        <td class="removeAdminClass" (click)="removeArchive(i,movie)"> Archive </td>
+        <td>
+          <div class="scheduleBtn" (click)="scheduleMovie(i)">
+            Schedule
+          </div>
+        </td>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
 </div>
-    

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { bmsApiService } from 'src/app/services/bmsapi.service';
 
 @Component({
   selector: 'app-unarchive-movies',
@@ -7,76 +9,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UnarchiveMoviesComponent implements OnInit {
 
-  movies = [
-    {
-      movieName : "Baby Driver",
-      archive : "Baby Driver",
-      Schedule : "ShanwazKotekanti@gmail.com",
-      update : ""
-    },
-    {
-      firstname : "Naveen",
-      lastName : "Kurra",
-      gmail : "naveenKurra@gmail.com",
-      movieName : "Bohemain",
-    },
-    {
-      firstname : "punith",
-      lastName : "kandula",
-      gmail : "punithkandula@gmail.com",
-      movieName : "Black Adam",
-    },
-    // {
-    //   firstname : "raymond",
-    //   lastName : "feckoury",
-    //   gmail : "raymondFeckoury@gmail.com",
-    //   movieName : "West Side Story",
-    // },
-    // {
-    //   firstname : "raymond",
-    //   lastName : "feckoury",
-    //   gmail : "raymondFeckoury@gmail.com",
-    //   movieName : "The God Father",
-    // },
-    // {
-    //   firstname : "raymond",
-    //   lastName : "feckoury",
-    //   gmail : "raymondFeckoury@gmail.com",
-    //   movieName : "HangOver II",
-    // },
-    {
-      firstname : "raymond",
-      lastName : "feckoury",
-      gmail : "raymondFeckoury@gmail.com",
-      movieName : "Alita",
-    },
-    {
-      firstname : "raymond",
-      lastName : "feckoury",
-      gmail : "raymondFeckoury@gmail.com",
-      movieName : "Suicide Squad",
-    },
-    {
-      firstname : "raymond",
-      lastName : "feckoury",
-      gmail : "raymondFeckoury@gmail.com",
-      movieName : "Joy",
-    },
-    {
-      firstname : "raymond",
-      lastName : "feckoury",
-      gmail : "raymondFeckoury@gmail.com",
-      movieName : "Drive",
-    },
-  ];
+  movies:any =[];
 
-  constructor() { }
+  constructor(private dialogRef: MatDialog,private bms: bmsApiService) { }
 
   ngOnInit(): void {
+    this.archivedMovies();
   }
 
-  removeArchive(ind:any) {
-    this.movies.splice(ind,1);
+  archivedMovies() {
+    this.bms.getMoviesList().subscribe(res=>{
+      this.movies = res;
+      console.log(this.movies," movies");
+    });
+  }
+
+  removeArchive(ind:any,movie:any) {
+    let obj:any;
+    obj = {
+      title: movie.title,
+      isarchive: 0
+    };
+    obj = JSON.stringify(obj);;
+    this.bms.archiveMovie(obj).subscribe(res=> {
+      if(res) {
+        this.archivedMovies();
+      }
+    })
   }
 
 }
