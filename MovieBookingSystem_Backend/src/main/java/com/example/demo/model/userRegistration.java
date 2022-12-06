@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -16,6 +17,7 @@ import javax.persistence.Table;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder.Default;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -48,6 +50,7 @@ public class userRegistration {
 	private String passvercode;
 	private String updatedpass;
 	private String lastname;
+	@Column(columnDefinition = "integer default 1")
 	private String userstatus;
 	private String cardnumber;
 	private String cardexpirymonth;

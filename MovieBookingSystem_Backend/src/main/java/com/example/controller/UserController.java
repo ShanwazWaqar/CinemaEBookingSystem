@@ -134,9 +134,29 @@ public class UserController {
 	  }
 	  
 	  @PostMapping("/LoginUser")
-	  public ResponseEntity<Boolean> userLogin(@RequestBody userRegistration userRegistration) {
-		 return ResponseEntity.ok(repo.existsByEmailAndPassword(userRegistration.getEmail(), userRegistration.getPassword()));
-		  }
+	  public Map<String,Object> userLogin(@RequestBody userRegistration userRegistration)throws SQLException {
+		  Map<String, Object> map = new HashMap<>();
+		  boolean res=repo.existsByEmailAndPassword(userRegistration.getEmail(), userRegistration.getPassword());
+		  if(res) {
+			  int status=0;
+			  Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cinemabooking", "root", "");
+			  java.sql.Statement stmt = conn.createStatement();
+			  ResultSet resultSet = stmt.executeQuery("SELECT userstatus FROM users WHERE email = " + "'" + userRegistration.getEmail() + "'");
+		         while (resultSet.next()) {
+		         	status=resultSet.getInt("userstatus"); 
+		         }
+		         if (status==1) {
+		        	 map.put("result", "valid");
+		        	 return map; 
+		         }else {
+		        	 map.put("result", "suspended");
+		        	 return map;
+		         }
+	  }else {
+		  map.put("result", "Invalid");
+		  return map;
+	  }
+		 }
 	  @GetMapping(path = "/allusers") 
 	  public ResponseEntity<?> getUsers() { 
 
@@ -162,7 +182,21 @@ public class UserController {
 		  HttpStatus.OK);
 	  
 	  }
-	
+	@PostMapping("/resendotp")
+	public boolean resendotp(@RequestBody userRegistration user)throws MessagingException,SQLException {
+		int max=99999;
+		 int min=10000;
+		 int randx = (int) Math.floor(Math.random()*(max-min+1)+min);
+		 String pcode=Integer.toString(randx);
+		 emailsenderservice.sendemailwithattachment(user.getEmail(),"Please use this Verification code to verify with bookmyshow : "+pcode,"verificationcode from BookMyShow");
+		 Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cinemabooking", "root", "");
+		 PreparedStatement ps=conn.prepareStatement("UPDATE users SET verificationcode=? WHERE email=?");
+		 ps.setString(1, pcode);
+		 ps.setString(2, user.getEmail());
+		 ps.executeUpdate();
+		 ps.close();
+		 return true;
+	}
 	  
 	  @PostMapping("/verifyforgotpassword")
 	  public boolean verifyforgotpassword(@RequestBody userRegistration user)throws MessagingException {
@@ -366,12 +400,21 @@ return true;
 		  map.put("result", "successfully registered");
 			 return map;
 	  }
+	  @PostMapping("/deletecard")
+	  public boolean deletecard(@RequestBody PaymentCard pc)throws SQLException {
+		  Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cinemabooking", "root", "");
+		  PreparedStatement ps=conn.prepareStatement("DELETE FROM paymentcard WHERE cardnumber=?");
+		  ps.setString(1, pc.getCardnumber());
+		  ps.executeUpdate();
+		  ps.close();
+	  return true;
+	  }
 	  
 	  @GetMapping(path = "/getshowtimes/{movieId}")
 		public List<Entry<Date,Time>> showDateAndTime(@PathVariable int movieId) {
 			List<Entry<Date,Time>> pairList = new ArrayList<>();
 			try {
-				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinemabooking", "root", "password");
+				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinemabooking", "root", "");
 				java.sql.Statement stmt = conn.createStatement();
 				ResultSet resultSet = stmt.executeQuery("SELECT date,time FROM showtimes WHERE movieid = "+ "'" + movieId + "'");
 				while(resultSet.next()) {
@@ -427,13 +470,30 @@ return true;
 	   * Send email
 	   */
 	  @PostMapping("/savebooking")
-	  public void saveBooking(@RequestBody booking booking)throws MessagingException {
-		  int max=999999999;
+	  public Map<String,Object> saveBooking(@RequestBody booking booking)throws MessagingException,SQLException {
+		  Map<String,Object>map=new HashMap<>();
+		  if(brepo.existsByDateAndTimeAndScreennumberAndSeatnumbers(booking.getDate(), booking.getTime(), booking.getScreennumber(), booking.getSeatnumbers())) {
+			System.out.println("reached If");
+			  Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cinemabooking", "root", "");
+				java.sql.Statement stmt = conn.createStatement();
+				System.out.println("SELECT orderid FROM bookings WHERE date = "+ "'" + booking.getDate() + "'"+" AND time = "+"'" + booking.getTime() + "'"+" AND screennumber = "+"'" + booking.getScreennumber()+"'"+" AND seatnumbers = "+"'" + booking.getSeatnumbers()+"';");
+				ResultSet resultSet = stmt.executeQuery("SELECT orderid FROM bookings WHERE date = "+ "'" + booking.getDate() + "'"+" AND time = "+"'" + booking.getTime() + "'"+" AND screennumber = "+"'" + booking.getScreennumber()+"'"+" AND seatnumbers = "+"'" + booking.getSeatnumbers()+"';");
+				while(resultSet.next()) {
+					map.put("orderid", resultSet.getInt("orderid"));
+					}
+			return map;
+		  }
+		  else{int max=999999999;
 			 int min=10000000;
 			 int rand = (int) Math.floor(Math.random()*(max-min+1)+min);
-			 String orderid=Integer.toString(rand);
+			 String orderid=Integer.toString(rand);	
 			 emailsenderservice.sendemailwithattachment(booking.getEmail(),"Hola!!! \n Your Booking is confirmed and Here is your order ID "+orderid,"Booking Confirmation");
-			booking.setOrderid(rand);
-		  brepo.save(booking);
+			 booking.setOrderid(rand);
+		     brepo.save(booking);
+		     map.put("orderid", orderid);
+			  return map;
+		  }
+		  
+		  
 	  }
 }

@@ -1,6 +1,9 @@
 package com.example.controller;
 
 import java.sql.Connection;
+import java.sql.Date;
+import java.time.format.DateTimeFormatter;  
+import java.time.LocalDateTime;    
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -199,14 +202,30 @@ public Map<String, Object>  getmovieimage(@RequestBody MovieEntity me)throws SQL
 }
 @PostMapping("/promopercentage")
 public Map<String,Object> promopercentage(@RequestBody promotion promo) throws SQLException{
+	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+	   LocalDateTime now = LocalDateTime.now();  
+	   System.out.println(dtf.format(now));  
 	Map<String,Object>map=new HashMap<>();
 	Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cinemabooking", "root", "");
 	java.sql.Statement stmt = conn.createStatement();
-	ResultSet resultSet = stmt.executeQuery("SELECT percentage FROM promotion WHERE pcode = "+ "'" + promo.getPcode() + "'");
+	//Date date
+	ResultSet resultSet = stmt.executeQuery("SELECT percentage,end FROM promotion WHERE pcode = "+ "'" + promo.getPcode() + "'");
 	while(resultSet.next()) {
 	        	  map.put("percentage",resultSet.getString("percentage"));
+	        	  map.put("end", resultSet.getString("end"));
+	        	  //Date date = resultSet.getDate("end");
 	}
+//	if(date.before(dtf.format(now))) {
+//		return map;
+//	}
+//	else {
+//		map.clear();
+//		map.put("percentage", "expired")
+//		return map;
+//	}
+	
 	return map;
+	
 }
 	
 }

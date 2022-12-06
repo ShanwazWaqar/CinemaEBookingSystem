@@ -326,6 +326,15 @@ while(resultSet.next()) {
 		  ps.executeUpdate();
 		  ps.close();
 		  return true;
-	  
+	  }
+	  @PostMapping("/archivemovie")
+	  public boolean archive(@RequestBody MovieEntity me)throws SQLException {
+		  Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cinemabooking", "root", "");
+		  PreparedStatement ps=conn.prepareStatement("UPDATE movies SET isarchive = ? WHERE title = ?");
+		  ps.setInt(1, me.getIsarchive());
+		  ps.setString(2, me.getTitle());
+		  ps.executeUpdate();
+		  ps.close();
+		  return true;
 	  }
 	}
