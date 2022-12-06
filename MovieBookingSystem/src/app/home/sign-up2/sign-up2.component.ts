@@ -120,13 +120,14 @@ export class SignUp2Component implements OnInit {
               this.emailExists = true;
             }
           });
-          paydata=JSON.stringify(paydata);
-          this._bmsAs.addCards(paydata).subscribe(res=>{
-            if(res){
-              console.log("payment added")
-            }
-            
-          })
+          if(this.cardDetails) {
+            paydata=JSON.stringify(paydata);
+            this._bmsAs.addCards(paydata).subscribe(res=>{
+              if(res){
+                //payment card added successfully!!.
+              }
+            });
+          }
         }
       }
     }
