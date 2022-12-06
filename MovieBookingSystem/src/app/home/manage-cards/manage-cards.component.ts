@@ -111,6 +111,7 @@ export class ManageCardsComponent implements OnInit {
     this.bms.deleteCard(obj).subscribe(res=>{
       if(res){
           console.log("Card Deleted Successfully"); //.Add popup delete card.
+          this.sucessPopup("Card Deleated successfully")
       }
     })
   }
