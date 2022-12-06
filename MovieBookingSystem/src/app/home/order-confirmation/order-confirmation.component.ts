@@ -17,6 +17,7 @@ export class OrderConfirmationComponent implements OnInit {
   promoText:any="";
   correctPromo:boolean = false;
   wrongPromo:boolean = false;
+  expiredpromo:boolean = false;
   movieImg:any ;
   percentage:any = 0;
   discountValue:any = 0;
@@ -28,6 +29,7 @@ export class OrderConfirmationComponent implements OnInit {
     this.movie = (localStorage.getItem("movie"));
     this.movie = JSON.parse(this.movie);
     this.tempmovie = this.movie;
+  
     let obj: any;
     obj = {
       title: this.tempmovie.movieName
@@ -64,15 +66,34 @@ export class OrderConfirmationComponent implements OnInit {
     }
     obj = JSON.stringify(obj);
     this.bms.promoCheck(obj).subscribe(res=>{
+      this.expiredpromo = false;
       if(res.percentage) {
+        
+        if(this.isBeforeToday(res.end)){
         this.correctPromo = true;
         this.percentage = res.percentage;
         this.discountValue = ((this.percentage/100)*((this.tempmovie.adultSeats * this.adultTicketPrice)+(this.tempmovie.childSeats * this.childTicketPrice)+(this.tempmovie.seniorSeats * this.seniorTicketPrice))).toFixed(2);
         this.total = ((this.tempmovie.adultSeats * this.adultTicketPrice)+(this.tempmovie.childSeats * this.childTicketPrice)+(this.tempmovie.seniorSeats * this.seniorTicketPrice)-this.discountValue+10).toFixed(2);
-      } else {
+      }else{
+        this.expiredpromo = true; 
+      }
+    } else {
         this.wrongPromo = true;
       }
     })
+  }
+  isBeforeToday(date:any) {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    let tdate=this.convert(today);
+    console.log(tdate);
+    return date <= tdate;
+  }
+  convert(value: any) {
+    var date = new Date(value),
+      mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+      day = ("0" + date.getDate()).slice(-2);
+    return [date.getFullYear(), mnth, day].join("-");
   }
 
 }
