@@ -69,6 +69,15 @@ export class SignUp2Component implements OnInit {
       nameoncard: (this.cardForm.value.name),
       promotion: this.promotionOptedIn
     }
+    let paydata:any;
+    paydata={
+      email : this.signUpForm.value.email,
+      cardnumber : (this.cardForm.value.cardNo),
+      expirymonth : (this.cardForm.value.month),
+      expiryyear : (this.cardForm.value.year),
+      nameoncard: (this.cardForm.value.name),
+      old_data:(this.cardForm.value.cardNo)
+    }
     let user2  =  {
       firstname : this.signUpForm.value.firstName,
       lastname : this.signUpForm.value.lastName,
@@ -111,6 +120,13 @@ export class SignUp2Component implements OnInit {
               this.emailExists = true;
             }
           });
+          paydata=JSON.stringify(paydata);
+          this._bmsAs.addCards(paydata).subscribe(res=>{
+            if(res){
+              console.log("payment added")
+            }
+            
+          })
         }
       }
     }
