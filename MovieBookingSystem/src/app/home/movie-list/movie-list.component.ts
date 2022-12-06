@@ -38,11 +38,13 @@ export class MovieListComponent implements OnInit {
 
   filterMovies() {
     for (let i = 0; i < this.totalMovies.length; i++) {
-      this.totalMovies[i].rating2 = (this.totalMovies[i].rating.split(":"))[0];
-      if (this.totalMovies[i].currentrunning == 1) {
-        this.currentMovies.push(this.totalMovies[i]);
-      } else {
-        this.upcomingMovies.push(this.totalMovies[i]);
+      if(this.totalMovies[i].isarchive != 1) {
+        this.totalMovies[i].rating2 = (this.totalMovies[i].rating.split(":"))[0];
+        if (this.totalMovies[i].currentrunning == 1) {
+          this.currentMovies.push(this.totalMovies[i]);
+        } else {
+          this.upcomingMovies.push(this.totalMovies[i]);
+        }
       }
     }
   }

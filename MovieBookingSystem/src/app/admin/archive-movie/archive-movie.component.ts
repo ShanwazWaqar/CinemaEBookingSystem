@@ -23,7 +23,6 @@ export class ArchiveMovieComponent implements OnInit {
   archivedMovies() {
     this.bms.getMoviesList().subscribe(res=>{
       this.movies = res;
-      console.log(this.movies," movie")
     });
   }
 
@@ -47,7 +46,6 @@ export class ArchiveMovieComponent implements OnInit {
   }
 
   removeArchive(ind:any,movie:any){
-    // this.movies.splice(ind,1);
     let obj:any;
     obj = {
       title: movie.title,
