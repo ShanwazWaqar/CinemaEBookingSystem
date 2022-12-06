@@ -11,7 +11,7 @@
          <a>Manage Promos</a>
       </li>
       <li (click)="displayAdmins()">
-         <a>Manage Admin</a>
+         <a>Add Admin</a>
       </li>
       <li>
          <a (click)="logout()">Signout</a>
@@ -38,6 +38,7 @@
       </div>
    </div>
    <div *ngIf="displayAdminsComp">
-       <app-manage-admin></app-manage-admin>
+       <!-- <app-manage-admin></app-manage-admin> -->
+       <app-add-admin></app-add-admin>
    </div>
 </div>   

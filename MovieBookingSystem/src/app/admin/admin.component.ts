@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { bmsApiService } from '../services/bmsapi.service';
 import { tempDataService } from '../services/tempData.service';
+import { ErrorPopupComponent } from './error-popup/error-popup.component';
 
 @Component({
   selector: 'app-admin',
@@ -12,13 +14,13 @@ import { tempDataService } from '../services/tempData.service';
 export class AdminComponent implements OnInit {
   loginForm: FormGroup;
   adminerror:boolean = false;
-  constructor(private fb: FormBuilder,private router: Router, private bms:bmsApiService, private tds:tempDataService) { }
+  constructor(private fb: FormBuilder,private router: Router, private bms:bmsApiService, private tds:tempDataService, private dialogRef: MatDialog) { }
 
   ngOnInit(): void {
     
     this.loginForm = this.fb.group({
-      email : ['',[Validators.required, Validators.email]],
-      password : ['', [Validators.required]]
+      email: ['', [Validators.required, Validators.pattern("^[A-Za-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
+      password: ['', [Validators.required]]
     });
   }
 
@@ -31,6 +33,17 @@ export class AdminComponent implements OnInit {
     //   //login failed code
     // }
     
+  }
+
+  errorPopup(msg:any) {
+    const popup2 = this.dialogRef.open(ErrorPopupComponent, {
+      disableClose: true,
+      enterAnimationDuration: '700ms',
+      exitAnimationDuration:'1000ms',
+      maxHeight: '80vh',
+      width: '400px',
+      data: msg
+    });
   }
 
   admin2Route() {
@@ -52,6 +65,7 @@ export class AdminComponent implements OnInit {
           this.router.navigateByUrl('/admin2');
         } else {
           // Server down popup
+          this.errorPopup("Sorry you dont have Access.")
         }
       });
     }

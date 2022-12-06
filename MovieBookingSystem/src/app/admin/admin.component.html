@@ -1,16 +1,30 @@
-
-
 <nav>
   <div class="logo">
-     Bookmyshow
+    Bookmyshow
   </div>
 </nav>
 
 <div class="log-form">
   <h2 class="d-flex justify-content-center">ADMIN LOGIN</h2>
   <form [formGroup]="loginForm" (ngSubmit)="submitLogin(loginForm)">
-    <input formControlName="email" type="email" title="email" placeholder="email" />
-    <input formControlName="password" type="password" title="username" placeholder="password" />
+    <div class="spacing">
+      <input formControlName="email" type="email" title="email" placeholder="email" />
+      <div
+        *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)"
+        class="">
+        <span *ngIf="loginForm.controls['email'].errors?.required" class="errorText">Please Enter your Email.</span>
+        <span *ngIf="loginForm.controls['email'].errors?.pattern" class="errorText">Please provide a valid email
+          address.</span>
+      </div>
+    </div>
+    <div class="spacing">
+      <input formControlName="password" type="password" title="username" placeholder="password" />
+      <div
+        *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)"
+        class="">
+        <span class="errorText">Please Enter your Password.</span>
+      </div>
+    </div>
     <!-- <div class="d-flex justify-content-center">
       <button type="submit" class="btn">Login</button>
     </div> -->
