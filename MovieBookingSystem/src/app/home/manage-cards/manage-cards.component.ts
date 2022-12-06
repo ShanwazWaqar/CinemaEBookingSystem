@@ -92,7 +92,6 @@ export class ManageCardsComponent implements OnInit {
     if (cardsList.length < 3) {
       cardsList.push(this.createCardForm());
       console.log(cardsList.length, " length");
-      this.sucessPopup("Card Added/Modified successfully")
     } else {
       // error popup says card limit exceeded.
 
@@ -203,6 +202,7 @@ export class ManageCardsComponent implements OnInit {
         this.bms.update3Cards(obj).subscribe(res => {
           if (res) {
             console.log(res, " res for update3Cards");
+            this.sucessPopup("Card Added/Modified successfully")
           } else {
             console.log("error for update3Cards method api call");
           }
@@ -220,6 +220,7 @@ export class ManageCardsComponent implements OnInit {
         this.bms.addCards(obj).subscribe(res => {
           if (res) {
             console.log(res, " res for update3Cards");
+            this.sucessPopup("Card Added/Modified successfully")
           } else {
             console.log("error for update3Cards method api call");
           }
