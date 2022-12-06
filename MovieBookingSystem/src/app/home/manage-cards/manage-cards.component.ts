@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { bmsApiService } from 'src/app/services/bmsapi.service';
+import { MsgPopupHomeComponent } from '../msg-popup-home/msg-popup-home.component';
 
 @Component({
   selector: 'app-manage-cards',
@@ -12,13 +14,25 @@ export class ManageCardsComponent implements OnInit {
   cardForm: FormGroup;
   cardDetails: any;
   cardValueChanges: any;
-  constructor(private router: Router, private fb: FormBuilder, private bms: bmsApiService) { }
+  constructor(private router: Router, private fb: FormBuilder, private bms: bmsApiService, private dialogRef: MatDialog) { }
 
   get cards() {
     return (this.cardForm.get('cardsArray') as FormArray);
   }
 
-
+  sucessPopup(msg:any) {
+    const popup2 = this.dialogRef.open(MsgPopupHomeComponent, {
+      disableClose: true,
+      enterAnimationDuration: '700ms',
+      exitAnimationDuration:'1000ms',
+      maxHeight: '80vh',
+      width: '400px',
+      data: msg
+    });
+    // popup2.afterClosed().subscribe(item =>{
+      
+    // });
+  }
 
   ngOnInit(): void {
     let user = (localStorage.getItem("loggedIn"));
