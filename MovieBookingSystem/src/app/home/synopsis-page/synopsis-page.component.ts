@@ -32,6 +32,10 @@ isVerifiedUser:any;
     });
    }
 
+   returnHome() {
+    this.router.navigateByUrl('/home');
+  }
+
   ngOnInit(): void {
     let obj:any
     obj={

@@ -65,6 +65,10 @@ export class LoginComponent implements OnInit {
     this.router.navigateByUrl('/forgotPassword');
   }
 
+  returnHome() {
+    this.router.navigateByUrl('/home');
+  }
+
   login() {
     this.loginForm.markAllAsTouched();
     if (this.loginForm.valid) {

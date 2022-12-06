@@ -46,6 +46,10 @@ export class BookTicketsComponent implements OnInit {
     this.router.navigateByUrl('/bookSeats');
   }
 
+  returnHome() {
+    this.router.navigateByUrl('/home');
+  }
+
   emptyscreens() {
     this.screens=[[],[],[],[],[],[]];
   }

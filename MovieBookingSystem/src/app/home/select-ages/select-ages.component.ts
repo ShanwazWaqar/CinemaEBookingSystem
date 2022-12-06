@@ -34,6 +34,10 @@ export class SelectAgesComponent implements OnInit {
     this.totalSeats = this.seats;
   }
 
+  returnHome() {
+    this.router.navigateByUrl('/home');
+  }
+
   sucessPopup(msg: any) {
     const popup2 = this.dialogRef.open(MsgPopupHomeComponent, {
       disableClose: true,

@@ -141,6 +141,10 @@ export class SignUp2Component implements OnInit {
     // this.router.navigateByUrl('/userHomePage');
   }
 
+  returnHome() {
+    this.router.navigateByUrl('/home');
+  }
+
   loginReroute() {
     this.router.navigateByUrl('/Login');
   }
