@@ -41,13 +41,12 @@ export class VerfiyUserComponent implements OnInit {
         email: this.email,
         verificationcode: this.otpValue
       }
-      console.log(cred," cred")
       cred = JSON.stringify(cred);
       this._bmsAs.verifyOTP(cred).subscribe((res) => {
         if (res) {
           this.router.navigateByUrl('/userHomePage');
         } else {
-          //for invalid cred
+          this.isValidOTP = true;
         }
       });
     } else {
