@@ -60,7 +60,7 @@
       display: block;
       margin: auto auto;
       width: 100%;
-      margin-bottom: 2em;
+      // margin-bottom: 2em;
       padding: .5em 0;
       border: none;
       border-bottom: 1px solid #eaeaea;
@@ -419,6 +419,12 @@
     margin: 15px 0;
   }
 
+  .errorText {
+    color: red;
+    font-size: x-small;
+    margin-left: 10px;
+  }
+
   @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
   .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
@@ -434,3 +440,28 @@
     background-color: grey;
   }
   
+
+  .spacing {
+    margin-bottom: 2em;
+  }
+
+  /* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.spacingClass {
+  display: flex;
+  justify-content: space-around;
+}
+.skipClass {
+  color: #1fb5bf;
+  cursor: pointer;
+}

@@ -109,7 +109,7 @@
                     <span class="inputTitle">pincode <span class="required">*</span></span>
                     <input type="number" formControlName="pincode" placeholder="Enter pincode" />
                     <div *ngIf="addressForm.controls['pincode'].invalid && (addressForm.controls['pincode'].dirty || addressForm.controls['pincode'].touched)" class="">
-                        <span *ngIf="addressForm.controls['pincode'].errors?.required" class="errorText">Address is required</span>
+                        <span *ngIf="addressForm.controls['pincode'].errors?.required" class="errorText">Pincode is required</span>
                         <span *ngIf="addressForm.controls['pincode'].errors?.pattern" class="errorText">Pincode should be of 5 characters.</span>
                     </div>
                 </div>

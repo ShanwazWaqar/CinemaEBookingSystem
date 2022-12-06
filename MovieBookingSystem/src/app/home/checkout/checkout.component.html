@@ -1,11 +1,11 @@
 <div *ngIf="email == undefined">
   <nav>
-      <div class="logo">
-          Bookmyshow
-      </div>
-      <div class="search-icon">
-          <span class="fas fa-search"></span>
-      </div>
+    <div class="logo">
+      Bookmyshow
+    </div>
+    <div class="search-icon">
+      <span class="fas fa-search"></span>
+    </div>
   </nav>
 </div>
 <div *ngIf="email">
@@ -13,72 +13,209 @@
 </div>
 
 <div class="centeringForm" *ngIf="intialPage">
-    <div class="log-form">
-      <div>
-        <div class="d-flex justify-content-center"><h2>Checkout</h2></div>
-        <form [formGroup]="checkoutForm">
-          <div class="checkoutIndividualTitle">Personal Details : </div>
+  <div class="log-form">
+    <div>
+      <div class="d-flex justify-content-center">
+        <h2>Checkout</h2>
+      </div>
+      <form [formGroup]="checkoutForm">
+        <!-- <div class="checkoutIndividualTitle">Personal Details : </div>
+        <div class="spacing">
           <input type="text" formControlName="firstName" title="firstName" placeholder="first Name *" />
+          <div
+            *ngIf="checkoutForm.controls['firstName'].invalid && (checkoutForm.controls['firstName'].dirty || checkoutForm.controls['firstName'].touched)"
+            class="">
+            <span *ngIf="checkoutForm.controls['firstName'].errors?.required" class="errorText">Please Enter your First
+              Name.</span>
+          </div>
+        </div>
+        <div class="spacing">
           <input type="text" formControlName="lastName" title="lastName" placeholder="Last Name *" />
+          <div
+            *ngIf="checkoutForm.controls['lastName'].invalid && (checkoutForm.controls['lastName'].dirty || checkoutForm.controls['lastName'].touched)"
+            class="">
+            <span *ngIf="checkoutForm.controls['lastName'].errors?.required" class="errorText">Please Enter your Last
+              Name.</span>
+          </div>
+        </div>
+        <div class="spacing">
           <input type="email" formControlName="email" title="email" placeholder="Email *" />
-          <input type="tel" formControlName="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="phone Number" placeholder="Phone Number *" />
-          <!-- <input type="number" title="Age" placeholder="Age *" /> -->
-          <div class="checkoutIndividualTitle">Billing Address : </div>
+          <div
+            *ngIf="checkoutForm.controls['email'].invalid && (checkoutForm.controls['email'].dirty || checkoutForm.controls['email'].touched)"
+            class="">
+            <span *ngIf="checkoutForm.controls['email'].errors?.required" class="errorText">Please Enter your
+              Email.</span>
+            <span *ngIf="checkoutForm.controls['email'].errors?.pattern" class="errorText">Please provide a valid email
+              address.</span>
+          </div>
+        </div>
+        <div class="spacing">
+          <input type="number" formControlName="phone" title="phone Number" placeholder="Phone Number *" />
+          <div
+            *ngIf="checkoutForm.controls['phone'].invalid && (checkoutForm.controls['phone'].dirty || checkoutForm.controls['phone'].touched)"
+            class="">
+            <span *ngIf="checkoutForm.controls['phone'].errors?.required" class="errorText">Invalid Phone Number</span>
+            <span *ngIf="checkoutForm.controls['phone'].errors?.pattern" class="errorText">Phone Number Should be of 10
+              digits(ex:9876543210)</span>
+          </div>
+        </div> -->
+        <!-- <input type="number" title="Age" placeholder="Age *" /> -->
+        <div class="checkoutIndividualTitle">Billing Address : </div>
+        <div class="spacing">
+
+        </div>
+        <div class="spacing">
           <input type="text" formControlName="address1" title="address line 1" placeholder="Address Line 1*" />
-        <input type="text" formControlName="address2" title="address line 2" placeholder="Address Line 2" />
-        <div class="d-flex justify-content-center">
+          <div
+            *ngIf="checkoutForm.controls['address1'].invalid && (checkoutForm.controls['address1'].dirty || checkoutForm.controls['address1'].touched)"
+            class="">
+            <span *ngIf="checkoutForm.controls['address1'].errors?.required" class="errorText">Address is
+              required</span>
+          </div>
+        </div>
+        <div class="spacing">
+          <input type="text" formControlName="address2" title="address line 2" placeholder="Address Line 2" />
+        </div>
+        <div class="spacing">
+          <div class="d-flex justify-content-center">
             <input type="text" formControlName="city" title="city" placeholder=" Enter City*" />
             <input type="text" formControlName="state" title="State" placeholder=" Enter State*" />
+          </div>
+          <div
+            *ngIf="checkoutForm.controls['city'].invalid && (checkoutForm.controls['city'].dirty || checkoutForm.controls['city'].touched)"
+            class="">
+            <span *ngIf="checkoutForm.controls['city'].errors?.required" class="errorText">City is required</span>
+          </div>
+          <div
+            *ngIf="checkoutForm.controls['state'].invalid && (checkoutForm.controls['state'].dirty || checkoutForm.controls['state'].touched)"
+            class="">
+            <span *ngIf="checkoutForm.controls['state'].errors?.required" class="errorText">State is required</span>
+          </div>
         </div>
-        <div class="d-flex justify-content-center">
+        <div class="spacing">
+          <div class="d-flex justify-content-center">
             <input type="text" formControlName="country" title="Country" placeholder=" Enter Country*" />
-        <input type="text" formControlName="pincode" title="zipcode" placeholder=" Enter Zipcode*" />
+            <input type="number" formControlName="pincode" title="zipcode" placeholder=" Enter Zipcode*" />
+          </div>
+          <div
+            *ngIf="checkoutForm.controls['country'].invalid && (checkoutForm.controls['country'].dirty || checkoutForm.controls['country'].touched)"
+            class="">
+            <span *ngIf="checkoutForm.controls['country'].errors?.required" class="errorText">Country is required</span>
+          </div>
+          <div
+            *ngIf="checkoutForm.controls['pincode'].invalid && (checkoutForm.controls['pincode'].dirty || checkoutForm.controls['pincode'].touched)"
+            class="">
+            <span *ngIf="checkoutForm.controls['pincode'].errors?.required" class="errorText">Pincode is required</span>
+            <span *ngIf="checkoutForm.controls['pincode'].errors?.pattern" class="errorText">Pincode should be of 5
+              characters.</span>
+          </div>
         </div>
+
+
         <!-- card buttons -->
         <div class="checkoutIndividualTitle">Payment Details : </div>
         <!-- <button class="secondPageBtn" *ngIf="!showExistingCards" (click)="ShowExistingCards()"> Select from Saved Cards </button> <br> -->
-        <div >
+        <div>
           <div class="checkoutIndividualTitle2">Saved Cards : (MAX 3 Cards be saved)</div>
-          <div class="radioBtnCss">
-            <mat-radio-group
-                aria-labelledby="example-radio-group-label"
-                class="example-radio-group"
-                formControlName="cardSelected"
-                >
-                <mat-radio-button class="example-radio-button" *ngFor="let card of cards" [value]="card">
-                  {{card}}
-                </mat-radio-button>
-                <br>
-              </mat-radio-group>            
+          <div class="radioBtnCss" *ngIf="noOfCards != 0">
+            <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+              formControlName="cardSelected">
+              <mat-radio-button class="example-radio-button" *ngFor="let card of cards" [value]="card">
+                {{card}}
+              </mat-radio-button>
+              <br>
+            </mat-radio-group>
+            Please Enter CVV For Selected Card:
+            <input type="number" formControlName="cvv" title="CVV" placeholder="CVV *" />
+            <div
+              *ngIf="checkoutForm.controls['cvv'].invalid && (checkoutForm.controls['cvv'].dirty || checkoutForm.controls['cvv'].touched)"
+              class="">
+              <span *ngIf="checkoutForm.controls['cvv'].errors?.required" class="errorText">Please Enter CVV for the
+                selected card.</span>
+              <span *ngIf="checkoutForm.controls['cvv'].errors?.pattern" class="errorText">CVV should be of 3
+                characters.</span>
+            </div>
+          </div>
+          <div *ngIf="noOfCards == 0">
+            <div>
+              (No Cards Saved) Please Add New Card and make payment
+            </div>
           </div>
         </div>
       </form>
       <form [formGroup]="cardForm">
-        <button class="secondPageBtn" *ngIf="!showCardForm && noOfCards<3" (click)="thirdPageOfRegistration2()"> ADD New Card </button> <br>
+        <button class="secondPageBtn" *ngIf="!showCardForm && noOfCards<3" (click)="thirdPageOfRegistration2()"> ADD New
+          Card </button> <br>
         <div *ngIf="showCardForm && noOfCards<3">
-          <div class="d-flex justify-content-centereckoutIndividualTitle2">ADD NEW CARD</div>
-          <div class="checkoutIndividualTitle2">Enter Card Details : </div>
-          <input type="text" formControlName="cardNo" title="cardNumber" placeholder="Card Number *" />
-          <div class="d-flex justify-content-center">
-            <input type="number" formControlName="month" title="exipryMonth" placeholder="Expiry Month *" />
-            <input type="number" formControlName="year" title="ExpiryYear" placeholder="Expiry Year *" />
-            <input type="number" formControlName="cvv" title="CVV" placeholder="CVV *" />
-          </div> 
-          <input type="text" formControlName="name" title="Name" placeholder="Name on Card *" />
-        </div> 
-        <!-- card details -->
-          <div class="secondPageBtns">
-            <button class="btn" (click)="cancelCheckout()"> Cancel </button>
-            <button type="submit" class="btn" (click)="placeOrder()">Make Payment</button>
+          <div class="spacingClass">
+            <div class="checkoutIndividualTitle2">Enter Card Details : </div>
+            <div (click)="skipCard()" class="skipClass">Skip</div>
           </div>
-        </form>
-      </div>
+          <div class="spacing">
+            <input type="text" formControlName="cardNo" title="cardNumber" placeholder="Card Number *" />
+            <div
+              *ngIf="cardForm.controls['cardNo'].invalid && (cardForm.controls['cardNo'].dirty || cardForm.controls['cardNo'].touched)"
+              class="">
+              <span *ngIf="cardForm.controls['cardNo'].errors?.required" class="errorText">Card Number is
+                required</span>
+              <span *ngIf="cardForm.controls['cardNo'].errors?.pattern" class="errorText">Card Number should be of 12
+                digits(ex: 123412341234)</span>
+            </div>
+          </div>
+          <div>
+            <div class="d-flex justify-content-center">
+              <input type="number" formControlName="month" title="exipryMonth" placeholder="Expiry Month *" />
+              <input type="number" formControlName="year" title="ExpiryYear" placeholder="Expiry Year *" />
+              <input type="number" formControlName="cvv" title="CVV" placeholder="CVV *" />
+            </div>
+            <div
+              *ngIf="cardForm.controls['month'].invalid && (cardForm.controls['month'].dirty || cardForm.controls['month'].touched)"
+              class="">
+              <span *ngIf="cardForm.controls['month'].errors?.required" class="errorText">Month is required</span>
+              <span
+                *ngIf="cardForm.controls['month'].errors?.monthError && !cardForm.controls['month'].errors?.required"
+                class="errorText">Exact 2 numbers required(example:08)</span>
+            </div>
+            <div
+              *ngIf="cardForm.controls['year'].invalid && (cardForm.controls['year'].dirty || cardForm.controls['year'].touched)"
+              class="">
+              <span *ngIf="cardForm.controls['year'].errors?.required" class="errorText">Year is required</span>
+              <span *ngIf="cardForm.controls['year'].errors?.pattern" class="errorText">Exact 4 numbers
+                required for Year(example:1998)</span>
+            </div>
+            <div
+              *ngIf="cardForm.controls['cvv'].invalid && (cardForm.controls['cvv'].dirty || cardForm.controls['cvv'].touched)"
+              class="">
+              <span *ngIf="cardForm.controls['cvv'].errors?.required" class="errorText">CVV is required</span>
+              <span *ngIf="cardForm.controls['cvv'].errors?.pattern" class="errorText">Exact 3 numbers
+                required for CVV(example:906)</span>
+            </div>
+
+          </div>
+          <div class="spacing">
+            <input type="text" class="nameClass" formControlName="name" title="Name" placeholder="Name on Card *" />
+            <div
+              *ngIf="cardForm.controls['name'].invalid && (cardForm.controls['name'].dirty || cardForm.controls['name'].touched)"
+              class="">
+              <span *ngIf="cardForm.controls['name'].errors?.required" class="errorText">Name is required</span>
+            </div>
+          </div>
+        </div>
+        <!-- card details -->
+        <div class="secondPageBtns">
+          <button class="btn" (click)="cancelCheckout()"> Cancel </button>
+          <button type="submit" class="btn" (click)="placeOrder()">Make Payment</button>
+        </div>
+      </form>
     </div>
+  </div>
 </div>
 
 <div *ngIf="fourthPage">
   <div class="log-form">
-    <div class="d-flex justify-content-center"><h2>Book my show</h2></div>
+    <div class="d-flex justify-content-center">
+      <h2>Book my show</h2>
+    </div>
     <form>
       <br><br>
       <div class="">
@@ -86,7 +223,7 @@
         <div class="orText">( or )</div> <br>
         <button class="secondPageBtn" (click)="fourthPageOfRegistration()">Skip & Continue</button>
         <br><br>
-    </div>
+      </div>
     </form>
     <div class="secondPageBtns">
       <button class="btn" (click)="initalPage()"> Back </button>
@@ -95,44 +232,48 @@
 </div>
 
 <div *ngIf="thirdPage">
-    <div class="log-form">
-        <div class="d-flex justify-content-center"><h2>Payment Details</h2></div>
-        <form>
-          <input type="text" title="cardNumber" placeholder="Card Number *" />
-          <div class="d-flex justify-content-center">
-            <input type="number" title="exipryMonth" placeholder="Expiry Month *" />
-            <input type="number" title="ExpiryYear" placeholder="Expiry Year *" />
-            <input type="number" title="CVV" placeholder="CVV *" />
-          </div> 
-          <input type="text" title="Name" placeholder="Name on Card *" />
-        </form>
-        <div class="secondPageBtns">
-            <button class="btn" (click)="secondPageOfRegistration()"> Back </button>
-            <button class="btn" (click)="cancelCheckout()"> Cancel </button>
-            <button class="btn" (click)="placeOrder()"> Place Order </button>
-          </div>
+  <div class="log-form">
+    <div class="d-flex justify-content-center">
+      <h2>Payment Details</h2>
+    </div>
+    <form [formGroup]="cardForm">
+      <input type="text" title="cardNumber" placeholder="Card Number *" />
+      <div class="d-flex justify-content-center">
+        <input type="number" title="exipryMonth" placeholder="Expiry Month *" />
+        <input type="number" title="ExpiryYear" placeholder="Expiry Year *" />
+        <input type="number" title="CVV" placeholder="CVV *" />
       </div>
+      <input type="text" title="Name" placeholder="Name on Card *" />
+    </form>
+    <div class="secondPageBtns">
+      <button class="btn" (click)="secondPageOfRegistration()"> Back </button>
+      <button class="btn" (click)="cancelCheckout()"> Cancel </button>
+      <button class="btn" (click)="placeOrder()"> Place Order </button>
+    </div>
+  </div>
 </div>
 
 <div *ngIf="secondPage">
   <div class="log-form">
-      <div class="d-flex justify-content-center"><h2>Billing Adddress</h2></div>
-      <form>
-        <input type="text" title="address line 1" placeholder="Address Line 1*" />
-        <input type="text" title="address line 2" placeholder="Address Line 2" />
-        <div class="d-flex justify-content-center">
-            <input type="text" title="city" placeholder=" Enter City*" />
-            <input type="text" title="State" placeholder=" Enter State*" />
-        </div>
-        <div class="d-flex justify-content-center">
-            <input type="text" title="Country" placeholder=" Enter Country*" />
-        <input type="text" title="zipcode" placeholder=" Enter Zipcode*" />
-        </div>  
-      </form>
-      <div class="secondPageBtns">
-          <button class="btn" (click)="initalPage()"> Back </button>
-          <button class="btn" (click)="cancelCheckout()"> Cancel </button>
-          <button class="btn" (click)="thirdPageOfRegistration()"> Coninue </button>
-        </div>
+    <div class="d-flex justify-content-center">
+      <h2>Billing Adddress</h2>
     </div>
+    <form>
+      <input type="text" title="address line 1" placeholder="Address Line 1*" />
+      <input type="text" title="address line 2" placeholder="Address Line 2" />
+      <div class="d-flex justify-content-center">
+        <input type="text" title="city" placeholder=" Enter City*" />
+        <input type="text" title="State" placeholder=" Enter State*" />
+      </div>
+      <div class="d-flex justify-content-center">
+        <input type="text" title="Country" placeholder=" Enter Country*" />
+        <input type="text" title="zipcode" placeholder=" Enter Zipcode*" />
+      </div>
+    </form>
+    <div class="secondPageBtns">
+      <button class="btn" (click)="initalPage()"> Back </button>
+      <button class="btn" (click)="cancelCheckout()"> Cancel </button>
+      <button class="btn" (click)="thirdPageOfRegistration()"> Coninue </button>
+    </div>
+  </div>
 </div>

@@ -44,21 +44,22 @@ export class CheckoutComponent implements OnInit {
       }
     });
     this.checkoutForm = this.fb.group({
-      firstName : ['',[Validators.required]],
-      lastName : ['',[Validators.required]],
-      email : ['',[Validators.required, Validators.pattern("^[A-Za-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
-      phone : ['',[Validators.required,Validators.pattern("[0-9 ]{10}")]],
+      // firstName : ['',[Validators.required]],
+      // lastName : ['',[Validators.required]],
+      // email : ['',[Validators.required, Validators.pattern("^[A-Za-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
+      // phone : ['',[Validators.required,Validators.pattern("[0-9]{10}")]],
       address1 : ['',[Validators.required]],
       address2 : [''],
       city : ['',[Validators.required]],
       state : ['',[Validators.required]],
       country : ['',[Validators.required]],
-      pincode : ['',[Validators.required, Validators.pattern("^[a-zA-Z0-9]{5}$")]],
-      cardSelected : ['']
+      pincode : ['',[Validators.required, Validators.pattern("^[0-9]{5}$")]],
+      cardSelected : [''],
+      cvv : ['',[]],
     });
     this.cardForm = this.fb.group({
       cardNo : ['',[Validators.required,Validators.pattern("[0-9]{12}")]],
-      month : ['',[Validators.required,cardMonthCheck]],
+      month : ['',[Validators.required]],
       year : ['',[Validators.required,Validators.pattern('^[0-9]{4}$')]],
       cvv : ['',[Validators.required]],
       name : ['',[Validators.required]],
@@ -104,9 +105,55 @@ export class CheckoutComponent implements OnInit {
     this.router.navigateByUrl('/home');
   }
 
+  skipCard() {
+    this.showCardForm = false;
+  }
+
+  addCard() {
+    let paydata:any;
+        paydata={
+          email : this.email,
+          cardnumber : (this.cardForm.value.cardNo),
+          expirymonth : (this.cardForm.value.month),
+          expiryyear : (this.cardForm.value.year),
+          nameoncard: (this.cardForm.value.name),
+          old_data:(this.cardForm.value.cardNo)
+        }
+        paydata=JSON.stringify(paydata);
+        this.bms.addCards(paydata).subscribe(res=>{
+          if(res){
+            //payment card added successfully!!.
+          }
+        });
+  }
+
   placeOrder() {
-    console.log(this.checkoutForm.value," checkout form");
-    console.log(this.cardForm.value," card form");
+    if(this.checkoutForm.valid) {
+      // valid form
+      if(this.checkoutForm.value.cardSelected || this.showCardForm) {
+        console.log("paymeny method is selected");
+        if(this.showCardForm) {
+          if(this.cardForm.valid) {
+            localStorage.setItem("movie",JSON.stringify(this.movie));
+            this.router.navigateByUrl('/confirmation');
+          } else {
+            this.cardForm.markAllAsTouched();
+          }
+        } else {
+          if(this.checkoutForm.value.cvv != "") {
+            localStorage.setItem("movie",JSON.stringify(this.movie));
+            this.router.navigateByUrl('/confirmation');
+          }
+        }
+      } else {
+        // no payment card selected.
+        console.log("no payment card selected ");
+      }
+    } else {
+      console.log("invalid form");
+    }
+
+
     let obj:any;
     obj = {
       firstname : this.checkoutForm.value.firstName,
@@ -121,23 +168,17 @@ export class CheckoutComponent implements OnInit {
       zipcode : this.checkoutForm.value.pincode,
     }
     if(this.checkoutForm.value.cardSelected == "" ) {
-      //consider add new card
-      obj.paymentcard = [
-        {
-          cardnumber : (this.cardForm.value.cardNo),
-          cardexpirymonth : (this.cardForm.value.month),
-          cardexpiryyear : (this.cardForm.value.year),
-          nameoncard: (this.cardForm.value.name),
-        }
-      ];
+      if(this.showCardForm) {
+        
+      }
       this.movie.cardNo = this.cardForm.value.cardNo;
     } else {
       //selecting from existing cards
       this.movie.cardNo = this.checkoutForm.value.cardSelected;
       obj.cardSelected = this.checkoutForm.value.cardSelected;
     }
-    localStorage.setItem("movie",JSON.stringify(this.movie));
-    this.router.navigateByUrl('/confirmation');
+
+    
   }
 
 }
