@@ -144,7 +144,6 @@ export class CheckoutComponent implements OnInit {
 
 function cardMonthCheck(control: AbstractControl): {[key:string]:any} | null { 
   const month:string = control.value;
-  console.log(month," month val in card month checck")
   if(month == null) {
     return null;
   } else {
