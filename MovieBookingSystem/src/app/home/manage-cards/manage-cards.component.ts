@@ -68,7 +68,7 @@ export class ManageCardsComponent implements OnInit {
     const cardsList = <FormArray>this.cardForm.controls['cardsArray'];
     let form = this.fb.group({
       cardNumber: [card.cardnumber, [Validators.required, Validators.pattern("[0-9]{12}")]],
-      expiryMonth: [card.expirymonth, [Validators.required, cardMonthCheck]],
+      expiryMonth: [card.expirymonth, [Validators.required]],
       expiryYear: [card.expiryyear, [Validators.required, Validators.pattern('^[0-9]{4}$')]],
       nameOnCard: [card.nameoncard, [Validators.required]],
       oldCard: [card.cardnumber],
@@ -79,7 +79,7 @@ export class ManageCardsComponent implements OnInit {
   createCardForm(): FormGroup {
     return this.fb.group({
       cardNumber: ['', [Validators.required, Validators.pattern("[0-9]{12}")]],
-      expiryMonth: ['', [Validators.required, cardMonthCheck]],
+      expiryMonth: ['', [Validators.required]],
       expiryYear: ['', [Validators.required, Validators.pattern('^[0-9]{4}$')]],
       nameOnCard: ['', [Validators.required]],
       oldCard: ['']
