@@ -14,6 +14,7 @@ export class OrderHistoryComponent implements OnInit {
   title:String;
   cost:String;
   useremail:any="";
+  tickets:any;
   constructor(private router: Router,private bms: bmsApiService, private route:ActivatedRoute) { 
     
   }
@@ -26,17 +27,26 @@ export class OrderHistoryComponent implements OnInit {
     }
     cred = JSON.stringify(cred);
     this.bms.getOrderHistory(cred).subscribe((res) => {
-      console.log(res);
-      // Total costs list
-      let titles = res[0];
-      let costs = res[1];
-      this.title = titles[0];
-      this.cost = costs[0];
-      // Loop through the list of titles and print title and cost
-      for (let i = 0; i < titles.length; i++) {
-        console.log(titles[i]);
-        console.log(costs[i]);
+      console.log(res, " res for booking");
+      if(res) {
+        this.tickets = res;
+        for(let i=0;i<this.tickets.length;i++) {
+          this.tickets[i].dateDay = this.tickets[i].date.split(" ")[0];
+          this.tickets[i].dateNumber = this.tickets[i].date.split(" ")[1];
+          this.tickets[i].totalSeats = Number(this.tickets[i].adultseats) +Number(this.tickets[i].childseats)+ Number(this.tickets[i].seniorseats);
+
+        }
       }
+      // // Total costs list
+      // let titles = res[0];
+      // let costs = res[1];
+      // this.title = titles[0];
+      // this.cost = costs[0];
+      // // Loop through the list of titles and print title and cost
+      // for (let i = 0; i < titles.length; i++) {
+      //   console.log(titles[i]);
+      //   console.log(costs[i]);
+      // }
     });
   }
 

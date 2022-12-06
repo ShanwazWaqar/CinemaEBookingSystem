@@ -1,11 +1,48 @@
 <app-user-header></app-user-header>
-<h1 class="pagetitle">Order History</h1>
+<div class="totalBody">
+    <h1 class="pagetitle">Order History</h1>
+    <div *ngIf="tickets?.length !=0" >
+        <div *ngFor="let ticket of tickets">
+            <div class="d-flex justify-content-center">
+                <section class="container">
+                    <article class="card fl-left">
+                        <section class="date">
+                            <time datetime="23th feb">
+                                <span> {{ticket.dateNumber}} </span><span> {{ticket.dateDay}} </span>
+                            </time>
+                        </section>
+                        <section class="card-cont">
+                            <h5 [ngStyle]="{'color': '#000'}"> {{ticket.title}} </h5>
+                            <h3> {{ticket.orderid}} </h3>
+                            <small> Starts at - {{ticket.time}} </small>
+                            <div class="even-date">
+                                <time>
+                                    <span> {{ticket.date}} </span>
+                                    <span>{{ticket.totalSeats}} Seats - {{ticket.seatnumbers}} </span>
+                                </time>
+                            </div>
+                            <div class="even-info">
+                                <p>
+                                   AMS, 416 Exchange Blvd, Bethlehem, GA 30620
+                                </p>
+                            </div>
+                            <a >BOOKED</a>
+                        </section>
+                    </article>
+                </section>
+            </div>
+        </div>
+    </div>
+    
 
-<div class="historyContainer">  
-    <div class="movie">
-        <div class="movie-title"><span class="title">Title: </span><span class="name">{{title}}</span></div>
-        <!-- <div class="movie-castcrew"><span class="title">Date: </span><span class="name"></span></div>
-        <div class="movie-castcrew"><span class="title">Time: </span><span class="name"></span></div>-->
-        <div class="movie-castcrew"><span class="title">Cost: </span><span class="name">{{cost}}</span></div>
+    <div *ngIf="tickets?.length == 0">
+        <div class="d-flex justify-content-center">
+            <div class="col-10 noticketsClass">
+                <div class="noTicketsMsgClass">
+                    Sorry!! You Haven't Booked Any Tickets Yet.
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
