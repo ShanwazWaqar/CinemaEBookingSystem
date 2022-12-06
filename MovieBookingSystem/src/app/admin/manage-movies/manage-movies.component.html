@@ -1,7 +1,7 @@
 <div class="row">
     <div class="manageMoviesHeader">
         <div class="manageMoviesButton" [ngStyle]="{ 'color' : currentMoviesSelected ? '#1fb5bf' : 'white'}" (click)="showCurrentMovies()">
-            Edit Movies
+             Movies
         </div>
         <div class="manageMoviesButton" [ngStyle]="{ 'color' : addmoviesSelected ? '#1fb5bf' : 'white'}" (click)="addMovies()">
             ADD MOVIE
@@ -31,11 +31,11 @@
                                 <div>
                                     Status: &nbsp; <span class="statusClass">{{movie.status}}</span>
                                 </div>
-                                <mat-card-actions>   
+                                <!-- <mat-card-actions>   
                                     <div class="d-flex justify-content-center">
                                         <div class="currentmovesEditBtn" (click)="openEditMoviePopup(i)">Edit</div>
                                     </div>
-                                </mat-card-actions>
+                                </mat-card-actions> -->
                             </mat-card-content>
                         </mat-card>
                     </div>

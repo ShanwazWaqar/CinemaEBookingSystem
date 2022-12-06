@@ -67,7 +67,8 @@ export class SignUp2Component implements OnInit {
       cardexpirymonth : (this.cardForm.value.month),
       cardexpiryyear : (this.cardForm.value.year),
       nameoncard: (this.cardForm.value.name),
-      promotion: this.promotionOptedIn
+      promotion: this.promotionOptedIn,
+      userstatus:1
     }
     let paydata:any;
     paydata={

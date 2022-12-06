@@ -131,9 +131,9 @@ export class CheckoutComponent implements OnInit {
     if(this.checkoutForm.valid) {
       // valid form
       if(this.checkoutForm.value.cardSelected || this.showCardForm) {
-        console.log("paymeny method is selected");
         if(this.showCardForm) {
           if(this.cardForm.valid) {
+            this.movie.cardNo = this.cardForm.value.cardNo;
             localStorage.setItem("movie",JSON.stringify(this.movie));
             this.router.navigateByUrl('/confirmation');
           } else {

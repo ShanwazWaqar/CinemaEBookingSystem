@@ -31,6 +31,7 @@ export class ConfirmaionComponent implements OnInit {
       this.total = Number(this.total).toFixed(2);
       // need order id from backend.
       let obj:any;
+      console.log(this.movie.cardNo," cardNo")
       obj = 
         {
           "title": this.movie.movieName,
@@ -42,14 +43,13 @@ export class ConfirmaionComponent implements OnInit {
           "adultseats": this.movie.adultSeats,
           "childseats": this.movie.childSeats,
           "seniorseats": this.movie.seniorSeats,
-          "cardnumber": this.movie.cardNo.split(" ")[(this.movie.cardNo.split(" ").length-1)],
+          // "cardnumber": this.movie.cardNo.split(" ")[(this.movie.cardNo.split(" ").length-1)],
           "totalamount": this.movie.ticketCost,
           "seatnumbers": this.movie.selectedSeatsList.toString()
       };
-      console.log(obj);
       obj = JSON.stringify(obj);
       this.bms.ticketBooked(obj).subscribe(res=> {
-        console.log(res," response");
+        this.movie.orderId = res.orderid;
       })
       for(let i=0;i<this.movie.selectedSeatsList.length;i++){
         let obj2:any;
@@ -68,7 +68,7 @@ export class ConfirmaionComponent implements OnInit {
       }
       
 
-    })
+    });
   }
   convert(value: any) {
     var date = new Date(value),

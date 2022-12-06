@@ -87,7 +87,7 @@ export class OrderConfirmationComponent implements OnInit {
     today.setHours(0, 0, 0, 0);
     let tdate=this.convert(today);
     console.log(tdate);
-    return date <= tdate;
+    return date >= tdate;
   }
   convert(value: any) {
     var date = new Date(value),
