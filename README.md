@@ -11,7 +11,10 @@
 <li>Now run command <i>ng serve</i> and your frontend should be up and running.</li></ul>
 <h1>Database</h1>
 <ul><li> start Xampp control pannel and run a<i> apache</i> and <i>mysql</i></li>
-<li>Now open MySql workbench and create a MySql connection(localhost).</li></ul>
+<li>Now open MySql workbench and create a MySql connection(localhost).</li>
+<li>Now create a database named cinemabooking</ul>
 <h1>Backend</h1>
 <ul><li>Open Springtool suite or any compatable IDE you are using and go to file => import => existing gradle project and select the directory where is backend folder is loacated</li>
-<li>Once the project is build, right click on project and go to run as => springboot app.</li>
+<li>Once the project is build, go to src => resources => application.properties file and change database username and password as required and port number as well if your localhost runs in different port.</li>
+  <li>right click on project and go to run as => springboot app.</li>
+  <b>Springboot will create all the tables in your database once you run the app.
