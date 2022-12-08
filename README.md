@@ -6,7 +6,7 @@
 <li>Follow the link to install Angular CLI <a href="https://angular.io/cli">Angualar(Recomended)</a> and Install <a href="https://nodejs.org/en/download/">NodeJs(Recomended)</a></li>
 <li>Install <a href="https://dev.mysql.com/downloads/workbench/">MySql(Recomended)</a> and if you encounter any issues tyry using<a href="https://www.apachefriends.org/download.html"> Xampp(Recomended)</a></li>
 </ul>
-<h1>Steps to start forntend</h1>
+<h1>Frontend</h1>
 <ul><li>open project in VS Code and go to terminal and run command <i>npm install</i>,if any exceptions or errors try command <i>npm install -force</i></li>
 <li>Now run command <i>ng serve</i> and your frontend should be up and running.</li></ul>
 <h1>Database</h1>
