@@ -50,6 +50,7 @@ export class MovieListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //localStorage.clear()
     this.spinner.show();
     this.bms.getMoviesList().subscribe(res => {
       if (res) {
