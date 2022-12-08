@@ -15,7 +15,7 @@
 <li>Now open MySql workbench and create a MySql connection(localhost).</li>
 <li>Now create a database named cinemabooking</ul>
 <h1>Backend</h1>
-<ul><li>Open Springtool suite or any compatable IDE you are using and go to file => import => existing gradle project and select the directory where is backend folder is loacated</li>
+<ul><li>Open Springtool suite or any compatable IDE you are using and go to file => import => existing gradle project and select the directory where the backend folder is loacated</li>
 <li>Once the project is build, go to src => resources => application.properties file and change database username and password as required and port number as well if your localhost runs in different port.</li>
   <li>right click on project and go to run as => springboot app.</li>
   <b>Springboot will create all the tables in your database once you run the app.
