@@ -8,7 +8,7 @@
 <li>Install <a href="https://dev.mysql.com/downloads/workbench/">MySql(Recommended)</a> and if you encounter any issues try using<a href="https://www.apachefriends.org/download.html"> Xampp(Recommended)</a></li>
 </ul>
 <h1>Frontend</h1>
-<ul><li>open project in VS Code and go to terminal and run command <i>npm install</i>,if any exceptions or errors try command <i>npm install -force</i></li>
+<ul><li>open project in VS Code and go to terminal and run command <i>npm install</i>, to install the dependencies if any exceptions or errors try command <i>npm install -force</i></li>
 <li>Now run command <i>ng serve</i> and your frontend should be up and running.</li></ul>
 <h1>Database</h1>
 <ul><li> start Xampp control pannel and run both<i> apache</i> and <i>mysql</i></li>
