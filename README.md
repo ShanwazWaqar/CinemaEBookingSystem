@@ -9,7 +9,7 @@
 </ul>
 <h1>Frontend</h1>
 <ul><li>open project in VS Code and go to terminal and run command <i>npm install</i>, to install the dependencies if any exceptions or errors try command <i>npm install -force</i></li>
-<li>Now run command <i>ng serve</i> and your frontend should be up and running.</li></ul>
+<li>Now run command <i>ng serve</i> to run the project and your frontend should be up and running at the port being displayed in the terminal.</li></ul>
 <h1>Database</h1>
 <ul><li> start Xampp control pannel and run both<i> apache</i> and <i>mysql</i></li>
 <li>Now open MySql workbench and create a MySql connection(localhost).</li>
