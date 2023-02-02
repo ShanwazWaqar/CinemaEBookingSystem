@@ -1,5 +1,5 @@
 # Online Cinema Booking
-<h3> Clone the repository using <i> git clone https://github.com/naveen-kurra/OnlineCinemaBooking/ </i> or download directly from github as zip file and extract.</h3>
+<h3> Clone the repository using <i> git clone https://github.com/ShanwazWaqarK9/CinemaEBookingSystem </i> or download directly from github as zip file and extract.</h3>
 <h1>Implement the website the in the following steps</h1>
 <ul><li><a href="https://www.oracle.com/java/technologies/downloads/">Install Java JDK from oracle</a></li>
 <li>Install <a href="https://spring.io/tools">Spring Tool Suite, </a><a href="https://www.eclipse.org/downloads/">Eclipse</a> or any other springboot compatable IDE's </li>
